@@ -227,7 +227,12 @@ def ships_to(cfg, p):
 # ---------------------------------------------------------------- تنسيق المنشور
 def stars(rate_percent):
     r = round(num(rate_percent) / 20, 1)  # 96% -> 4.8
-    return f"{r}/5" if r else ""
+    return f"{r:g}" if r else ""
+
+
+def money(x):
+    """189.0 -> 189 ، 39.5 -> 39.50"""
+    return f"{x:,.0f}" if float(x).is_integer() else f"{x:,.2f}"
 
 
 def caption(cfg, p):
@@ -238,30 +243,32 @@ def caption(cfg, p):
     price = num(p.get("target_sale_price"))
     old = num(p.get("target_original_price"))
     disc = int(num(p.get("discount")))
-    lines = [random.choice(cfg["headlines"]), "", f"<b>{title}</b>", ""]
-    # كل سعر في سطر لحاله عشان الشطب يبان واضح على الجوال
+    sep = "┈┈┈┈┈┈┈┈┈┈┈┈"
+    lines = [random.choice(cfg["headlines"]), "", f"<b>{title}</b>", "", sep]
+    # الشطب على الرقم بس (بدون مسافات ولا عملة داخله) عشان يجي على السعر بالضبط في الجوال
     if old > price > 0:
-        lines.append(f"💰 السعر الحين: <b>{price:g} {cur}</b>")
-        lines.append(f"❌ السعر قبل: <s>{old:g} {cur}</s>")
+        lines.append(f"💰 السعر الحين: <b>{money(price)}</b> {cur}")
+        lines.append(f"🏷️ السعر قبل: <s>{money(old)}</s> {cur}")
         if disc:
-            lines.append(f"🔥 خصم <b>{disc}%</b>")
+            lines.append(f"🔥 خصم {disc}% · توفّر {money(old - price)} {cur}")
     elif price:
-        lines.append(f"💰 السعر: <b>{price:g} {cur}</b>")
+        lines.append(f"💰 السعر: <b>{money(price)}</b> {cur}")
     rating = stars(p.get("evaluate_rate"))
     vol = int(num(p.get("lastest_volume")))
-    meta = []
-    if rating:
-        meta.append(f"⭐ {rating}")
-    if vol:
-        meta.append(f"🛒 {vol:,}+ طلب")
-    if meta:
-        lines.append(" · ".join(meta))
+    if rating or vol:
+        lines.append(sep)
+        if rating:
+            lines.append(f"⭐ التقييم: {rating} من 5")
+        if vol:
+            lines.append(f"🛒 الطلبات: أكثر من {vol:,} طلب")
     ships = p.get("_ships")
     if ships:
         names = {c["code"]: f'{c["flag"]} {c["name"]}' for c in cfg.get("countries", [])}
-        lines += ["", "🚚 يوصل لـ: " + " ".join(names[c] for c in ships if c in names)]
+        items = [names[c] for c in ships if c in names]
+        lines += [sep, "🚚 الشحن متوفر لـ:"]
+        lines += ["   ".join(items[i:i + 3]) for i in range(0, len(items), 3)]
     link = html.escape(p["promotion_link"], quote=True)
-    lines += ["", f'🔗 <a href="{link}">اضغط هنا للطلب</a>']
+    lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if cfg.get("hashtags"):
         lines += ["", cfg["hashtags"]]
     text = "\n".join(lines)
