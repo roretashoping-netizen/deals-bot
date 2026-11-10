@@ -27,6 +27,8 @@ from pathlib import Path
 
 import requests
 
+import deals_site
+
 BASE_DIR = Path(__file__).resolve().parent
 STATE_FILE = BASE_DIR / "data" / "state.json"
 CONFIG_FILE = BASE_DIR / "config.json"
@@ -151,6 +153,8 @@ def fetch_candidates(cfg):
         except Exception as e:  # نكمل بالكلمات الثانية
             print(f"[warn] {kw}: {e}", file=sys.stderr)
             continue
+        for p in prods:
+            p["_kw"] = kw  # نعرف الفئة من كلمة البحث
         out.extend(prods)
     return out
 
@@ -387,7 +391,8 @@ def caption(cfg, p):
     link = html.escape(p["promotion_link"], quote=True)
     lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if cfg.get("hashtags"):
-        lines += ["", cfg["hashtags"]]
+        tag = deals_site.category_for(p.get("_kw", ""))["tag"]
+        lines += ["", f"{cfg['hashtags']} #{tag}"]
     if is_clothing(cfg, p):
         lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
@@ -531,7 +536,7 @@ def cmd_post(cfg, state, count):
     runs_left = max(1, int((end - h) * 60 // cfg.get("run_every_minutes", 30)) + 1)
     count = min(count, max(1, -(-left // runs_left)))
     prods = pick(cfg, state, fetch_candidates(cfg), count)
-    sent = 0
+    sent, new_ids = 0, []
     for p in prods:
         p["promotion_link"] = short_link(cfg, p)
         p["_ships"] = ships_to(cfg, p)
@@ -548,8 +553,17 @@ def cmd_post(cfg, state, count):
         state["daily"][d] = state["daily"].get(d, 0) + 1
         sent += 1
         save_state(state)
+        if cfg.get("site_url"):
+            deals_site.record(cfg, p, gallery(p))
+            new_ids.append(str(p["product_id"]))
         if sent < len(prods):
             time.sleep(8)
+    if new_ids:
+        try:
+            deals_site.build(cfg, only_ids=new_ids)
+            print(f"الموقع: انضافت {len(new_ids)} صفحة")
+        except Exception as e:
+            print(f"[warn] بناء الموقع فشل: {e}", file=sys.stderr)
     print(f"انتشر {sent} منتج. مجموع اليوم: {state['daily'].get(d, 0)}/{cfg['posts_per_day']}")
     return 0 if sent or not prods else 1
 
@@ -582,7 +596,7 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
@@ -590,6 +604,9 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "site":
+        print(f"انبنت {deals_site.build(cfg)} صفحة منتج")
+        return 0
     if a.command == "linktest":
         return cmd_linktest(cfg)
     if a.command == "preview":
