@@ -198,12 +198,11 @@ def short_link(cfg, p):
 
 def ships_to(cfg, p):
     """يتأكد من الدول اللي يوصلها المنتج: لكل دولة يسأل علي إكسبريس عن المنتج بشحن لها."""
-    ok = []
-    for c in cfg.get("countries", []):
-        code = c["code"]
+    from concurrent.futures import ThreadPoolExecutor
+
+    def check(code):
         if code == cfg["ship_to"]:  # البحث أصلًا مفلتر على هالدولة
-            ok.append(code)
-            continue
+            return True
         try:
             data = ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
                 "product_ids": p["product_id"],
@@ -214,11 +213,15 @@ def ships_to(cfg, p):
                 "fields": "product_id,target_sale_price",
             })
             prods = extract_products(data)
-            if prods and prods[0].get("target_sale_price"):
-                ok.append(code)
+            return bool(prods and prods[0].get("target_sale_price"))
         except Exception as e:
             print(f"[warn] فحص الشحن {code}: {e}", file=sys.stderr)
-    return ok
+            return False
+
+    codes = [c["code"] for c in cfg.get("countries", [])]
+    with ThreadPoolExecutor(max_workers=6) as ex:  # كل الدول مع بعض عشان أسرع
+        results = list(ex.map(check, codes))
+    return [c for c, ok in zip(codes, results) if ok]
 
 
 # ---------------------------------------------------------------- تنسيق المنشور
