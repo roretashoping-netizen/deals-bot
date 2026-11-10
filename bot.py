@@ -133,7 +133,8 @@ def fetch_candidates(cfg):
             "max_sale_price": cfg.get("max_price", ""),
             "fields": "product_id,product_title,target_sale_price,target_original_price,"
             "target_sale_price_currency,discount,evaluate_rate,lastest_volume,"
-            "product_main_image_url,promotion_link,commission_rate,first_level_category_name",
+            "product_main_image_url,promotion_link,commission_rate,first_level_category_name,"
+            "product_detail_url",
         }
         try:
             prods = extract_products(ali_call(cfg, method, biz))
@@ -175,6 +176,26 @@ def pick(cfg, state, products, n):
     return top[:n]
 
 
+def short_link(cfg, p):
+    """يحوّل رابط المنتج لرابط أفلييت قصير (s.click.aliexpress.com/e/...)."""
+    source = p.get("product_detail_url") or p.get("promotion_link")
+    try:
+        data = ali_call(cfg, "aliexpress.affiliate.link.generate", {
+            "promotion_link_type": 0,
+            "source_values": source,
+            "tracking_id": cfg["tracking_id"],
+            "ship_to_country": cfg["ship_to"],
+        })
+        res = data["aliexpress_affiliate_link_generate_response"]["resp_result"]["result"]
+        links = res["promotion_links"]["promotion_link"]
+        link = str(links[0]["promotion_link"]).strip() if links else ""
+        if link:
+            return link
+    except Exception as e:
+        print(f"[warn] تقصير الرابط فشل: {e}", file=sys.stderr)
+    return p["promotion_link"]
+
+
 # ---------------------------------------------------------------- تنسيق المنشور
 def stars(rate_percent):
     r = round(num(rate_percent) / 20, 1)  # 96% -> 4.8
@@ -203,7 +224,8 @@ def caption(cfg, p):
         meta.append(f"🛒 {vol:,}+ طلب")
     if meta:
         lines.append(" · ".join(meta))
-    lines += ["", f"🔗 {p['promotion_link']}"]
+    link = html.escape(p["promotion_link"], quote=True)
+    lines += ["", f'🔗 <a href="{link}">اضغط هنا للطلب</a>']
     if cfg.get("hashtags"):
         lines += ["", cfg["hashtags"]]
     text = "\n".join(lines)
@@ -270,6 +292,7 @@ def cmd_post(cfg, state, count):
     prods = pick(cfg, state, fetch_candidates(cfg), count)
     sent = 0
     for p in prods:
+        p["promotion_link"] = short_link(cfg, p)
         try:
             send_product(cfg, p)
         except Exception as e:
