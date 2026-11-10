@@ -17,4 +17,4 @@ jobs:
           ALI_APP_KEY: ${{ secrets.ALI_APP_KEY }}
           ALI_APP_SECRET: ${{ secrets.ALI_APP_SECRET }}
           ALI_TRACKING_ID: ${{ secrets.ALI_TRACKING_ID }}
-        run: python bot.py fields
+        run: python bot.py linktest
