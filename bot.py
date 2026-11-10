@@ -66,8 +66,8 @@ def load_state():
 
 def save_state(state):
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    # نحذف المنتجات الأقدم من ٦٠ يوم عشان الملف ما يكبر
-    cutoff = (datetime.now(RIYADH) - timedelta(days=60)).strftime("%Y-%m-%d")
+    # المنتج ما يتكرر خلال ٢١ يوم، وبعدها يقدر ينعاد
+    cutoff = (datetime.now(RIYADH) - timedelta(days=21)).strftime("%Y-%m-%d")
     state["posted"] = {k: v for k, v in state["posted"].items() if v >= cutoff}
     state["daily"] = {k: v for k, v in state["daily"].items() if k >= cutoff}
     STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -128,7 +128,7 @@ def fetch_candidates(cfg):
             "ship_to_country": cfg["ship_to"],
             "sort": "LAST_VOLUME_DESC",
             "page_size": 50,
-            "page_no": random.randint(1, 3),
+            "page_no": random.randint(1, 5),
             "min_sale_price": cfg.get("min_price", ""),
             "max_sale_price": cfg.get("max_price", ""),
             "fields": "product_id,product_title,target_sale_price,target_original_price,"
@@ -196,6 +196,31 @@ def short_link(cfg, p):
     return p["promotion_link"]
 
 
+def ships_to(cfg, p):
+    """يتأكد من الدول اللي يوصلها المنتج: لكل دولة يسأل علي إكسبريس عن المنتج بشحن لها."""
+    ok = []
+    for c in cfg.get("countries", []):
+        code = c["code"]
+        if code == cfg["ship_to"]:  # البحث أصلًا مفلتر على هالدولة
+            ok.append(code)
+            continue
+        try:
+            data = ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+                "product_ids": p["product_id"],
+                "target_currency": cfg["currency"],
+                "target_language": cfg["language"],
+                "ship_to_country": code,
+                "tracking_id": cfg["tracking_id"],
+                "fields": "product_id,target_sale_price",
+            })
+            prods = extract_products(data)
+            if prods and prods[0].get("target_sale_price"):
+                ok.append(code)
+        except Exception as e:
+            print(f"[warn] فحص الشحن {code}: {e}", file=sys.stderr)
+    return ok
+
+
 # ---------------------------------------------------------------- تنسيق المنشور
 def stars(rate_percent):
     r = round(num(rate_percent) / 20, 1)  # 96% -> 4.8
@@ -211,8 +236,12 @@ def caption(cfg, p):
     old = num(p.get("target_original_price"))
     disc = int(num(p.get("discount")))
     lines = [random.choice(cfg["headlines"]), "", f"<b>{title}</b>", ""]
+    # كل سعر في سطر لحاله عشان الشطب يبان واضح على الجوال
     if old > price > 0:
-        lines.append(f"💰 السعر: <b>{price:g} {cur}</b> بدال <s>{old:g} {cur}</s> (خصم {disc}%)")
+        lines.append(f"💰 السعر الحين: <b>{price:g} {cur}</b>")
+        lines.append(f"❌ السعر قبل: <s>{old:g} {cur}</s>")
+        if disc:
+            lines.append(f"🔥 خصم <b>{disc}%</b>")
     elif price:
         lines.append(f"💰 السعر: <b>{price:g} {cur}</b>")
     rating = stars(p.get("evaluate_rate"))
@@ -224,6 +253,10 @@ def caption(cfg, p):
         meta.append(f"🛒 {vol:,}+ طلب")
     if meta:
         lines.append(" · ".join(meta))
+    ships = p.get("_ships")
+    if ships:
+        names = {c["code"]: f'{c["flag"]} {c["name"]}' for c in cfg.get("countries", [])}
+        lines += ["", "🚚 يوصل لـ: " + " ".join(names[c] for c in ships if c in names)]
     link = html.escape(p["promotion_link"], quote=True)
     lines += ["", f'🔗 <a href="{link}">اضغط هنا للطلب</a>']
     if cfg.get("hashtags"):
@@ -293,6 +326,8 @@ def cmd_post(cfg, state, count):
     sent = 0
     for p in prods:
         p["promotion_link"] = short_link(cfg, p)
+        p["_ships"] = ships_to(cfg, p)
+        print(f"منتج {p.get('product_id')}: يوصل لـ {','.join(p['_ships'])}")
         try:
             send_product(cfg, p)
         except Exception as e:
@@ -303,7 +338,7 @@ def cmd_post(cfg, state, count):
         sent += 1
         save_state(state)
         if sent < len(prods):
-            time.sleep(5)
+            time.sleep(8)
     print(f"انتشر {sent} منتج. مجموع اليوم: {state['daily'].get(d, 0)}/{cfg['posts_per_day']}")
     return 0 if sent or not prods else 1
 
