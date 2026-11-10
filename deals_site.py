@@ -7,12 +7,13 @@ import json
 import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "6"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "7"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -327,6 +328,7 @@ h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .save{color:var(--ok);font-weight:700}
 .meta{margin:12px 0;padding:0;list-style:none}.meta li{padding:4px 0;border-bottom:1px dashed var(--line)}
 .buy{display:block;text-align:center;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:14px;border-radius:12px;font-size:18px;font-weight:700;margin-top:14px}
+.share{display:flex;gap:8px;margin-top:10px}.share a{flex:1;text-align:center;color:#fff;text-decoration:none;padding:11px 6px;border-radius:12px;font-weight:700;font-size:15px}.share .wa{background:#25d366}.share .tgs{background:#229ed9}
 .join{display:block;text-align:center;background:#229ed9;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
 .crumbs{font-size:13px;color:var(--muted);margin-top:12px}.crumbs a{color:var(--muted)}
 .note{font-size:13px;color:var(--muted)}
@@ -340,6 +342,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     verify = cfg.get("google_site_verification", "")
     cats = f'<a href="{site}/codes.html">🎟️ أكواد الخصم</a>' + \
+        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in COLLECTIONS) + \
         "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in CATEGORIES)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     return f"""<!doctype html>
@@ -427,6 +430,7 @@ def product_page(cfg, x, related):
    <a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>
    <ul class="meta">{meta}</ul>
    <a class="buy" href="{esc(x['link'])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a>
+   {share_html(f"{site}/p/{x['id']}.html", f"{name} بـ {money(x['price'])} ريال من علي إكسبريس")}
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>
    <p class="note">السعر وقت الإضافة، وقد يتغير في علي إكسبريس.</p>
   </div></div>
@@ -443,6 +447,30 @@ def product_page(cfg, x, related):
             {"@type": "ListItem", "position": 3, "name": short}]},
     ]
     return page(cfg, title, desc, f"p/{x['id']}.html", body, jsonld, x["image"])
+
+
+# صفحات تجميعية تستهدف عبارات يبحث فيها الناس في قوقل
+COLLECTIONS = [
+    {"slug": "under-10", "name": "أقل من 10 ريال", "title": "منتجات علي اكسبريس بأقل من 10 ريال | عروض رخيصة اليوم",
+     "intro": "منتجات من علي إكسبريس سعرها أقل من 10 ريال، مختارة بتقييم عالي وطلبات كثيرة، مع توصيل للسعودية والخليج.",
+     "pick": lambda xs: [x for x in xs if 0 < x["price"] < 10]},
+    {"slug": "under-25", "name": "أقل من 25 ريال", "title": "عروض علي اكسبريس بأقل من 25 ريال | هدايا ومنتجات رخيصة",
+     "intro": "عروض علي إكسبريس بأقل من 25 ريال: إكسسوارات وأدوات مكياج ومطبخ وهدايا بسيطة، بتقييم عالي وتوصيل للخليج.",
+     "pick": lambda xs: [x for x in xs if 0 < x["price"] < 25]},
+    {"slug": "best-sellers", "name": "الأكثر مبيعًا", "title": "الأكثر مبيعًا في علي اكسبريس للبنات | أفضل المنتجات طلبًا",
+     "intro": "أكثر منتجات علي إكسبريس طلبًا عند البنات: منتجات مجربة عليها آلاف الطلبات وتقييمها عالي.",
+     "pick": lambda xs: sorted(xs, key=lambda x: -x["orders"])},
+    {"slug": "top-discounts", "name": "أقوى الخصومات", "title": "أقوى خصومات علي اكسبريس اليوم | تخفيضات فوق 50%",
+     "intro": "أقوى تخفيضات علي إكسبريس الحين: منتجات خصمها 50% وأكثر بتقييم عالي وتوصيل للسعودية والخليج.",
+     "pick": lambda xs: sorted([x for x in xs if x["disc"] >= 50], key=lambda x: -x["disc"])},
+]
+
+
+def share_html(url, text):
+    """أزرار مشاركة واتساب وتليجرام (كل مشاركة تجيب زوار جدد)."""
+    msg = quote(f"{text}\n{url}")
+    return (f'<div class="share"><a class="wa" href="https://wa.me/?text={msg}" target="_blank" rel="noopener">📲 أرسليه واتساب</a>'
+            f'<a class="tgs" href="https://t.me/share/url?url={quote(url)}&text={quote(text)}" target="_blank" rel="noopener">✈️ شاركيه تليجرام</a></div>')
 
 
 def list_page(cfg, title, h1, intro, path, items):
@@ -482,6 +510,12 @@ def build(cfg, only_ids=None):
             list_page(cfg, f"{c['name']} علي اكسبريس | عروض وتخفيضات اليوم", f"{c['name']} من علي إكسبريس",
                       intro, f"c/{c['slug']}.html", lst), encoding="utf-8")
 
+    for c in COLLECTIONS:
+        lst = c["pick"](newest)[:60]
+        (OUT / "c" / f"{c['slug']}.html").write_text(
+            list_page(cfg, c["title"], c["name"] + " من علي إكسبريس", c["intro"], f"c/{c['slug']}.html", lst),
+            encoding="utf-8")
+
     intro = ("عروض وتخفيضات علي إكسبريس يوميًا للبنات: فساتين سهرة وعبايات، أدوات مكياج، إكسسوارات وشنط، "
              "وأدوات مطبخ. كل منتج مختار بتقييم عالي وطلبات كثيرة، والسعر بالريال مع الخصم، "
              "وتوصيل للسعودية والخليج.")
@@ -492,6 +526,7 @@ def build(cfg, only_ids=None):
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
 
     urls = [(f"{site}/", today_str()), (f"{site}/codes.html", today_str())] + \
+           [(f"{site}/c/{c['slug']}.html", today_str()) for c in COLLECTIONS if c["pick"](newest)] + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in CATEGORIES if by_cat.get(c["slug"])] + \
            [(f"{site}/p/{x['id']}.html", x["date"]) for x in newest]
     sm = "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>" for u, d in urls)

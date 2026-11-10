@@ -575,6 +575,21 @@ def as_album(cfg, p):
     return is_clothing(cfg, p) and bool(gallery(p))
 
 
+def post_buttons(cfg, p):
+    """زر الطلب، وتحته أكواد الخصم ومشاركة العرض (المشاركة تجيب أعضاء وزوار جدد)."""
+    rows = [[{"text": cfg.get("button_text", "🛍️ اطلب الحين"), "url": p["promotion_link"]}]]
+    site = cfg.get("site_url", "").rstrip("/")
+    if site:
+        from urllib.parse import quote
+        page = f"{site}/p/{p['product_id']}.html"
+        text = f"{p.get('_title') or 'عرض من علي إكسبريس'} 🔥"
+        rows.append([
+            {"text": "🎟️ أكواد الخصم", "url": f"{site}/codes.html"},
+            {"text": "📤 شاركي العرض", "url": f"https://t.me/share/url?url={quote(page)}&text={quote(text)}"},
+        ])
+    return rows
+
+
 def send_product(cfg, p):
     imgs = gallery(p)
     if as_album(cfg, p):
@@ -591,7 +606,7 @@ def send_product(cfg, p):
         photo=p["product_main_image_url"],
         caption=caption(cfg, p),
         parse_mode="HTML",
-        reply_markup={"inline_keyboard": [[{"text": cfg.get("button_text", "🛍️ اطلب الحين"), "url": p["promotion_link"]}]]},
+        reply_markup={"inline_keyboard": post_buttons(cfg, p)},
     )
 
 
