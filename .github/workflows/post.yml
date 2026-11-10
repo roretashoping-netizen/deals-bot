@@ -28,7 +28,7 @@ jobs:
           ALI_TRACKING_ID: ${{ secrets.ALI_TRACKING_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-        run: python bot.py post --count 1
+        run: python bot.py post --count 4
       - name: Save state
         run: |
           git config user.name "bot"
