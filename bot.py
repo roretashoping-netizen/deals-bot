@@ -193,7 +193,7 @@ COSMETIC_WORDS = [
     "روج", "أحمر شفاه", "احمر شفاه", "ملمع شفاه", "ظلال", "كريم أساس", "كريم اساس", "خافي عيوب", "ماسكرا",
     "كحل", "أحمر خدود", "احمر خدود", "هايلايتر", "برايمر", "طلاء أظافر", "طلاء اظافر", "مناكير", "جل أظافر",
     "كريم", "سيروم", "لوشن", "مرطب", "واقي شمس", "زيت عطري", "صبغة", "عطر", "شامبو", "ماسك للوجه", "قناع الوجه", "تونر",
-    "غسول", "تبييض", "تفتيح",
+    "غسول", "تبييض", "تفتيح", "بودرة", "powder", "palette", "باليت", "كونسيلر", "حواجب ملونة", "تينت",
 ]
 # لو العنوان فيه وحدة من هذي، يكون أداة (فرشاة، منظم...) مو مستحضر
 TOOL_WORDS = [
@@ -207,6 +207,7 @@ TOOL_WORDS = [
 
 NOT_COSMETIC_WORDS = [
     "dress", "abaya", "gown", "pajama", "slipper", "handbag", "wallet", "shoes", "kitchen", "cup", "mug",
+    "atomizer", "refillable", "empty bottle", "زجاجة عطر فارغة", "قابلة لإعادة التعبئة",
     "فستان", "عباية", "عبايه", "بيجامة", "شبشب", "شنطة", "حقيبة يد", "محفظة", "حذاء", "مطبخ", "كوب",
 ]
 
@@ -225,7 +226,10 @@ def blocked(p):
     # الملابس والشنط ما تدخل فحص المستحضرات (مثلًا "فستان كريمي" لونه كريمي مو كريم)
     if is_clothing({}, p) or has_any(title, NOT_COSMETIC_WORDS):
         return None
-    if has_any(title, COSMETIC_WORDS) and not has_any(title, TOOL_WORDS):
+    # المنتج هو أول شي يذكره العنوان: "فرشاة لظلال العيون" أداة، و"بودرة حواجب مع فرشاة" مستحضر
+    cos = [title.find(w) for w in COSMETIC_WORDS if w in title]
+    tool = [title.find(w) for w in TOOL_WORDS if w in title]
+    if cos and (not tool or min(cos) < min(tool)):
         return "cosmetic"
     return None
 
@@ -460,6 +464,25 @@ def is_mens(p):
     return bool(MEN_RE.search(title) or MEN_RE.search(cats) or has_any(title, MEN_AR))
 
 
+def cmd_prune(cfg):
+    """يشيل من الموقع أي منتج ما يطابق الشروط الحالية (رجالي، جنسي، مستحضرات)."""
+    items = deals_site.load_products()
+    keep, removed = [], []
+    for x in items:
+        p = {"product_title": x["title"]}
+        if is_mens(p) or blocked(p):
+            removed.append(x)
+            (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
+        else:
+            keep.append(x)
+    deals_site.PRODUCTS_FILE.write_text(json.dumps(keep, ensure_ascii=False), encoding="utf-8")
+    for x in removed:
+        print(f"- شلت: {x['title'][:60]}")
+    deals_site.build(cfg)
+    print(f"شلت {len(removed)} منتج، وباقي {len(keep)}")
+    return 0
+
+
 def cmd_backfill(cfg, state):
     """يضيف للموقع المنتجات اللي انتشرت قبل ما يصير فيه موقع (ما عدا منتجات الرجال والسيارات)."""
     have = {x["id"] for x in deals_site.load_products()}
@@ -645,7 +668,7 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
@@ -653,6 +676,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "prune":
+        return cmd_prune(cfg)
     if a.command == "backfill":
         return cmd_backfill(cfg, load_state())
     if a.command == "site":
