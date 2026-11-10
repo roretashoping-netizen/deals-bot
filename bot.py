@@ -115,7 +115,7 @@ def extract_products(data):
 
 
 def fetch_candidates(cfg):
-    method = "aliexpress.affiliate.hotproduct.query"
+    method = "aliexpress.affiliate.product.query"
     keywords = list(cfg["keywords"])
     random.shuffle(keywords)
     out = []
