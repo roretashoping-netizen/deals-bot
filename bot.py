@@ -282,6 +282,24 @@ def is_evening(p):
     return ("gown" in t) or (dress and any(w in t for w in EVENING_WORDS))
 
 
+def bag_rule_fail(cfg, p):
+    """الشنط: جلد + متجر رسمي موثّق + تقييم عالي. يرجع سبب الرفض أو None."""
+    rules = cfg.get("bag_rules")
+    if not rules or not p.get("_kw") or deals_site.category_for(p["_kw"])["slug"] != "bags":
+        return None
+    title = str(p.get("product_title", "")).lower()
+    if rules.get("require_words") and not any(w in title for w in rules["require_words"]):
+        return "شنطة مو جلد"
+    shop = norm_shop(p.get("shop_name"))
+    if rules.get("shop_words") and not any(w in shop for w in rules["shop_words"]):
+        return "شنطة من متجر غير رسمي"
+    if num(p.get("evaluate_rate")) < rules.get("min_rating_percent", 0):
+        return "شنطة تقييمها أقل"
+    if num(p.get("lastest_volume")) < rules.get("min_orders", 0):
+        return "شنطة طلباتها قليلة"
+    return None
+
+
 def has_any(text, words):
     return any(w in text for w in words)
 
@@ -333,7 +351,15 @@ def pick(cfg, state, products, n):
             skip("من غير القسم"); continue  # البحث رجّع منتج من غير القسم (ساعة لما ندور فستان مثلًا)
         trusted = trusted_shop(cfg, p)
         if is_evening(p) and not trusted:
-            skip("سهرة من متجر ثاني"); why.setdefault("_shops", set()).add(str(p.get("shop_name"))); continue  # فساتين السهرة بس من المتاجر المختارة
+            skip("سهرة من متجر ثاني")
+            st = why.setdefault("_shops", {}).setdefault(str(p.get("shop_name")), [0, 0, 0])
+            st[0] += 1
+            st[1] = max(st[1], int(num(p.get("lastest_volume"))))
+            st[2] = max(st[2], num(p.get("evaluate_rate")))
+            continue
+        bag_fail = bag_rule_fail(cfg, p)
+        if bag_fail:
+            skip(bag_fail); continue  # فساتين السهرة بس من المتاجر المختارة
         f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
@@ -351,10 +377,11 @@ def pick(cfg, state, products, n):
         if p.get("_from_store"):
             score += 40  # المتاجر المختارة لها أولوية
         good.append((score, p))
-    shops = why.pop("_shops", set())
+    shops = why.pop("_shops", {})
     print(f"المرشحين {len(products)}، المقبول {len(good)}، المرفوض: " + ", ".join(f"{k} {v}" for k, v in why.items()))
     if shops:
-        print("متاجر فساتين سهرة انرفضت: " + " | ".join(sorted(shops)[:40]))
+        print("متاجر فساتين سهرة انرفضت (عدد/أعلى طلبات/أعلى تقييم): " + " | ".join(
+            f"{k} ({v[0]}/{v[1]}/{v[2]:.0f}%)" for k, v in sorted(shops.items(), key=lambda t: -t[1][1])[:40]))
     good.sort(key=lambda t: t[0], reverse=True)
     top = [p for _, p in good[: n * 4]]
     random.shuffle(top)  # تنويع بين أفضل المنتجات

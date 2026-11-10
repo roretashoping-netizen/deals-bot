@@ -12,20 +12,23 @@
   "max_price": "",
   "keywords_per_run": 3,
   "keywords": [
+    "Sharon Said evening dress",
+    "arabic evening dress",
+    "dubai evening gown",
+    "muslim evening dress long sleeve",
+    "luxury evening dress women",
+    "genuine leather handbag women",
+    "women leather shoulder bag",
+    "women leather crossbody bag",
+    "women leather tote bag",
+    "luxury leather handbag women",
+    "cowhide leather bag women",
+    "women leather top handle bag",
+    "women leather wallet",
     "women maxi dress",
     "modest long dress women",
     "women long sleeve dress",
     "women casual dress",
-    "women handbag",
-    "women shoulder bag",
-    "women crossbody bag",
-    "women tote bag",
-    "women clutch bag",
-    "women wallet",
-    "luxury handbag women",
-    "women leather handbag luxury",
-    "elegant top handle bag women",
-    "women genuine leather bag",
     "abaya women",
     "makeup brushes set",
     "makeup organizer",
@@ -170,5 +173,19 @@
     "5600091": "Sharon Said Boutique Store",
     "2855054": "SERENE HILL Boutique Store"
   },
-  "store_keyword": "Sharon Said evening dress"
+  "store_keyword": "Sharon Said evening dress",
+  "bag_rules": {
+    "require_words": [
+      "leather",
+      "جلد",
+      "cowhide",
+      "split leather"
+    ],
+    "shop_words": [
+      "official store",
+      "flagship store"
+    ],
+    "min_rating_percent": 96,
+    "min_orders": 300
+  }
 }
