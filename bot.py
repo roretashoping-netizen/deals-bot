@@ -298,7 +298,7 @@ def pick(cfg, state, products, n):
             skip("من غير القسم"); continue  # البحث رجّع منتج من غير القسم (ساعة لما ندور فستان مثلًا)
         trusted = trusted_shop(cfg, p)
         if is_evening(p) and not trusted:
-            skip("سهرة من متجر ثاني"); continue  # فساتين السهرة بس من المتاجر المختارة
+            skip("سهرة من متجر ثاني"); why.setdefault("_shops", set()).add(str(p.get("shop_name"))); continue  # فساتين السهرة بس من المتاجر المختارة
         f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
@@ -314,7 +314,10 @@ def pick(cfg, state, products, n):
         recent_imgs.add(p["product_main_image_url"])
         score = num(p.get("lastest_volume")) ** 0.5 + num(p.get("discount")) + num(p.get("commission_rate")) * 2
         good.append((score, p))
+    shops = why.pop("_shops", set())
     print(f"المرشحين {len(products)}، المقبول {len(good)}، المرفوض: " + ", ".join(f"{k} {v}" for k, v in why.items()))
+    if shops:
+        print("متاجر فساتين سهرة انرفضت: " + " | ".join(sorted(shops)[:40]))
     good.sort(key=lambda t: t[0], reverse=True)
     top = [p for _, p in good[: n * 4]]
     random.shuffle(top)  # تنويع بين أفضل المنتجات
