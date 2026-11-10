@@ -10,6 +10,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
+HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
 SITE_VERSION = "6"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
@@ -203,9 +204,12 @@ def codes_page(cfg):
                f"<p class='note'>{units}</p>")
     nb = ("<h2>عروض البنوك والبطاقات</h2>" + "".join(f"<div class='promo'>{n}</div>" for n in notes)) if notes else ""
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
+    home = HOME_LINK_FILE.read_text(encoding="utf-8").strip() if HOME_LINK_FILE.exists() else ""
+    shop = (f"<a class='buy' href='{esc(home)}' target='_blank' rel='nofollow sponsored noopener'>"
+            f"🛍️ ادخلي علي إكسبريس واستخدمي الكود</a>") if home.startswith("http") else ""
     body = (f"<h1>كود خصم علي اكسبريس اليوم</h1><p class='intro'>أكواد خصم علي إكسبريس الشغالة الحين للسعودية "
             f"والإمارات والكويت وقطر والبحرين وعمان، وعروض البنوك على علي إكسبريس. نشيل المنتهي أول بأول.</p>"
-            f"{table}{per}{nb}<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام عشان يوصلك كل كود جديد</a></p>")
+            f"{table}{shop}{per}{nb}{shop}<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام عشان يوصلك كل كود جديد</a></p>")
     return page(cfg, "كود خصم علي اكسبريس اليوم للسعودية والخليج | عروض البنوك",
                 "أكواد خصم علي إكسبريس الشغالة اليوم للسعودية والخليج بالريال، مع عروض البنوك والبطاقات.",
                 "codes.html", body)

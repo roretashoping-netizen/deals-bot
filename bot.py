@@ -313,6 +313,29 @@ def short_link(cfg, p):
     return p["promotion_link"]
 
 
+def ensure_home_link(cfg):
+    """رابط أفلييت للصفحة الرئيسية لعلي إكسبريس (نسويه مرة وحدة ونحفظه)."""
+    f = deals_site.HOME_LINK_FILE
+    if f.exists() and f.read_text(encoding="utf-8").strip():
+        return
+    try:
+        data = ali_call(cfg, "aliexpress.affiliate.link.generate", {
+            "promotion_link_type": 0,
+            "source_values": cfg.get("home_url", "https://ar.aliexpress.com/"),
+            "tracking_id": cfg["tracking_id"],
+            "ship_to_country": cfg["ship_to"],
+        })
+        res = data["aliexpress_affiliate_link_generate_response"]["resp_result"]["result"]
+        links = res["promotion_links"]["promotion_link"]
+        link = str(links[0]["promotion_link"]).strip() if links else ""
+        if link.startswith("http"):
+            f.parent.mkdir(parents=True, exist_ok=True)
+            f.write_text(link, encoding="utf-8")
+            print(f"رابط الصفحة الرئيسية: {link}")
+    except Exception as e:
+        print(f"[warn] رابط الصفحة الرئيسية فشل: {e}", file=sys.stderr)
+
+
 def ships_to(cfg, p):
     """يتأكد من الدول اللي يوصلها المنتج: لكل دولة يسأل علي إكسبريس عن المنتج بشحن لها."""
     from concurrent.futures import ThreadPoolExecutor
@@ -814,6 +837,7 @@ def cmd_post(cfg, state, count):
             time.sleep(8)
     if new_ids:
         try:
+            ensure_home_link(cfg)
             deals_site.build(cfg, only_ids=new_ids)
             print(f"الموقع: انضافت {len(new_ids)} صفحة")
         except Exception as e:
