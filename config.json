@@ -185,7 +185,7 @@
       "official store",
       "flagship store"
     ],
-    "min_rating_percent": 96,
-    "min_orders": 300
+    "min_rating_percent": 95,
+    "min_orders": 100
   }
 }
