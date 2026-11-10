@@ -315,6 +315,31 @@ def cmd_check(cfg):
     return 0
 
 
+def cmd_fields(cfg):
+    """فحص: يطبع كل البيانات اللي يرجعها علي إكسبريس لمنتج واحد."""
+    base = {"keywords": "women evening dress", "tracking_id": cfg["tracking_id"],
+            "target_currency": cfg["currency"], "target_language": "EN",
+            "ship_to_country": cfg["ship_to"], "page_size": 5}
+    d = ali_call(cfg, "aliexpress.affiliate.product.query", base)
+    prods = extract_products(d)
+    print("=== product.query (no fields param) ===")
+    print(json.dumps(prods[0] if prods else d, ensure_ascii=False, indent=1)[:4000])
+    if prods:
+        pid = prods[0]["product_id"]
+        dd = ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+            "product_ids": pid, "target_currency": cfg["currency"], "target_language": "EN",
+            "ship_to_country": cfg["ship_to"], "tracking_id": cfg["tracking_id"]})
+        print("=== productdetail.get (no fields param) ===")
+        print(json.dumps(dd, ensure_ascii=False, indent=1)[:5000])
+    for days in (3, 5, 7, 10, 15):
+        try:
+            n = len(extract_products(ali_call(cfg, "aliexpress.affiliate.product.query", dict(base, delivery_days=days, page_size=50))))
+        except Exception as e:
+            n = f"error {e}"
+        print(f"delivery_days={days}: {n}")
+    return 0
+
+
 def cmd_preview(cfg, state):
     prods = pick(cfg, state, fetch_candidates(cfg), 5)
     for p in prods:
@@ -381,12 +406,14 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
     if a.command == "check":
         return cmd_check(cfg)
+    if a.command == "fields":
+        return cmd_fields(cfg)
     if a.command == "preview":
         return cmd_preview(cfg, load_state())
     if a.command == "post":
