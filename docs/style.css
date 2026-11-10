@@ -10,6 +10,7 @@ nav.cats{display:flex;gap:10px;overflow-x:auto;padding:14px 16px;max-width:1100p
 nav.cats::-webkit-scrollbar{display:none}
 nav.cats a{background:#fff;border:2px solid var(--line);padding:12px 20px;min-height:48px;display:flex;align-items:center;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:16px;font-weight:700;scroll-snap-align:start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 nav.cats a:active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.codes{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}.codes td,.codes th{border:1px solid #eee;padding:8px;text-align:center}.codes th{background:#fff4d6}
 .promo{background:#fff4d6;border:1px dashed #e0a800;border-radius:10px;padding:10px;margin-top:10px;font-size:15px}
 h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .intro{color:var(--muted);margin:0 0 16px}
