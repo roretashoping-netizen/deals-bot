@@ -4,13 +4,14 @@
 """
 import html
 import json
+import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "2"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "3"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -91,6 +92,44 @@ def esc(s):
     return html.escape(str(s), quote=True)
 
 
+def clean_title(title, limit=70):
+    """يحوّل عنوان علي إكسبريس المترجم آليًا لاسم قصير مفهوم."""
+    s = str(title or "").strip()
+    s = re.sub(r"[\[\(【（][^\]\)】）]*[\]\)】）]", " ", s)          # نشيل اللي بين الأقواس
+    parts = [x.strip() for x in re.split(r"\s*[،,;؛|.:]\s*|\s+[-–—]\s+", s) if x.strip()]
+    s = parts[0] if parts else s
+    if len(s) < 18 and len(parts) > 1:
+        s = f"{s} {parts[1]}"
+    words = []
+    for w in s.split():
+        if re.fullmatch(r"[A-Za-z]{1,3}\d+[A-Za-z]*|\d+[A-Za-z]+\d*|[A-Za-z]|20\d\d", w):
+            continue                                                   # أكواد مثل F1 / EF2 / 2025 / U
+        if words and w == words[-1]:
+            continue
+        words.append(w)
+    s = " ".join(words)
+    if len(s) > limit:
+        s = s[:limit].rsplit(" ", 1)[0]
+    return s.strip(" -–—،,") or str(title)[:limit]
+
+
+def promo_text(info):
+    """نص كود الخصم لو علي إكسبريس أرسل كود للمنتج."""
+    if isinstance(info, list):
+        info = info[0] if info else None
+    if not isinstance(info, dict) or not info.get("promo_code"):
+        return ""
+    txt = f"🎟️ كود خصم: <b>{esc(info['promo_code'])}</b>"
+    if info.get("code_value"):
+        txt += f" ({esc(info['code_value'])})"
+    if info.get("code_mini_spend"):
+        txt += f" عند الشراء بـ {esc(info['code_mini_spend'])}"
+    end = str(info.get("code_availabletime_end") or "")[:10]
+    if end:
+        txt += f" · ينتهي {esc(end)}"
+    return txt
+
+
 # ---------------------------------------------------------------- تخزين المنتجات
 def load_products():
     if PRODUCTS_FILE.exists():
@@ -118,6 +157,7 @@ def record(cfg, p, gallery):
         "ships": p.get("_ships", []),
         "shop": str(p.get("shop_name", "") or ""),
         "cat": cat["slug"],
+        "promo": promo_text(p.get("promo_code_info")),
         "date": datetime.now(RIYADH).strftime("%Y-%m-%d"),
     })
     items = items[-5000:]
@@ -134,8 +174,11 @@ header{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;flex-wrap:wrap}
 .logo{font-weight:700;font-size:20px;text-decoration:none}
 .tg{background:#fff;color:var(--brand);padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
-nav.cats{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;max-width:1100px;margin:auto}
-nav.cats a{background:#fff;border:1px solid var(--line);padding:6px 12px;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:14px}
+nav.cats{display:flex;gap:10px;overflow-x:auto;padding:14px 16px;max-width:1100px;margin:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.cats::-webkit-scrollbar{display:none}
+nav.cats a{background:#fff;border:2px solid var(--line);padding:12px 20px;min-height:48px;display:flex;align-items:center;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:16px;font-weight:700;scroll-snap-align:start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+nav.cats a:active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.promo{background:#fff4d6;border:1px dashed #e0a800;border-radius:10px;padding:10px;margin-top:10px;font-size:15px}
 h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .intro{color:var(--muted);margin:0 0 16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
@@ -198,18 +241,19 @@ def card(cfg, x):
     old = f"<s>{money(x['old'])}</s>" if x["old"] > x["price"] > 0 else ""
     badge = f'<span class="badge">خصم {x["disc"]}%</span>' if x["disc"] else ""
     return (f'<a class="card" href="{site}/p/{x["id"]}.html">'
-            f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(x["title"][:90])}" loading="lazy">'
-            f'{badge}<span class="t">{esc(x["title"])}</span>'
+            f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(clean_title(x["title"]))}" loading="lazy">'
+            f'{badge}<span class="t">{esc(clean_title(x["title"]))}</span>'
             f'<span class="p">{money(x["price"])} ريال{old}</span></a>')
 
 
 def product_page(cfg, x, related):
     site = cfg["site_url"].rstrip("/")
     cat = cat_by_slug(x["cat"])
-    short = x["title"] if len(x["title"]) <= 60 else x["title"][:57].rsplit(" ", 1)[0] + "…"
+    name = clean_title(x["title"])
+    short = clean_title(x["title"], 60)
     disc_txt = f" بخصم {x['disc']}%" if x["disc"] else ""
     title = f"{short}{disc_txt} | {cat['name']} علي اكسبريس"
-    desc = (f"{x['title'][:90]} من علي إكسبريس بسعر {money(x['price'])} ريال"
+    desc = (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
             + (f" بدل {money(x['old'])} ريال" if x["old"] > x["price"] > 0 else "")
             + (f"، تقييم {x['rating']} من 5" if x["rating"] else "")
             + (f" وأكثر من {x['orders']:,} طلب" if x["orders"] else "")
@@ -243,8 +287,10 @@ def product_page(cfg, x, related):
 <div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{cat['slug']}.html">{esc(cat['name'])}</a></div>
 <div class="prod">
  <div class="gal"><img referrerpolicy="no-referrer" src="{esc(x['image'])}" alt="{esc(x['title'][:120])}"><div class="thumbs">{thumbs}</div></div>
- <div><h1>{esc(x['title'])}</h1>
+ <div><h1>{esc(name)}</h1>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
+   {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
+   {f'<div class="promo">{cfg["promo_note"]}</div>' if cfg.get("promo_note") else ''}
    <ul class="meta">{meta}</ul>
    <a class="buy" href="{esc(x['link'])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a>
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>

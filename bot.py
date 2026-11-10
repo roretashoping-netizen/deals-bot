@@ -144,7 +144,7 @@ def fetch_candidates(cfg):
             "fields": "product_id,product_title,target_sale_price,target_original_price,"
             "target_sale_price_currency,discount,evaluate_rate,lastest_volume,"
             "product_main_image_url,promotion_link,commission_rate,first_level_category_name,"
-            "product_detail_url,product_small_image_urls,second_level_category_name,shop_id,shop_name",
+            "product_detail_url,product_small_image_urls,second_level_category_name,shop_id,shop_name,promo_code_info",
         }
         try:
             prods = extract_products(ali_call(cfg, method, biz))
@@ -212,6 +212,17 @@ NOT_COSMETIC_WORDS = [
 ]
 
 
+def no_brand(shop_name):
+    """المتاجر بدون اسم تجاري: فاضي، أو اسم تلقائي مثل Shop1105850050 Store أو Store 123456."""
+    n = str(shop_name or "").strip().lower()
+    if not n:
+        return True
+    n = re.sub(r"\s+", " ", n)
+    if re.fullmatch(r"(shop|store)\s*\d+(\s*(store|shop))?", n):
+        return True
+    return sum(ch.isdigit() for ch in n) >= 6 and len(re.sub(r"[\d\s]|shop|store", "", n)) < 3
+
+
 def has_any(text, words):
     return any(w in text for w in words)
 
@@ -243,7 +254,7 @@ def pick(cfg, state, products, n):
         pid = str(p.get("product_id"))
         if pid in seen or not p.get("promotion_link") or not p.get("product_main_image_url"):
             continue
-        if blocked(p):
+        if blocked(p) or no_brand(p.get("shop_name")):
             continue
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
@@ -359,9 +370,7 @@ def money(x):
 
 
 def caption(cfg, p):
-    title = html.escape(str(p.get("product_title", "")).strip())
-    if len(title) > 120:
-        title = title[:117].rsplit(" ", 1)[0] + "…"
+    title = html.escape(deals_site.clean_title(p.get("product_title", "")))
     cur = cfg.get("currency_label", "ريال")
     price = num(p.get("target_sale_price"))
     old = num(p.get("target_original_price"))
@@ -392,11 +401,11 @@ def caption(cfg, p):
         lines += ["   ".join(items[i:i + 3]) for i in range(0, len(items), 3)]
     if p.get("shop_name"):
         lines += [sep, f"🏪 المتجر: {html.escape(str(p['shop_name']))}"]
+    promo = deals_site.promo_text(p.get("promo_code_info"))
+    if promo or cfg.get("promo_note"):
+        lines += [sep] + [x for x in (promo, cfg.get("promo_note", "")) if x]
     link = html.escape(p["promotion_link"], quote=True)
     lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
-    if cfg.get("hashtags"):
-        tag = deals_site.category_for(p.get("_kw", ""))["tag"]
-        lines += ["", f"{cfg['hashtags']} #{tag}"]
     if is_clothing(cfg, p):
         lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
@@ -470,7 +479,7 @@ def cmd_prune(cfg):
     keep, removed = [], []
     for x in items:
         p = {"product_title": x["title"]}
-        if is_mens(p) or blocked(p):
+        if is_mens(p) or blocked(p) or no_brand(x.get("shop")):
             removed.append(x)
             (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
         else:
@@ -503,7 +512,7 @@ def cmd_backfill(cfg, state):
             continue
         for p in prods:
             title = str(p.get("product_title", ""))[:50]
-            if is_mens(p) or blocked(p):
+            if is_mens(p) or blocked(p) or no_brand(p.get("shop_name")):
                 skipped.append(title)
                 continue
             p["promotion_link"] = short_link(cfg, p)
