@@ -411,6 +411,44 @@ def cmd_fields(cfg):
     return 0
 
 
+def cmd_linktest(cfg):
+    """فحص: يتتبع تحويلات الروابط بأشكالها المختلفة عشان نعرف وين تنكسر."""
+    ua = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 "
+          "(KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1")
+    d = ali_call(cfg, "aliexpress.affiliate.product.query", {
+        "keywords": "makeup brushes set", "tracking_id": cfg["tracking_id"],
+        "target_currency": cfg["currency"], "target_language": cfg["language"],
+        "ship_to_country": cfg["ship_to"], "page_size": 3})
+    p = extract_products(d)[0]
+    pid = p["product_id"]
+    variants = {"A_query_promotion_link": p.get("promotion_link")}
+    for name, src in [("B_detail_url_with_params", p.get("product_detail_url")),
+                      ("C_clean_item_url", f"https://www.aliexpress.com/item/{pid}.html")]:
+        try:
+            g = ali_call(cfg, "aliexpress.affiliate.link.generate", {
+                "promotion_link_type": 0, "source_values": src,
+                "tracking_id": cfg["tracking_id"], "ship_to_country": cfg["ship_to"]})
+            variants[name] = g["aliexpress_affiliate_link_generate_response"]["resp_result"]["result"]["promotion_links"]["promotion_link"][0]["promotion_link"]
+        except Exception as e:
+            variants[name] = f"ERR {e}"
+    print("product_detail_url:", p.get("product_detail_url"))
+    for name, url in variants.items():
+        print(f"\n=== {name}: {url}")
+        if not str(url).startswith("http"):
+            continue
+        try:
+            r = requests.get(url, headers={"User-Agent": ua}, timeout=30, allow_redirects=True)
+            for h in r.history:
+                print(f"  {h.status_code} -> {h.headers.get('Location', '')[:400]}")
+            print(f"  FINAL {r.status_code} {r.url[:400]}")
+            body = r.text
+            print(f"  body_len={len(body)} has_captcha={'captcha' in body.lower() or 'punish' in r.url} "
+                  f"title={body[body.find('<title>'):body.find('</title>')][:120]!r}")
+        except Exception as e:
+            print("  request error:", e)
+    return 0
+
+
 def cmd_preview(cfg, state):
     prods = pick(cfg, state, fetch_candidates(cfg), 5)
     for p in prods:
@@ -480,7 +518,7 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
@@ -488,6 +526,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "linktest":
+        return cmd_linktest(cfg)
     if a.command == "preview":
         return cmd_preview(cfg, load_state())
     if a.command == "post":
