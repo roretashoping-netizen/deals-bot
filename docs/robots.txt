@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://roretashoping-netizen.github.io/deals-bot/sitemap.xml
