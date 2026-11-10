@@ -18,7 +18,10 @@ RIYADH = timezone(timedelta(hours=3))
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
 CATEGORIES = [
     {"slug": "evening-dresses", "name": "فساتين سهرة", "tag": "فساتين_سهرة",
-     "keywords": ["Sharon Said evening dress", "Sharon Said dress", "luxury evening dress women", "women party dress"]},
+     "keywords": ["Sharon Said Boutique evening dress", "Sharon Said evening dress", "Sharon Said dress",
+                  "Serene Hill evening dress", "Serene Hill dress", "Serene Hill Boutique"]},
+    {"slug": "dresses", "name": "فساتين", "tag": "فساتين",
+     "keywords": ["women maxi dress", "modest long dress women", "women long sleeve dress", "women casual dress"]},
     {"slug": "abayas", "name": "عبايات", "tag": "عبايات", "keywords": ["abaya women"]},
     {"slug": "makeup-tools", "name": "أدوات المكياج", "tag": "أدوات_مكياج",
      "keywords": ["makeup brushes set", "makeup organizer", "eyelash curler", "makeup sponge set",
@@ -30,7 +33,10 @@ CATEGORIES = [
      "keywords": ["skin care tools", "facial cleansing brush"]},
     {"slug": "jewelry", "name": "إكسسوارات ومجوهرات", "tag": "اكسسوارات",
      "keywords": ["jewelry box organizer", "women earrings", "women necklace"]},
-    {"slug": "bags", "name": "شنط ومحافظ", "tag": "شنط", "keywords": ["women handbag", "women wallet"]},
+    {"slug": "bags", "name": "شنط ومحافظ", "tag": "شنط",
+     "keywords": ["women handbag", "women shoulder bag", "women crossbody bag", "women tote bag",
+                  "women clutch bag", "women wallet", "luxury handbag women", "women leather handbag luxury",
+                  "elegant top handle bag women", "women genuine leather bag"]},
     {"slug": "kitchen", "name": "أدوات المطبخ", "tag": "أدوات_مطبخ",
      "keywords": ["kitchen gadgets", "kitchen organizer", "kitchen storage", "silicone kitchen utensils",
                   "spice rack organizer", "coffee tools", "baking tools"]},
@@ -51,7 +57,8 @@ def category_for(kw):
 TITLE_RULES = [
     ("nails", ["nail", "أظافر", "اظافر", "مناكير"]),
     ("abayas", ["abaya", "kaftan", "عباية", "عبايه", "قفطان"]),
-    ("evening-dresses", ["evening dress", "party dress", "gown", "فستان", "فساتين"]),
+    ("evening-dresses", ["evening", "party dress", "gown", "prom", "سهرة", "حفلة"]),
+    ("dresses", ["dress", "فستان", "فساتين"]),
     ("loungewear", ["pajama", "sleepwear", "slipper", "بيجامة", "بيجامات", "شبشب", "نعال"]),
     ("kitchen", ["kitchen", "cook", "spice", "coffee", "baking", "مطبخ", "طبخ", "بهارات", "قهوة", "خبز", "مطابخ"]),
     ("hair", ["hair", "شعر"]),

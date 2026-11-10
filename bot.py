@@ -126,8 +126,10 @@ def extract_products(data):
 
 def fetch_candidates(cfg):
     method = "aliexpress.affiliate.product.query"
-    keywords = list(cfg["keywords"])
-    random.shuffle(keywords)
+    # كلمات الفئات المهمة (شنط وفساتين) لها وزن أعلى فتنختار أكثر
+    weights = cfg.get("category_weights", {})
+    keywords = sorted(cfg["keywords"], reverse=True,
+                      key=lambda k: random.random() ** (1.0 / max(0.1, weights.get(deals_site.category_for(k)["slug"], 1))))
     out = []
     for kw in keywords[: cfg.get("keywords_per_run", 4)]:
         biz = {
@@ -223,8 +225,38 @@ def no_brand(shop_name):
     return sum(ch.isdigit() for ch in n) >= 6 and len(re.sub(r"[\d\s]|shop|store", "", n)) < 3
 
 
+def norm_shop(name):
+    return re.sub(r"\s+", " ", str(name or "").strip().lower())
+
+
+def trusted_shop(cfg, p):
+    """متاجر فساتين السهرة اللي اختارها صاحب القروب."""
+    allowed = {norm_shop(x) for x in cfg.get("evening_dress_shops", [])}
+    return norm_shop(p.get("shop_name") or p.get("shop")) in allowed
+
+
+EVENING_WORDS = ("evening", "party", "prom", "formal", "cocktail", "wedding guest", "bridesmaid", "ball gown",
+                 "mermaid", "sequin", "سهرة", "سهره", "حفلة", "حفلات", "زفاف")
+
+
+def is_evening(p):
+    """فستان سهرة/حفلات؟"""
+    t = " ".join(str(p.get(k, "")) for k in
+                 ("product_title", "title", "first_level_category_name", "second_level_category_name")).lower()
+    dress = any(w in t for w in ("dress", "gown", "فستان", "فساتين"))
+    return ("gown" in t) or (dress and any(w in t for w in EVENING_WORDS))
+
+
 def has_any(text, words):
     return any(w in text for w in words)
+
+
+# أسماء البراندات العالمية: أي منتج يذكرها غالبًا تقليد، وعلي إكسبريس يمنع الترويج للمقلّد
+BRAND_RE = re.compile(
+    r"\b(louis ?vuitton|lv|gucci|chanel|dior|herm[eè]s|prada|ysl|saint ?laurent|fendi|balenciaga|celine|givenchy|"
+    r"bottega|burberry|michael ?kors|versace|valentino|miu ?miu|goyard|loewe|cartier|rolex|tiffany|bvlgari|bulgari|"
+    r"guess|furla|longchamp|marc ?jacobs|kate ?spade|tory ?burch|jacquemus|coach bag|replica|dupe|high copy|mirror quality)\b"
+    r"|لويس ?فيتون|غوتشي|قوتشي|شانيل|ديور|هيرمس|برادا|فندي|بالنسياغا|فيرساتشي|كارتير|رولكس|ماي ?كل ?كورس")
 
 
 def blocked(p):
@@ -233,6 +265,8 @@ def blocked(p):
                     ("product_title", "first_level_category_name", "second_level_category_name")).lower()
     if has_any(text, ADULT_WORDS):
         return "adult"
+    if BRAND_RE.search(str(p.get("product_title", "")).lower()):
+        return "brand"
     title = str(p.get("product_title", "")).lower()
     # الملابس والشنط ما تدخل فحص المستحضرات (مثلًا "فستان كريمي" لونه كريمي مو كريم)
     if is_clothing({}, p) or has_any(title, NOT_COSMETIC_WORDS):
@@ -256,6 +290,10 @@ def pick(cfg, state, products, n):
             continue
         if blocked(p) or no_brand(p.get("shop_name")):
             continue
+        trusted = trusted_shop(cfg, p)
+        if is_evening(p) and not trusted:
+            continue  # فساتين السهرة بس من المتاجر المختارة
+        f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
             continue
@@ -672,8 +710,8 @@ def cmd_prune(cfg):
     items = deals_site.load_products()
     keep, removed = [], []
     for x in items:
-        p = {"product_title": x["title"]}
-        if is_mens(p) or blocked(p) or no_brand(x.get("shop")):
+        p = {"product_title": x["title"], "shop_name": x.get("shop")}
+        if is_mens(p) or blocked(p) or no_brand(x.get("shop")) or (is_evening(p) and not trusted_shop(cfg, p)):
             removed.append(x)
             (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
         else:
@@ -706,7 +744,7 @@ def cmd_backfill(cfg, state):
             continue
         for p in prods:
             title = str(p.get("product_title", ""))[:50]
-            if is_mens(p) or blocked(p) or no_brand(p.get("shop_name")):
+            if is_mens(p) or blocked(p) or no_brand(p.get("shop_name")) or (is_evening(p) and not trusted_shop(cfg, p)):
                 skipped.append(title)
                 continue
             p["promotion_link"] = short_link(cfg, p)
@@ -795,7 +833,7 @@ def cmd_preview(cfg, state):
     return 0
 
 
-def cmd_post(cfg, state, count):
+def cmd_post(cfg, state, count, paced=True):
     d = today()
     done = state["daily"].get(d, 0)
     left = cfg["posts_per_day"] - done
@@ -810,7 +848,8 @@ def cmd_post(cfg, state, count):
     if h < start and end > 24:
         h += 24
     runs_left = max(1, int((end - h) * 60 // cfg.get("run_every_minutes", 30)) + 1)
-    count = min(count, max(1, -(-left // runs_left)))
+    if paced:
+        count = min(count, max(1, -(-left // runs_left)))
     prods = pick(cfg, state, fetch_candidates(cfg), count)
     sent, new_ids = 0, []
     for p in prods:
@@ -876,8 +915,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle"])
     ap.add_argument("--count", type=int, default=1)
+    ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
     a = ap.parse_args()
     cfg = load_config()
+    focus = {x.strip() for x in a.focus.split(",") if x.strip()}
+    if focus:
+        kws = [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] in focus]
+        if kws:
+            cfg["keywords"] = kws
+            cfg["keywords_per_run"] = max(cfg.get("keywords_per_run", 3), 4)
+            print(f"تركيز على: {', '.join(sorted(focus))}")
     if a.command == "check":
         return cmd_check(cfg)
     if a.command == "fields":
@@ -896,7 +943,7 @@ def main():
     if a.command == "preview":
         return cmd_preview(cfg, load_state())
     if a.command == "post":
-        return cmd_post(cfg, load_state(), a.count)
+        return cmd_post(cfg, load_state(), a.count, paced=not focus)
     return cmd_run(cfg)
 
 

@@ -12,11 +12,27 @@
   "max_price": "",
   "keywords_per_run": 3,
   "keywords": [
+    "Sharon Said Boutique evening dress",
     "Sharon Said evening dress",
     "Sharon Said dress",
-    "luxury evening dress women",
+    "Serene Hill evening dress",
+    "Serene Hill dress",
+    "Serene Hill Boutique",
+    "women maxi dress",
+    "modest long dress women",
+    "women long sleeve dress",
+    "women casual dress",
+    "women handbag",
+    "women shoulder bag",
+    "women crossbody bag",
+    "women tote bag",
+    "women clutch bag",
+    "women wallet",
+    "luxury handbag women",
+    "women leather handbag luxury",
+    "elegant top handle bag women",
+    "women genuine leather bag",
     "abaya women",
-    "women party dress",
     "makeup brushes set",
     "makeup organizer",
     "eyelash curler",
@@ -32,8 +48,6 @@
     "jewelry box organizer",
     "women earrings",
     "women necklace",
-    "women handbag",
-    "women wallet",
     "kitchen gadgets",
     "kitchen organizer",
     "kitchen storage",
@@ -143,5 +157,19 @@
         "until": "2026-11-12"
       }
     ]
+  },
+  "evening_dress_shops": [
+    "Sharon Said Boutique Store",
+    "Serene Hill Boutique Store"
+  ],
+  "trusted_shop_filters": {
+    "min_rating_percent": 90,
+    "min_orders": 10,
+    "min_discount_percent": 0
+  },
+  "category_weights": {
+    "evening-dresses": 3,
+    "dresses": 3,
+    "bags": 3
   }
 }
