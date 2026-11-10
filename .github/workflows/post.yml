@@ -3,7 +3,16 @@ name: AliExpress Telegram Bot
 on:
   schedule:
     - cron: "*/30 6-21 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "أقسام بس (مثل: evening-dresses,dresses,bags)"
+        required: false
+        default: ""
+      count:
+        description: "عدد المنشورات"
+        required: false
+        default: "4"
 
 permissions:
   contents: write
@@ -29,7 +38,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-        run: python bot.py post --count 4
+        run: python bot.py post --count "${{ inputs.count || 4 }}" --focus "${{ inputs.focus }}"
       - name: Save state
         run: |
           git config user.name "bot"
