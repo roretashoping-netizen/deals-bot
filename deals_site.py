@@ -154,8 +154,19 @@ def code_line(cfg, price):
     until = str((cfg.get("promos") or {}).get("codes_until", ""))
     end = f" · حتى {int(until[8:10])} {MONTHS_AR[int(until[5:7]) - 1]}" if len(until) == 10 else ""
     more = "" if fit else " (اجمعي أكثر من منتج بالسلة)"
-    return (f"🎟️ كود علي إكسبريس: <b>{esc(c['code'])}</b>\n"
-            f"خصم {c['off']} ريال للطلبات فوق {c['min']} ريال{more}{end}")
+    flags = "".join(x.get("flag", "") for x in cfg.get("countries", []))
+    return (f"🎟️ كود علي إكسبريس لكل دول الخليج {flags}: <b>{esc(c['code'])}</b>\n"
+            f"خصم {c['off']} ريال سعودي للطلبات فوق {c['min']} (يتحوّل لعملة بلدك){more}{end}")
+
+
+# تقريب الحد الأدنى بعملة كل دولة (علي إكسبريس يحوّل من الريال وقت الدفع)
+GCC_FX = {"SA": (1, "ريال سعودي"), "AE": (0.98, "درهم"), "KW": (0.082, "دينار كويتي"),
+          "QA": (0.97, "ريال قطري"), "BH": (0.1, "دينار بحريني"), "OM": (0.1025, "ريال عماني")}
+
+
+def _fx(v, rate):
+    x = v * rate
+    return f"{x:,.0f}" if x >= 20 else f"{x:,.1f}".replace(".0", "")
 
 
 MONTHS_AR = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس",
@@ -170,16 +181,30 @@ def codes_page(cfg):
     until = str(pr.get("codes_until", ""))
     rows = "".join(f"<tr><td><b>{esc(c['code'])}</b></td><td>{c['off']} ريال</td><td>فوق {c['min']:,} ريال</td></tr>"
                    for c in codes)
-    table = (f"<h2>أكواد خصم علي إكسبريس للسعودية والخليج</h2>"
+    table = (f"<h2>أكواد خصم علي إكسبريس للسعودية والخليج (بالريال السعودي)</h2>"
              f"<table class='codes'><tr><th>الكود</th><th>الخصم</th><th>الطلب</th></tr>{rows}</table>"
              + (f"<p class='note'>صالحة لين {esc(until)} (23:59 بتوقيت السعودية) أو لين تخلص الكمية. "
                 f"كود واحد لكل طلب، وتكتبينه في خانة «كود الخصم» عند الدفع.</p>" if until else "")) if codes else \
             "<p>ما فيه أكواد عامة شغالة الحين. نحدّث الصفحة أول ما ينزل كود جديد.</p>"
+    per = ""
+    if codes:
+        heads = "".join(f"<th>{esc(c.get('flag', ''))} {esc(c['name'])}</th>" for c in cfg.get("countries", []) if c["code"] in GCC_FX)
+        body_rows = ""
+        for k in codes:
+            cells = "".join(
+                f"<td>{_fx(k['off'], GCC_FX[c['code']][0])} / {_fx(k['min'], GCC_FX[c['code']][0])}</td>"
+                for c in cfg.get("countries", []) if c["code"] in GCC_FX)
+            body_rows += f"<tr><td><b>{esc(k['code'])}</b></td>{cells}</tr>"
+        units = " · ".join(f"{esc(c['name'])}: {GCC_FX[c['code']][1]}" for c in cfg.get("countries", []) if c["code"] in GCC_FX)
+        per = (f"<h2>نفس الأكواد لكل دول الخليج</h2><p>الأكواد تشتغل على الطلبات اللي تنشحن للسعودية والإمارات والكويت "
+               f"وقطر والبحرين وعمان. هذا الخصم / الحد الأدنى بعملة كل دولة (تقريبًا، علي إكسبريس يحسبها من الريال وقت الدفع):</p>"
+               f"<div style='overflow-x:auto'><table class='codes'><tr><th>الكود</th>{heads}</tr>{body_rows}</table></div>"
+               f"<p class='note'>{units}</p>")
     nb = ("<h2>عروض البنوك والبطاقات</h2>" + "".join(f"<div class='promo'>{n}</div>" for n in notes)) if notes else ""
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     body = (f"<h1>كود خصم علي اكسبريس اليوم</h1><p class='intro'>أكواد خصم علي إكسبريس الشغالة الحين للسعودية "
             f"والإمارات والكويت وقطر والبحرين وعمان، وعروض البنوك على علي إكسبريس. نشيل المنتهي أول بأول.</p>"
-            f"{table}{nb}<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام عشان يوصلك كل كود جديد</a></p>")
+            f"{table}{per}{nb}<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام عشان يوصلك كل كود جديد</a></p>")
     return page(cfg, "كود خصم علي اكسبريس اليوم للسعودية والخليج | عروض البنوك",
                 "أكواد خصم علي إكسبريس الشغالة اليوم للسعودية والخليج بالريال، مع عروض البنوك والبطاقات.",
                 "codes.html", body)
