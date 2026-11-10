@@ -19,6 +19,7 @@ import html
 import json
 import os
 import random
+import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
@@ -134,7 +135,7 @@ def fetch_candidates(cfg):
             "fields": "product_id,product_title,target_sale_price,target_original_price,"
             "target_sale_price_currency,discount,evaluate_rate,lastest_volume,"
             "product_main_image_url,promotion_link,commission_rate,first_level_category_name,"
-            "product_detail_url",
+            "product_detail_url,product_small_image_urls,second_level_category_name,shop_id,shop_name",
         }
         try:
             prods = extract_products(ali_call(cfg, method, biz))
@@ -154,12 +155,27 @@ def num(x, default=0.0):
         return default
 
 
+def title_key(p):
+    """أول ٦ كلمات من العنوان بدون أرقام ورموز، عشان نعرف المنتجات المتشابهة من بائعين مختلفين."""
+    t = re.sub(r"[^a-z\u0600-\u06ff]+", " ", str(p.get("product_title", "")).lower())
+    return " ".join(t.split()[:6])
+
+
+def category(p):
+    return str(p.get("second_level_category_name") or p.get("first_level_category_name") or "")
+
+
 def pick(cfg, state, products, n):
     f = cfg["filters"]
     seen, good = set(state["posted"]), []
+    recent_keys = set(state.get("recent_keys", []))
+    recent_imgs = set(state.get("recent_imgs", []))
     for p in products:
         pid = str(p.get("product_id"))
         if pid in seen or not p.get("promotion_link") or not p.get("product_main_image_url"):
+            continue
+        # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
+        if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
             continue
         if num(p.get("evaluate_rate")) < f["min_rating_percent"]:
             continue
@@ -168,12 +184,31 @@ def pick(cfg, state, products, n):
         if num(p.get("discount")) < f["min_discount_percent"]:
             continue
         seen.add(pid)
+        recent_keys.add(title_key(p))
+        recent_imgs.add(p["product_main_image_url"])
         score = num(p.get("lastest_volume")) ** 0.5 + num(p.get("discount")) + num(p.get("commission_rate")) * 2
         good.append((score, p))
     good.sort(key=lambda t: t[0], reverse=True)
-    top = [p for _, p in good[: n * 3]]
+    top = [p for _, p in good[: n * 4]]
     random.shuffle(top)  # تنويع بين أفضل المنتجات
-    return top[:n]
+    # ما نحط منتجين ورا بعض من نفس الفئة أو نفس المتجر
+    chosen, last_cat, shops = [], state.get("last_cat", ""), set()
+    for p in top:
+        if len(chosen) >= n:
+            break
+        if category(p) and category(p) == last_cat:
+            continue
+        if p.get("shop_id") and p.get("shop_id") in shops:
+            continue
+        chosen.append(p)
+        last_cat = category(p)
+        shops.add(p.get("shop_id"))
+    for p in top:  # لو ما كفت، نكمّل من الباقي
+        if len(chosen) >= n:
+            break
+        if p not in chosen:
+            chosen.append(p)
+    return chosen
 
 
 def short_link(cfg, p):
@@ -224,6 +259,23 @@ def ships_to(cfg, p):
     return [c for c, ok in zip(codes, results) if ok]
 
 
+CLOTHING_WORDS = ["clothing", "apparel", "dress", "wedding", "events", "sleepwear", "underwear",
+                  "matching sets", "tops", "bottoms", "skirt", "jumpsuit", "abaya", "muslim", "hijab",
+                  "sweater", "coat", "jacket", "suits", "blouse", "pants", "lingerie", "swimwear"]
+
+
+def is_clothing(cfg, p):
+    cats = (str(p.get("first_level_category_name", "")) + " " + str(p.get("second_level_category_name", ""))).lower()
+    return any(w in cats for w in cfg.get("clothing_categories", CLOTHING_WORDS))
+
+
+def gallery(p):
+    imgs = p.get("product_small_image_urls") or []
+    if isinstance(imgs, dict):
+        imgs = imgs.get("string", [])
+    return [u for u in imgs if isinstance(u, str) and u.startswith("http")]
+
+
 # ---------------------------------------------------------------- تنسيق المنشور
 def stars(rate_percent):
     r = round(num(rate_percent) / 20, 1)  # 96% -> 4.8
@@ -267,10 +319,14 @@ def caption(cfg, p):
         items = [names[c] for c in ships if c in names]
         lines += [sep, "🚚 الشحن متوفر لـ:"]
         lines += ["   ".join(items[i:i + 3]) for i in range(0, len(items), 3)]
+    if p.get("shop_name"):
+        lines += [sep, f"🏪 المتجر: {html.escape(str(p['shop_name']))}"]
     link = html.escape(p["promotion_link"], quote=True)
     lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if cfg.get("hashtags"):
         lines += ["", cfg["hashtags"]]
+    if is_clothing(cfg, p):
+        lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
     return text[:1020]
 
@@ -286,6 +342,14 @@ def tg(cfg, method, **payload):
 
 
 def send_product(cfg, p):
+    imgs = gallery(p)
+    if is_clothing(cfg, p) and imgs:
+        # الملابس: ألبوم صور (جدول المقاسات غالبًا يكون من آخر صور البائع)
+        photos = [p["product_main_image_url"]] + [u for u in imgs[-3:] if u != p["product_main_image_url"]]
+        media = [{"type": "photo", "media": u} for u in photos[:4]]
+        media[0].update(caption=caption(cfg, p), parse_mode="HTML")
+        tg(cfg, "sendMediaGroup", chat_id=cfg["channel"], media=media)
+        return
     tg(
         cfg,
         "sendPhoto",
@@ -369,6 +433,9 @@ def cmd_post(cfg, state, count):
             print(f"[warn] فشل نشر {p.get('product_id')}: {e}", file=sys.stderr)
             continue
         state["posted"][str(p["product_id"])] = d
+        state["recent_keys"] = (state.get("recent_keys", []) + [title_key(p)])[-400:]
+        state["recent_imgs"] = (state.get("recent_imgs", []) + [p["product_main_image_url"]])[-400:]
+        state["last_cat"] = category(p)
         state["daily"][d] = state["daily"].get(d, 0) + 1
         sent += 1
         save_state(state)
