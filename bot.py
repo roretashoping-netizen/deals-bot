@@ -161,6 +161,39 @@ def fetch_candidates(cfg):
     return out
 
 
+STORE_FILE = deals_site.BASE_DIR / "data" / "store_products.json"
+DETAIL_FIELDS = ("product_id,product_title,target_sale_price,target_original_price,discount,evaluate_rate,"
+                 "lastest_volume,product_main_image_url,promotion_link,product_detail_url,product_small_image_urls,"
+                 "first_level_category_name,second_level_category_name,shop_id,shop_name")
+
+
+def fetch_store_candidates(cfg, state, k=10):
+    """فساتين من المتاجر المختارة مباشرة (أرقام منتجاتها محفوظة في data/store_products.json)."""
+    try:
+        stores = json.loads(STORE_FILE.read_text(encoding="utf-8")).get("stores", {})
+    except Exception:
+        return []
+    posted = set(state.get("posted", {}))
+    ids = [pid for lst in stores.values() for pid in lst if str(pid) not in posted]
+    random.shuffle(ids)
+    out = []
+    for i in range(0, min(len(ids), k), 10):
+        try:
+            prods = extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+                "product_ids": ",".join(map(str, ids[i:i + 10])), "target_currency": cfg["currency"],
+                "target_language": cfg["language"], "ship_to_country": cfg["ship_to"],
+                "tracking_id": cfg["tracking_id"], "fields": DETAIL_FIELDS}))
+        except Exception as e:
+            print(f"[warn] منتجات المتاجر: {e}", file=sys.stderr)
+            continue
+        for p in prods:
+            p["_kw"] = cfg.get("store_keyword", "Sharon Said evening dress")
+            p["_from_store"] = True
+        out.extend(prods)
+    print(f"من المتاجر المختارة: {len(out)} منتج")
+    return out
+
+
 def num(x, default=0.0):
     try:
         return float(str(x).replace("%", "").replace(",", ""))
@@ -231,6 +264,8 @@ def norm_shop(name):
 
 def trusted_shop(cfg, p):
     """متاجر فساتين السهرة اللي اختارها صاحب القروب."""
+    if str(p.get("shop_id", "")) in cfg.get("store_ids", {}):
+        return True
     allowed = {norm_shop(x) for x in cfg.get("evening_dress_shops", [])}
     return norm_shop(p.get("shop_name") or p.get("shop")) in allowed
 
@@ -313,6 +348,8 @@ def pick(cfg, state, products, n):
         recent_keys.add(title_key(p))
         recent_imgs.add(p["product_main_image_url"])
         score = num(p.get("lastest_volume")) ** 0.5 + num(p.get("discount")) + num(p.get("commission_rate")) * 2
+        if p.get("_from_store"):
+            score += 40  # المتاجر المختارة لها أولوية
         good.append((score, p))
     shops = why.pop("_shops", set())
     print(f"المرشحين {len(products)}، المقبول {len(good)}، المرفوض: " + ", ".join(f"{k} {v}" for k, v in why.items()))
@@ -862,7 +899,8 @@ def cmd_post(cfg, state, count, paced=True):
     runs_left = max(1, int((end - h) * 60 // cfg.get("run_every_minutes", 30)) + 1)
     if paced:
         count = min(count, max(1, -(-left // runs_left)))
-    prods = pick(cfg, state, fetch_candidates(cfg), count)
+    cands = (fetch_candidates(cfg) if cfg["keywords"] else []) + fetch_store_candidates(cfg, state)
+    prods = pick(cfg, state, cands, count)
     sent, new_ids = 0, []
     for p in prods:
         p["promotion_link"] = short_link(cfg, p)
@@ -932,11 +970,9 @@ def main():
     cfg = load_config()
     focus = {x.strip() for x in a.focus.split(",") if x.strip()}
     if focus:
-        kws = [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] in focus]
-        if kws:
-            cfg["keywords"] = kws
-            cfg["keywords_per_run"] = max(cfg.get("keywords_per_run", 3), 4)
-            print(f"تركيز على: {', '.join(sorted(focus))}")
+        cfg["keywords"] = [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] in focus]
+        cfg["keywords_per_run"] = max(cfg.get("keywords_per_run", 3), 4)
+        print(f"تركيز على: {', '.join(sorted(focus))}")
     if a.command == "check":
         return cmd_check(cfg)
     if a.command == "fields":

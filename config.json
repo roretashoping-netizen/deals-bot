@@ -12,12 +12,6 @@
   "max_price": "",
   "keywords_per_run": 3,
   "keywords": [
-    "Sharon Said Boutique evening dress",
-    "Sharon Said evening dress",
-    "Sharon Said dress",
-    "Serene Hill evening dress",
-    "Serene Hill dress",
-    "Serene Hill Boutique",
     "women maxi dress",
     "modest long dress women",
     "women long sleeve dress",
@@ -160,16 +154,21 @@
   },
   "evening_dress_shops": [
     "Sharon Said Boutique Store",
-    "Serene Hill Boutique Store"
+    "SERENE HILL Boutique Store"
   ],
   "trusted_shop_filters": {
-    "min_rating_percent": 90,
-    "min_orders": 10,
+    "min_rating_percent": 0,
+    "min_orders": 0,
     "min_discount_percent": 0
   },
   "category_weights": {
     "evening-dresses": 3,
     "dresses": 3,
     "bags": 3
-  }
+  },
+  "store_ids": {
+    "5600091": "Sharon Said Boutique Store",
+    "2855054": "SERENE HILL Boutique Store"
+  },
+  "store_keyword": "Sharon Said evening dress"
 }
