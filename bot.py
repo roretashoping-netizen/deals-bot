@@ -405,8 +405,10 @@ def caption(cfg, p):
     extra = [x for x in [promo, deals_site.code_line(cfg, price)] + deals_site.active_notes(cfg) if x]
     if extra:
         lines += [sep] + extra
-    link = html.escape(p["promotion_link"], quote=True)
-    lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
+    if as_album(cfg, p):
+        # الألبوم ما يقبل زر، فنحط رابط الطلب في النص
+        link = html.escape(p["promotion_link"], quote=True)
+        lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if is_clothing(cfg, p):
         lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
@@ -427,9 +429,14 @@ def tg(cfg, method, **payload):
     return data["result"]
 
 
+def as_album(cfg, p):
+    """الملابس تنزل ألبوم صور (لو فيه صور إضافية)."""
+    return is_clothing(cfg, p) and bool(gallery(p))
+
+
 def send_product(cfg, p):
     imgs = gallery(p)
-    if is_clothing(cfg, p) and imgs:
+    if as_album(cfg, p):
         # الملابس: ألبوم صور (جدول المقاسات غالبًا يكون من آخر صور البائع)
         photos = [p["product_main_image_url"]] + [u for u in imgs[-3:] if u != p["product_main_image_url"]]
         media = [{"type": "photo", "media": u} for u in photos[:4]]
@@ -548,8 +555,74 @@ def ai_title(cfg, raw):
     return None
 
 
+SEO_PROMPT = (
+    "أنت محرر SEO لمتجر عروض سعودي. هذا عنوان منتج من علي إكسبريس مترجم آليًا:\n«{raw}»\n"
+    "فئته: {cat}\n\n"
+    "اكتب 3 أسطر بالضبط بهذا الشكل وبدون أي شي ثاني:\n"
+    "الاسم: اسم قصير وواضح بالعربي من 3 إلى 8 كلمات (وش المنتج + أهم ميزة)\n"
+    "العنوان: عنوان لصفحة قوقل لا يزيد عن 55 حرف، يبدأ بالكلمة اللي يبحث فيها الناس عن هالمنتج بالعربي\n"
+    "الوصف: فقرة من جملتين أو ثلاث بالعربي البسيط: وش المنتج، ولمين مناسب، ووش أهم مميزاته\n\n"
+    "القواعد: اعتمد بس على المعلومات الموجودة في العنوان ولا تخترع مواصفات أو أرقام. "
+    "بدون أكواد موديلات أو سنوات، وبدون كلمات مبالغة مثل الأفضل والأقوى، وبدون إيموجي أو علامات تنصيص."
+)
+
+
+def ai_seo(cfg, raw, cat=""):
+    """اسم + عنوان صفحة + وصف للمنتج بطلب واحد لـ Gemini. يرجع dict أو None."""
+    key = os.environ.get("GEMINI_API_KEY", "")
+    if not key or not raw:
+        return None
+    body = {"contents": [{"parts": [{"text": SEO_PROMPT.format(raw=str(raw)[:300], cat=cat)}]}],
+            "generationConfig": {"temperature": 0.3, "maxOutputTokens": 800}}
+    for model in cfg.get("ai_models") or gemini_models(key):
+        for attempt in range(2):
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                  params={"key": key}, json=body, timeout=60)
+                if r.status_code == 429 and attempt == 0:
+                    time.sleep(15)
+                    continue
+                if r.status_code != 200:
+                    print(f"[warn] Gemini {model}: {r.status_code} {r.text[:300]}", file=sys.stderr)
+                    if r.status_code == 404 and _GEMINI_MODELS and model in _GEMINI_MODELS:
+                        _GEMINI_MODELS.remove(model)
+                    break
+                parts = r.json()["candidates"][0]["content"]["parts"]
+                out = parse_seo(" ".join(x.get("text", "") for x in parts))
+                if out:
+                    return out
+                break
+            except Exception as e:
+                print(f"[warn] Gemini {model}: {e}", file=sys.stderr)
+                break
+    return None
+
+
+def parse_seo(txt):
+    out = {}
+    for line in str(txt).splitlines():
+        line = line.strip().lstrip("-*• ").replace("**", "")
+        for k, field in (("الاسم", "name"), ("العنوان", "seo_title"), ("الوصف", "about")):
+            if line.startswith(k):
+                v = line[len(k):].lstrip(" :：-").strip(" \"'«»")
+                if v:
+                    out[field] = v
+    if not (4 <= len(out.get("name", "")) <= 80):
+        return None
+    if not (8 <= len(out.get("seo_title", "")) <= 75):
+        out["seo_title"] = out["name"]
+    if len(out.get("about", "")) < 20:
+        out.pop("about", None)
+    return out
+
+
 def product_name(cfg, p):
-    return ai_title(cfg, p.get("product_title")) or deals_site.clean_title(p.get("product_title", ""))
+    """يجهز اسم المنتج ومعلومات صفحته. يرجع اسم الذكاء الاصطناعي أو None (وقتها ينعرض العنوان المنظف)."""
+    seo = ai_seo(cfg, p.get("product_title"), p.get("_cat") or category(p))
+    if seo:
+        p["_seo"] = seo
+        return seo["name"]
+    return ai_title(cfg, p.get("product_title"))
 
 
 def cmd_retitle(cfg):
@@ -557,14 +630,14 @@ def cmd_retitle(cfg):
     items = deals_site.load_products()
     done = 0
     for x in items:
-        if x.get("name"):
+        if x.get("seo_title"):
             continue
-        name = ai_title(cfg, x["title"])
-        if name:
-            x["name"] = name
+        seo = ai_seo(cfg, x["title"], deals_site.cat_by_slug(x["cat"])["name"])
+        if seo:
+            x.update(seo)
             done += 1
-            print(f"+ {name}")
-        time.sleep(4)
+            print(f"+ {seo['name']} | {seo['seo_title']}")
+        time.sleep(5)
     deals_site.PRODUCTS_FILE.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
     deals_site.build(cfg)
     print(f"انعاد تسمية {done} منتج")

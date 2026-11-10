@@ -11,7 +11,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "5"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "6"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -257,6 +257,7 @@ def record(cfg, p, gallery):
         "cat": cat["slug"],
         "promo": promo_text(p.get("promo_code_info")),
         "name": p.get("_title") or "",
+        **{k: v for k, v in (p.get("_seo") or {}).items() if k in ("seo_title", "about")},
         "date": datetime.now(RIYADH).strftime("%Y-%m-%d"),
     })
     items = items[-5000:]
@@ -353,12 +354,14 @@ def product_page(cfg, x, related):
     name = display_name(x)
     short = name if len(name) <= 60 else clean_title(name, 60)
     disc_txt = f" بخصم {x['disc']}%" if x["disc"] else ""
-    title = f"{short}{disc_txt} | {cat['name']} علي اكسبريس"
-    desc = (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
+    seo_t = x.get("seo_title") or short
+    title = f"{seo_t}{disc_txt} | علي اكسبريس" if len(seo_t) <= 50 else f"{seo_t} | علي اكسبريس"
+    desc = ((x["about"].split(".")[0] + ". ") if x.get("about") else "") + (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
             + (f" بدل {money(x['old'])} ريال" if x["old"] > x["price"] > 0 else "")
             + (f"، تقييم {x['rating']} من 5" if x["rating"] else "")
             + (f" وأكثر من {x['orders']:,} طلب" if x["orders"] else "")
-            + ". توصيل للسعودية والخليج.")[:300]
+            + ". توصيل للسعودية والخليج.")
+    desc = desc[:300]
     names = {c["code"]: f'{c["flag"]} {c["name"]}' for c in cfg.get("countries", [])}
     ships = " ".join(names[c] for c in x.get("ships", []) if c in names)
     imgs = [x["image"]] + x.get("gallery", [])
@@ -377,7 +380,8 @@ def product_page(cfg, x, related):
     if x["shop"]:
         meta += f"<li>🏪 المتجر: {esc(x['shop'])}</li>"
     meta += f"<li>📅 أضيف للعروض: {x['date']}</li>"
-    about = (f"<h2>عن المنتج</h2><p>{esc(x['title'])}. هذا المنتج من فئة {esc(cat['name'])} في علي إكسبريس، "
+    intro = esc(x["about"]) if x.get("about") else esc(x["title"]) + "."
+    about = (f"<h2>عن المنتج</h2><p>{intro} هذا المنتج من فئة {esc(cat['name'])} في علي إكسبريس، "
              f"اخترناه لأن تقييمه عالي" + (f" وعليه أكثر من {x['orders']:,} طلب" if x["orders"] else "")
              + f"، ومتوفر بسعر {money(x['price'])} ريال"
              + (f" بعد خصم {x['disc']}%" if x["disc"] else "") + ". "
@@ -387,7 +391,7 @@ def product_page(cfg, x, related):
     body = f"""
 <div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{cat['slug']}.html">{esc(cat['name'])}</a></div>
 <div class="prod">
- <div class="gal"><img referrerpolicy="no-referrer" src="{esc(x['image'])}" alt="{esc(x['title'][:120])}"><div class="thumbs">{thumbs}</div></div>
+ <div class="gal"><img referrerpolicy="no-referrer" src="{esc(x['image'])}" alt="{esc(name)}"><div class="thumbs">{thumbs}</div></div>
  <div><h1>{esc(name)}</h1>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
    {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
