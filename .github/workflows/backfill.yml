@@ -24,7 +24,8 @@ jobs:
           ALI_APP_KEY: ${{ secrets.ALI_APP_KEY }}
           ALI_APP_SECRET: ${{ secrets.ALI_APP_SECRET }}
           ALI_TRACKING_ID: ${{ secrets.ALI_TRACKING_ID }}
-        run: python bot.py prune && python bot.py backfill
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python bot.py prune && python bot.py retitle && python bot.py backfill
       - name: Save
         run: |
           git config user.name "bot"
