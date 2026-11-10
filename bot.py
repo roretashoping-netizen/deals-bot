@@ -94,13 +94,20 @@ def ali_call(cfg, method, biz):
         "v": "2.0",
     }
     params.update({k: str(v) for k, v in biz.items() if v not in (None, "")})
-    params["sign"] = sign(params, cfg["app_secret"])
-    r = requests.post(API_URL, data=params, timeout=30)
-    r.raise_for_status()
-    data = r.json()
-    if "error_response" in data:
-        raise RuntimeError(f"AliExpress API error: {data['error_response']}")
-    return data
+    for attempt in range(5):
+        params["timestamp"] = str(int(time.time() * 1000))
+        params.pop("sign", None)
+        params["sign"] = sign(params, cfg["app_secret"])
+        r = requests.post(API_URL, data=params, timeout=30)
+        r.raise_for_status()
+        data = r.json()
+        err = data.get("error_response")
+        if err and "ApiCallLimit" in str(err.get("code")) and attempt < 4:
+            time.sleep(1.5 + attempt)  # علي إكسبريس يوقف ثانية لو الطلبات سريعة، ننتظر ونعيد
+            continue
+        if err:
+            raise RuntimeError(f"AliExpress API error: {err}")
+        return data
 
 
 def extract_products(data):
@@ -254,7 +261,7 @@ def ships_to(cfg, p):
             return False
 
     codes = [c["code"] for c in cfg.get("countries", [])]
-    with ThreadPoolExecutor(max_workers=6) as ex:  # كل الدول مع بعض عشان أسرع
+    with ThreadPoolExecutor(max_workers=3) as ex:  # كل الدول مع بعض عشان أسرع
         results = list(ex.map(check, codes))
     return [c for c, ok in zip(codes, results) if ok]
 
