@@ -447,6 +447,55 @@ def cmd_check(cfg):
     return 0
 
 
+MEN_RE = re.compile(r"\b(car|cars|auto|automobiles?|motorcycles?|vehicle|dash ?cam|tire|tyre|men|men's|mens|male|camping|power ?bank|earbuds?|"
+                    r"smart ?watch|charger|phone holder|motorcycle|bike)\b")
+MEN_AR = ["سيارة", "السيارة", "سيارات", "للسيارة", "رجال", "رجالي", "للرجال", "تخييم", "باور بانك", "سماعات", "سماعة",
+          "ساعة ذكية", "شاحن", "حامل جوال", "حامل هاتف", "إطار السيارة", "دراجة", "بنك طاقة", "بنك الطاقة",
+          "رحلات", "كشتة", "صيد السمك", "لحية", "حلاقة"]
+
+
+def is_mens(p):
+    title = str(p.get("product_title", "")).lower()
+    cats = (str(p.get("first_level_category_name", "")) + " " + str(p.get("second_level_category_name", ""))).lower()
+    return bool(MEN_RE.search(title) or MEN_RE.search(cats) or has_any(title, MEN_AR))
+
+
+def cmd_backfill(cfg, state):
+    """يضيف للموقع المنتجات اللي انتشرت قبل ما يصير فيه موقع (ما عدا منتجات الرجال والسيارات)."""
+    have = {x["id"] for x in deals_site.load_products()}
+    ids = [pid for pid in state["posted"] if pid not in have]
+    print(f"منتجات قديمة مو في الموقع: {len(ids)}")
+    fields = ("product_id,product_title,target_sale_price,target_original_price,discount,evaluate_rate,"
+              "lastest_volume,product_main_image_url,promotion_link,product_detail_url,product_small_image_urls,"
+              "first_level_category_name,second_level_category_name,shop_id,shop_name")
+    added, skipped = [], []
+    for i in range(0, len(ids), 10):
+        chunk = ids[i:i + 10]
+        try:
+            prods = extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+                "product_ids": ",".join(chunk), "target_currency": cfg["currency"], "target_language": cfg["language"],
+                "ship_to_country": cfg["ship_to"], "tracking_id": cfg["tracking_id"], "fields": fields}))
+        except Exception as e:
+            print(f"[warn] {e}", file=sys.stderr)
+            continue
+        for p in prods:
+            title = str(p.get("product_title", ""))[:50]
+            if is_mens(p) or blocked(p):
+                skipped.append(title)
+                continue
+            p["promotion_link"] = short_link(cfg, p)
+            p["_ships"] = ships_to(cfg, p)
+            p["_cat"] = deals_site.infer_cat(p.get("product_title", ""))
+            deals_site.record(cfg, p, gallery(p))
+            added.append(str(p["product_id"]))
+            print(f"+ {p['_cat']}: {title}")
+    for s in skipped:
+        print(f"- تخطيت (رجالي/ممنوع): {s}")
+    deals_site.build(cfg)  # نعيد بناء الموقع كامل عشان المنتجات المشابهة تشمل الجديدة
+    print(f"انضاف {len(added)} منتج، وتخطيت {len(skipped)}")
+    return 0
+
+
 def cmd_fields(cfg):
     """فحص: يطبع كل البيانات اللي يرجعها علي إكسبريس لمنتج واحد."""
     base = {"keywords": "women evening dress", "tracking_id": cfg["tracking_id"],
@@ -596,7 +645,7 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
@@ -604,6 +653,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "backfill":
+        return cmd_backfill(cfg, load_state())
     if a.command == "site":
         print(f"انبنت {deals_site.build(cfg)} صفحة منتج")
         return 0

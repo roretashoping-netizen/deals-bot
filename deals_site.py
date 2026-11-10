@@ -45,6 +45,30 @@ def category_for(kw):
     return OTHER
 
 
+# لمنتجات قديمة ما نعرف كلمة بحثها: نخمن الفئة من العنوان (الترتيب مهم)
+TITLE_RULES = [
+    ("nails", ["nail", "أظافر", "اظافر", "مناكير"]),
+    ("abayas", ["abaya", "kaftan", "عباية", "عبايه", "قفطان"]),
+    ("evening-dresses", ["evening dress", "party dress", "gown", "فستان", "فساتين"]),
+    ("loungewear", ["pajama", "sleepwear", "slipper", "بيجامة", "بيجامات", "شبشب", "نعال"]),
+    ("kitchen", ["kitchen", "cook", "spice", "coffee", "baking", "مطبخ", "طبخ", "بهارات", "قهوة", "خبز", "مطابخ"]),
+    ("hair", ["hair", "شعر"]),
+    ("skincare-tools", ["skin", "facial", "face ", "بشرة", "البشرة", "الوجه"]),
+    ("makeup-tools", ["makeup", "make up", "brush", "sponge", "eyelash", "mirror", "مكياج", "فرشاة", "فرش", "رموش", "مرآة", "مراية"]),
+    ("jewelry", ["earring", "necklace", "bracelet", "jewelry", "jewellery", "أقراط", "حلق", "قلادة", "سوار", "مجوهرات", "خاتم"]),
+    ("bags", ["handbag", "bag", "wallet", "purse", "حقيبة", "شنطة", "محفظة"]),
+    ("home", ["decor", "storage", "organizer", "ديكور", "منظم", "تخزين", "رف"]),
+]
+
+
+def infer_cat(title):
+    t = str(title).lower()
+    for slug, words in TITLE_RULES:
+        if any(w in t for w in words):
+            return slug
+    return OTHER["slug"]
+
+
 def cat_by_slug(slug):
     for c in CATEGORIES + [OTHER]:
         if c["slug"] == slug:
@@ -79,7 +103,7 @@ def record(cfg, p, gallery):
     items = load_products()
     pid = str(p["product_id"])
     items = [x for x in items if x["id"] != pid]
-    cat = category_for(p.get("_kw", ""))
+    cat = cat_by_slug(p["_cat"]) if p.get("_cat") else category_for(p.get("_kw", ""))
     items.append({
         "id": pid,
         "title": str(p.get("product_title", "")).strip(),
