@@ -1,0 +1,48 @@
+{
+  "posts_per_day": 30,
+  "post_hours": [9, 25],
+  "currency": "SAR",
+  "currency_label": "ريال",
+  "language": "AR",
+  "ship_to": "SA",
+  "min_price": "",
+  "max_price": "",
+  "keywords_per_run": 3,
+  "keywords": [
+    "car accessories",
+    "car phone holder",
+    "car organizer",
+    "car vacuum cleaner",
+    "car led interior light",
+    "car seat cushion",
+    "car trunk organizer",
+    "car charger fast",
+    "dash cam",
+    "car cleaning tools",
+    "car air freshener",
+    "tire inflator portable",
+    "car sun shade",
+    "car seat gap filler",
+    "camping gear",
+    "portable power bank",
+    "wireless earbuds",
+    "smart watch",
+    "kitchen gadgets",
+    "home organizer"
+  ],
+  "filters": {
+    "min_rating_percent": 90,
+    "min_orders": 100,
+    "min_discount_percent": 15
+  },
+  "headlines": [
+    "🔥 عرض اليوم",
+    "🚗 لقطة لسيارتك",
+    "⚡ خصم قوي",
+    "👌 منتج يستاهل",
+    "🎯 من أكثر المنتجات طلبًا",
+    "🛍️ تخفيضات علي إكسبريس"
+  ],
+  "button_text": "🛍️ اطلب الحين",
+  "hashtags": "#علي_اكسبريس #عروض #تخفيضات"
+}
