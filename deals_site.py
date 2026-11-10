@@ -70,6 +70,20 @@ TITLE_RULES = [
 ]
 
 
+# أقسام لازم عنوان المنتج يذكر نوعه (البحث في علي إكسبريس يرجع أحيانًا منتجات ما لها علاقة)
+CAT_WORDS = {
+    "evening-dresses": ("dress", "gown", "فستان", "فساتين"),
+    "dresses": ("dress", "gown", "فستان", "فساتين"),
+    "bags": ("bag", "handbag", "purse", "tote", "clutch", "wallet", "حقيبة", "شنطة", "شنط", "محفظة"),
+    "abayas": ("abaya", "kaftan", "عباية", "عبايه", "قفطان"),
+}
+
+
+def fits_cat(slug, title):
+    words = CAT_WORDS.get(slug)
+    return not words or any(w in str(title).lower() for w in words)
+
+
 def infer_cat(title):
     t = str(title).lower()
     for slug, words in TITLE_RULES:
@@ -252,6 +266,8 @@ def record(cfg, p, gallery):
     pid = str(p["product_id"])
     items = [x for x in items if x["id"] != pid]
     cat = cat_by_slug(p["_cat"]) if p.get("_cat") else category_for(p.get("_kw", ""))
+    if not fits_cat(cat["slug"], p.get("product_title", "")):
+        cat = cat_by_slug(infer_cat(p.get("product_title", "")))
     items.append({
         "id": pid,
         "title": str(p.get("product_title", "")).strip(),
