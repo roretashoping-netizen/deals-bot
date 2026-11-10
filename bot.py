@@ -172,6 +172,60 @@ def category(p):
     return str(p.get("second_level_category_name") or p.get("first_level_category_name") or "")
 
 
+# ممنوع نهائيًا: المنتجات الجنسية وأدواتها والملابس المثيرة
+ADULT_WORDS = [
+    "sex", "sexy", "adult", "erotic", "exotic", "lingerie", "vibrat", "dildo", "masturbat", "bdsm",
+    "bondage", "fetish", "condom", "lubric", "orgasm", "g-spot", "g spot", "anal", "nipple", "porn",
+    "strap-on", "strapon", "penis", "vagin", "clitor", "stripper", "pole dance", "kegel", "love egg",
+    "جنس", "جنسي", "مثير", "مثيرة", "اثارة", "إثارة", "هزاز", "شهوة", "لانجري", "قضيب", "مهبل",
+    "حلمة", "شرجي", "عازل ذكري", "ملابس داخلية مثيرة", "بالغين", "للكبار",
+]
+# مستحضرات تجميل توضع على الجسم: علي إكسبريس ما يعطي شهاداتها (CPNP/CE)، فما ننشرها
+COSMETIC_WORDS = [
+    "lipstick", "lip gloss", "lip tint", "eyeshadow", "eye shadow", "foundation", "concealer", "mascara",
+    "eyeliner", "blush", "bronzer", "highlighter", "primer", "setting spray", "nail polish", "gel polish",
+    "cream", "serum", "lotion", "moisturiz", "sunscreen", "essential oil", "hair dye", "hair color",
+    "perfume", "fragrance", "body wash", "shampoo", "face mask", "toner", "cleanser", "whitening",
+    "روج", "أحمر شفاه", "احمر شفاه", "ملمع شفاه", "ظلال", "كريم أساس", "كريم اساس", "خافي عيوب", "ماسكرا",
+    "كحل", "أحمر خدود", "احمر خدود", "هايلايتر", "برايمر", "طلاء أظافر", "طلاء اظافر", "مناكير", "جل أظافر",
+    "كريم", "سيروم", "لوشن", "مرطب", "واقي شمس", "زيت عطري", "صبغة", "عطر", "شامبو", "ماسك للوجه", "قناع الوجه", "تونر",
+    "غسول", "تبييض", "تفتيح",
+]
+# لو العنوان فيه وحدة من هذي، يكون أداة (فرشاة، منظم...) مو مستحضر
+TOOL_WORDS = [
+    "brush", "sponge", "puff", "organizer", "mirror", "case", "bag", "box", "holder", "applicator",
+    "curler", "tool", "storage", "stand", "rack", "bottle", "atomizer", "dispenser", "lamp", "drill",
+    "file", "clipper", "remover tool", "fan", "comb",
+    "فرشاة", "فرش", "اسفنجة", "إسفنجة", "منظم", "مرآة", "مراية", "حقيبة", "شنطة", "صندوق", "علبة", "حامل",
+    "أداة", "اداة", "أدوات", "ادوات", "مكواة", "مجفف", "رف", "زجاجة", "بخاخ فارغ", "مشط",
+]
+
+
+NOT_COSMETIC_WORDS = [
+    "dress", "abaya", "gown", "pajama", "slipper", "handbag", "wallet", "shoes", "kitchen", "cup", "mug",
+    "فستان", "عباية", "عبايه", "بيجامة", "شبشب", "شنطة", "حقيبة يد", "محفظة", "حذاء", "مطبخ", "كوب",
+]
+
+
+def has_any(text, words):
+    return any(w in text for w in words)
+
+
+def blocked(p):
+    """يرجع سبب المنع لو المنتج ممنوع، وإلا None."""
+    text = " ".join(str(p.get(k, "")) for k in
+                    ("product_title", "first_level_category_name", "second_level_category_name")).lower()
+    if has_any(text, ADULT_WORDS):
+        return "adult"
+    title = str(p.get("product_title", "")).lower()
+    # الملابس والشنط ما تدخل فحص المستحضرات (مثلًا "فستان كريمي" لونه كريمي مو كريم)
+    if is_clothing({}, p) or has_any(title, NOT_COSMETIC_WORDS):
+        return None
+    if has_any(title, COSMETIC_WORDS) and not has_any(title, TOOL_WORDS):
+        return "cosmetic"
+    return None
+
+
 def pick(cfg, state, products, n):
     f = cfg["filters"]
     seen, good = set(state["posted"]), []
@@ -180,6 +234,8 @@ def pick(cfg, state, products, n):
     for p in products:
         pid = str(p.get("product_id"))
         if pid in seen or not p.get("promotion_link") or not p.get("product_main_image_url"):
+            continue
+        if blocked(p):
             continue
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
@@ -268,7 +324,7 @@ def ships_to(cfg, p):
 
 CLOTHING_WORDS = ["clothing", "apparel", "dress", "wedding", "events", "sleepwear", "underwear",
                   "matching sets", "tops", "bottoms", "skirt", "jumpsuit", "abaya", "muslim", "hijab",
-                  "sweater", "coat", "jacket", "suits", "blouse", "pants", "lingerie", "swimwear"]
+                  "sweater", "coat", "jacket", "suits", "blouse", "pants", "swimwear"]
 
 
 def is_clothing(cfg, p):

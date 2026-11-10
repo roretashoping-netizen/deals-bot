@@ -1,6 +1,9 @@
 {
   "posts_per_day": 100,
-  "post_hours": [9, 25],
+  "post_hours": [
+    9,
+    25
+  ],
   "currency": "SAR",
   "currency_label": "ريال",
   "language": "AR",
@@ -17,10 +20,10 @@
     "makeup brushes set",
     "makeup organizer",
     "eyelash curler",
-    "lipstick set",
-    "eyeshadow palette",
+    "makeup sponge set",
     "nail art kit",
-    "gel nail polish",
+    "nail art tools",
+    "makeup storage box",
     "hair curler",
     "hair straightener brush",
     "hair clips women",
@@ -50,12 +53,36 @@
     "min_discount_percent": 15
   },
   "countries": [
-    {"code": "SA", "flag": "🇸🇦", "name": "السعودية"},
-    {"code": "AE", "flag": "🇦🇪", "name": "الإمارات"},
-    {"code": "KW", "flag": "🇰🇼", "name": "الكويت"},
-    {"code": "QA", "flag": "🇶🇦", "name": "قطر"},
-    {"code": "BH", "flag": "🇧🇭", "name": "البحرين"},
-    {"code": "OM", "flag": "🇴🇲", "name": "عمان"}
+    {
+      "code": "SA",
+      "flag": "🇸🇦",
+      "name": "السعودية"
+    },
+    {
+      "code": "AE",
+      "flag": "🇦🇪",
+      "name": "الإمارات"
+    },
+    {
+      "code": "KW",
+      "flag": "🇰🇼",
+      "name": "الكويت"
+    },
+    {
+      "code": "QA",
+      "flag": "🇶🇦",
+      "name": "قطر"
+    },
+    {
+      "code": "BH",
+      "flag": "🇧🇭",
+      "name": "البحرين"
+    },
+    {
+      "code": "OM",
+      "flag": "🇴🇲",
+      "name": "عمان"
+    }
   ],
   "headlines": [
     "🔥 عرض اليوم",
