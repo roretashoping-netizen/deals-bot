@@ -361,6 +361,8 @@ def pick(cfg, state, products, n):
         if bag_fail:
             skip(bag_fail); continue  # فساتين السهرة بس من المتاجر المختارة
         f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
+        if trusted and len(gallery(p)) < f.get("min_images", 0):
+            skip("صور قليلة"); continue  # فساتين السهرة: لازم صور كافية تبين التفاصيل
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
             skip("مكرر"); continue

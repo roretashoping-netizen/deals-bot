@@ -21,7 +21,7 @@ CATEGORIES = [
      "keywords": ["Sharon Said Boutique evening dress", "Sharon Said evening dress", "Sharon Said dress",
                   "Serene Hill evening dress", "Serene Hill dress", "Serene Hill Boutique",
                   "arabic evening dress", "dubai evening gown", "muslim evening dress long sleeve",
-                  "luxury evening dress women"]},
+                  "luxury evening dress women", "Sharon Said Couture evening dress", "Johara Al Sharq gown"]},
     {"slug": "dresses", "name": "فساتين", "tag": "فساتين",
      "keywords": ["women maxi dress", "modest long dress women", "women long sleeve dress", "women casual dress"]},
     {"slug": "abayas", "name": "عبايات", "tag": "عبايات", "keywords": ["abaya women"]},

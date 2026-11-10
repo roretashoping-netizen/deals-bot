@@ -13,6 +13,8 @@
   "keywords_per_run": 3,
   "keywords": [
     "Sharon Said evening dress",
+    "Sharon Said Couture evening dress",
+    "Johara Al Sharq gown",
     "arabic evening dress",
     "dubai evening gown",
     "muslim evening dress long sleeve",
@@ -157,12 +159,18 @@
   },
   "evening_dress_shops": [
     "Sharon Said Boutique Store",
-    "SERENE HILL Boutique Store"
+    "SERENE HILL Boutique Store",
+    "Sharon Said Couture Store",
+    "Sharon Said Chic Store",
+    "Sharon Said Prom Store",
+    "Sharon Said Wedding Store",
+    "Johara Al Sharq Gowns Store"
   ],
   "trusted_shop_filters": {
-    "min_rating_percent": 0,
-    "min_orders": 0,
-    "min_discount_percent": 0
+    "min_rating_percent": 95,
+    "min_orders": 5,
+    "min_discount_percent": 0,
+    "min_images": 4
   },
   "category_weights": {
     "evening-dresses": 3,
