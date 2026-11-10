@@ -284,32 +284,37 @@ def pick(cfg, state, products, n):
     seen, good = set(state["posted"]), []
     recent_keys = set(state.get("recent_keys", []))
     recent_imgs = set(state.get("recent_imgs", []))
+    why = {}
+
+    def skip(reason):
+        why[reason] = why.get(reason, 0) + 1
     for p in products:
         pid = str(p.get("product_id"))
         if pid in seen or not p.get("promotion_link") or not p.get("product_main_image_url"):
-            continue
+            skip("منشور قبل"); continue
         if blocked(p) or no_brand(p.get("shop_name")):
-            continue
+            skip("ممنوع/بدون اسم متجر"); continue
         if p.get("_kw") and not deals_site.fits_cat(deals_site.category_for(p["_kw"])["slug"], p.get("product_title", "")):
-            continue  # البحث رجّع منتج من غير القسم (ساعة لما ندور فستان مثلًا)
+            skip("من غير القسم"); continue  # البحث رجّع منتج من غير القسم (ساعة لما ندور فستان مثلًا)
         trusted = trusted_shop(cfg, p)
         if is_evening(p) and not trusted:
-            continue  # فساتين السهرة بس من المتاجر المختارة
+            skip("سهرة من متجر ثاني"); continue  # فساتين السهرة بس من المتاجر المختارة
         f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
         if title_key(p) in recent_keys or p["product_main_image_url"] in recent_imgs:
-            continue
+            skip("مكرر"); continue
         if num(p.get("evaluate_rate")) < f["min_rating_percent"]:
-            continue
+            skip("تقييم"); continue
         if num(p.get("lastest_volume")) < f["min_orders"]:
-            continue
+            skip("طلبات قليلة"); continue
         if num(p.get("discount")) < f["min_discount_percent"]:
-            continue
+            skip("خصم قليل"); continue
         seen.add(pid)
         recent_keys.add(title_key(p))
         recent_imgs.add(p["product_main_image_url"])
         score = num(p.get("lastest_volume")) ** 0.5 + num(p.get("discount")) + num(p.get("commission_rate")) * 2
         good.append((score, p))
+    print(f"المرشحين {len(products)}، المقبول {len(good)}، المرفوض: " + ", ".join(f"{k} {v}" for k, v in why.items()))
     good.sort(key=lambda t: t[0], reverse=True)
     top = [p for _, p in good[: n * 4]]
     random.shuffle(top)  # تنويع بين أفضل المنتجات
