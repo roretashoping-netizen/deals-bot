@@ -485,6 +485,32 @@ AI_PROMPT = (
 )
 
 
+_GEMINI_MODELS = None
+
+
+def gemini_models(key):
+    """نسأل قوقل عن الموديلات المتاحة حاليًا ونختار الأسرع (flash-lite ثم flash)، عشان ما يتعطل البوت لو قوقل وقف موديل."""
+    global _GEMINI_MODELS
+    if _GEMINI_MODELS is not None:
+        return _GEMINI_MODELS
+    names = []
+    try:
+        r = requests.get("https://generativelanguage.googleapis.com/v1beta/models",
+                         params={"key": key, "pageSize": 200}, timeout=20)
+        for m in r.json().get("models", []):
+            if "generateContent" in m.get("supportedGenerationMethods", []):
+                names.append(m["name"].split("/")[-1])
+    except Exception as e:
+        print(f"[warn] Gemini models: {e}", file=sys.stderr)
+    bad = ("image", "tts", "audio", "live", "embed", "vision", "thinking", "computer")
+    flash = [n for n in names if "flash" in n and not any(b in n for b in bad)]
+    lite = sorted([n for n in flash if "lite" in n], reverse=True)
+    rest = sorted([n for n in flash if "lite" not in n], reverse=True)
+    _GEMINI_MODELS = (lite + rest)[:4] or ["gemini-flash-lite-latest", "gemini-flash-latest"]
+    print(f"Gemini models: {', '.join(_GEMINI_MODELS)}")
+    return _GEMINI_MODELS
+
+
 def ai_title(cfg, raw):
     """يعيد كتابة عنوان المنتج باسم قصير مفهوم عن طريق Gemini (مجاني). يرجع None لو ما فيه مفتاح أو فشل."""
     key = os.environ.get("GEMINI_API_KEY", "")
@@ -492,16 +518,18 @@ def ai_title(cfg, raw):
         return None
     body = {"contents": [{"parts": [{"text": AI_PROMPT.format(raw=str(raw)[:300])}]}],
             "generationConfig": {"temperature": 0.3, "maxOutputTokens": 400}}
-    for model in cfg.get("ai_models", ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]):
+    for model in cfg.get("ai_models") or gemini_models(key):
         for attempt in range(2):
             try:
                 r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                                  params={"key": key}, json=body, timeout=40)
+                                  params={"key": key}, json=body, timeout=60)
                 if r.status_code == 429 and attempt == 0:
                     time.sleep(8)  # الخطة المجانية لها حد طلبات بالدقيقة
                     continue
                 if r.status_code != 200:
-                    print(f"[warn] Gemini {model}: {r.status_code} {r.text[:150]}", file=sys.stderr)
+                    print(f"[warn] Gemini {model}: {r.status_code} {r.text[:300]}", file=sys.stderr)
+                    if r.status_code == 404 and _GEMINI_MODELS and model in _GEMINI_MODELS:
+                        _GEMINI_MODELS.remove(model)  # موديل متوقف: ما نجربه مرة ثانية
                     break
                 parts = r.json()["candidates"][0]["content"]["parts"]
                 txt = " ".join(x.get("text", "") for x in parts).strip().splitlines()[0]
