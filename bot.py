@@ -370,7 +370,7 @@ def money(x):
 
 
 def caption(cfg, p):
-    title = html.escape(deals_site.clean_title(p.get("product_title", "")))
+    title = html.escape(p.get("_title") or deals_site.clean_title(p.get("product_title", "")))
     cur = cfg.get("currency_label", "ريال")
     price = num(p.get("target_sale_price"))
     old = num(p.get("target_original_price"))
@@ -473,6 +473,71 @@ def is_mens(p):
     return bool(MEN_RE.search(title) or MEN_RE.search(cats) or has_any(title, MEN_AR))
 
 
+AI_PROMPT = (
+    "أنت محرر متجر إلكتروني سعودي. هذا عنوان منتج من علي إكسبريس مترجم آليًا ومليان كلام زايد:\n"
+    "«{raw}»\n\n"
+    "اكتب اسم قصير وواضح للمنتج بالعربي الفصيح البسيط يفهمه أي شخص في السعودية:\n"
+    "- من 3 إلى 8 كلمات فقط\n"
+    "- اذكر وش المنتج بالضبط، وأهم ميزة وحدة (مثل الخامة أو العدد أو المقاس) لو كانت مهمة\n"
+    "- بدون أكواد أو موديلات أو سنوات أو كلمات تسويقية مثل جديد وأفضل وساخن\n"
+    "- بدون إيموجي وبدون علامات تنصيص\n"
+    "اكتب الاسم فقط في سطر واحد."
+)
+
+
+def ai_title(cfg, raw):
+    """يعيد كتابة عنوان المنتج باسم قصير مفهوم عن طريق Gemini (مجاني). يرجع None لو ما فيه مفتاح أو فشل."""
+    key = os.environ.get("GEMINI_API_KEY", "")
+    if not key or not raw:
+        return None
+    body = {"contents": [{"parts": [{"text": AI_PROMPT.format(raw=str(raw)[:300])}]}],
+            "generationConfig": {"temperature": 0.3, "maxOutputTokens": 400}}
+    for model in cfg.get("ai_models", ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.0-flash"]):
+        for attempt in range(2):
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                  params={"key": key}, json=body, timeout=40)
+                if r.status_code == 429 and attempt == 0:
+                    time.sleep(8)  # الخطة المجانية لها حد طلبات بالدقيقة
+                    continue
+                if r.status_code != 200:
+                    print(f"[warn] Gemini {model}: {r.status_code} {r.text[:150]}", file=sys.stderr)
+                    break
+                parts = r.json()["candidates"][0]["content"]["parts"]
+                txt = " ".join(x.get("text", "") for x in parts).strip().splitlines()[0]
+                txt = txt.strip(" \"'«»*-.").strip()
+                if 4 <= len(txt) <= 80:
+                    return txt
+                break
+            except Exception as e:
+                print(f"[warn] Gemini {model}: {e}", file=sys.stderr)
+                break
+    return None
+
+
+def product_name(cfg, p):
+    return ai_title(cfg, p.get("product_title")) or deals_site.clean_title(p.get("product_title", ""))
+
+
+def cmd_retitle(cfg):
+    """يعطي المنتجات القديمة في الموقع أسماء جديدة بالذكاء الاصطناعي."""
+    items = deals_site.load_products()
+    done = 0
+    for x in items:
+        if x.get("name"):
+            continue
+        name = ai_title(cfg, x["title"])
+        if name:
+            x["name"] = name
+            done += 1
+            print(f"+ {name}")
+        time.sleep(4)
+    deals_site.PRODUCTS_FILE.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
+    deals_site.build(cfg)
+    print(f"انعاد تسمية {done} منتج")
+    return 0
+
+
 def cmd_prune(cfg):
     """يشيل من الموقع أي منتج ما يطابق الشروط الحالية (رجالي، جنسي، مستحضرات)."""
     items = deals_site.load_products()
@@ -518,6 +583,7 @@ def cmd_backfill(cfg, state):
             p["promotion_link"] = short_link(cfg, p)
             p["_ships"] = ships_to(cfg, p)
             p["_cat"] = deals_site.infer_cat(p.get("product_title", ""))
+            p["_title"] = product_name(cfg, p)
             deals_site.record(cfg, p, gallery(p))
             added.append(str(p["product_id"]))
             print(f"+ {p['_cat']}: {title}")
@@ -621,6 +687,7 @@ def cmd_post(cfg, state, count):
     for p in prods:
         p["promotion_link"] = short_link(cfg, p)
         p["_ships"] = ships_to(cfg, p)
+        p["_title"] = product_name(cfg, p)
         print(f"منتج {p.get('product_id')}: يوصل لـ {','.join(p['_ships'])}")
         try:
             send_product(cfg, p)
@@ -677,7 +744,7 @@ def cmd_run(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle"])
     ap.add_argument("--count", type=int, default=1)
     a = ap.parse_args()
     cfg = load_config()
@@ -685,6 +752,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "retitle":
+        return cmd_retitle(cfg)
     if a.command == "prune":
         return cmd_prune(cfg)
     if a.command == "backfill":

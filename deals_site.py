@@ -11,7 +11,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "3"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "4"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -113,6 +113,11 @@ def clean_title(title, limit=70):
     return s.strip(" -–—،,") or str(title)[:limit]
 
 
+def display_name(x):
+    """الاسم اللي ينعرض: اسم الذكاء الاصطناعي لو موجود، وإلا العنوان بعد التنظيف."""
+    return x.get("name") or clean_title(x["title"])
+
+
 def promo_text(info):
     """نص كود الخصم لو علي إكسبريس أرسل كود للمنتج."""
     if isinstance(info, list):
@@ -158,6 +163,7 @@ def record(cfg, p, gallery):
         "shop": str(p.get("shop_name", "") or ""),
         "cat": cat["slug"],
         "promo": promo_text(p.get("promo_code_info")),
+        "name": p.get("_title") or "",
         "date": datetime.now(RIYADH).strftime("%Y-%m-%d"),
     })
     items = items[-5000:]
@@ -241,16 +247,16 @@ def card(cfg, x):
     old = f"<s>{money(x['old'])}</s>" if x["old"] > x["price"] > 0 else ""
     badge = f'<span class="badge">خصم {x["disc"]}%</span>' if x["disc"] else ""
     return (f'<a class="card" href="{site}/p/{x["id"]}.html">'
-            f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(clean_title(x["title"]))}" loading="lazy">'
-            f'{badge}<span class="t">{esc(clean_title(x["title"]))}</span>'
+            f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(display_name(x))}" loading="lazy">'
+            f'{badge}<span class="t">{esc(display_name(x))}</span>'
             f'<span class="p">{money(x["price"])} ريال{old}</span></a>')
 
 
 def product_page(cfg, x, related):
     site = cfg["site_url"].rstrip("/")
     cat = cat_by_slug(x["cat"])
-    name = clean_title(x["title"])
-    short = clean_title(x["title"], 60)
+    name = display_name(x)
+    short = name if len(name) <= 60 else clean_title(name, 60)
     disc_txt = f" بخصم {x['disc']}%" if x["disc"] else ""
     title = f"{short}{disc_txt} | {cat['name']} علي اكسبريس"
     desc = (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
