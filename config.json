@@ -97,5 +97,51 @@
   "site_url": "https://roretashoping-netizen.github.io/deals-bot",
   "site_name": "عروض علي اكسبريس | صيد المنتجات",
   "telegram_public": "productaliexpress2027",
-  "google_site_verification": ""
+  "google_site_verification": "",
+  "promos": {
+    "codes_until": "2026-11-18",
+    "codes": [
+      {
+        "code": "GCC01",
+        "off": 23,
+        "min": 150
+      },
+      {
+        "code": "GCC02",
+        "off": 58,
+        "min": 345
+      },
+      {
+        "code": "GCC03",
+        "off": 105,
+        "min": 615
+      },
+      {
+        "code": "GCC04",
+        "off": 125,
+        "min": 725
+      },
+      {
+        "code": "GCC06",
+        "off": 210,
+        "min": 1300
+      },
+      {
+        "code": "GCC07",
+        "off": 310,
+        "min": 1700
+      },
+      {
+        "code": "GCC08",
+        "off": 385,
+        "min": 2200
+      }
+    ],
+    "notes": [
+      {
+        "text": "💳 بطاقات فيزا STC Bank: خصم 60 ريال فوق 300 ريال، ويوصل لـ 260 ريال فوق 1300 ريال · حتى 12 نوفمبر",
+        "until": "2026-11-12"
+      }
+    ]
+  }
 }

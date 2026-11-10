@@ -11,7 +11,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "4"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "5"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -118,6 +118,73 @@ def display_name(x):
     return x.get("name") or clean_title(x["title"])
 
 
+def _riyadh_today():
+    return datetime.now(RIYADH).strftime("%Y-%m-%d")
+
+
+def active_codes(cfg):
+    """أكواد علي إكسبريس العامة (للخليج) لو ما انتهت."""
+    pr = cfg.get("promos") or {}
+    if not pr.get("codes") or _riyadh_today() > str(pr.get("codes_until", "9999")):
+        return []
+    return sorted(pr["codes"], key=lambda c: c["min"])
+
+
+def active_notes(cfg):
+    """عروض البنوك والملاحظات اللي ما انتهت."""
+    pr = cfg.get("promos") or {}
+    t = _riyadh_today()
+    out = [n["text"] for n in pr.get("notes", []) if t <= str(n.get("until", "9999"))]
+    if cfg.get("promo_note"):
+        out.append(cfg["promo_note"])
+    return out
+
+
+def code_line(cfg, price):
+    """سطر كود واحد يناسب سعر المنتج: أعلى فئة توصلها، وإلا أصغر فئة (تجمعين منتجات بالسلة)."""
+    codes = active_codes(cfg)
+    if not codes:
+        return ""
+    try:
+        price = float(price or 0)
+    except (TypeError, ValueError):
+        price = 0
+    fit = [c for c in codes if c["min"] <= price]
+    c = fit[-1] if fit else codes[0]
+    until = str((cfg.get("promos") or {}).get("codes_until", ""))
+    end = f" · حتى {int(until[8:10])} {MONTHS_AR[int(until[5:7]) - 1]}" if len(until) == 10 else ""
+    more = "" if fit else " (اجمعي أكثر من منتج بالسلة)"
+    return (f"🎟️ كود علي إكسبريس: <b>{esc(c['code'])}</b>\n"
+            f"خصم {c['off']} ريال للطلبات فوق {c['min']} ريال{more}{end}")
+
+
+MONTHS_AR = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس",
+             "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+
+
+def codes_page(cfg):
+    """صفحة «كود خصم علي اكسبريس» تتحدث كل تشغيل، وتختفي الأكواد المنتهية لحالها."""
+    codes = active_codes(cfg)
+    notes = active_notes(cfg)
+    pr = cfg.get("promos") or {}
+    until = str(pr.get("codes_until", ""))
+    rows = "".join(f"<tr><td><b>{esc(c['code'])}</b></td><td>{c['off']} ريال</td><td>فوق {c['min']:,} ريال</td></tr>"
+                   for c in codes)
+    table = (f"<h2>أكواد خصم علي إكسبريس للسعودية والخليج</h2>"
+             f"<table class='codes'><tr><th>الكود</th><th>الخصم</th><th>الطلب</th></tr>{rows}</table>"
+             + (f"<p class='note'>صالحة لين {esc(until)} (23:59 بتوقيت السعودية) أو لين تخلص الكمية. "
+                f"كود واحد لكل طلب، وتكتبينه في خانة «كود الخصم» عند الدفع.</p>" if until else "")) if codes else \
+            "<p>ما فيه أكواد عامة شغالة الحين. نحدّث الصفحة أول ما ينزل كود جديد.</p>"
+    nb = ("<h2>عروض البنوك والبطاقات</h2>" + "".join(f"<div class='promo'>{n}</div>" for n in notes)) if notes else ""
+    tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
+    body = (f"<h1>كود خصم علي اكسبريس اليوم</h1><p class='intro'>أكواد خصم علي إكسبريس الشغالة الحين للسعودية "
+            f"والإمارات والكويت وقطر والبحرين وعمان، وعروض البنوك على علي إكسبريس. نشيل المنتهي أول بأول.</p>"
+            f"{table}{nb}<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام عشان يوصلك كل كود جديد</a></p>")
+    return page(cfg, "كود خصم علي اكسبريس اليوم للسعودية والخليج | عروض البنوك",
+                "أكواد خصم علي إكسبريس الشغالة اليوم للسعودية والخليج بالريال، مع عروض البنوك والبطاقات.",
+                "codes.html", body)
+
+
 def promo_text(info):
     """نص كود الخصم لو علي إكسبريس أرسل كود للمنتج."""
     if isinstance(info, list):
@@ -184,6 +251,7 @@ nav.cats{display:flex;gap:10px;overflow-x:auto;padding:14px 16px;max-width:1100p
 nav.cats::-webkit-scrollbar{display:none}
 nav.cats a{background:#fff;border:2px solid var(--line);padding:12px 20px;min-height:48px;display:flex;align-items:center;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:16px;font-weight:700;scroll-snap-align:start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 nav.cats a:active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.codes{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}.codes td,.codes th{border:1px solid #eee;padding:8px;text-align:center}.codes th{background:#fff4d6}
 .promo{background:#fff4d6;border:1px dashed #e0a800;border-radius:10px;padding:10px;margin-top:10px;font-size:15px}
 h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .intro{color:var(--muted);margin:0 0 16px}
@@ -215,7 +283,8 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
     url = f"{site}/{path}" if path else f"{site}/"
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     verify = cfg.get("google_site_verification", "")
-    cats = "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in CATEGORIES)
+    cats = f'<a href="{site}/codes.html">🎟️ أكواد الخصم</a>' + \
+        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in CATEGORIES)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     return f"""<!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
@@ -296,7 +365,7 @@ def product_page(cfg, x, related):
  <div><h1>{esc(name)}</h1>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
    {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
-   {f'<div class="promo">{cfg["promo_note"]}</div>' if cfg.get("promo_note") else ''}
+   <a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>
    <ul class="meta">{meta}</ul>
    <a class="buy" href="{esc(x['link'])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a>
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>
@@ -361,7 +430,9 @@ def build(cfg, only_ids=None):
         list_page(cfg, f"{cfg['site_name']} | عروض وتخفيضات علي اكسبريس اليوم بالريال",
                   "عروض علي اكسبريس اليوم", intro, "", newest[:60]), encoding="utf-8")
 
-    urls = [(f"{site}/", today_str())] + \
+    (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
+
+    urls = [(f"{site}/", today_str()), (f"{site}/codes.html", today_str())] + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in CATEGORIES if by_cat.get(c["slug"])] + \
            [(f"{site}/p/{x['id']}.html", x["date"]) for x in newest]
     sm = "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>" for u, d in urls)

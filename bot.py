@@ -402,8 +402,9 @@ def caption(cfg, p):
     if p.get("shop_name"):
         lines += [sep, f"🏪 المتجر: {html.escape(str(p['shop_name']))}"]
     promo = deals_site.promo_text(p.get("promo_code_info"))
-    if promo or cfg.get("promo_note"):
-        lines += [sep] + [x for x in (promo, cfg.get("promo_note", "")) if x]
+    extra = [x for x in [promo, deals_site.code_line(cfg, price)] + deals_site.active_notes(cfg) if x]
+    if extra:
+        lines += [sep] + extra
     link = html.escape(p["promotion_link"], quote=True)
     lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if is_clothing(cfg, p):
