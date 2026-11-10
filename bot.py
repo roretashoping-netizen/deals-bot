@@ -410,6 +410,10 @@ def caption(cfg, p):
     if is_clothing(cfg, p):
         lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
+    code = deals_site.code_line(cfg, price)
+    if len(text) > 1020 and code:
+        # الكابشن طويل: نخلي سطر الكود بدون تفاصيل الدول عشان ما ينقص الرابط
+        text = text.replace(code, code.split("\n")[0])
     return text[:1020]
 
 

@@ -154,14 +154,15 @@ def code_line(cfg, price):
     until = str((cfg.get("promos") or {}).get("codes_until", ""))
     end = f" · حتى {int(until[8:10])} {MONTHS_AR[int(until[5:7]) - 1]}" if len(until) == 10 else ""
     more = "" if fit else " (اجمعي أكثر من منتج بالسلة)"
-    flags = "".join(x.get("flag", "") for x in cfg.get("countries", []))
-    return (f"🎟️ كود علي إكسبريس لكل دول الخليج {flags}: <b>{esc(c['code'])}</b>\n"
-            f"خصم {c['off']} ريال سعودي للطلبات فوق {c['min']} (يتحوّل لعملة بلدك){more}{end}")
+    rows = [f"{x.get('flag', '')} خصم {_fx(c['off'], GCC_FX[x['code']][0])} {GCC_FX[x['code']][2]}"
+            f" للطلب فوق {_fx(c['min'], GCC_FX[x['code']][0])}"
+            for x in cfg.get("countries", []) if x["code"] in GCC_FX]
+    return "\n".join([f"🎟️ كود الخصم: <b>{esc(c['code'])}</b>{end}"] + rows + ([more.strip()] if more else []))
 
 
 # تقريب الحد الأدنى بعملة كل دولة (علي إكسبريس يحوّل من الريال وقت الدفع)
-GCC_FX = {"SA": (1, "ريال سعودي"), "AE": (0.98, "درهم"), "KW": (0.082, "دينار كويتي"),
-          "QA": (0.97, "ريال قطري"), "BH": (0.1, "دينار بحريني"), "OM": (0.1025, "ريال عماني")}
+GCC_FX = {"SA": (1, "ريال سعودي", "ريال"), "AE": (0.98, "درهم", "درهم"), "KW": (0.082, "دينار كويتي", "دينار"),
+          "QA": (0.97, "ريال قطري", "ريال"), "BH": (0.1, "دينار بحريني", "دينار"), "OM": (0.1025, "ريال عماني", "ريال")}
 
 
 def _fx(v, rate):
@@ -216,7 +217,7 @@ def promo_text(info):
         info = info[0] if info else None
     if not isinstance(info, dict) or not info.get("promo_code"):
         return ""
-    txt = f"🎟️ كود خصم: <b>{esc(info['promo_code'])}</b>"
+    txt = f"🏪 كود المتجر: <b>{esc(info['promo_code'])}</b>"
     if info.get("code_value"):
         txt += f" ({esc(info['code_value'])})"
     if info.get("code_mini_spend"):
