@@ -168,7 +168,7 @@
   ],
   "trusted_shop_filters": {
     "min_rating_percent": 95,
-    "min_orders": 5,
+    "min_orders": 1,
     "min_discount_percent": 0,
     "min_images": 4
   },
@@ -194,6 +194,10 @@
       "flagship store"
     ],
     "min_rating_percent": 95,
-    "min_orders": 100
+    "min_orders": 100,
+    "unofficial_ok": {
+      "min_rating_percent": 97,
+      "min_orders": 1000
+    }
   }
 }

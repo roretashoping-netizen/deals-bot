@@ -292,7 +292,11 @@ def bag_rule_fail(cfg, p):
         return "شنطة مو جلد"
     shop = norm_shop(p.get("shop_name"))
     if rules.get("shop_words") and not any(w in shop for w in rules["shop_words"]):
-        return "شنطة من متجر غير رسمي"
+        # متجر غير رسمي: نقبله بس لو جودته مثبتة بتقييم عالي جدًا وطلبات كثيرة
+        alt = rules.get("unofficial_ok", {})
+        if not alt or num(p.get("evaluate_rate")) < alt.get("min_rating_percent", 101) \
+                or num(p.get("lastest_volume")) < alt.get("min_orders", 10 ** 9):
+            return "شنطة من متجر غير رسمي"
     if num(p.get("evaluate_rate")) < rules.get("min_rating_percent", 0):
         return "شنطة تقييمها أقل"
     if num(p.get("lastest_volume")) < rules.get("min_orders", 0):
