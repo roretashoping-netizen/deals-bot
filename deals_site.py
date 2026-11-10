@@ -10,6 +10,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 OUT = BASE_DIR / "docs"
+SITE_VERSION = "2"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -173,7 +174,7 @@ def card(cfg, x):
     old = f"<s>{money(x['old'])}</s>" if x["old"] > x["price"] > 0 else ""
     badge = f'<span class="badge">خصم {x["disc"]}%</span>' if x["disc"] else ""
     return (f'<a class="card" href="{site}/p/{x["id"]}.html">'
-            f'<img src="{esc(x["image"])}" alt="{esc(x["title"][:90])}" loading="lazy">'
+            f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(x["title"][:90])}" loading="lazy">'
             f'{badge}<span class="t">{esc(x["title"])}</span>'
             f'<span class="p">{money(x["price"])} ريال{old}</span></a>')
 
@@ -192,7 +193,7 @@ def product_page(cfg, x, related):
     names = {c["code"]: f'{c["flag"]} {c["name"]}' for c in cfg.get("countries", [])}
     ships = " ".join(names[c] for c in x.get("ships", []) if c in names)
     imgs = [x["image"]] + x.get("gallery", [])
-    thumbs = "".join(f'<img src="{esc(u)}" alt="صورة {i + 2} لـ {esc(short)}" loading="lazy">'
+    thumbs = "".join(f'<img referrerpolicy="no-referrer" src="{esc(u)}" alt="صورة {i + 2} لـ {esc(short)}" loading="lazy">'
                      for i, u in enumerate(imgs[1:]))
     old_html = (f'<div class="was">السعر قبل: <s>{money(x["old"])}</s> ريال</div>'
                 f'<div class="save">🔥 خصم {x["disc"]}% · توفّرين {money(x["old"] - x["price"])} ريال</div>'
@@ -217,7 +218,7 @@ def product_page(cfg, x, related):
     body = f"""
 <div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{cat['slug']}.html">{esc(cat['name'])}</a></div>
 <div class="prod">
- <div class="gal"><img src="{esc(x['image'])}" alt="{esc(x['title'][:120])}"><div class="thumbs">{thumbs}</div></div>
+ <div class="gal"><img referrerpolicy="no-referrer" src="{esc(x['image'])}" alt="{esc(x['title'][:120])}"><div class="thumbs">{thumbs}</div></div>
  <div><h1>{esc(x['title'])}</h1>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
    <ul class="meta">{meta}</ul>
@@ -260,6 +261,10 @@ def build(cfg, only_ids=None):
     for x in newest:
         by_cat.setdefault(x["cat"], []).append(x)
 
+    ver_file = OUT / ".version"
+    if not ver_file.exists() or ver_file.read_text(encoding="utf-8").strip() != SITE_VERSION:
+        only_ids = None  # تصميم جديد: نعيد بناء كل الصفحات
+        ver_file.write_text(SITE_VERSION, encoding="utf-8")
     targets = items if only_ids is None else [x for x in items if x["id"] in set(only_ids)]
     for x in targets:
         related = [r for r in by_cat.get(x["cat"], []) if r["id"] != x["id"]][:8]
