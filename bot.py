@@ -522,6 +522,14 @@ def cmd_post(cfg, state, count):
         print(f"وصلنا الحد اليومي ({cfg['posts_per_day']})")
         return 0
     count = min(count, left)
+    # توزيع المنشورات بالتساوي على باقي اليوم بدل ما تخلص بدري
+    start, end = cfg["post_hours"]
+    now = datetime.now(RIYADH)
+    h = now.hour + now.minute / 60
+    if h < start and end > 24:
+        h += 24
+    runs_left = max(1, int((end - h) * 60 // cfg.get("run_every_minutes", 30)) + 1)
+    count = min(count, max(1, -(-left // runs_left)))
     prods = pick(cfg, state, fetch_candidates(cfg), count)
     sent = 0
     for p in prods:
