@@ -27,6 +27,11 @@
     "cowhide leather bag women",
     "women leather top handle bag",
     "women leather wallet",
+    "FOXER genuine leather bag women",
+    "ZOOLER genuine leather handbag",
+    "BOSTANTEN leather handbag women",
+    "Cnoles genuine leather bag women",
+    "LAORENTOU cow leather bag women",
     "women maxi dress",
     "modest long dress women",
     "women long sleeve dress",
@@ -168,7 +173,7 @@
   ],
   "trusted_shop_filters": {
     "min_rating_percent": 95,
-    "min_orders": 1,
+    "min_orders": 3,
     "min_discount_percent": 0,
     "min_images": 4
   },
@@ -186,18 +191,30 @@
     "require_words": [
       "leather",
       "جلد",
-      "cowhide",
-      "split leather"
+      "cowhide"
+    ],
+    "exclude_words": [
+      "pu leather",
+      "pu ",
+      "faux",
+      "vegan",
+      "synthetic",
+      "artificial",
+      "imitation",
+      "leatherette",
+      "جلد صناعي",
+      "جلد اصطناعي",
+      "بولي يوريثان"
     ],
     "shop_words": [
       "official store",
       "flagship store"
     ],
     "min_rating_percent": 95,
-    "min_orders": 100,
-    "unofficial_ok": {
-      "min_rating_percent": 97,
-      "min_orders": 1000
-    }
-  }
+    "min_orders": 100
+  },
+  "deep_search_cats": [
+    "evening-dresses",
+    "bags"
+  ]
 }

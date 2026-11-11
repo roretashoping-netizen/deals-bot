@@ -131,7 +131,13 @@ def fetch_candidates(cfg):
     keywords = sorted(cfg["keywords"], reverse=True,
                       key=lambda k: random.random() ** (1.0 / max(0.1, weights.get(deals_site.category_for(k)["slug"], 1))))
     out = []
+    deep = set(cfg.get("deep_search_cats", []))
+    jobs = []
     for kw in keywords[: cfg.get("keywords_per_run", 4)]:
+        # الأقسام المهمة ندور فيها أول صفحتين (الأكثر طلبًا)، والباقي صفحة عشوائية
+        pages = [1, 2] if deals_site.category_for(kw)["slug"] in deep else [random.randint(1, 5)]
+        jobs += [(kw, pg) for pg in pages]
+    for kw, page_no in jobs:
         biz = {
             "keywords": kw,
             "tracking_id": cfg["tracking_id"],
@@ -140,7 +146,7 @@ def fetch_candidates(cfg):
             "ship_to_country": cfg["ship_to"],
             "sort": "LAST_VOLUME_DESC",
             "page_size": 50,
-            "page_no": random.randint(1, 5),
+            "page_no": page_no,
             "min_sale_price": cfg.get("min_price", ""),
             "max_sale_price": cfg.get("max_price", ""),
             "fields": "product_id,product_title,target_sale_price,target_original_price,"
@@ -290,6 +296,8 @@ def bag_rule_fail(cfg, p):
     title = str(p.get("product_title", "")).lower()
     if rules.get("require_words") and not any(w in title for w in rules["require_words"]):
         return "شنطة مو جلد"
+    if any(w in title for w in rules.get("exclude_words", [])):
+        return "شنطة جلد صناعي"
     shop = norm_shop(p.get("shop_name"))
     if rules.get("shop_words") and not any(w in shop for w in rules["shop_words"]):
         # متجر غير رسمي: نقبله بس لو جودته مثبتة بتقييم عالي جدًا وطلبات كثيرة
