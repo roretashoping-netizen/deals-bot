@@ -198,7 +198,7 @@ def code_line(cfg, price):
     c = fit[-1] if fit else codes[0]
     until = str((cfg.get("promos") or {}).get("codes_until", ""))
     end = f" · حتى {int(until[8:10])} {MONTHS_AR[int(until[5:7]) - 1]}" if len(until) == 10 else ""
-    more = "" if fit else " (اجمعي أكثر من منتج بالسلة)"
+    more = ""
     rows = [f"{x.get('flag', '')} خصم {_fx(c['off'], GCC_FX[x['code']][0])} {GCC_FX[x['code']][2]}"
             f" للطلب فوق {_fx(c['min'], GCC_FX[x['code']][0])}"
             for x in cfg.get("countries", []) if x["code"] in GCC_FX]
