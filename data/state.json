@@ -71,11 +71,12 @@
   "1005013393444284": "2026-11-11",
   "1005012013820937": "2026-11-11",
   "1005007171130497": "2026-11-11",
-  "1005006904480915": "2026-11-11"
+  "1005006904480915": "2026-11-11",
+  "1005013375148025": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 14
+  "2026-11-11": 15
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -139,7 +140,8 @@
   "خزانة المطبخ باب منشفة بار باب",
   "قطعة حامل إسفنجة المطبخ حوض الفولاذ",
   "قطع من خطافات j ذاتية اللصق",
-  "قطع من الخطافات المغناطيسية الفضية d"
+  "قطع من الخطافات المغناطيسية الفضية d",
+  "أداة مغناطيسية قوية في لطلاء الأظافر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -203,8 +205,17 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S5484456bbf7f43abba44008127a57525P.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S654e067fba534331983588ff31208cf4w.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S522d5d4862304e878b04af8808ad1dd27.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S6268903d84864e66ac67e8af6f9aec94f.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6268903d84864e66ac67e8af6f9aec94f.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4ad1ffd9ff6442ecb8d255a4f776e8e75.jpg"
  ],
- "last_cat": "التخزين والتنظيم المنزلي",
- "amazon_daily": {}
+ "last_cat": "مسمار الفن و أدوات",
+ "amazon_daily": {},
+ "recent_cats": [
+  "nails"
+ ],
+ "cat_day": {
+  "2026-11-11": {
+   "nails": 1
+  }
+ }
 }
