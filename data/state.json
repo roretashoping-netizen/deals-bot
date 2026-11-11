@@ -87,11 +87,16 @@
   "1005010757722107": "2026-11-11",
   "1005012262826942": "2026-11-11",
   "1005012314128391": "2026-11-11",
-  "1005013266260514": "2026-11-11"
+  "1005013266260514": "2026-11-11",
+  "1005010379561142": "2026-11-11",
+  "1005006420817050": "2026-11-11",
+  "1005012032530009": "2026-11-11",
+  "1005006904483679": "2026-11-11",
+  "1005011717803509": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 25
+  "2026-11-11": 26
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -171,7 +176,12 @@
   "فستان سهرة رسمي فاخر من lucyinlove",
   "حقيبة نسائية من pg موديل ،",
   "حقيبة يد مغربية فاخرة بإطار قفل،",
-  "الفولاذ المقاوم للصدأ النفط برهان شبكة"
+  "الفولاذ المقاوم للصدأ النفط برهان شبكة",
+  "فستان سهرة فاخر ذهبي اللون بتصميم",
+  "فساتين سهرة رسمية من lucyinlove بمقاسات",
+  "فساتين سهرة رسمية أنيقة من سانسا",
+  "حقيبة سهرة صغيرة لامعة، محفظة بسلسلة",
+  "قطعة مقياس الفولاذ المقاوم للصدأ كعكة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -251,19 +261,24 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S8e965c32c2f84b419793961c4a7d39cfj.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc54210d9e82d42f19a6f9b40fe3b854ba.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Saf937412dfd24732bde3908f28f7f2d8q.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S45ba486587d0439396ad618f69132225Q.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S45ba486587d0439396ad618f69132225Q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S09e38cd400fa4dd3ab1074d4c734d9d3Q.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0749789b514d47f5bc335d68f1ded81b0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S45a45a1c69da4597b80555bad61d7485O.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S660378d816c1485888e4c6b1b27218c8N.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9f24b54b06a7494cad7d0b4f4334cd73c.jpg"
  ],
  "last_cat": "المطبخ وصالة التغذي وبار",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
   "evening-bags",
+  "evening-bags",
+  "kitchen",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
   "evening-bags",
   "kitchen"
  ],
@@ -274,15 +289,25 @@
    "dresses": 1,
    "loungewear": 1,
    "jewelry": 1,
-   "evening-dresses": 7,
-   "evening-bags": 2,
-   "kitchen": 1
+   "evening-dresses": 10,
+   "evening-bags": 3,
+   "kitchen": 2
   }
  },
  "extra_day": {
   "2026-11-11": {
-   "evening-dresses": 3,
-   "evening-bags": 2
+   "evening-dresses": 6,
+   "evening-bags": 3
   }
+ },
+ "taste": {
+  "1005012655632436": 4.0,
+  "1005010379561142": 9.0,
+  "1005006420817050": 7.0,
+  "1005012778751674": 4.0,
+  "1005012032530009": 7.0,
+  "1005007822626235": 4.0,
+  "1005006904483679": 7.0,
+  "1005005040898947": 3.0
  }
 }
