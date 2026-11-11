@@ -12,13 +12,6 @@
   "max_price": "",
   "keywords_per_run": 5,
   "keywords": [
-    "Sharon Said evening dress",
-    "Sharon Said Couture evening dress",
-    "Johara Al Sharq gown",
-    "arabic evening dress",
-    "dubai evening gown",
-    "muslim evening dress long sleeve",
-    "luxury evening dress women",
     "genuine leather handbag women",
     "women leather shoulder bag",
     "women leather crossbody bag",
@@ -63,7 +56,17 @@
     "makeup mirror led",
     "perfume atomizer",
     "women pajamas",
-    "women slippers"
+    "women slippers",
+    "luxury evening dress women",
+    "arabic evening dress",
+    "dubai evening gown",
+    "elegant evening gown long",
+    "muslim evening dress long sleeve",
+    "sequin evening dress",
+    "satin evening gown",
+    "beaded evening dress",
+    "mermaid evening dress",
+    "prom dress long elegant"
   ],
   "filters": {
     "min_rating_percent": 95,
@@ -178,7 +181,7 @@
   ],
   "trusted_shop_filters": {
     "min_rating_percent": 95,
-    "min_orders": 3,
+    "min_orders": 30,
     "min_discount_percent": 0,
     "min_images": 4
   },
@@ -189,7 +192,20 @@
   },
   "store_ids": {
     "5600091": "Sharon Said Boutique Store",
-    "2855054": "SERENE HILL Boutique Store"
+    "2855054": "SERENE HILL Boutique Store",
+    "1104474047": "Contessa Dubai Evening And Wedding Dresses Store",
+    "1102435827": "Lily Wedding Dress Store",
+    "1102251618": "ROSES Store",
+    "912651003": "Dream Dresses Store",
+    "1103059920": "Sansa Prom Dress Store",
+    "1102440247": "Amanda Prom Dress Store",
+    "1104488089": "Mila Evening Dress Store",
+    "1103575203": "Yipeisha Wedding Dress Store",
+    "912395642": "Lucyinlove Store",
+    "1104565166": "Lumen Threads Store",
+    "5864012": "winyi Official Store",
+    "1105078353": "BOYANGERMEI Store",
+    "1103573332": "Stone's Store"
   },
   "store_keyword": "Sharon Said evening dress",
   "bag_rules": {

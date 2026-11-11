@@ -55,7 +55,7 @@ def category_for(kw):
     for c in CATEGORIES:
         if kw in c["keywords"]:
             return c
-    return OTHER
+    return cat_by_slug(infer_cat(kw))  # كلمة بحث جديدة: نعرف قسمها من كلماتها
 
 
 # لمنتجات قديمة ما نعرف كلمة بحثها: نخمن الفئة من العنوان (الترتيب مهم)
