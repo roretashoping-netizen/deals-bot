@@ -787,6 +787,26 @@ TASTE_PROMPT = (
 )
 
 
+def image_part(p):
+    """صورة المنتج الرئيسية بصيغة Gemini (inline_data). يرجع None لو ما قدرنا ننزلها."""
+    if "_img_part" in p:
+        return p["_img_part"]
+    part = None
+    url = p.get("product_main_image_url")
+    try:
+        if url:
+            img = requests.get(url, timeout=25)
+            if img.status_code == 200 and len(img.content) <= 4_000_000:
+                mime = img.headers.get("content-type", "image/jpeg").split(";")[0]
+                if not mime.startswith("image/"):
+                    mime = "image/jpeg"
+                part = {"inline_data": {"mime_type": mime, "data": base64.b64encode(img.content).decode()}}
+    except Exception as e:
+        print(f"[warn] صورة {p.get('product_id')}: {e}", file=sys.stderr)
+    p["_img_part"] = part
+    return part
+
+
 def taste_score(cfg, p):
     """درجة الذوق والفخامة من صورة المنتج (Gemini يشوف الصورة). يرجع رقم 1-10 أو None لو فشل."""
     key = os.environ.get("GEMINI_API_KEY", "")
@@ -935,13 +955,16 @@ PITCH_PROMPT = (
     "أنتِ كاتبة إعلانات محترفة لقروب عروض نسائي في الخليج، وتفهمين علم نفس الشراء.\n"
     "المنتج: «{name}»\nالعنوان الأصلي: {raw}\nالقسم: {cat}\n"
     "السعر الحين {price} ريال بدل {old} ريال (خصم {disc}%). التقييم {rating} من 5، وانطلب أكثر من {orders} مرة.\n\n"
-    "اكتبي سطرين بالضبط بهذا الشكل وبدون أي شي ثاني:\n"
+    "معك صورة المنتج الرئيسية اللي بتنزل بالمنشور. اكتبي 3 أسطر بالضبط بهذا الشكل وبدون أي شي ثاني:\n"
+    "الاسم: اسم المنتج بالعربي من 3 إلى 8 كلمات، يوصف اللي يبان بالصورة بالضبط (النوع واللون والتفاصيل الظاهرة)\n"
     "الجذب: جملة افتتاحية قصيرة (من 4 إلى 9 كلمات) تبدأ بإيموجي واحد مناسب، تشد العين وتلعب على الإحساس: "
     "الفضول أو الرغبة أو حماس المناسبة أو إحساس الصفقة الحلوة. باللهجة الخليجية وموجهة للبنت.\n"
     "الوصف: جملة أو جملتين (إلى 28 كلمة) ترسم الصورة في خيالها: وين بتلبسه أو تستخدمه، وش الإحساس اللي يعطيها، "
     "وليش يستاهل. لهجة خليجية راقية، مو مبتذلة.\n\n"
     "قواعد مهمة:\n"
     "- لا تخترعين أي معلومة مو موجودة (مواصفات، خامات، ضمان، كمية محدودة، مدة العرض).\n"
+    "- الصورة هي المرجع: لا تذكرين أي ميزة ما تبان في الصورة (مثل سلسلة أو حزام أو لون أو قطعة إضافية) حتى لو مذكورة بالعنوان.\n"
+    "- لا تذكرين ملابس أو ثقافات غريبة على الخليج.\n"
     "- كوني دقيقة بالخامة: الزركون والمويسانيت مو ألماس، والمطلي بالذهب مو ذهب، والجلد الصناعي مو جلد طبيعي.\n"
     "- الكلام موجه لها هي ولاستخدامها هي (مو هدية لرجل).\n"
     "- اختاري الفعل الصح: الفستان تلبسينه، الشنطة تشيلينها، الأداة تستخدمينها.\n"
@@ -970,7 +993,11 @@ def ai_pitch(cfg, p):
         cat=deals_site.cat_by_slug(site_cat(p))["name"], price=money(price), old=money(old) if old else money(price),
         disc=int(num(p.get("discount"))), rating=stars(p.get("evaluate_rate")) or "-",
         orders=int(num(p.get("lastest_volume"))))
-    body = {"contents": [{"parts": [{"text": prompt}]}],
+    parts = [{"text": prompt}]
+    img = image_part(p)
+    if img:
+        parts.append(img)  # Gemini يشوف الصورة عشان الكلام يطابقها
+    body = {"contents": [{"parts": parts}],
             "generationConfig": {"temperature": 0.7, "maxOutputTokens": 1500}}
     for model in cfg.get("ai_models") or gemini_models(key):
         for attempt in range(2):
@@ -986,16 +1013,20 @@ def ai_pitch(cfg, p):
                 txt = " ".join(x.get("text", "") for x in r.json()["candidates"][0]["content"]["parts"])
                 out = {}
                 clean = txt.replace("**", "")
-                for label, k in (("الجذب", "hook"), ("الوصف", "pitch")):
+                for label, k in (("الاسم", "name"), ("الجذب", "hook"), ("الوصف", "pitch")):
                     m = re.search(label + r"\s*[:：\-]\s*(.+)", clean)
                     if m:
                         out[k] = m.group(1).strip().strip(" \"'«»*")
-                if not out.get("hook"):  # رد بدون عناوين: السطر الأول جذب والثاني وصف
+                if not out.get("hook"):  # رد بدون عناوين: اسم ثم جذب ثم وصف
                     rows = [x.strip().lstrip("-*• ").strip(" \"'«»") for x in clean.splitlines() if x.strip()]
-                    if rows:
+                    if len(rows) >= 3:
+                        out.update(name=rows[0], hook=rows[1], pitch=rows[2])
+                    elif rows:
                         out["hook"] = rows[0]
-                    if len(rows) > 1:
-                        out["pitch"] = rows[1]
+                        if len(rows) > 1:
+                            out["pitch"] = rows[1]
+                if out.get("name") and not (4 <= len(out["name"]) <= 80) or pitch_bad(out.get("name", "")):
+                    out.pop("name", None)
                 if len(out.get("pitch", "")) > 260:
                     out.pop("pitch")  # وصف طويل: نكتفي بجملة الجذب
                 if out.get("hook") and pitch_bad(out["hook"] + " " + out.get("pitch", "")):
@@ -1274,6 +1305,8 @@ def publish(cfg, state, p, d, count_daily=True):
         state["posted"][str(p["product_id"])] = d
         return False
     p["_pitch"] = ai_pitch(cfg, p)
+    if (p["_pitch"] or {}).get("name"):
+        p["_title"] = p["_pitch"]["name"]  # اسم مطابق للصورة
     print(f"منتج {p.get('product_id')} ({site_cat(p)}): يوصل لـ {','.join(p['_ships'])}")
     try:
         send_product(cfg, p)
@@ -1443,6 +1476,8 @@ def cmd_recaption(cfg, pairs):
         p["_ships"] = ships_to(cfg, p)
         p["_title"] = product_name(cfg, p)
         p["_pitch"] = ai_pitch(cfg, p)
+        if (p["_pitch"] or {}).get("name"):
+            p["_title"] = p["_pitch"]["name"]
         text = caption(cfg, p)
         base = dict(chat_id=cfg["channel"], message_id=int(msg), caption=text, parse_mode="HTML")
         try:
