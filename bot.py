@@ -637,7 +637,7 @@ def tg(cfg, method, **payload):
 
 def as_album(cfg, p):
     """الملابس تنزل ألبوم صور (لو فيه صور إضافية)."""
-    return is_clothing(cfg, p) and bool(gallery(p))
+    return not p.get("_single") and is_clothing(cfg, p) and bool(gallery(p))
 
 
 def post_buttons(cfg, p):
@@ -1425,6 +1425,42 @@ def cmd_run(cfg):
             time.sleep(300)
 
 
+def cmd_recaption(cfg, pairs):
+    """يعيد كتابة نص منشورات قديمة (تعديل بنفس مكانها) بالقواعد الحالية. pairs = "رقم_المنتج:رقم_الرسالة,..." """
+    jobs = [x.split(":") for x in pairs.split(",") if ":" in x]
+    ids = [pid.strip() for pid, _ in jobs]
+    prods = {str(p["product_id"]): p for p in extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+        "product_ids": ",".join(ids), "target_currency": cfg["currency"], "target_language": cfg["language"],
+        "ship_to_country": cfg["ship_to"], "tracking_id": cfg["tracking_id"], "fields": DETAIL_FIELDS}))}
+    done = 0
+    for pid, msg in jobs:
+        p = prods.get(pid.strip())
+        if not p:
+            print(f"✗ {pid}: ما رجع من علي إكسبريس")
+            continue
+        p["_single"] = True  # المنشورات الحالية صورة وحدة مع أزرار
+        p["promotion_link"] = short_link(cfg, p)
+        p["_ships"] = ships_to(cfg, p)
+        p["_title"] = product_name(cfg, p)
+        p["_pitch"] = ai_pitch(cfg, p)
+        text = caption(cfg, p)
+        base = dict(chat_id=cfg["channel"], message_id=int(msg), caption=text, parse_mode="HTML")
+        try:
+            tg(cfg, "editMessageCaption", **base, reply_markup={"inline_keyboard": post_buttons(cfg, p)})
+        except Exception as e:
+            print(f"[warn] {msg}: {e}", file=sys.stderr)
+            try:
+                tg(cfg, "editMessageCaption", **base)
+            except Exception as e2:
+                print(f"✗ {msg}: {e2}")
+                continue
+        done += 1
+        print(f"✓ عدّلت الرسالة {msg}: {p['_title']} | {(p.get('_pitch') or {}).get('hook', '')}")
+        time.sleep(3)
+    print(f"انعدّل {done} من {len(jobs)}")
+    return 0
+
+
 SCOUT_KEYWORDS = [
     "luxury evening dress women", "arabic evening dress", "dubai evening gown", "elegant evening gown long",
     "muslim evening dress long sleeve", "sequin evening dress", "satin evening gown", "beaded evening dress",
@@ -1478,8 +1514,9 @@ def cmd_scout(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption"])
     ap.add_argument("--count", type=int, default=1)
+    ap.add_argument("--ids", default="", help="للتعديل: رقم_المنتج:رقم_الرسالة,...")
     ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
     a = ap.parse_args()
     cfg = load_config()
@@ -1493,6 +1530,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "recaption":
+        return cmd_recaption(cfg, a.ids)
     if a.command == "scout":
         return cmd_scout(cfg)
     if a.command == "retitle":
