@@ -448,7 +448,7 @@ def pick(cfg, state, products, n):
     # تنويع: كل منتج بالتشغيل من قسم مختلف، ولا نعيد قسم آخر منشورين، ولا متجر مرتين
     recent_cats = state.get("recent_cats", [])[-2:]
     chosen, cats, shops, rejected = [], set(), set(), set()
-    budget = [cfg.get("taste_checks_per_run", 12)]
+    budget = [max(cfg.get("taste_checks_per_run", 12), n * 3 if cfg.get("_focus") else 0)]
     for strict in (True, False):
         for p in top:
             if len(chosen) >= n:
@@ -1265,7 +1265,7 @@ def cmd_post(cfg, state, count, paced=True):
         cfg = {**cfg, "keywords": [k for k in cfg["keywords"]
                                    if deals_site.category_for(k)["slug"] not in extra_cats(cfg)]}
     done = state["daily"].get(d, 0)
-    left = cfg["posts_per_day"] - done
+    left = cfg["posts_per_day"] - done if paced else count  # الدفعات اليدوية إضافية فوق الـ٥٠
     if left <= 0:
         print(f"وصلنا الحد اليومي ({cfg['posts_per_day']})")
         finish_site(cfg, new_ids)
@@ -1293,7 +1293,7 @@ def cmd_post(cfg, state, count, paced=True):
     prods = pick(cfg, state, cands, count)
     sent = 0
     for p in prods:
-        if not publish(cfg, state, p, d):
+        if not publish(cfg, state, p, d, count_daily=paced):
             continue
         sent += 1
         if cfg.get("site_url"):
