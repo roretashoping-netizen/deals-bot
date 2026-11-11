@@ -201,7 +201,7 @@
   "trusted_shop_filters": {
     "min_rating_percent": 95,
     "min_orders": 30,
-    "min_discount_percent": 0,
+    "min_discount_percent": 20,
     "min_images": 4
   },
   "category_weights": {
