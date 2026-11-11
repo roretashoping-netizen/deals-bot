@@ -585,8 +585,10 @@ def caption(cfg, p):
     lines += ["", sep]
     # ٤) تثبيت السعر: القديم مشطوب ثم الجديد ثم كم توفرين (الخسارة لو ما طلبتي)
     if old > price > 0:
-        lines.append(f"💰 بدل <s>{money(old)}</s> ← الحين <b>{money(price)} {cur}</b>")
-        lines.append(f"🎁 توفّرين {money(old - price)} {cur}" + (f" (خصم {disc}%)" if disc else ""))
+        # كل رقم بسطر لحاله عشان الأرقام والأسهم ما تتلخبط مع اتجاه العربي
+        lines.append(f"🏷️ قبل: <s>{money(old)}</s> {cur}")
+        lines.append(f"💰 الحين: <b>{money(price)} {cur}</b>")
+        lines.append(f"🎁 توفّرين: <b>{money(old - price)} {cur}</b>" + (f" (خصم {disc}%)" if disc else ""))
     elif price:
         lines.append(f"💰 السعر: <b>{money(price)}</b> {cur}")
     # ٥) دليل اجتماعي: كثير غيرك جربوه وعجبهم
