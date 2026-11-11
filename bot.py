@@ -137,11 +137,12 @@ def fetch_candidates(cfg):
                       key=lambda k: random.random() ** (1.0 / max(0.1, weights.get(deals_site.category_for(k)["slug"], 1))))
     out = []
     deep = set(cfg.get("deep_search_cats", []))
-    jobs = []
-    for kw in keywords[: cfg.get("keywords_per_run", 4)]:
-        # الأقسام المهمة ندور فيها أول صفحتين (الأكثر طلبًا)، والباقي صفحة عشوائية
-        pages = [1, 2] if deals_site.category_for(kw)["slug"] in deep else [random.randint(1, 5)]
-        jobs += [(kw, pg) for pg in pages]
+    # الأقسام صعبة الشروط (سهرة/شنط) إضافة فوق البحث العادي، مو بداله:
+    # كلمة وحدة منها كل تشغيل + كلمات عادية بالعدد الكامل، عشان النشر ما يوقف لو ما لقينا سهرة/شنطة مطابقة
+    premium = [k for k in keywords if deals_site.category_for(k)["slug"] in deep]
+    general = [k for k in keywords if deals_site.category_for(k)["slug"] not in deep]
+    jobs = [(kw, pg) for kw in premium[: cfg.get("premium_keywords_per_run", 1)] for pg in (1, 2)]
+    jobs += [(kw, random.randint(1, 3)) for kw in general[: cfg.get("keywords_per_run", 4)]]
     for kw, page_no in jobs:
         biz = {
             "keywords": kw,
