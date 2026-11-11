@@ -101,7 +101,8 @@
   "1005011660428058": "2026-11-11",
   "1005012271864702": "2026-11-11",
   "1005005218485304": "2026-11-11",
-  "1005012451344104": "2026-11-11"
+  "1005012451344104": "2026-11-11",
+  "1005011822993294": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
@@ -199,7 +200,8 @@
   "فستان سهرة رسمي طويل من كونتيزا",
   "فستان ماكسي أنيق للنساء بطباعة ألوان",
   "فستان سهرة مزين بالترتر باللون الأسود",
-  "فستان سهرة فاخر من ليلي جولد"
+  "فستان سهرة فاخر من ليلي جولد",
+  "أنيقة لينة اللؤلؤ التطريز حقيبة يد"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -293,12 +295,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sdf368ece880a41ab9a82217b29ac2cd71.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sbf84994d35094b48b9f8ae81f68ef1d17.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S07382453688947b8ab0e2456e15391eeW.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S3d624708426f492eb85502503fa5ea02e.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3d624708426f492eb85502503fa5ea02e.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4d0b7d2f675640d293b56406b1c3b45as.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "المرأة حقائب",
  "amazon_daily": {},
  "recent_cats": [
-  "kitchen",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
@@ -307,7 +309,8 @@
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses"
+  "evening-dresses",
+  "evening-bags"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -317,7 +320,7 @@
    "loungewear": 1,
    "jewelry": 1,
    "evening-dresses": 19,
-   "evening-bags": 3,
+   "evening-bags": 4,
    "kitchen": 2
   }
  },
@@ -344,6 +347,7 @@
   "1005011660428058": 7.0,
   "1005012271864702": 7.0,
   "1005005218485304": 9.0,
-  "1005012451344104": 7.0
+  "1005012451344104": 7.0,
+  "1005011822993294": 9.0
  }
 }
