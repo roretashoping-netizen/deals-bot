@@ -92,7 +92,16 @@
   "1005006420817050": "2026-11-11",
   "1005012032530009": "2026-11-11",
   "1005006904483679": "2026-11-11",
-  "1005011717803509": "2026-11-11"
+  "1005011717803509": "2026-11-11",
+  "1005011587386042": "2026-11-11",
+  "1005012465301075": "2026-11-11",
+  "1005008775471043": "2026-11-11",
+  "1005012212267357": "2026-11-11",
+  "1005008058431193": "2026-11-11",
+  "1005011660428058": "2026-11-11",
+  "1005012271864702": "2026-11-11",
+  "1005005218485304": "2026-11-11",
+  "1005012451344104": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
@@ -181,7 +190,16 @@
   "فساتين سهرة رسمية من lucyinlove بمقاسات",
   "فساتين سهرة رسمية أنيقة من سانسا",
   "حقيبة سهرة صغيرة لامعة، محفظة بسلسلة",
-  "قطعة مقياس الفولاذ المقاوم للصدأ كعكة"
+  "قطعة مقياس الفولاذ المقاوم للصدأ كعكة",
+  "فستان نسائي طويل بدون ظهر مزين",
+  "فستان سهرة ساتان مخصص من سانسا",
+  "فساتين سهرة سوداء فاخرة مقاس كبير",
+  "فستان سهرة roses مزين بالترتر الفضي،",
+  "فساتين سهرة مخصصة مطرز بالخرز قبالة",
+  "فستان سهرة رسمي طويل من كونتيزا",
+  "فستان ماكسي أنيق للنساء بطباعة ألوان",
+  "فستان سهرة مزين بالترتر باللون الأسود",
+  "فستان سهرة فاخر من ليلي جولد"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -266,21 +284,30 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S0749789b514d47f5bc335d68f1ded81b0.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S45a45a1c69da4597b80555bad61d7485O.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S660378d816c1485888e4c6b1b27218c8N.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S9f24b54b06a7494cad7d0b4f4334cd73c.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9f24b54b06a7494cad7d0b4f4334cd73c.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S764bb4e32d514b848884cad3e1d48175P.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc1415f15ddc143a69ee2c8baed364e1fm.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scaad9779d1d34d7d80db5d63bd76d661D.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3b82b5c2af634d3b8e654ea02e812c30F.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S40f63a5eb4964671850ae214e7cd72b91.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sdf368ece880a41ab9a82217b29ac2cd71.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbf84994d35094b48b9f8ae81f68ef1d17.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S07382453688947b8ab0e2456e15391eeW.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3d624708426f492eb85502503fa5ea02e.jpg"
  ],
- "last_cat": "المطبخ وصالة التغذي وبار",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "evening-dresses",
-  "evening-bags",
-  "evening-bags",
   "kitchen",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-bags",
-  "kitchen"
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -289,7 +316,7 @@
    "dresses": 1,
    "loungewear": 1,
    "jewelry": 1,
-   "evening-dresses": 10,
+   "evening-dresses": 19,
    "evening-bags": 3,
    "kitchen": 2
   }
@@ -308,6 +335,15 @@
   "1005012032530009": 7.0,
   "1005007822626235": 4.0,
   "1005006904483679": 7.0,
-  "1005005040898947": 3.0
+  "1005005040898947": 3.0,
+  "1005011587386042": 7.0,
+  "1005012465301075": 9.0,
+  "1005008775471043": 7.0,
+  "1005012212267357": 9.0,
+  "1005008058431193": 9.0,
+  "1005011660428058": 7.0,
+  "1005012271864702": 7.0,
+  "1005005218485304": 9.0,
+  "1005012451344104": 7.0
  }
 }
