@@ -813,6 +813,14 @@ def cmd_retitle(cfg):
     return 0
 
 
+def not_leather_bag(cfg, cat, title):
+    """منتج في قسم الشنط وعنوانه ما يثبت إنه جلد طبيعي (أو يذكر جلد صناعي/قماش)."""
+    rules, t = cfg.get("bag_rules") or {}, str(title).lower()
+    return cat == "bags" and bool(rules) and (
+        not any(w in t for w in rules.get("require_words", [])) or
+        any(w in t for w in rules.get("exclude_words", [])))
+
+
 def cmd_prune(cfg):
     """يشيل من الموقع أي منتج ما يطابق الشروط الحالية (رجالي، جنسي، مستحضرات)."""
     items = deals_site.load_products()
@@ -825,10 +833,7 @@ def cmd_prune(cfg):
         else:
             if x.get("cat") == "more" or not deals_site.fits_cat(x.get("cat", ""), x["title"]):
                 x["cat"] = deals_site.infer_cat(x["title"])  # قسم غلط: نصححه من العنوان
-            rules, t = cfg.get("bag_rules") or {}, str(x["title"]).lower()
-            if x.get("cat") == "bags" and rules and (
-                    not any(w in t for w in rules.get("require_words", [])) or
-                    any(w in t for w in rules.get("exclude_words", []))):
+            if not_leather_bag(cfg, x.get("cat"), x["title"]):
                 removed.append(x)  # شنطة مو جلد طبيعي: ما تناسب شرط الجودة
                 (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
                 continue
@@ -867,6 +872,9 @@ def cmd_backfill(cfg, state):
             p["promotion_link"] = short_link(cfg, p)
             p["_ships"] = ships_to(cfg, p)
             p["_cat"] = deals_site.infer_cat(p.get("product_title", ""))
+            if not_leather_bag(cfg, p["_cat"], p.get("product_title", "")):
+                skipped.append(title)
+                continue
             p["_title"] = product_name(cfg, p)
             deals_site.record(cfg, p, gallery(p))
             added.append(str(p["product_id"]))
