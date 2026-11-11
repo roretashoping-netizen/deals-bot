@@ -112,7 +112,13 @@
   "1005009862601255": "2026-11-11",
   "1005010471018174": "2026-11-11",
   "1005012986748239": "2026-11-11",
-  "1005011967633258": "2026-11-11"
+  "1005011967633258": "2026-11-11",
+  "1005007103365341": "2026-11-11",
+  "1005008274818745": "2026-11-11",
+  "1005009876373050": "2026-11-11",
+  "1005012695916468": "2026-11-11",
+  "1005012377937187": "2026-11-11",
+  "1005012623661634": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
@@ -221,7 +227,13 @@
   "smyoue k مطلي ct مويسانيتي وأقراط",
   "فستان كونتيسا مخصص مطرز برقبة مربعة",
   "مجموعة فرش مكياج ناعمة منفوشة احترافية",
-  "صندوق بلاستيكي شفاف لتنظيم الأحجار الكريمة،"
+  "صندوق بلاستيكي شفاف لتنظيم الأحجار الكريمة،",
+  "أماندا فستان حفلات من الساتان الأحمر",
+  "فساتين حفلة موسيقية مخصصة رائعة كلاسيكية",
+  "فستان سهرة رائع بدون أكمام رسن",
+  "فستان سهرة رسمي ذهبي من ليلي،",
+  "فساتين سهرة رسمية مخصصة من سانسا",
+  "فستان سهرة أنيق مخصص من ميلا"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -326,21 +338,27 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd6c94f6b2edb41f4ae3000bda61f76991.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S1e06047b9ba84943be7f594671fb67bfZ.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S322337184d9c45a1b510bbe7d2a57f2cd.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S94fca9877c7f443a872099490a629eb2y.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S94fca9877c7f443a872099490a629eb2y.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2c13367b563043cc9a231bd6cea2d73aU.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S523d7eac9deb40f4a1a15a3645cfe1aeh.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb4ce698696104f20ac2c460bf9efae73i.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S50b4f73dae6d41d19ed33491bacdc139M.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/A136daf8b09bc4e0f925e7eda5a451241W.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbade21d149784d179408e82baef30cb7G.jpg"
  ],
- "last_cat": "التخزين والتنظيم المنزلي",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "evening-dresses",
-  "evening-bags",
-  "evening-dresses",
-  "loungewear",
-  "makeup-tools",
   "jewelry",
   "evening-dresses",
   "makeup-tools",
-  "jewelry"
+  "jewelry",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -349,7 +367,7 @@
    "dresses": 1,
    "loungewear": 2,
    "jewelry": 3,
-   "evening-dresses": 23,
+   "evening-dresses": 29,
    "evening-bags": 5,
    "kitchen": 2,
    "makeup-tools": 2
@@ -384,7 +402,13 @@
   "1005012431987834": 8.0,
   "1005010530028585": 7.0,
   "1005006684725673": 8.0,
-  "1005010471018174": 7.0
+  "1005010471018174": 7.0,
+  "1005007103365341": 7.0,
+  "1005008274818745": 7.0,
+  "1005009876373050": 8.0,
+  "1005012695916468": 8.0,
+  "1005012377937187": 8.0,
+  "1005012623661634": 9.0
  },
  "digest_day": "2026-11-11"
 }
