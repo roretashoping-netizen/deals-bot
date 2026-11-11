@@ -129,11 +129,12 @@
   "1005007315827516": "2026-11-11",
   "1005011942666878": "2026-11-11",
   "1005006982718799": "2026-11-11",
-  "1005008459531182": "2026-11-11"
+  "1005008459531182": "2026-11-11",
+  "1005007306603805": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 35
+  "2026-11-11": 36
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -255,7 +256,8 @@
   "فستان حفلة موسيقية مخصص أنيق أخضر",
   "هدية عيد الحب، حقيبة سهرة مربعة",
   "صندوق مجوهرات مخملي صينية عرض درج",
-  "فستان حفلة موسيقية أنيق باللون الأحمر"
+  "فستان حفلة موسيقية أنيق باللون الأحمر",
+  "زوج من أقراط اللؤلؤ على شكل"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -377,12 +379,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf966aae6beaa41639b6fc1a2efafb905h.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfced1549a5104635b19b02e8bf9d4528q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd7ca7a4a32524fa78f7bb104a3df4c20q.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S00feb607486e467f9913ee85921bef4dO.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S00feb607486e467f9913ee85921bef4dO.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6e091f2960824e71b66440bedce4afcde.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
   "kitchen",
   "jewelry",
   "evening-dresses",
@@ -391,7 +393,8 @@
   "evening-dresses",
   "evening-bags",
   "jewelry",
-  "dresses"
+  "dresses",
+  "jewelry"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -399,7 +402,7 @@
    "hair": 1,
    "dresses": 2,
    "loungewear": 2,
-   "jewelry": 5,
+   "jewelry": 6,
    "evening-dresses": 35,
    "evening-bags": 6,
    "kitchen": 3,
@@ -452,7 +455,8 @@
   "1005007170915602": 1.0,
   "1005007038142972": 1.0,
   "1005006982718799": 7.0,
-  "1005008459531182": 7.0
+  "1005008459531182": 7.0,
+  "1005007306603805": 7.0
  },
  "digest_day": "2026-11-11"
 }
