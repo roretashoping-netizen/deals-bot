@@ -73,11 +73,13 @@
   "1005007171130497": "2026-11-11",
   "1005006904480915": "2026-11-11",
   "1005013375148025": "2026-11-11",
-  "1005010439332579": "2026-11-11"
+  "1005010439332579": "2026-11-11",
+  "1005013265884694": "2026-11-11",
+  "1005006187706437": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 16
+  "2026-11-11": 18
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -143,7 +145,9 @@
   "قطع من خطافات j ذاتية اللصق",
   "قطع من الخطافات المغناطيسية الفضية d",
   "أداة مغناطيسية قوية في لطلاء الأظافر",
-  "سيليكون شفاف مسمار الفن ختم عدة"
+  "سيليكون شفاف مسمار الفن ختم عدة",
+  "قطعة المجموعة خلات مقاطع الشعر جوفاء",
+  "bailamos ربيع جديد ماركة النساء الشقق"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -209,17 +213,23 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S522d5d4862304e878b04af8808ad1dd27.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6268903d84864e66ac67e8af6f9aec94f.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S4ad1ffd9ff6442ecb8d255a4f776e8e75.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S46ab79ed780e4647813e866dac90ad88S.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S46ab79ed780e4647813e866dac90ad88S.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa73b8e0bd47d4707af01687d5d2f4f85z.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S31fde21f8e4041c2bf2fefe0d1bcee3cK.jpg"
  ],
- "last_cat": "مسمار الفن و أدوات",
+ "last_cat": "الأحذية النسائية",
  "amazon_daily": {},
  "recent_cats": [
   "nails",
-  "nails"
+  "nails",
+  "hair",
+  "dresses"
  ],
  "cat_day": {
   "2026-11-11": {
-   "nails": 2
+   "nails": 2,
+   "hair": 1,
+   "dresses": 1
   }
  }
 }
