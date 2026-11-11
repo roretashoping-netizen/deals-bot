@@ -974,6 +974,12 @@ def ai_pitch(cfg, p):
                     m = re.search(label + r"\s*[:：\-]\s*(.+)", clean)
                     if m:
                         out[k] = m.group(1).strip().strip(" \"'«»*")
+                if not out.get("hook"):  # رد بدون عناوين: السطر الأول جذب والثاني وصف
+                    rows = [x.strip().lstrip("-*• ").strip(" \"'«»") for x in clean.splitlines() if x.strip()]
+                    if rows:
+                        out["hook"] = rows[0]
+                    if len(rows) > 1:
+                        out["pitch"] = rows[1]
                 if len(out.get("pitch", "")) > 260:
                     out.pop("pitch")  # وصف طويل: نكتفي بجملة الجذب
                 if out.get("hook") and 4 <= len(out["hook"]) <= 90:
