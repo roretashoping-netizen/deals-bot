@@ -419,10 +419,11 @@ def pick(cfg, state, products, n):
             skip("رخيص جدًا"); continue  # القطع الرخيصة جدًا غالبًا مو جذابة
         if any(w in str(p.get("product_title", "")).lower() for w in dull):
             skip("منتج ممل"); continue
-        if cat_day.get(site_cat(p), 0) >= cat_cap:
+        if cat_day.get(site_cat(p), 0) >= cat_cap and not cfg.get("_focus"):
             skip("القسم كمّل حده اليوم"); continue
         tk = title_key(p)
-        if any(similar(tk, k) for k in recent_list) or any(similar(tk, title_key(q)) for _, q in good):
+        # عناوين فساتين المتاجر المختارة متشابهة بطبيعتها (Luxury Beaded Evening...)، فنكتفي بمنع الصورة/العنوان المطابق
+        if not trusted and (any(similar(tk, k) for k in recent_list) or any(similar(tk, title_key(q)) for _, q in good)):
             skip("مشابه لمنتج انتشر"); continue
         seen.add(pid)
         recent_keys.add(title_key(p))
@@ -447,7 +448,7 @@ def pick(cfg, state, products, n):
             if len(chosen) >= n:
                 break
             c = site_cat(p)
-            if p in chosen or c in cats or (strict and c in recent_cats):
+            if p in chosen or (c in cats and not cfg.get("_focus")) or (strict and c in recent_cats and not cfg.get("_focus")):
                 continue
             if p.get("shop_id") and p.get("shop_id") in shops:
                 continue
@@ -1233,6 +1234,7 @@ def main():
     if focus:
         cfg["keywords"] = [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] in focus]
         cfg["keywords_per_run"] = max(cfg.get("keywords_per_run", 3), 4)
+        cfg["_focus"] = True  # نشر مركّز على قسم: نسمح بأكثر من منتج من نفس القسم
         print(f"تركيز على: {', '.join(sorted(focus))}")
     if a.command == "check":
         return cmd_check(cfg)
