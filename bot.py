@@ -979,7 +979,46 @@ def maybe_digest(cfg, state):
     print("انتشر ملخص أفضل ٥ عروض اليوم")
 
 
+AMAZON_FILE = deals_site.BASE_DIR / "data" / "amazon_queue.json"
+
+
+def maybe_amazon(cfg, state):
+    """ينشر منتج أمازون واحد من القائمة (data/amazon_queue.json) بشكل مرتب: صورة كبيرة من أمازون + رابط مخفي + زر."""
+    tag = cfg.get("amazon_tag")
+    if not tag or not AMAZON_FILE.exists():
+        return
+    data = json.loads(AMAZON_FILE.read_text(encoding="utf-8"))
+    d = today()
+    done = state.setdefault("amazon_daily", {})
+    if done.get(d, 0) >= cfg.get("amazon_per_day", 3):
+        return
+    posted = set(data.get("posted", []))
+    item = next((x for x in data.get("queue", []) if x["asin"] not in posted), None)
+    if not item:
+        return
+    url = f"https://www.amazon.sa/dp/{item['asin']}?tag={tag}"
+    lines = [f"{item.get('emoji', '🛒')} <b>{html.escape(item['name'])}</b>"]
+    if item.get("line"):
+        lines.append(html.escape(item["line"]))
+    if item.get("rating"):
+        lines.append(f"⭐ تقييم {item['rating']} من 5 من أكثر من {item.get('reviews', '')} مشترية")
+    lines += ["🚚 شحن من أمازون السعودية", "", f'🛒 <a href="{html.escape(url, quote=True)}">اطلبي من أمازون</a>']
+    tg(cfg, "sendMessage", chat_id=cfg["channel"], text="\n".join(lines), parse_mode="HTML",
+       link_preview_options={"url": url, "prefer_large_media": True, "show_above_text": True},
+       reply_markup={"inline_keyboard": [[{"text": "🛍️ اطلبي من أمازون", "url": url}]]})
+    data.setdefault("posted", []).append(item["asin"])
+    AMAZON_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    done[d] = done.get(d, 0) + 1
+    state["amazon_daily"] = {k: v for k, v in done.items() if k >= d}
+    save_state(state)
+    print(f"انتشر منتج أمازون: {item['name']}")
+
+
 def cmd_post(cfg, state, count, paced=True):
+    try:
+        maybe_amazon(cfg, state)
+    except Exception as e:
+        print(f"[warn] منشور أمازون فشل: {e}", file=sys.stderr)
     if paced:
         try:
             maybe_digest(cfg, state)
