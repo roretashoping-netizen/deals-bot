@@ -75,11 +75,13 @@
   "1005013375148025": "2026-11-11",
   "1005010439332579": "2026-11-11",
   "1005013265884694": "2026-11-11",
-  "1005006187706437": "2026-11-11"
+  "1005006187706437": "2026-11-11",
+  "1005010773801095": "2026-11-11",
+  "1005012161251236": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 18
+  "2026-11-11": 20
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -147,7 +149,9 @@
   "أداة مغناطيسية قوية في لطلاء الأظافر",
   "سيليكون شفاف مسمار الفن ختم عدة",
   "قطعة المجموعة خلات مقاطع الشعر جوفاء",
-  "bailamos ربيع جديد ماركة النساء الشقق"
+  "bailamos ربيع جديد ماركة النساء الشقق",
+  "بيجامة نسائية بطباعة نجوم وخطوط على",
+  "طقم من قطع أقراط حلقية صغيرة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -215,21 +219,27 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S4ad1ffd9ff6442ecb8d255a4f776e8e75.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S46ab79ed780e4647813e866dac90ad88S.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa73b8e0bd47d4707af01687d5d2f4f85z.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S31fde21f8e4041c2bf2fefe0d1bcee3cK.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S31fde21f8e4041c2bf2fefe0d1bcee3cK.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6034f48ff6734855b6550baa2c523cedp.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S464e33349a944871ad59ac23d43be74a0.jpg"
  ],
- "last_cat": "الأحذية النسائية",
+ "last_cat": "غرامة مجوهرات",
  "amazon_daily": {},
  "recent_cats": [
   "nails",
   "nails",
   "hair",
-  "dresses"
+  "dresses",
+  "loungewear",
+  "jewelry"
  ],
  "cat_day": {
   "2026-11-11": {
    "nails": 2,
    "hair": 1,
-   "dresses": 1
+   "dresses": 1,
+   "loungewear": 1,
+   "jewelry": 1
   }
  }
 }
