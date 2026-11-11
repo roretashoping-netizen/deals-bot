@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "9"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "10"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -23,6 +23,10 @@ CATEGORIES = [
                   "Serene Hill evening dress", "Serene Hill dress", "Serene Hill Boutique",
                   "arabic evening dress", "dubai evening gown", "muslim evening dress long sleeve",
                   "luxury evening dress women", "Sharon Said Couture evening dress", "Johara Al Sharq gown"]},
+    {"slug": "evening-bags", "name": "حقائب سهرة ومناسبات", "tag": "حقائب_سهرة",
+     "keywords": ["luxury evening clutch bag women", "rhinestone evening clutch", "pearl evening bag women",
+                  "crystal clutch bag wedding", "satin evening clutch", "luxury party handbag women",
+                  "diamond evening bag", "beaded evening clutch"]},
     {"slug": "dresses", "name": "فساتين", "tag": "فساتين",
      "keywords": ["women maxi dress", "modest long dress women", "women long sleeve dress", "women casual dress"]},
     {"slug": "abayas", "name": "عبايات", "tag": "عبايات", "keywords": ["abaya women"]},
@@ -63,6 +67,8 @@ TITLE_RULES = [
     ("nails", ["nail", "أظافر", "اظافر", "مناكير"]),
     ("abayas", ["abaya", "kaftan", "عباية", "عبايه", "قفطان"]),
     ("jewelry", ["watch", "ساعة", "ساعات"]),
+    ("evening-bags", ["clutch", "evening bag", "party bag", "wedding bag", "banquet bag", "evening handbag",
+                      "كلاتش", "حقيبة سهرة", "شنطة سهرة", "حقيبة يد للسهرة"]),
     ("evening-dresses", ["evening", "party dress", "gown", "prom", "سهرة", "حفلة"]),
     ("dresses", ["dress", "فستان", "فساتين"]),
     ("loungewear", ["pajama", "sleepwear", "slipper", "sandal", "بيجامة", "بيجامات", "شبشب", "شباشب", "نعال"]),
@@ -80,6 +86,7 @@ TITLE_RULES = [
 CAT_WORDS = {
     "evening-dresses": ("dress", "gown", "فستان", "فساتين"),
     "dresses": ("dress", "gown", "فستان", "فساتين"),
+    "evening-bags": ("bag", "clutch", "purse", "حقيبة", "شنطة", "كلاتش", "محفظة"),
     "bags": ("bag", "handbag", "purse", "tote", "clutch", "wallet", "حقيبة", "شنطة", "شنط", "محفظة"),
     "abayas": ("abaya", "kaftan", "عباية", "عبايه", "قفطان"),
 }

@@ -66,7 +66,15 @@
     "satin evening gown",
     "beaded evening dress",
     "mermaid evening dress",
-    "prom dress long elegant"
+    "prom dress long elegant",
+    "luxury evening clutch bag women",
+    "rhinestone evening clutch",
+    "pearl evening bag women",
+    "crystal clutch bag wedding",
+    "satin evening clutch",
+    "luxury party handbag women",
+    "diamond evening bag",
+    "beaded evening clutch"
   ],
   "filters": {
     "min_rating_percent": 95,
@@ -75,7 +83,18 @@
     "min_price": 8
   },
   "max_per_cat_day": 6,
-  "dull_words": ["سلة مهملات", "سلة قمامة", "أكياس قمامة", "خطافات", "قطع غيار", "بديل", "garbage", "trash", "replacement", "spare part"],
+  "dull_words": [
+    "سلة مهملات",
+    "سلة قمامة",
+    "أكياس قمامة",
+    "خطافات",
+    "قطع غيار",
+    "بديل",
+    "garbage",
+    "trash",
+    "replacement",
+    "spare part"
+  ],
   "countries": [
     {
       "code": "SA",
@@ -191,21 +210,21 @@
     "bags": 3
   },
   "store_ids": {
-    "5600091": "Sharon Said Boutique Store",
     "2855054": "SERENE HILL Boutique Store",
-    "1104474047": "Contessa Dubai Evening And Wedding Dresses Store",
-    "1102435827": "Lily Wedding Dress Store",
-    "1102251618": "ROSES Store",
-    "912651003": "Dream Dresses Store",
-    "1103059920": "Sansa Prom Dress Store",
-    "1102440247": "Amanda Prom Dress Store",
-    "1104488089": "Mila Evening Dress Store",
-    "1103575203": "Yipeisha Wedding Dress Store",
-    "912395642": "Lucyinlove Store",
-    "1104565166": "Lumen Threads Store",
+    "5600091": "Sharon Said Boutique Store",
     "5864012": "winyi Official Store",
-    "1105078353": "BOYANGERMEI Store",
-    "1103573332": "Stone's Store"
+    "912395642": "Lucyinlove Store",
+    "912651003": "Dream Dresses Store",
+    "1102251618": "ROSES Store",
+    "1102435827": "Lily Wedding Dress Store",
+    "1102440247": "Amanda Prom Dress Store",
+    "1103059920": "Sansa Prom Dress Store",
+    "1103573332": "Stone's Store",
+    "1103575203": "Yipeisha Wedding Dress Store",
+    "1104474047": "Contessa Dubai Evening And Wedding Dresses Store",
+    "1104488089": "Mila Evening Dress Store",
+    "1104565166": "Lumen Threads Store",
+    "1105078353": "BOYANGERMEI Store"
   },
   "store_keyword": "Sharon Said evening dress",
   "bag_rules": {
@@ -225,7 +244,11 @@
       "leatherette",
       "جلد صناعي",
       "جلد اصطناعي",
-      "بولي يوريثان", "بولي يوريثين", "البولي", "بو الجلود", "جلد بو"
+      "بولي يوريثان",
+      "بولي يوريثين",
+      "البولي",
+      "بو الجلود",
+      "جلد بو"
     ],
     "shop_words": [
       "official store",
@@ -237,5 +260,21 @@
   "deep_search_cats": [
     "evening-dresses",
     "bags"
-  ]
+  ],
+  "extra_daily": {
+    "evening-dresses": 10,
+    "evening-bags": 10
+  },
+  "extra_hours": [
+    16,
+    24
+  ],
+  "extra_per_run": 3,
+  "evening_bag_rules": {
+    "min_rating_percent": 96,
+    "min_orders": 150,
+    "min_discount_percent": 0,
+    "min_price": 40,
+    "min_images": 4
+  }
 }

@@ -404,6 +404,10 @@ def pick(cfg, state, products, n):
         if bag_fail:
             skip(bag_fail); continue  # فساتين السهرة بس من المتاجر المختارة
         f = {**cfg["filters"], **cfg.get("trusted_shop_filters", {})} if trusted else cfg["filters"]
+        if site_cat(p) == "evening-bags":  # حقائب السهرة: شروط فخامة خاصة (تقييم عالي، سعر يليق، صور كثيرة)
+            f = {**cfg["filters"], **cfg.get("evening_bag_rules", {})}
+            if len(gallery(p)) < f.get("min_images", 0):
+                skip("حقيبة سهرة صورها قليلة"); continue
         if trusted and len(gallery(p)) < f.get("min_images", 0):
             skip("صور قليلة"); continue  # فساتين السهرة: لازم صور كافية تبين التفاصيل
         # نفس المنتج من بائع ثاني (نفس العنوان أو نفس الصورة) ما ينعاد
@@ -1071,6 +1075,87 @@ def maybe_amazon(cfg, state):
     print(f"انتشر منتج أمازون: {item['name']}")
 
 
+def finish_site(cfg, new_ids):
+    """نبني الموقع كل تشغيل (الرئيسية والأقسام والأكواد تتحدث حتى لو ما انتشر شي)."""
+    if not cfg.get("site_url"):
+        return
+    try:
+        ensure_home_link(cfg)
+        deals_site.build(cfg, only_ids=new_ids)
+        print(f"الموقع: انضافت {len(new_ids)} صفحة")
+    except Exception as e:
+        print(f"[warn] بناء الموقع فشل: {e}", file=sys.stderr)
+
+
+def publish(cfg, state, p, d, count_daily=True):
+    """ينشر منتج واحد في القروب ويسجّله. يرجع True لو انتشر."""
+    p["promotion_link"] = short_link(cfg, p)
+    p["_ships"] = ships_to(cfg, p)
+    p["_title"] = product_name(cfg, p)
+    print(f"منتج {p.get('product_id')} ({site_cat(p)}): يوصل لـ {','.join(p['_ships'])}")
+    try:
+        send_product(cfg, p)
+    except Exception as e:
+        print(f"[warn] فشل نشر {p.get('product_id')}: {e}", file=sys.stderr)
+        return False
+    state["posted"][str(p["product_id"])] = d
+    state["recent_keys"] = (state.get("recent_keys", []) + [title_key(p)])[-400:]
+    state["recent_imgs"] = (state.get("recent_imgs", []) + [p["product_main_image_url"]])[-400:]
+    state["last_cat"] = category(p)
+    state["recent_cats"] = (state.get("recent_cats", []) + [site_cat(p)])[-10:]
+    cd = state.setdefault("cat_day", {})
+    for k in [k for k in cd if k != d]:
+        del cd[k]
+    cd.setdefault(d, {})[site_cat(p)] = cd.get(d, {}).get(site_cat(p), 0) + 1
+    if count_daily:
+        state["daily"][d] = state["daily"].get(d, 0) + 1
+    save_state(state)
+    return True
+
+
+def extra_cats(cfg):
+    return set(cfg.get("extra_daily", {}))
+
+
+def maybe_extras(cfg, state, new_ids):
+    """حصة يومية إضافية (فوق الـ٥٠): فساتين سهرة وحقائب سهرة، موزعة على المساء."""
+    quotas = cfg.get("extra_daily", {})
+    if not quotas:
+        return
+    d = post_day()
+    now = datetime.now(RIYADH)
+    h = now.hour + now.minute / 60
+    if h < 5:
+        h += 24  # بعد ١٢ الليل تنحسب على نفس يوم النشر
+    start, end = cfg.get("extra_hours", [16, 24])
+    if h < start:
+        return
+    share = min(1.0, (h + cfg.get("run_every_minutes", 30) / 60 - start) / max(0.5, end - start))
+    ed = state.setdefault("extra_day", {})
+    for k in [k for k in ed if k != d]:
+        del ed[k]
+    today_done = ed.setdefault(d, {})
+    for cat, quota in quotas.items():
+        done = today_done.get(cat, 0)
+        n = min(-(-int(quota * share * 100) // 100) - done, cfg.get("extra_per_run", 3), quota - done)
+        if n <= 0:
+            continue
+        ccfg = {**cfg, "_focus": True, "deep_search_cats": [], "keywords_per_run": 4,
+                "keywords": [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] == cat]}
+        if not ccfg["keywords"]:
+            continue
+        prods = pick(ccfg, state, fetch_candidates(ccfg), n)
+        for p in prods:
+            if publish(cfg, state, p, d, count_daily=False):
+                today_done[cat] = today_done.get(cat, 0) + 1
+                save_state(state)
+                if cfg.get("site_url"):
+                    deals_site.record(cfg, p, gallery(p))
+                    new_ids.append(str(p["product_id"]))
+                time.sleep(8)
+        print(f"الحصة الإضافية {cat}: {today_done.get(cat, 0)}/{quota}")
+
+
 def cmd_post(cfg, state, count, paced=True):
     try:
         maybe_amazon(cfg, state)
@@ -1082,10 +1167,20 @@ def cmd_post(cfg, state, count, paced=True):
         except Exception as e:
             print(f"[warn] ملخص اليوم فشل: {e}", file=sys.stderr)
     d = post_day()
+    new_ids = []
+    if paced:
+        try:
+            maybe_extras(cfg, state, new_ids)
+        except Exception as e:
+            print(f"[warn] الحصة الإضافية فشلت: {e}", file=sys.stderr)
+        # الأقسام الإضافية لها حصتها الخاصة، فما ندوّر عليها بالنشر العادي
+        cfg = {**cfg, "keywords": [k for k in cfg["keywords"]
+                                   if deals_site.category_for(k)["slug"] not in extra_cats(cfg)]}
     done = state["daily"].get(d, 0)
     left = cfg["posts_per_day"] - done
     if left <= 0:
         print(f"وصلنا الحد اليومي ({cfg['posts_per_day']})")
+        finish_site(cfg, new_ids)
         return 0
     count = min(count, left)
     # توزيع المنشورات بالتساوي على باقي اليوم بدل ما تخلص بدري
@@ -1103,46 +1198,22 @@ def cmd_post(cfg, state, count, paced=True):
             allowed = left
         if allowed <= 0:
             print(f"ما فيه نشر هالتشغيل (النشر مركّز على المساء). مجموع اليوم: {done}/{cfg['posts_per_day']}")
+            finish_site(cfg, new_ids)
             return 0
         count = min(count, allowed)
     cands = (fetch_candidates(cfg) if cfg["keywords"] else []) + fetch_store_candidates(cfg, state)
     prods = pick(cfg, state, cands, count)
-    sent, new_ids = 0, []
+    sent = 0
     for p in prods:
-        p["promotion_link"] = short_link(cfg, p)
-        p["_ships"] = ships_to(cfg, p)
-        p["_title"] = product_name(cfg, p)
-        print(f"منتج {p.get('product_id')}: يوصل لـ {','.join(p['_ships'])}")
-        try:
-            send_product(cfg, p)
-        except Exception as e:
-            print(f"[warn] فشل نشر {p.get('product_id')}: {e}", file=sys.stderr)
+        if not publish(cfg, state, p, d):
             continue
-        state["posted"][str(p["product_id"])] = d
-        state["recent_keys"] = (state.get("recent_keys", []) + [title_key(p)])[-400:]
-        state["recent_imgs"] = (state.get("recent_imgs", []) + [p["product_main_image_url"]])[-400:]
-        state["last_cat"] = category(p)
-        state["recent_cats"] = (state.get("recent_cats", []) + [site_cat(p)])[-10:]
-        cd = state.setdefault("cat_day", {})
-        for k in [k for k in cd if k != d]:
-            del cd[k]
-        cd.setdefault(d, {})[site_cat(p)] = cd.get(d, {}).get(site_cat(p), 0) + 1
-        state["daily"][d] = state["daily"].get(d, 0) + 1
         sent += 1
-        save_state(state)
         if cfg.get("site_url"):
             deals_site.record(cfg, p, gallery(p))
             new_ids.append(str(p["product_id"]))
         if sent < len(prods):
             time.sleep(8)
-    if cfg.get("site_url"):
-        # نبني الموقع كل تشغيل (الرئيسية والأقسام والأكواد تتحدث حتى لو ما انتشر شي)
-        try:
-            ensure_home_link(cfg)
-            deals_site.build(cfg, only_ids=new_ids)
-            print(f"الموقع: انضافت {len(new_ids)} صفحة")
-        except Exception as e:
-            print(f"[warn] بناء الموقع فشل: {e}", file=sys.stderr)
+    finish_site(cfg, new_ids)
     print(f"انتشر {sent} منتج. مجموع اليوم: {state['daily'].get(d, 0)}/{cfg['posts_per_day']}")
     return 0 if sent or not prods else 1
 
