@@ -81,11 +81,17 @@
   "1005006690983859": "2026-11-11",
   "1005008284883329": "2026-11-11",
   "1005012889438214": "2026-11-11",
-  "1005012757610692": "2026-11-11"
+  "1005012757610692": "2026-11-11",
+  "1005011743564981": "2026-11-11",
+  "1005012703500075": "2026-11-11",
+  "1005010757722107": "2026-11-11",
+  "1005012262826942": "2026-11-11",
+  "1005012314128391": "2026-11-11",
+  "1005013266260514": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 24
+  "2026-11-11": 25
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -159,7 +165,13 @@
   "تخصيص فاخر مطرز الترتر س الرقبة",
   "تخصيص بسيط جودة عالية الكلاسيكية جيرسي",
   "فساتين سهرة مخصصة من سانسا باللون",
-  "فستان سهرة contessa مخصص باللون الأسود"
+  "فستان سهرة contessa مخصص باللون الأسود",
+  "فستان ماكسي أنيق أبيض بدون أكمام",
+  "فستان سهرة ليلي جولد برقبة عالية",
+  "فستان سهرة رسمي فاخر من lucyinlove",
+  "حقيبة نسائية من pg موديل ،",
+  "حقيبة يد مغربية فاخرة بإطار قفل،",
+  "الفولاذ المقاوم للصدأ النفط برهان شبكة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -233,21 +245,27 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S26be00f0bb924eb49805b07b330b7542z.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S1f815c88f9734c998522ae2a4eb9e76c3.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5800a87f648746bc92a2c8821095429aC.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa2b2dd46ff404089b27b0a33d37ea04d7.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa2b2dd46ff404089b27b0a33d37ea04d7.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc7b048a0312346ceb86264d2f377b5142.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S295f7fee26b74d9ba0e5a7bff5fae7ffd.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8e965c32c2f84b419793961c4a7d39cfj.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc54210d9e82d42f19a6f9b40fe3b854ba.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Saf937412dfd24732bde3908f28f7f2d8q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S45ba486587d0439396ad618f69132225Q.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "المطبخ وصالة التغذي وبار",
  "amazon_daily": {},
  "recent_cats": [
-  "nails",
-  "nails",
-  "hair",
-  "dresses",
-  "loungewear",
-  "jewelry",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses"
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-bags",
+  "evening-bags",
+  "kitchen"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -256,7 +274,15 @@
    "dresses": 1,
    "loungewear": 1,
    "jewelry": 1,
-   "evening-dresses": 4
+   "evening-dresses": 7,
+   "evening-bags": 2,
+   "kitchen": 1
+  }
+ },
+ "extra_day": {
+  "2026-11-11": {
+   "evening-dresses": 3,
+   "evening-bags": 2
   }
  }
 }
