@@ -823,8 +823,15 @@ def cmd_prune(cfg):
             removed.append(x)
             (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
         else:
-            if not deals_site.fits_cat(x.get("cat", ""), x["title"]):
+            if x.get("cat") == "more" or not deals_site.fits_cat(x.get("cat", ""), x["title"]):
                 x["cat"] = deals_site.infer_cat(x["title"])  # قسم غلط: نصححه من العنوان
+            rules, t = cfg.get("bag_rules") or {}, str(x["title"]).lower()
+            if x.get("cat") == "bags" and rules and (
+                    not any(w in t for w in rules.get("require_words", [])) or
+                    any(w in t for w in rules.get("exclude_words", []))):
+                removed.append(x)  # شنطة مو جلد طبيعي: ما تناسب شرط الجودة
+                (deals_site.OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
+                continue
             keep.append(x)
     deals_site.PRODUCTS_FILE.write_text(json.dumps(keep, ensure_ascii=False), encoding="utf-8")
     for x in removed:

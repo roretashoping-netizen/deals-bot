@@ -62,9 +62,10 @@ def category_for(kw):
 TITLE_RULES = [
     ("nails", ["nail", "أظافر", "اظافر", "مناكير"]),
     ("abayas", ["abaya", "kaftan", "عباية", "عبايه", "قفطان"]),
+    ("jewelry", ["watch", "ساعة", "ساعات"]),
     ("evening-dresses", ["evening", "party dress", "gown", "prom", "سهرة", "حفلة"]),
     ("dresses", ["dress", "فستان", "فساتين"]),
-    ("loungewear", ["pajama", "sleepwear", "slipper", "بيجامة", "بيجامات", "شبشب", "نعال"]),
+    ("loungewear", ["pajama", "sleepwear", "slipper", "sandal", "بيجامة", "بيجامات", "شبشب", "شباشب", "نعال"]),
     ("kitchen", ["kitchen", "cook", "spice", "coffee", "baking", "مطبخ", "طبخ", "بهارات", "قهوة", "خبز", "مطابخ"]),
     ("hair", ["hair", "شعر"]),
     ("skincare-tools", ["skin", "facial", "face ", "بشرة", "البشرة", "الوجه"]),
@@ -84,9 +85,19 @@ CAT_WORDS = {
 }
 
 
+# كلمات تمنع المنتج من القسم حتى لو عنوانه فيه كلمة القسم (مثل: ساعة "فستان" = ساعة مو فستان)
+CAT_NOT = {
+    "evening-dresses": ("watch", "ساعة", "ساعات"),
+    "dresses": ("watch", "ساعة", "ساعات"),
+}
+
+
 def fits_cat(slug, title):
+    t = str(title).lower()
+    if any(w in t for w in CAT_NOT.get(slug, ())):
+        return False
     words = CAT_WORDS.get(slug)
-    return not words or any(w in str(title).lower() for w in words)
+    return not words or any(w in t for w in words)
 
 
 def infer_cat(title):
