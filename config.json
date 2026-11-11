@@ -10,7 +10,7 @@
   "ship_to": "SA",
   "min_price": "",
   "max_price": "",
-  "keywords_per_run": 3,
+  "keywords_per_run": 5,
   "keywords": [
     "Sharon Said evening dress",
     "Sharon Said Couture evening dress",
@@ -68,8 +68,11 @@
   "filters": {
     "min_rating_percent": 95,
     "min_orders": 500,
-    "min_discount_percent": 15
+    "min_discount_percent": 15,
+    "min_price": 8
   },
+  "max_per_cat_day": 6,
+  "dull_words": ["سلة مهملات", "سلة قمامة", "أكياس قمامة", "خطافات", "قطع غيار", "بديل", "garbage", "trash", "replacement", "spare part"],
   "countries": [
     {
       "code": "SA",

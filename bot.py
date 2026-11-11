@@ -223,6 +223,26 @@ def category(p):
     return str(p.get("second_level_category_name") or p.get("first_level_category_name") or "")
 
 
+def site_cat(p):
+    """قسم المنتج عندنا (مطبخ، شعر، أظافر...) عشان ننوّع بين الأقسام."""
+    if p.get("_kw"):
+        return deals_site.category_for(p["_kw"])["slug"]
+    return deals_site.infer_cat(p.get("product_title", ""))
+
+
+def _grams(text):
+    t = re.sub(r"[^a-z\u0600-\u06ff]+", " ", str(text).lower())
+    t = re.sub(r"[\u064b-\u0652]", "", t).replace("ة", "ه").replace("أ", "ا").replace("إ", "ا")
+    t = " ".join((w[2:] if w.startswith("ال") and len(w) > 4 else w) for w in t.split()[:8])
+    return {t[i:i + 3] for i in range(len(t) - 2)}
+
+
+def similar(a, b, limit=0.5):
+    """نفس المنتج تقريبًا بصياغة ثانية (مثل: خفاقة بيض يدوية / خلاط بيض يدوي)."""
+    A, B = _grams(a), _grams(b)
+    return bool(A and B) and len(A & B) / min(len(A), len(B)) >= limit
+
+
 # ممنوع نهائيًا: المنتجات الجنسية وأدواتها والملابس المثيرة
 ADULT_WORDS = [
     "sex", "sexy", "adult", "erotic", "exotic", "lingerie", "vibrat", "dildo", "masturbat", "bdsm",
@@ -355,6 +375,11 @@ def pick(cfg, state, products, n):
     seen, good = set(state["posted"]), []
     recent_keys = set(state.get("recent_keys", []))
     recent_imgs = set(state.get("recent_imgs", []))
+    recent_list = state.get("recent_keys", [])[-400:]
+    dull = [w.lower() for w in cfg.get("dull_words", [])]
+    day = post_day()
+    cat_day = state.get("cat_day", {}).get(day, {})
+    cat_cap = cfg.get("max_per_cat_day", 6)
     why = {}
 
     def skip(reason):
@@ -390,6 +415,15 @@ def pick(cfg, state, products, n):
             skip("طلبات قليلة"); continue
         if num(p.get("discount")) < f["min_discount_percent"]:
             skip("خصم قليل"); continue
+        if num(p.get("target_sale_price")) < f.get("min_price", 0):
+            skip("رخيص جدًا"); continue  # القطع الرخيصة جدًا غالبًا مو جذابة
+        if any(w in str(p.get("product_title", "")).lower() for w in dull):
+            skip("منتج ممل"); continue
+        if cat_day.get(site_cat(p), 0) >= cat_cap:
+            skip("القسم كمّل حده اليوم"); continue
+        tk = title_key(p)
+        if any(similar(tk, k) for k in recent_list) or any(similar(tk, title_key(q)) for _, q in good):
+            skip("مشابه لمنتج انتشر"); continue
         seen.add(pid)
         recent_keys.add(title_key(p))
         recent_imgs.add(p["product_main_image_url"])
@@ -403,25 +437,26 @@ def pick(cfg, state, products, n):
         print("متاجر فساتين سهرة انرفضت (عدد/أعلى طلبات/أعلى تقييم): " + " | ".join(
             f"{k} ({v[0]}/{v[1]}/{v[2]:.0f}%)" for k, v in sorted(shops.items(), key=lambda t: -t[1][1])[:40]))
     good.sort(key=lambda t: t[0], reverse=True)
-    top = [p for _, p in good[: n * 4]]
+    top = [p for _, p in good[: n * 6]]
     random.shuffle(top)  # تنويع بين أفضل المنتجات
-    # ما نحط منتجين ورا بعض من نفس الفئة أو نفس المتجر
-    chosen, last_cat, shops = [], state.get("last_cat", ""), set()
-    for p in top:
-        if len(chosen) >= n:
-            break
-        if category(p) and category(p) == last_cat:
-            continue
-        if p.get("shop_id") and p.get("shop_id") in shops:
-            continue
-        chosen.append(p)
-        last_cat = category(p)
-        shops.add(p.get("shop_id"))
-    for p in top:  # لو ما كفت، نكمّل من الباقي
-        if len(chosen) >= n:
-            break
-        if p not in chosen:
+    # تنويع: كل منتج بالتشغيل من قسم مختلف، ولا نعيد قسم آخر منشورين، ولا متجر مرتين
+    recent_cats = state.get("recent_cats", [])[-2:]
+    chosen, cats, shops = [], set(), set()
+    for strict in (True, False):
+        for p in top:
+            if len(chosen) >= n:
+                break
+            c = site_cat(p)
+            if p in chosen or c in cats or (strict and c in recent_cats):
+                continue
+            if p.get("shop_id") and p.get("shop_id") in shops:
+                continue
             chosen.append(p)
+            cats.add(c)
+            shops.add(p.get("shop_id"))
+    # ترتيب النشر: ما يجي قسمين ورا بعض مثل آخر منشور
+    if chosen and recent_cats and site_cat(chosen[0]) == recent_cats[-1] and len(chosen) > 1:
+        chosen.append(chosen.pop(0))
     return chosen
 
 
@@ -1086,6 +1121,11 @@ def cmd_post(cfg, state, count, paced=True):
         state["recent_keys"] = (state.get("recent_keys", []) + [title_key(p)])[-400:]
         state["recent_imgs"] = (state.get("recent_imgs", []) + [p["product_main_image_url"]])[-400:]
         state["last_cat"] = category(p)
+        state["recent_cats"] = (state.get("recent_cats", []) + [site_cat(p)])[-10:]
+        cd = state.setdefault("cat_day", {})
+        for k in [k for k in cd if k != d]:
+            del cd[k]
+        cd.setdefault(d, {})[site_cat(p)] = cd.get(d, {}).get(site_cat(p), 0) + 1
         state["daily"][d] = state["daily"].get(d, 0) + 1
         sent += 1
         save_state(state)
