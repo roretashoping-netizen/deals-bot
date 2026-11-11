@@ -105,11 +105,15 @@
   "1005011822993294": "2026-11-11",
   "1005006710683715": "2026-11-11",
   "1005012431987834": "2026-11-11",
-  "1005010530028585": "2026-11-11"
+  "1005010530028585": "2026-11-11",
+  "1005006684725673": "2026-11-11",
+  "1005011940209245": "2026-11-11",
+  "1005007314472790": "2026-11-11",
+  "1005009862601255": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 26
+  "2026-11-11": 29
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -207,7 +211,11 @@
   "أنيقة لينة اللؤلؤ التطريز حقيبة يد",
   "تخصيص نصف كم مطرزة الديكور قبالة",
   "فستان سهرة كونتيزا مخصص باللون الوردي",
-  "الماس مساء مخلب حقيبة الذهبي شرابة"
+  "الماس مساء مخلب حقيبة الذهبي شرابة",
+  "فستان سهرة أنيق مخصص متألق فاخر",
+  "شباشب رجالية مضادة للانزلاق من مادة",
+  "منظف فرش المكياج، وعاء تنظيف، مجموعة",
+  "smyoue k مطلي ct مويسانيتي وأقراط"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -305,37 +313,42 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S4d0b7d2f675640d293b56406b1c3b45as.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5470dc73751c457a990d2ca0cbd113c58.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc4c7dbdc3c2841a0b2d9141073a35437k.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0e60224dfac54b8885b208fd8323535bL.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0e60224dfac54b8885b208fd8323535bL.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6a7e4565dfe942c890d9d736e9a3a8a3K.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S97e0ef44eeaf4e37962923bb96e36d06V.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9794a23f7453423399dadca670d7605bi.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd6c94f6b2edb41f4ae3000bda61f76991.jpg"
  ],
- "last_cat": "المرأة حقائب",
+ "last_cat": "غرامة مجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-bags",
   "evening-dresses",
   "evening-dresses",
-  "evening-bags"
+  "evening-bags",
+  "evening-dresses",
+  "loungewear",
+  "makeup-tools",
+  "jewelry"
  ],
  "cat_day": {
   "2026-11-11": {
    "nails": 2,
    "hair": 1,
    "dresses": 1,
-   "loungewear": 1,
-   "jewelry": 1,
-   "evening-dresses": 21,
+   "loungewear": 2,
+   "jewelry": 2,
+   "evening-dresses": 22,
    "evening-bags": 5,
-   "kitchen": 2
+   "kitchen": 2,
+   "makeup-tools": 1
   }
  },
  "extra_day": {
   "2026-11-11": {
-   "evening-dresses": 6,
+   "evening-dresses": 7,
    "evening-bags": 3
   }
  },
@@ -360,6 +373,7 @@
   "1005011822993294": 9.0,
   "1005006710683715": 7.0,
   "1005012431987834": 8.0,
-  "1005010530028585": 7.0
+  "1005010530028585": 7.0,
+  "1005006684725673": 8.0
  }
 }
