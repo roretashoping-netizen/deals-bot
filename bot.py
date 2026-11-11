@@ -576,23 +576,27 @@ def caption(cfg, p):
     old = num(p.get("target_original_price"))
     disc = int(num(p.get("discount")))
     sep = "┈┈┈┈┈┈┈┈┈┈┈┈"
-    lines = [random.choice(cfg["headlines"]), "", f"<b>{title}</b>", "", sep]
-    # الشطب على الرقم بس (بدون مسافات ولا عملة داخله) عشان يجي على السعر بالضبط في الجوال
+    pitch = p.get("_pitch") or {}
+    # ١) جملة جذب عاطفية  ٢) اسم المنتج  ٣) صورة ذهنية (وين بتلبسه/تستخدمه)
+    lines = [f"<b>{html.escape(pitch['hook'])}</b>" if pitch.get("hook") else random.choice(cfg["headlines"]),
+             "", f"<b>{title}</b>"]
+    if pitch.get("pitch"):
+        lines.append(f"<i>{html.escape(pitch['pitch'])}</i>")
+    lines += ["", sep]
+    # ٤) تثبيت السعر: القديم مشطوب ثم الجديد ثم كم توفرين (الخسارة لو ما طلبتي)
     if old > price > 0:
-        lines.append(f"💰 السعر الحين: <b>{money(price)}</b> {cur}")
-        lines.append(f"🏷️ السعر قبل: <s>{money(old)}</s> {cur}")
-        if disc:
-            lines.append(f"🔥 خصم {disc}% · توفّر {money(old - price)} {cur}")
+        lines.append(f"💰 بدل <s>{money(old)}</s> ← الحين <b>{money(price)} {cur}</b>")
+        lines.append(f"🎁 توفّرين {money(old - price)} {cur}" + (f" (خصم {disc}%)" if disc else ""))
     elif price:
         lines.append(f"💰 السعر: <b>{money(price)}</b> {cur}")
+    # ٥) دليل اجتماعي: كثير غيرك جربوه وعجبهم
     rating = stars(p.get("evaluate_rate"))
     vol = int(num(p.get("lastest_volume")))
     if rating or vol:
-        lines.append(sep)
-        if rating:
-            lines.append(f"⭐ التقييم: {rating} من 5")
-        if vol:
-            lines.append(f"🛒 الطلبات: أكثر من {vol:,} طلب")
+        if vol >= 100:
+            lines.append(f"👭 انطلب أكثر من {vol:,} مرة" + (f" · ⭐ {rating} من 5" if rating else ""))
+        elif rating:
+            lines.append(f"⭐ تقييم {rating} من 5" + (f" · {vol} طلب" if vol else ""))
     ships = p.get("_ships")
     if ships:
         names = {c["code"]: f'{c["flag"]} {c["name"]}' for c in cfg.get("countries", [])}
@@ -611,6 +615,8 @@ def caption(cfg, p):
         lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if is_clothing(cfg, p):
         lines += [sep, "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
+    if not as_album(cfg, p):
+        lines += ["", "👇 <b>اطلبيه من الزر تحت قبل ينتهي الخصم</b>"]
     text = "\n".join(lines)
     code = deals_site.code_line(cfg, price)
     if len(text) > 1020 and code:
@@ -923,6 +929,60 @@ def product_name(cfg, p):
     return ai_title(cfg, p.get("product_title"))
 
 
+PITCH_PROMPT = (
+    "أنتِ كاتبة إعلانات محترفة لقروب عروض نسائي في الخليج، وتفهمين علم نفس الشراء.\n"
+    "المنتج: «{name}»\nالعنوان الأصلي: {raw}\nالقسم: {cat}\n"
+    "السعر الحين {price} ريال بدل {old} ريال (خصم {disc}%). التقييم {rating} من 5، وانطلب أكثر من {orders} مرة.\n\n"
+    "اكتبي سطرين بالضبط بهذا الشكل وبدون أي شي ثاني:\n"
+    "الجذب: جملة افتتاحية قصيرة (من 4 إلى 9 كلمات) تبدأ بإيموجي واحد مناسب، تشد العين وتلعب على الإحساس: "
+    "الفضول أو الرغبة أو حماس المناسبة أو إحساس الصفقة الحلوة. باللهجة الخليجية وموجهة للبنت.\n"
+    "الوصف: جملة أو جملتين (إلى 28 كلمة) ترسم الصورة في خيالها: وين بتلبسه أو تستخدمه، وش الإحساس اللي يعطيها، "
+    "وليش يستاهل. لهجة خليجية راقية، مو مبتذلة.\n\n"
+    "قواعد مهمة: لا تخترعين أي معلومة مو موجودة (مواصفات، خامات، كمية محدودة، مدة العرض). "
+    "لا تذكرين السعر أو الخصم أو التقييم (موجودة بالمنشور). بدون علامات تنصيص وبدون هاشتاقات."
+)
+
+
+def ai_pitch(cfg, p):
+    """جملة جذب + وصف عاطفي للمنشور (Gemini). يرجع {"hook","pitch"} أو None."""
+    key = os.environ.get("GEMINI_API_KEY", "")
+    if not key:
+        return None
+    price, old = num(p.get("target_sale_price")), num(p.get("target_original_price"))
+    prompt = PITCH_PROMPT.format(
+        name=p.get("_title") or "", raw=str(p.get("product_title", ""))[:250],
+        cat=deals_site.cat_by_slug(site_cat(p))["name"], price=money(price), old=money(old) if old else money(price),
+        disc=int(num(p.get("discount"))), rating=stars(p.get("evaluate_rate")) or "-",
+        orders=int(num(p.get("lastest_volume"))))
+    body = {"contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": 0.8, "maxOutputTokens": 300}}
+    for model in cfg.get("ai_models") or gemini_models(key):
+        for attempt in range(2):
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                  params={"key": key}, json=body, timeout=60)
+                if r.status_code == 429 and attempt == 0:
+                    time.sleep(8)
+                    continue
+                if r.status_code != 200:
+                    print(f"[warn] Gemini pitch {model}: {r.status_code} {r.text[:200]}", file=sys.stderr)
+                    break
+                txt = " ".join(x.get("text", "") for x in r.json()["candidates"][0]["content"]["parts"])
+                out = {}
+                for line in txt.splitlines():
+                    line = line.strip().lstrip("*-• ").strip()
+                    for label, k in (("الجذب", "hook"), ("الوصف", "pitch")):
+                        if line.startswith(label):
+                            out[k] = line.split(":", 1)[-1].strip(" \"'«»*")
+                if out.get("hook") and 4 <= len(out["hook"]) <= 80 and len(out.get("pitch", "")) <= 220:
+                    return out
+                break
+            except Exception as e:
+                print(f"[warn] Gemini pitch {model}: {e}", file=sys.stderr)
+                break
+    return None
+
+
 def cmd_retitle(cfg):
     """يعطي المنتجات القديمة في الموقع أسماء جديدة بالذكاء الاصطناعي."""
     items = deals_site.load_products()
@@ -1180,6 +1240,7 @@ def publish(cfg, state, p, d, count_daily=True):
     p["promotion_link"] = short_link(cfg, p)
     p["_ships"] = ships_to(cfg, p)
     p["_title"] = product_name(cfg, p)
+    p["_pitch"] = ai_pitch(cfg, p)
     print(f"منتج {p.get('product_id')} ({site_cat(p)}): يوصل لـ {','.join(p['_ships'])}")
     try:
         send_product(cfg, p)
