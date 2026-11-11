@@ -13,6 +13,7 @@
   python bot.py run              يشتغل بشكل دائم وينشر حسب الجدول
 """
 import argparse
+import base64
 import hashlib
 import hmac
 import html
@@ -446,15 +447,19 @@ def pick(cfg, state, products, n):
     random.shuffle(top)  # تنويع بين أفضل المنتجات
     # تنويع: كل منتج بالتشغيل من قسم مختلف، ولا نعيد قسم آخر منشورين، ولا متجر مرتين
     recent_cats = state.get("recent_cats", [])[-2:]
-    chosen, cats, shops = [], set(), set()
+    chosen, cats, shops, rejected = [], set(), set(), set()
+    budget = [cfg.get("taste_checks_per_run", 12)]
     for strict in (True, False):
         for p in top:
             if len(chosen) >= n:
                 break
             c = site_cat(p)
-            if p in chosen or (c in cats and not cfg.get("_focus")) or (strict and c in recent_cats and not cfg.get("_focus")):
+            if p in chosen or id(p) in rejected or (c in cats and not cfg.get("_focus")) or (strict and c in recent_cats and not cfg.get("_focus")):
                 continue
             if p.get("shop_id") and p.get("shop_id") in shops:
+                continue
+            if not taste_ok(cfg, state, p, budget):
+                rejected.add(id(p))
                 continue
             chosen.append(p)
             cats.add(c)
@@ -763,6 +768,89 @@ def ai_title(cfg, raw):
                 print(f"[warn] Gemini {model}: {e}", file=sys.stderr)
                 break
     return None
+
+
+TASTE_PROMPT = (
+    "You are a senior luxury fashion stylist choosing products for elegant Saudi and Gulf women. "
+    "Look at this product photo and judge only how classy and high-taste it looks. "
+    "Reward refined colors (black, ivory, white, champagne, nude, blush, dusty rose, gold, silver, navy, emerald, "
+    "burgundy, deep jewel tones, tasteful tone-on-tone) and rich-looking materials (satin, silk, crystal, pearls, "
+    "fine beading, quality leather). Penalize garish or neon colors, clashing color mixes, cheap-looking shiny plastic, "
+    "tacky prints, childish designs, messy styling and low-quality photos. "
+    'Reply with JSON only, like {"score": 8, "reason": "short reason"}. score is 1-10 (10 = very luxurious and tasteful).'
+)
+
+
+def taste_score(cfg, p):
+    """درجة الذوق والفخامة من صورة المنتج (Gemini يشوف الصورة). يرجع رقم 1-10 أو None لو فشل."""
+    key = os.environ.get("GEMINI_API_KEY", "")
+    url = p.get("product_main_image_url")
+    if not key or not url:
+        return None
+    try:
+        img = requests.get(url, timeout=25)
+        if img.status_code != 200 or len(img.content) > 4_000_000:
+            return None
+        mime = img.headers.get("content-type", "image/jpeg").split(";")[0]
+        if not mime.startswith("image/"):
+            mime = "image/jpeg"
+        data = base64.b64encode(img.content).decode()
+    except Exception as e:
+        print(f"[warn] صورة {p.get('product_id')}: {e}", file=sys.stderr)
+        return None
+    body = {"contents": [{"parts": [{"text": TASTE_PROMPT}, {"inline_data": {"mime_type": mime, "data": data}}]}],
+            "generationConfig": {"temperature": 0.1, "maxOutputTokens": 200}}
+    for model in cfg.get("ai_models") or gemini_models(key):
+        for attempt in range(2):
+            try:
+                r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                                  params={"key": key}, json=body, timeout=60)
+                if r.status_code == 429 and attempt == 0:
+                    time.sleep(8)
+                    continue
+                if r.status_code != 200:
+                    print(f"[warn] Gemini taste {model}: {r.status_code} {r.text[:200]}", file=sys.stderr)
+                    break
+                txt = " ".join(x.get("text", "") for x in r.json()["candidates"][0]["content"]["parts"])
+                m = re.search(r'"score"\s*:\s*(\d+(?:\.\d+)?)', txt)
+                if m:
+                    why = re.search(r'"reason"\s*:\s*"([^"]*)"', txt)
+                    p["_taste_why"] = why.group(1)[:80] if why else ""
+                    return float(m.group(1))
+                break
+            except Exception as e:
+                print(f"[warn] Gemini taste {model}: {e}", file=sys.stderr)
+                break
+    return None
+
+
+UGLY_WORDS = ("neon", "fluorescent", "rainbow", "multicolor", "multi-color", "multicolour", "tie dye", "tie-dye",
+              "graffiti", "cartoon", "فسفوري", "نيون", "قوس قزح", "متعدد الألوان", "كرتون")
+
+
+def taste_ok(cfg, state, p, budget):
+    """الفساتين والشنط: لازم ذوقها عالي وألوانها راقية. budget = كم صورة باقي نقدر نفحص بهالتشغيل."""
+    if site_cat(p) not in cfg.get("taste_cats", []):
+        return True
+    title = str(p.get("product_title", "")).lower()
+    if any(w in title for w in UGLY_WORDS):
+        print(f"- ذوق: انرفض (ألوان صارخة بالعنوان) {p.get('product_id')}")
+        return False
+    cache = state.setdefault("taste", {})
+    pid = str(p.get("product_id"))
+    if pid not in cache:
+        if budget[0] <= 0:
+            return False
+        budget[0] -= 1
+        s = taste_score(cfg, p)
+        if s is None:
+            return False  # ما قدرنا نتأكد من الذوق: ما ننشره (الجودة أهم من العدد)
+        cache[pid] = s
+        if len(cache) > 1500:
+            for k in list(cache)[:500]:
+                del cache[k]
+        print(f"- ذوق {pid} ({site_cat(p)}): {s:g}/10 {p.get('_taste_why', '')}")
+    return cache[pid] >= cfg.get("taste_min", 7)
 
 
 SEO_PROMPT = (

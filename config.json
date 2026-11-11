@@ -276,5 +276,13 @@
     "min_discount_percent": 0,
     "min_price": 40,
     "min_images": 4
-  }
+  },
+  "taste_cats": [
+    "evening-dresses",
+    "evening-bags",
+    "bags",
+    "dresses"
+  ],
+  "taste_min": 7,
+  "taste_checks_per_run": 8
 }
