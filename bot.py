@@ -955,7 +955,7 @@ def ai_pitch(cfg, p):
         disc=int(num(p.get("discount"))), rating=stars(p.get("evaluate_rate")) or "-",
         orders=int(num(p.get("lastest_volume"))))
     body = {"contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.8, "maxOutputTokens": 300}}
+            "generationConfig": {"temperature": 0.8, "maxOutputTokens": 1500}}
     for model in cfg.get("ai_models") or gemini_models(key):
         for attempt in range(2):
             try:
@@ -969,13 +969,16 @@ def ai_pitch(cfg, p):
                     break
                 txt = " ".join(x.get("text", "") for x in r.json()["candidates"][0]["content"]["parts"])
                 out = {}
-                for line in txt.splitlines():
-                    line = line.strip().lstrip("*-• ").strip()
-                    for label, k in (("الجذب", "hook"), ("الوصف", "pitch")):
-                        if line.startswith(label):
-                            out[k] = line.split(":", 1)[-1].strip(" \"'«»*")
-                if out.get("hook") and 4 <= len(out["hook"]) <= 80 and len(out.get("pitch", "")) <= 220:
+                clean = txt.replace("**", "")
+                for label, k in (("الجذب", "hook"), ("الوصف", "pitch")):
+                    m = re.search(label + r"\s*[:：\-]\s*(.+)", clean)
+                    if m:
+                        out[k] = m.group(1).strip().strip(" \"'«»*")
+                if len(out.get("pitch", "")) > 260:
+                    out.pop("pitch")  # وصف طويل: نكتفي بجملة الجذب
+                if out.get("hook") and 4 <= len(out["hook"]) <= 90:
                     return out
+                print(f"[warn] Gemini pitch {model}: رد غير متوقع: {txt[:200]!r}", file=sys.stderr)
                 break
             except Exception as e:
                 print(f"[warn] Gemini pitch {model}: {e}", file=sys.stderr)
