@@ -80,6 +80,11 @@ def today():
     return datetime.now(RIYADH).strftime("%Y-%m-%d")
 
 
+def post_day():
+    """يوم النشر: من ٥ الفجر لين ٥ الفجر اللي بعده (منشورات ١٢–١ بالليل تنحسب على اليوم اللي قبل)."""
+    return (datetime.now(RIYADH) - timedelta(hours=5)).strftime("%Y-%m-%d")
+
+
 # ---------------------------------------------------------------- AliExpress API
 def sign(params, secret):
     s = "".join(f"{k}{params[k]}" for k in sorted(params))
@@ -988,7 +993,7 @@ def maybe_amazon(cfg, state):
     if not tag or not AMAZON_FILE.exists():
         return
     data = json.loads(AMAZON_FILE.read_text(encoding="utf-8"))
-    d = today()
+    d = post_day()
     done = state.setdefault("amazon_daily", {})
     if done.get(d, 0) >= cfg.get("amazon_per_day", 3):
         return
@@ -1024,7 +1029,7 @@ def cmd_post(cfg, state, count, paced=True):
             maybe_digest(cfg, state)
         except Exception as e:
             print(f"[warn] ملخص اليوم فشل: {e}", file=sys.stderr)
-    d = today()
+    d = post_day()
     done = state["daily"].get(d, 0)
     left = cfg["posts_per_day"] - done
     if left <= 0:
@@ -1073,7 +1078,8 @@ def cmd_post(cfg, state, count, paced=True):
             new_ids.append(str(p["product_id"]))
         if sent < len(prods):
             time.sleep(8)
-    if new_ids:
+    if cfg.get("site_url"):
+        # نبني الموقع كل تشغيل (الرئيسية والأقسام والأكواد تتحدث حتى لو ما انتشر شي)
         try:
             ensure_home_link(cfg)
             deals_site.build(cfg, only_ids=new_ids)
