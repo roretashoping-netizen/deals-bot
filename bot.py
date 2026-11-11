@@ -1171,10 +1171,60 @@ def cmd_run(cfg):
             time.sleep(300)
 
 
+SCOUT_KEYWORDS = [
+    "luxury evening dress women", "arabic evening dress", "dubai evening gown", "elegant evening gown long",
+    "muslim evening dress long sleeve", "sequin evening dress", "satin evening gown", "beaded evening dress",
+    "kaftan evening dress", "mermaid evening dress", "evening dress plus size", "prom dress long elegant",
+]
+
+
+def cmd_scout(cfg):
+    """يدوّر فساتين سهرة من متاجر مشتركة بالعمولة، ويرتّب المتاجر حسب الجودة (للاختيار اليدوي)."""
+    fields = ("product_id,product_title,target_sale_price,discount,evaluate_rate,lastest_volume,"
+              "product_main_image_url,commission_rate,shop_id,shop_name")
+    shops = {}
+    for kw in SCOUT_KEYWORDS:
+        for page in (1, 2, 3):
+            try:
+                prods = extract_products(ali_call(cfg, "aliexpress.affiliate.product.query", {
+                    "keywords": kw, "tracking_id": cfg["tracking_id"], "target_currency": cfg["currency"],
+                    "target_language": "EN", "ship_to_country": cfg["ship_to"], "sort": "LAST_VOLUME_DESC",
+                    "page_size": 50, "page_no": page, "fields": fields}))
+            except Exception as e:
+                print(f"[warn] {kw} {page}: {e}", file=sys.stderr)
+                continue
+            for p in prods:
+                if not is_evening(p) or blocked(p) or is_mens(p) or no_brand(p.get("shop_name")):
+                    continue
+                s = shops.setdefault(str(p.get("shop_id")), {"name": p.get("shop_name"), "items": {}})
+                s["items"][str(p["product_id"])] = p
+    rows = []
+    for sid, s in shops.items():
+        items = list(s["items"].values())
+        good = [p for p in items if num(p.get("evaluate_rate")) >= 95 and num(p.get("lastest_volume")) >= 30]
+        if len(good) < 3:
+            continue
+        orders = sum(num(p.get("lastest_volume")) for p in good)
+        rating = sum(num(p.get("evaluate_rate")) for p in good) / len(good)
+        good.sort(key=lambda p: -num(p.get("lastest_volume")))
+        rows.append({"shop_id": sid, "name": s["name"], "n": len(good), "orders": int(orders),
+                     "rating": round(rating, 1), "max_orders": int(num(good[0].get("lastest_volume"))),
+                     "items": [{"id": str(p["product_id"]), "img": p.get("product_main_image_url", "").split("?")[0],
+                                "price": p.get("target_sale_price"), "orders": int(num(p.get("lastest_volume"))),
+                                "rating": p.get("evaluate_rate"), "disc": p.get("discount"),
+                                "comm": p.get("commission_rate"), "title": str(p.get("product_title", ""))[:70]}
+                               for p in good[:6]]})
+    rows.sort(key=lambda r: -(r["orders"] * (r["rating"] / 100) ** 4))
+    print(f"متاجر سهرة مؤهلة: {len(rows)}")
+    for r in rows[:15]:
+        print("SCOUT " + json.dumps(r, ensure_ascii=False))
+    return 0
+
+
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout"])
     ap.add_argument("--count", type=int, default=1)
     ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
     a = ap.parse_args()
@@ -1188,6 +1238,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "scout":
+        return cmd_scout(cfg)
     if a.command == "retitle":
         return cmd_retitle(cfg)
     if a.command == "prune":
