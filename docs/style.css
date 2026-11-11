@@ -30,6 +30,12 @@ h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .save{color:var(--ok);font-weight:700}
 .meta{margin:12px 0;padding:0;list-style:none}.meta li{padding:4px 0;border-bottom:1px dashed var(--line)}
 .buy{display:block;text-align:center;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:14px;border-radius:12px;font-size:18px;font-weight:700;margin-top:14px}
+.share{display:flex;gap:8px;margin-top:10px}.share a{flex:1;text-align:center;color:#fff;text-decoration:none;padding:11px 6px;border-radius:12px;font-weight:700;font-size:15px}.share .wa{background:#25d366}.share .tgs{background:#229ed9}
+.best{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:12px 0;position:relative}
+.best img{width:120px;height:120px;object-fit:cover;border-radius:10px}.best h2{font-size:17px;margin:0 0 4px}.best h2 a{text-decoration:none}.best p{margin:2px 0;font-size:14px}
+.best .bp{font-weight:700;color:var(--brand);font-size:16px}.best .bp s{color:var(--muted);font-weight:400;margin:0 6px}.best .bm{color:var(--muted)}.best .bt{flex:1;min-width:0}.best .buy{padding:9px;font-size:15px;margin-top:8px}
+.bn{position:absolute;top:-8px;right:-8px;background:var(--brand);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.bests{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.bests a{background:#fff4d6;border:1px solid #e0a800;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;font-size:14px}
 .join{display:block;text-align:center;background:#229ed9;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
 .crumbs{font-size:13px;color:var(--muted);margin-top:12px}.crumbs a{color:var(--muted)}
 .note{font-size:13px;color:var(--muted)}
