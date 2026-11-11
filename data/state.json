@@ -78,11 +78,14 @@
   "1005006187706437": "2026-11-11",
   "1005010773801095": "2026-11-11",
   "1005012161251236": "2026-11-11",
-  "1005006690983859": "2026-11-11"
+  "1005006690983859": "2026-11-11",
+  "1005008284883329": "2026-11-11",
+  "1005012889438214": "2026-11-11",
+  "1005012757610692": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 21
+  "2026-11-11": 24
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -153,7 +156,10 @@
   "bailamos ربيع جديد ماركة النساء الشقق",
   "بيجامة نسائية بطباعة نجوم وخطوط على",
   "طقم من قطع أقراط حلقية صغيرة",
-  "تخصيص فاخر مطرز الترتر س الرقبة"
+  "تخصيص فاخر مطرز الترتر س الرقبة",
+  "تخصيص بسيط جودة عالية الكلاسيكية جيرسي",
+  "فساتين سهرة مخصصة من سانسا باللون",
+  "فستان سهرة contessa مخصص باللون الأسود"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -224,7 +230,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S31fde21f8e4041c2bf2fefe0d1bcee3cK.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6034f48ff6734855b6550baa2c523cedp.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S464e33349a944871ad59ac23d43be74a0.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S26be00f0bb924eb49805b07b330b7542z.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S26be00f0bb924eb49805b07b330b7542z.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1f815c88f9734c998522ae2a4eb9e76c3.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S5800a87f648746bc92a2c8821095429aC.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa2b2dd46ff404089b27b0a33d37ea04d7.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -235,6 +244,9 @@
   "dresses",
   "loungewear",
   "jewelry",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
   "evening-dresses"
  ],
  "cat_day": {
@@ -244,7 +256,7 @@
    "dresses": 1,
    "loungewear": 1,
    "jewelry": 1,
-   "evening-dresses": 1
+   "evening-dresses": 4
   }
  }
 }
