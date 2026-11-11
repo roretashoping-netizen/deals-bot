@@ -969,6 +969,9 @@ def maybe_digest(cfg, state):
     lines.append("📤 أرسليها لصديقاتك وخلّيهم يلحقون العروض")
     site = cfg.get("site_url", "").rstrip("/")
     kb = [[{"text": "🛍️ كل عروض اليوم", "url": f"{site}/"}, {"text": "🎟️ أكواد الخصم", "url": f"{site}/codes.html"}]] if site else []
+    if cfg.get("amazon_tag"):
+        kb.append([{"text": "🛒 عروض أمازون السعودية اليوم",
+                    "url": deals_site.amazon_url(cfg, "https://www.amazon.sa/deals?language=ar_AE")}])
     tg(cfg, "sendMessage", chat_id=cfg["channel"], text="\n".join(lines), parse_mode="HTML",
        disable_web_page_preview=True, reply_markup={"inline_keyboard": kb})
     state["digest_day"] = d

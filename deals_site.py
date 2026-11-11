@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "8"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "9"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -349,6 +349,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     verify = cfg.get("google_site_verification", "")
     cats = f'<a href="{site}/codes.html">🎟️ أكواد الخصم</a>' + \
+        (f'<a href="{site}/amazon.html">🛒 عروض أمازون</a>' if cfg.get("amazon_tag") else "") + \
         "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in COLLECTIONS) + \
         "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in CATEGORIES)
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
@@ -372,7 +373,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 <main class="wrap">{body}</main>
 <footer><div class="wrap">
 <p>{esc(cfg['site_name'])}: عروض وتخفيضات علي إكسبريس يوميًا، مختارة بتقييم عالي وتوصيل للسعودية والخليج.</p>
-<p>ℹ️ بعض الروابط في هذا الموقع روابط تسويق بالعمولة من برنامج علي إكسبريس، وما تزيد السعر عليك. الأسعار تتغير باستمرار، والسعر النهائي هو الموجود في صفحة علي إكسبريس.</p>
+<p>ℹ️ بعض الروابط في هذا الموقع روابط تسويق بالعمولة من برنامج علي إكسبريس وبرنامج أمازون، وما تزيد السعر عليك. بصفتنا مسوّقين بالعمولة مع أمازون، نربح من عمليات الشراء المؤهلة. الأسعار تتغير باستمرار، والسعر النهائي هو الموجود في صفحة علي إكسبريس.</p>
 <p><a href="{tg}">تليجرام</a> · <a href="{site}/sitemap.xml">خريطة الموقع</a></p>
 </div></footer></body></html>"""
 
@@ -471,6 +472,38 @@ COLLECTIONS = [
      "intro": "أقوى تخفيضات علي إكسبريس الحين: منتجات خصمها 50% وأكثر بتقييم عالي وتوصيل للسعودية والخليج.",
      "pick": lambda xs: sorted([x for x in xs if x["disc"] >= 50], key=lambda x: -x["disc"])},
 ]
+
+
+AMAZON_LINKS = [
+    ("🔥 عروض اليوم في أمازون السعودية", "https://www.amazon.sa/deals?language=ar_AE"),
+    ("👗 فساتين نسائية", "https://www.amazon.sa/s?k=فساتين+نسائية&language=ar_AE"),
+    ("👜 حقائب نسائية", "https://www.amazon.sa/s?k=حقائب+نسائية&language=ar_AE"),
+    ("💄 أدوات المكياج", "https://www.amazon.sa/s?k=أدوات+مكياج&language=ar_AE"),
+    ("🧴 العناية بالبشرة والشعر", "https://www.amazon.sa/s?k=العناية+بالبشرة&language=ar_AE"),
+    ("🍳 أدوات المطبخ", "https://www.amazon.sa/s?k=أدوات+مطبخ&language=ar_AE"),
+    ("🏠 ديكور وتنظيم البيت", "https://www.amazon.sa/s?k=تنظيم+المنزل&language=ar_AE"),
+    ("💍 إكسسوارات ومجوهرات", "https://www.amazon.sa/s?k=اكسسوارات+نسائية&language=ar_AE"),
+]
+
+
+def amazon_url(cfg, url):
+    tag = cfg.get("amazon_tag", "")
+    return f"{url}&tag={tag}" if tag else url
+
+
+def amazon_page(cfg):
+    """صفحة روابط أمازون السعودية (بدون أسعار: أمازون ما تسمح بعرض السعر إلا من الـ API حقها)."""
+    tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
+    rows = "".join(f"<a class='buy' style='margin-top:10px' href='{esc(amazon_url(cfg, u))}' target='_blank' "
+                   f"rel='nofollow sponsored noopener'>{esc(t)}</a>" for t, u in AMAZON_LINKS)
+    body = ("<h1>عروض أمازون السعودية اليوم</h1><p class='intro'>روابط مباشرة لعروض وتخفيضات أمازون السعودية "
+            "في الأقسام اللي تهم البنات: فساتين وحقائب ومكياج وأدوات مطبخ وتنظيم البيت. شحن سريع داخل المملكة، "
+            "والأسعار تشوفينها محدّثة في أمازون.</p>"
+            f"{rows}<p class='note'>بصفتنا مسوّقين بالعمولة مع أمازون، نربح من عمليات الشراء المؤهلة.</p>"
+            f"<p><a class='join' href='{tg}'>📢 انضمي لقروب التليجرام لعروض علي إكسبريس وأمازون يوميًا</a></p>")
+    return page(cfg, "عروض أمازون السعودية اليوم | تخفيضات فساتين وحقائب ومكياج ومطبخ",
+                "روابط مباشرة لعروض وتخفيضات أمازون السعودية اليوم: فساتين، حقائب، مكياج، أدوات مطبخ وتنظيم البيت.",
+                "amazon.html", body)
 
 
 def share_html(url, text):
@@ -577,8 +610,11 @@ def build(cfg, only_ids=None):
                   "عروض علي اكسبريس اليوم", intro, "", newest[:60], best_links), encoding="utf-8")
 
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
+    if cfg.get("amazon_tag"):
+        (OUT / "amazon.html").write_text(amazon_page(cfg), encoding="utf-8")
 
     urls = [(f"{site}/", today_str()), (f"{site}/codes.html", today_str())] + \
+           ([(f"{site}/amazon.html", today_str())] if cfg.get("amazon_tag") else []) + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in COLLECTIONS if c["pick"](newest)] + \
            [(f"{site}/best/{c['slug']}.html", today_str()) for c in bests] + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in CATEGORIES if by_cat.get(c["slug"])] + \
