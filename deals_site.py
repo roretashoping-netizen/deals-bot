@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "7"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "8"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -331,6 +331,11 @@ h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .meta{margin:12px 0;padding:0;list-style:none}.meta li{padding:4px 0;border-bottom:1px dashed var(--line)}
 .buy{display:block;text-align:center;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:14px;border-radius:12px;font-size:18px;font-weight:700;margin-top:14px}
 .share{display:flex;gap:8px;margin-top:10px}.share a{flex:1;text-align:center;color:#fff;text-decoration:none;padding:11px 6px;border-radius:12px;font-weight:700;font-size:15px}.share .wa{background:#25d366}.share .tgs{background:#229ed9}
+.best{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:12px 0;position:relative}
+.best img{width:120px;height:120px;object-fit:cover;border-radius:10px}.best h2{font-size:17px;margin:0 0 4px}.best h2 a{text-decoration:none}.best p{margin:2px 0;font-size:14px}
+.best .bp{font-weight:700;color:var(--brand);font-size:16px}.best .bp s{color:var(--muted);font-weight:400;margin:0 6px}.best .bm{color:var(--muted)}.best .bt{flex:1;min-width:0}.best .buy{padding:9px;font-size:15px;margin-top:8px}
+.bn{position:absolute;top:-8px;right:-8px;background:var(--brand);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.bests{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.bests a{background:#fff4d6;border:1px solid #e0a800;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;font-size:14px}
 .join{display:block;text-align:center;background:#229ed9;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
 .crumbs{font-size:13px;color:var(--muted);margin-top:12px}.crumbs a{color:var(--muted)}
 .note{font-size:13px;color:var(--muted)}
@@ -475,8 +480,45 @@ def share_html(url, text):
             f'<a class="tgs" href="https://t.me/share/url?url={quote(url)}&text={quote(text)}" target="_blank" rel="noopener">✈️ شاركيه تليجرام</a></div>')
 
 
-def list_page(cfg, title, h1, intro, path, items):
-    body = f"<h1>{esc(h1)}</h1><p class='intro'>{esc(intro)}</p><div class='grid'>" + \
+def best_items(lst):
+    """أفضل منتجات القسم: الأعلى تقييمًا ثم الأكثر طلبًا."""
+    return sorted(lst, key=lambda x: (-x["rating"], -x["orders"]))[:10]
+
+
+def best_page(cfg, c, lst):
+    """صفحة «أفضل منتجات القسم» مرتبة بالأرقام، تستهدف بحث الناس عن: أفضل ... من علي اكسبريس."""
+    site = cfg["site_url"].rstrip("/")
+    top = best_items(lst)
+    n = len(top)
+    year = datetime.now(RIYADH).year
+    h1 = f"أفضل {n} منتجات {c['name']} من علي إكسبريس {year}"
+    intro = (f"جمعنا لك أفضل {n} منتجات في {c['name']} من علي إكسبريس، مرتبة حسب تقييم المشترين وعدد الطلبات، "
+             f"مع السعر بالريال والخصم الحالي وتوصيل للسعودية والخليج. القائمة تتحدث تلقائيًا مع كل عروض جديدة.")
+    rows = ""
+    for i, x in enumerate(top, 1):
+        name = display_name(x)
+        about = esc(x["about"]) if x.get("about") else ""
+        old = f" <s>{money(x['old'])}</s>" if x["old"] > x["price"] > 0 else ""
+        disc = f" · خصم {x['disc']}%" if x["disc"] else ""
+        rows += (f'<div class="best"><div class="bn">{i}</div>'
+                 f'<a href="{site}/p/{x["id"]}.html"><img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(name)}" loading="lazy"></a>'
+                 f'<div class="bt"><h2><a href="{site}/p/{x["id"]}.html">{esc(name)}</a></h2>'
+                 f'<p>{about}</p>'
+                 f'<p class="bm">⭐ {x["rating"]} من 5 · 🛒 أكثر من {x["orders"]:,} طلب</p>'
+                 f'<p class="bp">{money(x["price"])} ريال{old}{disc}</p>'
+                 f'<a class="buy" href="{esc(x["link"])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a></div></div>')
+    body = (f'<div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a></div>'
+            f"<h1>{esc(h1)}</h1><p class='intro'>{esc(intro)}</p>{rows}"
+            f'<p><a class="join" href="{site}/c/{c["slug"]}.html">شوفي كل عروض {esc(c["name"])} ←</a></p>')
+    ld = [{"@context": "https://schema.org", "@type": "ItemList", "name": h1,
+           "itemListElement": [{"@type": "ListItem", "position": i, "url": f"{site}/p/{x['id']}.html",
+                                "name": display_name(x)} for i, x in enumerate(top, 1)]}]
+    return page(cfg, f"{h1} | بتقييم عالي وطلبات كثيرة", intro[:300], f"best/{c['slug']}.html", body, ld,
+                top[0]["image"] if top else None)
+
+
+def list_page(cfg, title, h1, intro, path, items, extra=""):
+    body = f"<h1>{esc(h1)}</h1><p class='intro'>{esc(intro)}</p>{extra}<div class='grid'>" + \
            "".join(card(cfg, x) for x in items) + "</div>"
     return page(cfg, title, intro[:300], path, body, image=items[0]["image"] if items else None)
 
@@ -504,13 +546,22 @@ def build(cfg, only_ids=None):
         related = [r for r in by_cat.get(x["cat"], []) if r["id"] != x["id"]][:8]
         (OUT / "p" / f"{x['id']}.html").write_text(product_page(cfg, x, related), encoding="utf-8")
 
+    (OUT / "best").mkdir(parents=True, exist_ok=True)
+    bests = [c for c in CATEGORIES if len(by_cat.get(c["slug"], [])) >= 5]
+    for c in bests:
+        (OUT / "best" / f"{c['slug']}.html").write_text(best_page(cfg, c, by_cat[c["slug"]]), encoding="utf-8")
+    best_links = ("<div class='bests'>" + "".join(
+        f'<a href="{site}/best/{c["slug"]}.html">🏆 أفضل {esc(c["name"])}</a>' for c in bests) + "</div>") if bests else ""
+
     for c in CATEGORIES + [OTHER]:
         lst = by_cat.get(c["slug"], [])[:60]
         intro = (f"أفضل عروض {c['name']} من علي إكسبريس بأسعار مخفضة، مختارة بتقييم عالي وآلاف الطلبات، "
                  f"مع توصيل للسعودية والإمارات والكويت وقطر والبحرين وعمان. نحدّثها يوميًا.")
         (OUT / "c" / f"{c['slug']}.html").write_text(
             list_page(cfg, f"{c['name']} علي اكسبريس | عروض وتخفيضات اليوم", f"{c['name']} من علي إكسبريس",
-                      intro, f"c/{c['slug']}.html", lst), encoding="utf-8")
+                      intro, f"c/{c['slug']}.html", lst,
+                      f"<div class='bests'><a href='{site}/best/{c['slug']}.html'>🏆 أفضل {len(best_items(lst))} منتجات في {esc(c['name'])}</a></div>"
+                      if c in bests else ""), encoding="utf-8")
 
     for c in COLLECTIONS:
         lst = c["pick"](newest)[:60]
@@ -523,12 +574,13 @@ def build(cfg, only_ids=None):
              "وتوصيل للسعودية والخليج.")
     (OUT / "index.html").write_text(
         list_page(cfg, f"{cfg['site_name']} | عروض وتخفيضات علي اكسبريس اليوم بالريال",
-                  "عروض علي اكسبريس اليوم", intro, "", newest[:60]), encoding="utf-8")
+                  "عروض علي اكسبريس اليوم", intro, "", newest[:60], best_links), encoding="utf-8")
 
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
 
     urls = [(f"{site}/", today_str()), (f"{site}/codes.html", today_str())] + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in COLLECTIONS if c["pick"](newest)] + \
+           [(f"{site}/best/{c['slug']}.html", today_str()) for c in bests] + \
            [(f"{site}/c/{c['slug']}.html", today_str()) for c in CATEGORIES if by_cat.get(c["slug"])] + \
            [(f"{site}/p/{x['id']}.html", x["date"]) for x in newest]
     sm = "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>" for u, d in urls)

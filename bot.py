@@ -938,7 +938,50 @@ def cmd_preview(cfg, state):
     return 0
 
 
+PEAK_WEIGHTS = [[9, 16, 1], [16, 20, 1.5], [20, 25, 2.5]]  # المساء له حصة أكبر (وقت التصفح والشراء)
+
+
+def day_share(cfg, h):
+    """كم نسبة منشورات اليوم المفروض تكون نزلت لين الساعة h (توزيع يركز على المساء)."""
+    w = cfg.get("peak_weights", PEAK_WEIGHTS)
+    total = sum((b - a) * k for a, b, k in w)
+    got = sum((min(h, b) - a) * k for a, b, k in w if h > a)
+    return min(1.0, got / total) if total else 1.0
+
+
+def maybe_digest(cfg, state):
+    """مرة باليوم بالمساء: منشور واحد فيه أفضل ٥ عروض اليوم (سهل ينشاف وينرسل)."""
+    now = datetime.now(RIYADH)
+    d = today()
+    if not (cfg.get("digest_hour", 21) <= now.hour <= 23) or state.get("digest_day") == d:
+        return
+    items = [x for x in deals_site.load_products() if x.get("date") == d and x.get("link")]
+    if len(items) < 5:
+        return
+    top = sorted(items, key=lambda x: -(x["disc"] + x["orders"] ** 0.5 + x["rating"] * 5))[:5]
+    nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
+    lines = ["🏆 <b>أفضل 5 عروض اليوم</b>", ""]
+    for n, x in zip(nums, top):
+        name = html.escape(deals_site.display_name(x))
+        link = html.escape(x["link"], quote=True)
+        disc = f" · خصم {x['disc']}%" if x["disc"] else ""
+        lines += [f'{n} <a href="{link}"><b>{name}</b></a>', f"💰 {money(x['price'])} {cfg.get('currency_label', 'ريال')}{disc}", ""]
+    lines.append("📤 أرسليها لصديقاتك وخلّيهم يلحقون العروض")
+    site = cfg.get("site_url", "").rstrip("/")
+    kb = [[{"text": "🛍️ كل عروض اليوم", "url": f"{site}/"}, {"text": "🎟️ أكواد الخصم", "url": f"{site}/codes.html"}]] if site else []
+    tg(cfg, "sendMessage", chat_id=cfg["channel"], text="\n".join(lines), parse_mode="HTML",
+       disable_web_page_preview=True, reply_markup={"inline_keyboard": kb})
+    state["digest_day"] = d
+    save_state(state)
+    print("انتشر ملخص أفضل ٥ عروض اليوم")
+
+
 def cmd_post(cfg, state, count, paced=True):
+    if paced:
+        try:
+            maybe_digest(cfg, state)
+        except Exception as e:
+            print(f"[warn] ملخص اليوم فشل: {e}", file=sys.stderr)
     d = today()
     done = state["daily"].get(d, 0)
     left = cfg["posts_per_day"] - done
@@ -954,7 +997,15 @@ def cmd_post(cfg, state, count, paced=True):
         h += 24
     runs_left = max(1, int((end - h) * 60 // cfg.get("run_every_minutes", 30)) + 1)
     if paced:
-        count = min(count, max(1, -(-left // runs_left)))
+        # نكثّف النشر بالمساء: نحسب كم المفروض يكون نازل لين نهاية هالتشغيل
+        step = cfg.get("run_every_minutes", 30) / 60
+        allowed = -(-int(cfg["posts_per_day"] * day_share(cfg, h + step) * 100) // 100) - done
+        if runs_left <= 1:
+            allowed = left
+        if allowed <= 0:
+            print(f"ما فيه نشر هالتشغيل (النشر مركّز على المساء). مجموع اليوم: {done}/{cfg['posts_per_day']}")
+            return 0
+        count = min(count, allowed)
     cands = (fetch_candidates(cfg) if cfg["keywords"] else []) + fetch_store_candidates(cfg, state)
     prods = pick(cfg, state, cands, count)
     sent, new_ids = 0, []
