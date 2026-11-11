@@ -599,18 +599,18 @@ def caption(cfg, p):
         items = [names[c] for c in ships if c in names]
         lines += [sep, "🚚 الشحن متوفر لـ:"]
         lines += ["   ".join(items[i:i + 3]) for i in range(0, len(items), 3)]
-    if p.get("shop_name"):
-        lines += [sep, f"🏪 المتجر: {html.escape(str(p['shop_name']))}"]
     promo = deals_site.promo_text(p.get("promo_code_info"))
-    extra = [x for x in [promo, deals_site.code_line(cfg, price)] + deals_site.active_notes(cfg) if x]
-    if extra:
-        lines += [sep] + extra
+    codes = [x for x in [promo, deals_site.code_line(cfg, price)] if x]
+    if codes:
+        lines += [sep] + codes
+    for note in deals_site.active_notes(cfg):  # أي إضافة تحت الأكواد تنفصل بخط
+        lines += [sep, note]
     if as_album(cfg, p):
         # الألبوم ما يقبل زر، فنحط رابط الطلب في النص
         link = html.escape(p["promotion_link"], quote=True)
         lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if is_clothing(cfg, p):
-        lines += ["", "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
+        lines += [sep, "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
     text = "\n".join(lines)
     code = deals_site.code_line(cfg, price)
     if len(text) > 1020 and code:
