@@ -639,6 +639,8 @@ def tg(cfg, method, **payload):
 
 def as_album(cfg, p):
     """الملابس تنزل ألبوم صور (لو فيه صور إضافية)."""
+    if p.get("_album"):
+        return True
     return not p.get("_single") and is_clothing(cfg, p) and bool(gallery(p))
 
 
@@ -1464,9 +1466,16 @@ def cmd_recaption(cfg, pairs):
     """يعيد كتابة نص منشورات قديمة (تعديل بنفس مكانها) بالقواعد الحالية. pairs = "رقم_المنتج:رقم_الرسالة,..." """
     jobs = [x.split(":") for x in pairs.split(",") if ":" in x]
     ids = [pid.strip() for pid, _ in jobs]
-    prods = {str(p["product_id"]): p for p in extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
-        "product_ids": ",".join(ids), "target_currency": cfg["currency"], "target_language": cfg["language"],
-        "ship_to_country": cfg["ship_to"], "tracking_id": cfg["tracking_id"], "fields": DETAIL_FIELDS}))}
+    prods = {}
+    for i in range(0, len(ids), 20):  # علي إكسبريس يقبل ٢٠ منتج بالطلب
+        try:
+            for p in extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+                    "product_ids": ",".join(ids[i:i + 20]), "target_currency": cfg["currency"],
+                    "target_language": cfg["language"], "ship_to_country": cfg["ship_to"],
+                    "tracking_id": cfg["tracking_id"], "fields": DETAIL_FIELDS})):
+                prods[str(p["product_id"])] = p
+        except Exception as e:
+            print(f"[warn] productdetail: {e}", file=sys.stderr)
     done = 0
     for pid, msg in jobs:
         p = prods.get(pid.strip())
@@ -1486,7 +1495,9 @@ def cmd_recaption(cfg, pairs):
             tg(cfg, "editMessageCaption", **base, reply_markup={"inline_keyboard": post_buttons(cfg, p)})
         except Exception as e:
             print(f"[warn] {msg}: {e}", file=sys.stderr)
-            try:
+            try:  # منشور ألبوم (ما يقبل أزرار): نحط رابط الطلب بالنص
+                p["_single"], p["_album"] = False, True
+                base["caption"] = caption(cfg, p)
                 tg(cfg, "editMessageCaption", **base)
             except Exception as e2:
                 print(f"✗ {msg}: {e2}")
