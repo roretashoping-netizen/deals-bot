@@ -102,7 +102,9 @@
   "1005012271864702": "2026-11-11",
   "1005005218485304": "2026-11-11",
   "1005012451344104": "2026-11-11",
-  "1005011822993294": "2026-11-11"
+  "1005011822993294": "2026-11-11",
+  "1005006710683715": "2026-11-11",
+  "1005012431987834": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
@@ -201,7 +203,9 @@
   "فستان ماكسي أنيق للنساء بطباعة ألوان",
   "فستان سهرة مزين بالترتر باللون الأسود",
   "فستان سهرة فاخر من ليلي جولد",
-  "أنيقة لينة اللؤلؤ التطريز حقيبة يد"
+  "أنيقة لينة اللؤلؤ التطريز حقيبة يد",
+  "تخصيص نصف كم مطرزة الديكور قبالة",
+  "فستان سهرة كونتيزا مخصص باللون الوردي"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -296,9 +300,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sbf84994d35094b48b9f8ae81f68ef1d17.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S07382453688947b8ab0e2456e15391eeW.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3d624708426f492eb85502503fa5ea02e.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S4d0b7d2f675640d293b56406b1c3b45as.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4d0b7d2f675640d293b56406b1c3b45as.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S5470dc73751c457a990d2ca0cbd113c58.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc4c7dbdc3c2841a0b2d9141073a35437k.png"
  ],
- "last_cat": "المرأة حقائب",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -308,9 +314,9 @@
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
+  "evening-bags",
   "evening-dresses",
-  "evening-dresses",
-  "evening-bags"
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -319,7 +325,7 @@
    "dresses": 1,
    "loungewear": 1,
    "jewelry": 1,
-   "evening-dresses": 19,
+   "evening-dresses": 21,
    "evening-bags": 4,
    "kitchen": 2
   }
@@ -348,6 +354,8 @@
   "1005012271864702": 7.0,
   "1005005218485304": 9.0,
   "1005012451344104": 7.0,
-  "1005011822993294": 9.0
+  "1005011822993294": 9.0,
+  "1005006710683715": 7.0,
+  "1005012431987834": 8.0
  }
 }
