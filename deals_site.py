@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "10"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "11"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -337,6 +337,8 @@ h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
 .card img{width:100%;aspect-ratio:1;object-fit:cover;background:#f6eef1}
 .card .t{font-size:13px;padding:8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card .p{padding:4px 10px 10px;font-weight:700;color:var(--brand)}
+.card .r{padding:0 10px 10px;font-size:12px;color:var(--muted)}
+.stats{margin:4px 0 12px;color:var(--muted);font-size:14px}
 .card .p s{color:var(--muted);font-weight:400;font-size:12px;margin-inline-start:6px}
 .badge{display:inline-block;background:var(--brand);color:#fff;border-radius:6px;padding:0 6px;font-size:12px;margin:8px 10px 0;width:max-content}
 .prod{display:grid;grid-template-columns:1fr;gap:20px;margin-top:16px}
@@ -361,15 +363,19 @@ footer{margin-top:40px;padding:24px 0;background:#2b1d24;color:#e9dfe3;font-size
 """
 
 
+def site_cats(cfg):
+    """أقسام الموقع (التخصص): من الإعدادات، وإلا كل الأقسام."""
+    want = cfg.get("site_cats")
+    return [c for c in CATEGORIES if not want or c["slug"] in want]
+
+
 def page(cfg, title, desc, path, body, jsonld=None, image=None):
     site = cfg["site_url"].rstrip("/")
     url = f"{site}/{path}" if path else f"{site}/"
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     verify = cfg.get("google_site_verification", "")
     cats = f'<a href="{site}/codes.html">🎟️ أكواد الخصم</a>' + \
-        (f'<a href="{site}/amazon.html">🛒 عروض أمازون</a>' if cfg.get("amazon_tag") else "") + \
-        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in COLLECTIONS) + \
-        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in CATEGORIES)
+        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in site_cats(cfg))
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     return f"""<!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
@@ -403,7 +409,18 @@ def card(cfg, x):
     return (f'<a class="card" href="{site}/p/{x["id"]}.html">'
             f'<img referrerpolicy="no-referrer" src="{esc(x["image"])}" alt="{esc(display_name(x))}" loading="lazy">'
             f'{badge}<span class="t">{esc(display_name(x))}</span>'
-            f'<span class="p">{money(x["price"])} ريال{old}</span></a>')
+            f'<span class="p">{money(x["price"])} ريال{old}</span>'
+            f'{stats_line(x, short=True, cls="r")}</a>')
+
+
+def stats_line(x, short=False, cls="stats"):
+    """⭐ التقييم · 🛒 عدد الطلبات (دليل اجتماعي يبان في القائمة وصفحة المنتج)."""
+    parts = []
+    if x.get("rating"):
+        parts.append(f"⭐ {x['rating']}" + ("" if short else " من 5"))
+    if x.get("orders"):
+        parts.append(f"🛒 {x['orders']:,} طلب" if short else f"🛒 أكثر من {x['orders']:,} طلب")
+    return f'<span class="{cls}">{" · ".join(parts)}</span>' if parts else ""
 
 
 def product_page(cfg, x, related):
@@ -435,8 +452,6 @@ def product_page(cfg, x, related):
         meta += f"<li>🛒 الطلبات: أكثر من {x['orders']:,} طلب</li>"
     if ships:
         meta += f"<li>🚚 الشحن متوفر لـ: {ships}</li>"
-    if x["shop"]:
-        meta += f"<li>🏪 المتجر: {esc(x['shop'])}</li>"
     meta += f"<li>📅 أضيف للعروض: {x['date']}</li>"
     intro = esc(x["about"]) if x.get("about") else esc(x["title"]) + "."
     about = (f"<h2>عن المنتج</h2><p>{intro} هذا المنتج من فئة {esc(cat['name'])} في علي إكسبريس، "
@@ -450,7 +465,7 @@ def product_page(cfg, x, related):
 <div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{cat['slug']}.html">{esc(cat['name'])}</a></div>
 <div class="prod">
  <div class="gal"><img referrerpolicy="no-referrer" src="{esc(x['image'])}" alt="{esc(name)}"><div class="thumbs">{thumbs}</div></div>
- <div><h1>{esc(name)}</h1>
+ <div><h1>{esc(name)}</h1><div>{stats_line(x)}</div>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
    {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
    <a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>
@@ -577,7 +592,9 @@ def list_page(cfg, title, h1, intro, path, items, extra=""):
 # ---------------------------------------------------------------- البناء
 def build(cfg, only_ids=None):
     """يبني الموقع. only_ids: نبني صفحات هالمنتجات بس (والرئيسية والفئات والخريطة دايمًا)."""
-    items = load_products()
+    allowed = {c["slug"] for c in site_cats(cfg)}
+    all_items = load_products()
+    items = [x for x in all_items if x["cat"] in allowed]  # الموقع متخصص: أقسام التخصص بس
     site = cfg["site_url"].rstrip("/")
     (OUT / "p").mkdir(parents=True, exist_ok=True)
     (OUT / "c").mkdir(parents=True, exist_ok=True)
@@ -592,19 +609,29 @@ def build(cfg, only_ids=None):
     if not ver_file.exists() or ver_file.read_text(encoding="utf-8").strip() != SITE_VERSION:
         only_ids = None  # تصميم جديد: نعيد بناء كل الصفحات
         ver_file.write_text(SITE_VERSION, encoding="utf-8")
+    if only_ids is None:  # بناء كامل: نشيل صفحات المنتجات والأقسام اللي برا التخصص والفلاتر القديمة
+        keep = {x["id"] for x in items}
+        for x in all_items:
+            if x["id"] not in keep:
+                (OUT / "p" / f"{x['id']}.html").unlink(missing_ok=True)
+        for c in CATEGORIES + [OTHER] + COLLECTIONS:
+            if c["slug"] not in allowed:
+                (OUT / "c" / f"{c['slug']}.html").unlink(missing_ok=True)
+                (OUT / "best" / f"{c['slug']}.html").unlink(missing_ok=True)
+        (OUT / "amazon.html").unlink(missing_ok=True)
     targets = items if only_ids is None else [x for x in items if x["id"] in set(only_ids)]
     for x in targets:
         related = [r for r in by_cat.get(x["cat"], []) if r["id"] != x["id"]][:8]
         (OUT / "p" / f"{x['id']}.html").write_text(product_page(cfg, x, related), encoding="utf-8")
 
     (OUT / "best").mkdir(parents=True, exist_ok=True)
-    bests = [c for c in CATEGORIES if len(by_cat.get(c["slug"], [])) >= 5]
+    bests = [c for c in site_cats(cfg) if len(by_cat.get(c["slug"], [])) >= 5]
     for c in bests:
         (OUT / "best" / f"{c['slug']}.html").write_text(best_page(cfg, c, by_cat[c["slug"]]), encoding="utf-8")
     best_links = ("<div class='bests'>" + "".join(
         f'<a href="{site}/best/{c["slug"]}.html">🏆 أفضل {esc(c["name"])}</a>' for c in bests) + "</div>") if bests else ""
 
-    for c in CATEGORIES + [OTHER]:
+    for c in site_cats(cfg):
         lst = by_cat.get(c["slug"], [])[:60]
         intro = (f"أفضل عروض {c['name']} من علي إكسبريس بأسعار مخفضة، مختارة بتقييم عالي وآلاف الطلبات، "
                  f"مع توصيل للسعودية والإمارات والكويت وقطر والبحرين وعمان. نحدّثها يوميًا.")
@@ -614,28 +641,18 @@ def build(cfg, only_ids=None):
                       f"<div class='bests'><a href='{site}/best/{c['slug']}.html'>🏆 أفضل {len(best_items(lst))} منتجات في {esc(c['name'])}</a></div>"
                       if c in bests else ""), encoding="utf-8")
 
-    for c in COLLECTIONS:
-        lst = c["pick"](newest)[:60]
-        (OUT / "c" / f"{c['slug']}.html").write_text(
-            list_page(cfg, c["title"], c["name"] + " من علي إكسبريس", c["intro"], f"c/{c['slug']}.html", lst),
-            encoding="utf-8")
-
-    intro = ("عروض وتخفيضات علي إكسبريس يوميًا للبنات: فساتين سهرة وعبايات، أدوات مكياج، إكسسوارات وشنط، "
-             "وأدوات مطبخ. كل منتج مختار بتقييم عالي وطلبات كثيرة، والسعر بالريال مع الخصم، "
-             "وتوصيل للسعودية والخليج.")
+    intro = ("فساتين وإطلالات علي إكسبريس للبنات: فساتين سهرة فخمة، فساتين يومية وعبايات، "
+             "حقائب سهرة وشنط جلد، وإكسسوارات تكمّل إطلالتك. كل قطعة مختارة بذوق وتقييم عالي، "
+             "والسعر بالريال مع الخصم، وتوصيل للسعودية والخليج.")
     (OUT / "index.html").write_text(
-        list_page(cfg, f"{cfg['site_name']} | عروض وتخفيضات علي اكسبريس اليوم بالريال",
-                  "عروض علي اكسبريس اليوم", intro, "", newest[:60], best_links), encoding="utf-8")
+        list_page(cfg, f"{cfg['site_name']} | فساتين سهرة وعبايات وحقائب بأسعار مخفضة",
+                  "فساتين وإطلالات علي إكسبريس", intro, "", newest[:60], best_links), encoding="utf-8")
 
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
-    if cfg.get("amazon_tag"):
-        (OUT / "amazon.html").write_text(amazon_page(cfg), encoding="utf-8")
 
     urls = [(f"{site}/", today_str()), (f"{site}/codes.html", today_str())] + \
-           ([(f"{site}/amazon.html", today_str())] if cfg.get("amazon_tag") else []) + \
-           [(f"{site}/c/{c['slug']}.html", today_str()) for c in COLLECTIONS if c["pick"](newest)] + \
            [(f"{site}/best/{c['slug']}.html", today_str()) for c in bests] + \
-           [(f"{site}/c/{c['slug']}.html", today_str()) for c in CATEGORIES if by_cat.get(c["slug"])] + \
+           [(f"{site}/c/{c['slug']}.html", today_str()) for c in site_cats(cfg) if by_cat.get(c["slug"])] + \
            [(f"{site}/p/{x['id']}.html", x["date"]) for x in newest]
     sm = "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>" for u, d in urls)
     (OUT / "sitemap.xml").write_text(

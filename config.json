@@ -30,33 +30,9 @@
     "women long sleeve dress",
     "women casual dress",
     "abaya women",
-    "makeup brushes set",
-    "makeup organizer",
-    "eyelash curler",
-    "makeup sponge set",
-    "nail art kit",
-    "nail art tools",
-    "makeup storage box",
-    "hair curler",
-    "hair straightener brush",
-    "hair clips women",
-    "skin care tools",
-    "facial cleansing brush",
     "jewelry box organizer",
     "women earrings",
     "women necklace",
-    "kitchen gadgets",
-    "kitchen organizer",
-    "kitchen storage",
-    "silicone kitchen utensils",
-    "spice rack organizer",
-    "coffee tools",
-    "baking tools",
-    "home decor women",
-    "makeup mirror led",
-    "perfume atomizer",
-    "women pajamas",
-    "women slippers",
     "luxury evening dress women",
     "arabic evening dress",
     "dubai evening gown",
@@ -74,7 +50,19 @@
     "satin evening clutch",
     "luxury party handbag women",
     "diamond evening bag",
-    "beaded evening clutch"
+    "beaded evening clutch",
+    "women elegant long dress",
+    "modest maxi dress women",
+    "women elegant midi dress",
+    "satin dress women",
+    "women long sleeve maxi dress",
+    "kaftan dress women",
+    "dubai abaya women",
+    "women abaya open",
+    "pearl earrings women",
+    "women gold plated necklace",
+    "women elegant earrings",
+    "women bracelet gold"
   ],
   "filters": {
     "min_rating_percent": 95,
@@ -82,7 +70,7 @@
     "min_discount_percent": 15,
     "min_price": 8
   },
-  "max_per_cat_day": 6,
+  "max_per_cat_day": 18,
   "dull_words": [
     "سلة مهملات",
     "سلة قمامة",
@@ -138,7 +126,7 @@
   "button_text": "🛍️ اطلب الحين",
   "hashtags": "#علي_اكسبريس #عروض #تخفيضات #بنات",
   "site_url": "https://roretashoping-netizen.github.io/deals-bot",
-  "site_name": "عروض علي اكسبريس وأمازون | صيد المنتجات",
+  "site_name": "فساتين وإطلالات علي اكسبريس | صيد المنتجات",
   "amazon_tag": "dealsksa02-21",
   "amazon_per_day": 0,
   "telegram_public": "productaliexpress2027",
@@ -207,7 +195,9 @@
   "category_weights": {
     "evening-dresses": 3,
     "dresses": 3,
-    "bags": 3
+    "bags": 3,
+    "abayas": 2,
+    "jewelry": 1.5
   },
   "store_ids": {
     "2855054": "SERENE HILL Boutique Store",
@@ -281,8 +271,18 @@
     "evening-dresses",
     "evening-bags",
     "bags",
-    "dresses"
+    "dresses",
+    "abayas",
+    "jewelry"
   ],
   "taste_min": 7,
-  "taste_checks_per_run": 8
+  "taste_checks_per_run": 8,
+  "site_cats": [
+    "evening-dresses",
+    "dresses",
+    "abayas",
+    "evening-bags",
+    "bags",
+    "jewelry"
+  ]
 }
