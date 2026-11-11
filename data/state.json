@@ -126,11 +126,14 @@
   "1005008674340024": "2026-11-11",
   "1005010589146073": "2026-11-11",
   "1005010726679211": "2026-11-11",
-  "1005007315827516": "2026-11-11"
+  "1005007315827516": "2026-11-11",
+  "1005011942666878": "2026-11-11",
+  "1005006982718799": "2026-11-11",
+  "1005008459531182": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 33
+  "2026-11-11": 35
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -249,7 +252,10 @@
   "فساتين حفلة موسيقية أنيقة من lily",
   "فستان نسائي مخصص للحفلات الراقصة باللون",
   "أماندا مخصص النبيذ الأحمر الرسن فستان",
-  "فستان حفلة موسيقية مخصص أنيق أخضر"
+  "فستان حفلة موسيقية مخصص أنيق أخضر",
+  "هدية عيد الحب، حقيبة سهرة مربعة",
+  "صندوق مجوهرات مخملي صينية عرض درج",
+  "فستان حفلة موسيقية أنيق باللون الأحمر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -368,31 +374,34 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S27f4e527ca1e4027a28baa111ba6480bO.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S28cd491d209a404faf90305de947f4d8V.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S46732951146845c1ba1418bb0837287cV.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sf966aae6beaa41639b6fc1a2efafb905h.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf966aae6beaa41639b6fc1a2efafb905h.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sfced1549a5104635b19b02e8bf9d4528q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd7ca7a4a32524fa78f7bb104a3df4c20q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S00feb607486e467f9913ee85921bef4dO.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
   "evening-dresses",
   "kitchen",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses"
+  "evening-dresses",
+  "evening-bags",
+  "jewelry",
+  "dresses"
  ],
  "cat_day": {
   "2026-11-11": {
    "nails": 2,
    "hair": 1,
-   "dresses": 1,
+   "dresses": 2,
    "loungewear": 2,
-   "jewelry": 4,
+   "jewelry": 5,
    "evening-dresses": 35,
-   "evening-bags": 5,
+   "evening-bags": 6,
    "kitchen": 3,
    "makeup-tools": 2
   }
@@ -400,7 +409,7 @@
  "extra_day": {
   "2026-11-11": {
    "evening-dresses": 10,
-   "evening-bags": 3
+   "evening-bags": 4
   }
  },
  "taste": {
@@ -438,7 +447,12 @@
   "1005008674340024": 9.0,
   "1005010589146073": 7.0,
   "1005010726679211": 7.0,
-  "1005007315827516": 7.0
+  "1005007315827516": 7.0,
+  "1005011942666878": 7.0,
+  "1005007170915602": 1.0,
+  "1005007038142972": 1.0,
+  "1005006982718799": 7.0,
+  "1005008459531182": 7.0
  },
  "digest_day": "2026-11-11"
 }
