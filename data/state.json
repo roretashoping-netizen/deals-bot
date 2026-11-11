@@ -122,7 +122,11 @@
   "1005009336600624": "2026-11-11",
   "1005012212237607": "2026-11-11",
   "1005011692723474": "2026-11-11",
-  "1005012358749509": "2026-11-11"
+  "1005012358749509": "2026-11-11",
+  "1005008674340024": "2026-11-11",
+  "1005010589146073": "2026-11-11",
+  "1005010726679211": "2026-11-11",
+  "1005007315827516": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
@@ -241,7 +245,11 @@
   "فستان سهرة فاخر بياقة مربعة مطرز",
   "فستان سهرة roses بلون الشمبانيا، بقصة",
   "حامل مناشف أوتوماتيكي قابل للسحب، مشبك",
-  "قلادة فامور فيلم ذا فامبر دييريز"
+  "قلادة فامور فيلم ذا فامبر دييريز",
+  "فساتين حفلة موسيقية أنيقة من lily",
+  "فستان نسائي مخصص للحفلات الراقصة باللون",
+  "أماندا مخصص النبيذ الأحمر الرسن فستان",
+  "فستان حفلة موسيقية مخصص أنيق أخضر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -356,21 +364,25 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S9206e91f11f1479e8afa90925b96bc8d0.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Saad61c875e414bd38300a8bae9ea4e767.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Scfcb927a0de4480fa2ca172c3dd0b2efO.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sfbdba405c10f487798dfa2319879684fP.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sfbdba405c10f487798dfa2319879684fP.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S27f4e527ca1e4027a28baa111ba6480bO.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S28cd491d209a404faf90305de947f4d8V.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S46732951146845c1ba1418bb0837287cV.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf966aae6beaa41639b6fc1a2efafb905h.jpg"
  ],
- "last_cat": "سلع ACG",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
   "kitchen",
-  "jewelry"
+  "jewelry",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -379,7 +391,7 @@
    "dresses": 1,
    "loungewear": 2,
    "jewelry": 4,
-   "evening-dresses": 31,
+   "evening-dresses": 35,
    "evening-bags": 5,
    "kitchen": 3,
    "makeup-tools": 2
@@ -422,7 +434,11 @@
   "1005012377937187": 8.0,
   "1005012623661634": 9.0,
   "1005012212237607": 9.0,
-  "1005009336600624": 9.0
+  "1005009336600624": 9.0,
+  "1005008674340024": 9.0,
+  "1005010589146073": 7.0,
+  "1005010726679211": 7.0,
+  "1005007315827516": 7.0
  },
  "digest_day": "2026-11-11"
 }
