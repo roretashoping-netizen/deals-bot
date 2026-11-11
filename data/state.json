@@ -77,11 +77,12 @@
   "1005013265884694": "2026-11-11",
   "1005006187706437": "2026-11-11",
   "1005010773801095": "2026-11-11",
-  "1005012161251236": "2026-11-11"
+  "1005012161251236": "2026-11-11",
+  "1005006690983859": "2026-11-11"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 20
+  "2026-11-11": 21
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -151,7 +152,8 @@
   "قطعة المجموعة خلات مقاطع الشعر جوفاء",
   "bailamos ربيع جديد ماركة النساء الشقق",
   "بيجامة نسائية بطباعة نجوم وخطوط على",
-  "طقم من قطع أقراط حلقية صغيرة"
+  "طقم من قطع أقراط حلقية صغيرة",
+  "تخصيص فاخر مطرز الترتر س الرقبة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -221,9 +223,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa73b8e0bd47d4707af01687d5d2f4f85z.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S31fde21f8e4041c2bf2fefe0d1bcee3cK.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6034f48ff6734855b6550baa2c523cedp.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S464e33349a944871ad59ac23d43be74a0.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S464e33349a944871ad59ac23d43be74a0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S26be00f0bb924eb49805b07b330b7542z.jpg"
  ],
- "last_cat": "غرامة مجوهرات",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "nails",
@@ -231,7 +234,8 @@
   "hair",
   "dresses",
   "loungewear",
-  "jewelry"
+  "jewelry",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-11": {
@@ -239,7 +243,8 @@
    "hair": 1,
    "dresses": 1,
    "loungewear": 1,
-   "jewelry": 1
+   "jewelry": 1,
+   "evening-dresses": 1
   }
  }
 }
