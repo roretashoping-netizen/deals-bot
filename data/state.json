@@ -130,11 +130,13 @@
   "1005011942666878": "2026-11-11",
   "1005006982718799": "2026-11-11",
   "1005008459531182": "2026-11-11",
-  "1005007306603805": "2026-11-11"
+  "1005007306603805": "2026-11-11",
+  "1005006860905241": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
-  "2026-11-11": 36
+  "2026-11-11": 36,
+  "2026-11-12": 1
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -257,7 +259,8 @@
   "هدية عيد الحب، حقيبة سهرة مربعة",
   "صندوق مجوهرات مخملي صينية عرض درج",
   "فستان حفلة موسيقية أنيق باللون الأحمر",
-  "زوج من أقراط اللؤلؤ على شكل"
+  "زوج من أقراط اللؤلؤ على شكل",
+  "عباية إسلامية بغطاء للرأس وأكمام سموكينج"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -380,12 +383,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfced1549a5104635b19b02e8bf9d4528q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd7ca7a4a32524fa78f7bb104a3df4c20q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S00feb607486e467f9913ee85921bef4dO.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S6e091f2960824e71b66440bedce4afcde.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6e091f2960824e71b66440bedce4afcde.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S495dfb5d2eaa42a4adc6fad98ddf6ab0V.jpg"
  ],
- "last_cat": "الأزياء والمجوهرات",
+ "last_cat": "Muslim Fashion",
  "amazon_daily": {},
  "recent_cats": [
-  "kitchen",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
@@ -394,19 +397,12 @@
   "evening-bags",
   "jewelry",
   "dresses",
-  "jewelry"
+  "jewelry",
+  "abayas"
  ],
  "cat_day": {
-  "2026-11-11": {
-   "nails": 2,
-   "hair": 1,
-   "dresses": 2,
-   "loungewear": 2,
-   "jewelry": 6,
-   "evening-dresses": 35,
-   "evening-bags": 6,
-   "kitchen": 3,
-   "makeup-tools": 2
+  "2026-11-12": {
+   "abayas": 1
   }
  },
  "extra_day": {
@@ -456,7 +452,8 @@
   "1005007038142972": 1.0,
   "1005006982718799": 7.0,
   "1005008459531182": 7.0,
-  "1005007306603805": 7.0
+  "1005007306603805": 7.0,
+  "1005006860905241": 7.0
  },
  "digest_day": "2026-11-11"
 }
