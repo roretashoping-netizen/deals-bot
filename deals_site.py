@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "11"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "12"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
