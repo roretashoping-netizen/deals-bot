@@ -154,12 +154,14 @@
   "1005009681679858": "2026-11-12",
   "1005012662453490": "2026-11-12",
   "1005008144709940": "2026-11-12",
-  "1005007096798819": "2026-11-12"
+  "1005007096798819": "2026-11-12",
+  "1005007344991503": "2026-11-12",
+  "1005012807803805": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 12
+  "2026-11-12": 13
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -306,7 +308,9 @@
   "سباركلي ضوء الشمبانيا الترتر فساتين حفلات",
   "فستان سهرة ذهبي من vines، فستان",
   "حقيبة يد أنيقة وفاخرة بتصميم عصري",
-  "خمر مسدس المخملية مجوهرات مزدوجة حلقة"
+  "خمر مسدس المخملية مجوهرات مزدوجة حلقة",
+  "سلسلة حقائب لينة موضة الكتف حقيبة",
+  "فستان نسائي كاجوال بتصميم أنيق وفضفاض،"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -453,13 +457,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfcdbc74917344eaca07a18240fffc44do.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3a108d1023c649bc99fd83d40d89831fO.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S50ada9895ce94723b70f35057142173bI.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S1cf4784f4f9a474496c407de7f823f49c.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1cf4784f4f9a474496c407de7f823f49c.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf6d7edcd92c74d15855d4d5dfe8c7d2aM.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S72790b40393e46bda9da44f98219f855l.jpg"
  ],
- "last_cat": "مواد تغليف وعرض المجوهرات",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
   "dresses",
   "jewelry",
   "evening-dresses",
@@ -467,21 +471,23 @@
   "evening-dresses",
   "evening-dresses",
   "evening-bags",
-  "jewelry"
+  "jewelry",
+  "evening-bags",
+  "dresses"
  ],
  "cat_day": {
   "2026-11-12": {
    "abayas": 1,
-   "dresses": 4,
+   "dresses": 5,
    "jewelry": 7,
    "evening-dresses": 10,
-   "evening-bags": 2
+   "evening-bags": 3
   }
  },
  "extra_day": {
   "2026-11-12": {
    "evening-dresses": 10,
-   "evening-bags": 2
+   "evening-bags": 3
   }
  },
  "taste": {
@@ -564,7 +570,10 @@
   "1005009681679858": 9.0,
   "1005012662453490": 7.0,
   "1005008144709940": 7.0,
-  "1005007096798819": 7.0
+  "1005007096798819": 7.0,
+  "1005007344991503": 7.0,
+  "1005007540013172": 4.0,
+  "1005012807803805": 7.0
  },
  "digest_day": "2026-11-12"
 }
