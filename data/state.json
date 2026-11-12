@@ -133,12 +133,13 @@
   "1005007306603805": "2026-11-11",
   "1005006860905241": "2026-11-12",
   "1005007822666127": "2026-11-12",
-  "1005010307125874": "2026-11-12"
+  "1005010307125874": "2026-11-12",
+  "1005011717998920": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 3
+  "2026-11-12": 4
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -264,7 +265,8 @@
   "زوج من أقراط اللؤلؤ على شكل",
   "عباية إسلامية بغطاء للرأس وأكمام سموكينج",
   "ربيع الخريف س الرقبة مطاطا متماسكة",
-  "مزاجه الكورية تقليد اللؤلؤ سلسلة معدنية"
+  "مزاجه الكورية تقليد اللؤلؤ سلسلة معدنية",
+  "مجوهرات فضية اللون من لؤلؤ المياه"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -390,12 +392,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S6e091f2960824e71b66440bedce4afcde.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S495dfb5d2eaa42a4adc6fad98ddf6ab0V.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S904785c9ef01483489a8a990c22c80a9o.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Scb5994dbaeef4a15abe6e8c6ae31dec0V.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scb5994dbaeef4a15abe6e8c6ae31dec0V.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S77d8ca89683b4cda92cf95b56ebfc9d9j.jpg"
  ],
  "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-bags",
@@ -404,13 +406,14 @@
   "jewelry",
   "abayas",
   "dresses",
+  "jewelry",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-12": {
    "abayas": 1,
    "dresses": 1,
-   "jewelry": 1
+   "jewelry": 2
   }
  },
  "extra_day": {
@@ -463,7 +466,10 @@
   "1005007306603805": 7.0,
   "1005006860905241": 7.0,
   "1005007822666127": 7.0,
-  "1005010307125874": 7.0
+  "1005010307125874": 7.0,
+  "1005007476648715": 3.0,
+  "1005007345116781": 2.0,
+  "1005011717998920": 7.0
  },
  "digest_day": "2026-11-11"
 }
