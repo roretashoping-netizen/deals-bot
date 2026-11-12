@@ -145,12 +145,15 @@
   "1005007170645994": "2026-11-12",
   "1005013324601029": "2026-11-12",
   "1005008089049916": "2026-11-12",
-  "1005012736821312": "2026-11-12"
+  "1005012736821312": "2026-11-12",
+  "1005008082192022": "2026-11-12",
+  "1005012743078442": "2026-11-12",
+  "1005005907024634": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 8
+  "2026-11-12": 10
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -288,7 +291,10 @@
   "التطريز المرأة حقيبة كروسبودي موضوع حقيبة",
   "فستان نسائي ميدي بأكمام قصيرة وياقة",
   "فساتين سهرة مخصصة بأكمام تشبه جناح",
-  "أقراط جديدة رائعة من الفضة الإسترلينية"
+  "أقراط جديدة رائعة من الفضة الإسترلينية",
+  "تخصيص العربية فساتين السهرة الأخضر كريستال",
+  "فستان نسائي أنيق طويل أسود بحزام",
+  "jkeli فضة كيلو مطلية بالذهب قلادة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -426,34 +432,37 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf6a6b93d75dd428dac3adbd8ccc320a4D.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa10ecbefe4264ce388a7e31640e3a6cem.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S311ab0fd40be49dfa76ffe8ea6c00f60I.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Scb6e0dc1094e44f29534b41e20fe09308.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scb6e0dc1094e44f29534b41e20fe09308.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4daff490d078488e920827a566e7627cv.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S830a17cb84b24e888b4665eebf5e8b12z.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sca71ef96af6345329c8e5ce271593a9cr.jpg"
  ],
  "last_cat": "غرامة مجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "dresses",
-  "evening-dresses",
-  "evening-dresses",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
   "evening-bags",
   "dresses",
   "evening-dresses",
+  "jewelry",
+  "evening-dresses",
+  "dresses",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-12": {
    "abayas": 1,
-   "dresses": 3,
-   "jewelry": 4,
-   "evening-dresses": 6,
+   "dresses": 4,
+   "jewelry": 5,
+   "evening-dresses": 7,
    "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-12": {
-   "evening-dresses": 6,
+   "evening-dresses": 7,
    "evening-bags": 1
   }
  },
@@ -526,7 +535,10 @@
   "1005007170645994": 7.0,
   "1005013324601029": 9.0,
   "1005008089049916": 9.0,
-  "1005012736821312": 7.0
+  "1005012736821312": 7.0,
+  "1005008082192022": 8.0,
+  "1005012743078442": 7.0,
+  "1005005907024634": 7.0
  },
- "digest_day": "2026-11-11"
+ "digest_day": "2026-11-12"
 }
