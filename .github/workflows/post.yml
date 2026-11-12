@@ -2,7 +2,7 @@ name: AliExpress Telegram Bot
 
 on:
   schedule:
-    - cron: "*/30 6-21 * * *"
+    - cron: "4,19,34,49 6-21 * * *"
   workflow_dispatch:
     inputs:
       focus:
