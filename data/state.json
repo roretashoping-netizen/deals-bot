@@ -139,12 +139,16 @@
   "1005012519369534": "2026-11-12",
   "1005009888683456": "2026-11-12",
   "1005010419018867": "2026-11-12",
-  "1005012013810951": "2026-11-12"
+  "1005012013810951": "2026-11-12",
+  "1005012470614789": "2026-11-12",
+  "1005012410958110": "2026-11-12",
+  "1005007170645994": "2026-11-12",
+  "1005013324601029": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 6
+  "2026-11-12": 7
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -276,7 +280,11 @@
   "فستان نسائي أنيق من الساتان بلون",
   "فساتين سهرة بكتف واحد بدون أكمام",
   "فستان سهرة نسائي من loretta رداء",
-  "oirlv شبكات صندوق ساعة صندوق مجوهرات"
+  "oirlv شبكات صندوق ساعة صندوق مجوهرات",
+  "فستان سهرة سانسا مخصص باللون الأخضر",
+  "فساتين سهرة ذهبية من roses بدون",
+  "التطريز المرأة حقيبة كروسبودي موضوع حقيبة",
+  "فستان نسائي ميدي بأكمام قصيرة وياقة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -408,33 +416,39 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S63161036fc9f4a1bb60ea386dc0e3b3bY.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S292658e404b7409ba4b8c9b4c2377f30E.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf530f9bea40b4af49280f4422445078dM.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sf9b9e770ac2a4fa7b45301d7d28f0196a.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf9b9e770ac2a4fa7b45301d7d28f0196a.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sefca2820f6744bf685623787c0b32475i.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf07d16e4bcb24e469cede9d27041f14fP.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf6a6b93d75dd428dac3adbd8ccc320a4D.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa10ecbefe4264ce388a7e31640e3a6cem.png"
  ],
- "last_cat": "مواد تغليف وعرض المجوهرات",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "jewelry",
-  "abayas",
-  "dresses",
-  "jewelry",
-  "jewelry",
   "evening-dresses",
   "dresses",
   "evening-dresses",
   "evening-dresses",
-  "jewelry"
+  "jewelry",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-bags",
+  "dresses"
  ],
  "cat_day": {
   "2026-11-12": {
    "abayas": 1,
-   "dresses": 2,
+   "dresses": 3,
    "jewelry": 3,
-   "evening-dresses": 3
+   "evening-dresses": 5,
+   "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-12": {
-   "evening-dresses": 3
+   "evening-dresses": 5,
+   "evening-bags": 1
   }
  },
  "taste": {
@@ -500,7 +514,11 @@
   "1005006782991340": 4.0,
   "1005007170084362": 3.0,
   "1005007791815370": 1.0,
-  "1005012013810951": 7.0
+  "1005012013810951": 7.0,
+  "1005012470614789": 9.0,
+  "1005012410958110": 7.0,
+  "1005007170645994": 7.0,
+  "1005013324601029": 9.0
  },
  "digest_day": "2026-11-11"
 }
