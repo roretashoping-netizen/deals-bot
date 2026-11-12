@@ -1513,6 +1513,9 @@ SCOUT_KEYWORDS = [
     "luxury evening dress women", "arabic evening dress", "dubai evening gown", "elegant evening gown long",
     "muslim evening dress long sleeve", "sequin evening dress", "satin evening gown", "beaded evening dress",
     "kaftan evening dress", "mermaid evening dress", "evening dress plus size", "prom dress long elegant",
+    "modest evening dress", "long sleeve evening gown elegant", "chiffon evening dress long", "velvet evening dress",
+    "wedding guest dress elegant", "formal occasion dress women", "luxury caftan dubai", "high neck evening dress",
+    "muslim evening gown plus size", "elegant party dress long",
 ]
 
 
@@ -1554,7 +1557,7 @@ def cmd_scout(cfg):
                                for p in good[:6]]})
     rows.sort(key=lambda r: -(r["orders"] * (r["rating"] / 100) ** 4))
     print(f"متاجر سهرة مؤهلة: {len(rows)}")
-    for r in rows[:15]:
+    for r in rows:
         print("SCOUT " + json.dumps(r, ensure_ascii=False))
     return 0
 
