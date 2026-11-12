@@ -4,6 +4,7 @@
     9,
     25
   ],
+  "run_every_minutes": 15,
   "currency": "SAR",
   "currency_label": "ريال",
   "language": "AR",
