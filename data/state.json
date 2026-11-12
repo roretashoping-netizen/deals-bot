@@ -131,12 +131,14 @@
   "1005006982718799": "2026-11-11",
   "1005008459531182": "2026-11-11",
   "1005007306603805": "2026-11-11",
-  "1005006860905241": "2026-11-12"
+  "1005006860905241": "2026-11-12",
+  "1005007822666127": "2026-11-12",
+  "1005010307125874": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 1
+  "2026-11-12": 3
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -260,7 +262,9 @@
   "صندوق مجوهرات مخملي صينية عرض درج",
   "فستان حفلة موسيقية أنيق باللون الأحمر",
   "زوج من أقراط اللؤلؤ على شكل",
-  "عباية إسلامية بغطاء للرأس وأكمام سموكينج"
+  "عباية إسلامية بغطاء للرأس وأكمام سموكينج",
+  "ربيع الخريف س الرقبة مطاطا متماسكة",
+  "مزاجه الكورية تقليد اللؤلؤ سلسلة معدنية"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -384,13 +388,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd7ca7a4a32524fa78f7bb104a3df4c20q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S00feb607486e467f9913ee85921bef4dO.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6e091f2960824e71b66440bedce4afcde.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S495dfb5d2eaa42a4adc6fad98ddf6ab0V.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S495dfb5d2eaa42a4adc6fad98ddf6ab0V.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S904785c9ef01483489a8a990c22c80a9o.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scb5994dbaeef4a15abe6e8c6ae31dec0V.jpg"
  ],
- "last_cat": "Muslim Fashion",
+ "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
@@ -398,11 +402,15 @@
   "jewelry",
   "dresses",
   "jewelry",
-  "abayas"
+  "abayas",
+  "dresses",
+  "jewelry"
  ],
  "cat_day": {
   "2026-11-12": {
-   "abayas": 1
+   "abayas": 1,
+   "dresses": 1,
+   "jewelry": 1
   }
  },
  "extra_day": {
@@ -453,7 +461,9 @@
   "1005006982718799": 7.0,
   "1005008459531182": 7.0,
   "1005007306603805": 7.0,
-  "1005006860905241": 7.0
+  "1005006860905241": 7.0,
+  "1005007822666127": 7.0,
+  "1005010307125874": 7.0
  },
  "digest_day": "2026-11-11"
 }
