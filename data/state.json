@@ -148,12 +148,14 @@
   "1005012736821312": "2026-11-12",
   "1005008082192022": "2026-11-12",
   "1005012743078442": "2026-11-12",
-  "1005005907024634": "2026-11-12"
+  "1005005907024634": "2026-11-12",
+  "1005009023669076": "2026-11-12",
+  "1005006982814523": "2026-11-12"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 10
+  "2026-11-12": 11
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -294,7 +296,9 @@
   "أقراط جديدة رائعة من الفضة الإسترلينية",
   "تخصيص العربية فساتين السهرة الأخضر كريستال",
   "فستان نسائي أنيق طويل أسود بحزام",
-  "jkeli فضة كيلو مطلية بالذهب قلادة"
+  "jkeli فضة كيلو مطلية بالذهب قلادة",
+  "فساتين سهرة نسائية فاخرة مصنوعة حسب",
+  "أقراط معدنية دائرية أنيقة وعصرية للنساء"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -435,13 +439,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Scb6e0dc1094e44f29534b41e20fe09308.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S4daff490d078488e920827a566e7627cv.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S830a17cb84b24e888b4665eebf5e8b12z.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sca71ef96af6345329c8e5ce271593a9cr.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sca71ef96af6345329c8e5ce271593a9cr.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S76894abe7123449ba414faa75de8b3fah.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb545335138e2421fbdcb9195a37808abt.png"
  ],
- "last_cat": "غرامة مجوهرات",
+ "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
   "evening-dresses",
   "evening-bags",
   "dresses",
@@ -449,20 +453,22 @@
   "jewelry",
   "evening-dresses",
   "dresses",
+  "jewelry",
+  "evening-dresses",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-12": {
    "abayas": 1,
    "dresses": 4,
-   "jewelry": 5,
-   "evening-dresses": 7,
+   "jewelry": 6,
+   "evening-dresses": 8,
    "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-12": {
-   "evening-dresses": 7,
+   "evening-dresses": 8,
    "evening-bags": 1
   }
  },
@@ -538,7 +544,11 @@
   "1005012736821312": 7.0,
   "1005008082192022": 8.0,
   "1005012743078442": 7.0,
-  "1005005907024634": 7.0
+  "1005005907024634": 7.0,
+  "1005009023669076": 7.0,
+  "1005008248062713": 4.0,
+  "1005007345389021": 2.0,
+  "1005006982814523": 7.0
  },
  "digest_day": "2026-11-12"
 }
