@@ -176,13 +176,14 @@
   "1005009356058707": "2026-11-13",
   "1005008144973191": "2026-11-13",
   "1005005942791349": "2026-11-13",
-  "1005006995365069": "2026-11-13"
+  "1005006995365069": "2026-11-13",
+  "1005007010286105": "2026-11-13"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
-  "2026-11-13": 8
+  "2026-11-13": 9
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -351,7 +352,8 @@
   "فساتين سهرة نسائية فاخرة من lena",
   "حقيبة ساعة مضادة للغبار، منظم لتخزين",
   "تخصيص كم طويل الريش ارتفاع منخفض",
-  "مشبك كفة أذن لؤلؤية على شكل"
+  "مشبك كفة أذن لؤلؤية على شكل",
+  "وهمية ثقب الأذن مزدوجة دائرة الأذن"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -520,12 +522,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S695729b5ac41464ab0da22878fa0b2abf.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7ed1973230fd4e79af6669fba5a23ff28.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf77fad1b11fe49ef8b04ac22c1fcb5f6f.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sfcff0443861844bb983859ed62fdc9daA.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sfcff0443861844bb983859ed62fdc9daA.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7aea3adcab9841f1922393de6749ce17k.jpg"
  ],
  "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
@@ -534,12 +536,13 @@
   "evening-dresses",
   "jewelry",
   "evening-dresses",
+  "jewelry",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-13": {
    "dresses": 1,
-   "jewelry": 7,
+   "jewelry": 8,
    "evening-dresses": 10,
    "evening-bags": 1
   }
@@ -669,7 +672,15 @@
   "1005008721450892": 4.0,
   "1005008144973191": 7.0,
   "1005005942791349": 7.0,
-  "1005006995365069": 7.0
+  "1005006995365069": 7.0,
+  "1005010806530241": 4.0,
+  "1005012524094179": 3.0,
+  "1005012910369997": 2.0,
+  "1005006994712180": 4.0,
+  "1005008144942233": 3.0,
+  "1005012010895942": 4.0,
+  "1005006966216830": 4.0,
+  "1005007010286105": 7.0
  },
  "digest_day": "2026-11-13"
 }
