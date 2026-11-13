@@ -174,13 +174,15 @@
   "1005007038307554": "2026-11-13",
   "1005012282122593": "2026-11-13",
   "1005009356058707": "2026-11-13",
-  "1005008144973191": "2026-11-13"
+  "1005008144973191": "2026-11-13",
+  "1005005942791349": "2026-11-13",
+  "1005006995365069": "2026-11-13"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
-  "2026-11-13": 7
+  "2026-11-13": 8
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -347,7 +349,9 @@
   "أقراط اللؤلؤ الكلاسيكية للنساء ، خواتم",
   "فستان سهرة nfyn بلون الشمبانيا مكشوف",
   "فساتين سهرة نسائية فاخرة من lena",
-  "حقيبة ساعة مضادة للغبار، منظم لتخزين"
+  "حقيبة ساعة مضادة للغبار، منظم لتخزين",
+  "تخصيص كم طويل الريش ارتفاع منخفض",
+  "مشبك كفة أذن لؤلؤية على شكل"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -514,33 +518,35 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S0fbac9a5183c49c4bd3aa5185ccde948B.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5d47270021f540e8b1d86112622a2c9f4.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S695729b5ac41464ab0da22878fa0b2abf.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S7ed1973230fd4e79af6669fba5a23ff28.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7ed1973230fd4e79af6669fba5a23ff28.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf77fad1b11fe49ef8b04ac22c1fcb5f6f.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sfcff0443861844bb983859ed62fdc9daA.jpg"
  ],
- "last_cat": "الساعات الملحقات",
+ "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
   "evening-dresses",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
   "jewelry",
   "evening-dresses",
+  "evening-dresses",
+  "jewelry",
   "evening-dresses",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-13": {
    "dresses": 1,
-   "jewelry": 6,
-   "evening-dresses": 9,
+   "jewelry": 7,
+   "evening-dresses": 10,
    "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-13": {
-   "evening-dresses": 9,
+   "evening-dresses": 10,
    "evening-bags": 1
   }
  },
@@ -661,7 +667,9 @@
   "1005011653992353": 2.0,
   "1005008296034051": 2.0,
   "1005008721450892": 4.0,
-  "1005008144973191": 7.0
+  "1005008144973191": 7.0,
+  "1005005942791349": 7.0,
+  "1005006995365069": 7.0
  },
  "digest_day": "2026-11-13"
 }
