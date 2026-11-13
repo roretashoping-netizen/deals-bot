@@ -168,13 +168,16 @@
   "1005006994736185": "2026-11-13",
   "1005007252603041": "2026-11-13",
   "1005012151678541": "2026-11-13",
-  "1005011856400235": "2026-11-13"
+  "1005011856400235": "2026-11-13",
+  "1005008451781522": "2026-11-13",
+  "1005012052860838": "2026-11-13",
+  "1005007038307554": "2026-11-13"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
-  "2026-11-13": 5
+  "2026-11-13": 6
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -335,7 +338,10 @@
   "صندوق مجوهرات محمول، منظم مجوهرات، علبة",
   "تخصيص أزياء بسيطة البريق جيرسي مطرزة",
   "فساتين سهرة فاخرة مخصصة من سانسا",
-  "أقراط أنزيو الجديدة من الذهب المطلي"
+  "أقراط أنزيو الجديدة من الذهب المطلي",
+  "فستان حفلات أنيق باللون الأحمر الزنبق",
+  "حقيبة سهرة مصنوعة يدويًا من اللؤلؤ،",
+  "أقراط اللؤلؤ الكلاسيكية للنساء ، خواتم"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -496,16 +502,19 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S4726ef097ef34e4ebca5a9e131966a45X.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S41417699581843d69380d245b1c21155H.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Ae8ad66771b624aeab63838f81a8168bbj.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S7a199df9a02d466d86c5983349f29e92p.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7a199df9a02d466d86c5983349f29e92p.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8e5cb2fb38c24e74b83e885a50c6b11ce.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se11d199b78e543b1910f76737e1c8960A.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0fbac9a5183c49c4bd3aa5185ccde948B.jpg"
  ],
- "last_cat": "غرامة مجوهرات",
+ "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
-  "evening-dresses",
   "evening-bags",
   "jewelry",
+  "evening-dresses",
+  "jewelry",
+  "evening-dresses",
   "evening-dresses",
   "jewelry",
   "evening-dresses",
@@ -515,14 +524,14 @@
  "cat_day": {
   "2026-11-13": {
    "dresses": 1,
-   "jewelry": 4,
-   "evening-dresses": 5,
+   "jewelry": 5,
+   "evening-dresses": 7,
    "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-13": {
-   "evening-dresses": 5,
+   "evening-dresses": 7,
    "evening-bags": 1
   }
  },
@@ -627,7 +636,15 @@
   "1005012151678541": 9.0,
   "1005007345490262": 3.0,
   "1005012523816973": 4.0,
-  "1005011856400235": 9.0
+  "1005011856400235": 9.0,
+  "1005008451781522": 9.0,
+  "1005012052860838": 7.0,
+  "1005012172885053": 2.0,
+  "1005013165297288": 3.0,
+  "1005011942608983": 4.0,
+  "1005007010219686": 4.0,
+  "1005009916292069": 2.0,
+  "1005007038307554": 7.0
  },
- "digest_day": "2026-11-12"
+ "digest_day": "2026-11-13"
 }
