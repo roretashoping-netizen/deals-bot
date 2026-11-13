@@ -157,12 +157,14 @@
   "1005007096798819": "2026-11-12",
   "1005007344991503": "2026-11-12",
   "1005012807803805": "2026-11-12",
-  "1005007308183977": "2026-11-12"
+  "1005007308183977": "2026-11-12",
+  "1005007929376653": "2026-11-13"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
-  "2026-11-12": 14
+  "2026-11-12": 14,
+  "2026-11-13": 1
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -312,7 +314,8 @@
   "خمر مسدس المخملية مجوهرات مزدوجة حلقة",
   "سلسلة حقائب لينة موضة الكتف حقيبة",
   "فستان نسائي كاجوال بتصميم أنيق وفضفاض،",
-  "تصميم بسيط أقراط اللؤلؤ الدائرية المجوفة"
+  "تصميم بسيط أقراط اللؤلؤ الدائرية المجوفة",
+  "فساتين سهرة ذهبية فاخرة مقاس كبير"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -462,12 +465,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S1cf4784f4f9a474496c407de7f823f49c.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf6d7edcd92c74d15855d4d5dfe8c7d2aM.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S72790b40393e46bda9da44f98219f855l.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sb2a77667786e4614a9ceb9ae8e3d31b0X.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb2a77667786e4614a9ceb9ae8e3d31b0X.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa9b19762cc6048a3bcf9601cd5ed71bbY.jpg"
  ],
- "last_cat": "الأزياء والمجوهرات",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
   "evening-dresses",
   "jewelry",
   "evening-dresses",
@@ -476,15 +479,12 @@
   "jewelry",
   "evening-bags",
   "dresses",
-  "jewelry"
+  "jewelry",
+  "dresses"
  ],
  "cat_day": {
-  "2026-11-12": {
-   "abayas": 1,
-   "dresses": 5,
-   "jewelry": 8,
-   "evening-dresses": 10,
-   "evening-bags": 3
+  "2026-11-13": {
+   "dresses": 1
   }
  },
  "extra_day": {
@@ -577,7 +577,8 @@
   "1005007344991503": 7.0,
   "1005007540013172": 4.0,
   "1005012807803805": 7.0,
-  "1005007308183977": 7.0
+  "1005007308183977": 7.0,
+  "1005007929376653": 8.0
  },
  "digest_day": "2026-11-12"
 }
