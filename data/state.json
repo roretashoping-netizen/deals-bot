@@ -165,7 +165,8 @@
   "1005011781187830": "2026-11-13",
   "1005008715651645": "2026-11-13",
   "1005008130730643": "2026-11-13",
-  "1005006994736185": "2026-11-13"
+  "1005006994736185": "2026-11-13",
+  "1005007252603041": "2026-11-13"
  },
  "daily": {
   "2026-11-10": 58,
@@ -329,7 +330,8 @@
   "حقيبة دلو فاخرة برباط سحب من",
   "قطعتان من مجموعة مجوهرات عصرية بلون",
   "فساتين لحضور الحفلات الموسيقية من قطعتين",
-  "صندوق مجوهرات محمول، منظم مجوهرات، علبة"
+  "صندوق مجوهرات محمول، منظم مجوهرات، علبة",
+  "تخصيص أزياء بسيطة البريق جيرسي مطرزة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -487,12 +489,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S26f19d5831634201bf792fcdf625071fE.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb5f0a15ab71344da9fdd1ec235a4534dp.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5eaf2aad8cea40fb879b7fa900e2a4a0U.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S4726ef097ef34e4ebca5a9e131966a45X.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4726ef097ef34e4ebca5a9e131966a45X.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S41417699581843d69380d245b1c21155H.jpg"
  ],
- "last_cat": "مواد تغليف وعرض المجوهرات",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "dresses",
   "jewelry",
   "dresses",
   "jewelry",
@@ -501,19 +503,20 @@
   "evening-bags",
   "jewelry",
   "evening-dresses",
-  "jewelry"
+  "jewelry",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-13": {
    "dresses": 1,
    "jewelry": 3,
-   "evening-dresses": 3,
+   "evening-dresses": 4,
    "evening-bags": 1
   }
  },
  "extra_day": {
   "2026-11-13": {
-   "evening-dresses": 3,
+   "evening-dresses": 4,
    "evening-bags": 1
   }
  },
@@ -613,7 +616,8 @@
   "1005006079509573": 4.0,
   "1005008130730643": 9.0,
   "1005007171162290": 2.0,
-  "1005006994736185": 7.0
+  "1005006994736185": 7.0,
+  "1005007252603041": 9.0
  },
  "digest_day": "2026-11-12"
 }
