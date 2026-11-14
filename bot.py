@@ -303,6 +303,16 @@ def trusted_shop(cfg, p):
     return norm_shop(p.get("shop_name") or p.get("shop")) in allowed
 
 
+def open_evening_ok(cfg, p):
+    """فستان مناسبات من متجر غير مختار: نقبله بس لو متجره له اسم تجاري وجودته عالية جدًا."""
+    r = cfg.get("evening_open_rules")
+    if not r or no_brand(p.get("shop_name")):
+        return False
+    return (num(p.get("evaluate_rate")) >= r.get("min_rating_percent", 101)
+            and num(p.get("lastest_volume")) >= r.get("min_orders", 10 ** 9)
+            and len(gallery(p)) >= r.get("min_images", 0))
+
+
 EVENING_WORDS = ("evening", "party", "prom", "formal", "cocktail", "wedding guest", "bridesmaid", "ball gown",
                  "mermaid", "sequin", "سهرة", "سهره", "حفلة", "حفلات", "زفاف")
 
@@ -394,7 +404,9 @@ def pick(cfg, state, products, n):
         if p.get("_kw") and not deals_site.fits_cat(deals_site.category_for(p["_kw"])["slug"], p.get("product_title", "")):
             skip("من غير القسم"); continue  # البحث رجّع منتج من غير القسم (ساعة لما ندور فستان مثلًا)
         trusted = trusted_shop(cfg, p)
-        if is_evening(p) and not trusted:
+        if site_cat(p) == "evening-dresses" and not is_evening(p):
+            skip("مو فستان مناسبات"); continue  # قسم فساتين السهرة: الرسمي للمناسبات بس
+        if is_evening(p) and not trusted and not open_evening_ok(cfg, p):
             skip("سهرة من متجر ثاني")
             st = why.setdefault("_shops", {}).setdefault(str(p.get("shop_name")), [0, 0, 0])
             st[0] += 1
