@@ -184,7 +184,8 @@
   "1005010285628002": "2026-11-14",
   "1005007306737251": "2026-11-14",
   "1005006323050588": "2026-11-14",
-  "1005006860701700": "2026-11-14"
+  "1005006860701700": "2026-11-14",
+  "1005011873058653": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -368,7 +369,8 @@
   "المرأة الساتان هوك إصبع طويل أصابع",
   "مطلية بالذهب الفولاذ المقاوم للصدأ مزدوجة",
   "فستان حفلة موسيقية أزرق فاتح زنبق",
-  "زوج من أقراط اللؤلؤ الفرنسية الأنيقة،"
+  "زوج من أقراط اللؤلؤ الفرنسية الأنيقة،",
+  "فستان سهرة رسمي أنيق باللون الأخضر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -545,12 +547,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc6a321423c3e4a0db3f0b7ab5058cb83V.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb23a97d715764df98408b3d356974c16p.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S2e4e43bde53b494fad9ab13bc8c750abJ.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sb802f2ceaa47432bb816fcc76de2df91q.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb802f2ceaa47432bb816fcc76de2df91q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf13851032b004ab1ba48357c4689bb6fo.jpg"
  ],
- "last_cat": "الأزياء والمجوهرات",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
   "jewelry",
   "jewelry",
   "jewelry",
@@ -559,18 +561,19 @@
   "dresses",
   "jewelry",
   "evening-dresses",
-  "jewelry"
+  "jewelry",
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 1
+   "evening-dresses": 2
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 1
+   "evening-dresses": 2
   }
  },
  "taste": {
@@ -717,7 +720,9 @@
   "1005006323050588": 8.0,
   "1005006994564645": 4.0,
   "1005006966392389": 2.0,
-  "1005006860701700": 9.0
+  "1005006860701700": 9.0,
+  "1005012681501442": 4.0,
+  "1005011873058653": 7.0
  },
  "digest_day": "2026-11-13"
 }
