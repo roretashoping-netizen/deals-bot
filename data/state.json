@@ -234,7 +234,9 @@
   "1005012143460227": "2026-11-14",
   "1005012740939275": "2026-11-14",
   "1005011739716615": "2026-11-14",
-  "1005006572184946": "2026-11-14"
+  "1005006572184946": "2026-11-14",
+  "1005010297769415": "2026-11-14",
+  "1005012070796729": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -468,7 +470,9 @@
   "فستان سهرة فاخر ذهبي بتصميم حورية",
   "فستان سهرة nfyn ذهبي وردي مكشوف",
   "فستان حفلات أنيق من oisslec بتصميم",
-  "فساتين سهرة حورية البحر العربية aso"
+  "فساتين سهرة حورية البحر العربية aso",
+  "فستان حورية البحر الأنيق من المخمل",
+  "فستان سهرة roses من الساتان الأخضر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -695,15 +699,17 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc347e422db0a48acb2a6a06712b9334fU.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S44dd7da40aeb44a9ab3512dc2fb89af2j.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc3b582a0205d471a888d45f470064600b.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S3e2d538467ed46b18b4b32cb5e231ce2j.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3e2d538467ed46b18b4b32cb5e231ce2j.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0ef4f19421f64b61aeeba9c43bbb81b2w.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se4f4fbdaae6f4aa6860def78967ecafb3.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "evening-dresses",
   "evening-bags",
   "bags",
+  "evening-dresses",
+  "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
@@ -715,14 +721,14 @@
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 42,
+   "evening-dresses": 44,
    "evening-bags": 6,
    "bags": 3
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 42,
+   "evening-dresses": 44,
    "evening-bags": 6
   }
  },
@@ -939,7 +945,10 @@
   "1005012344569464": 5.0,
   "1005012740939275": 7.0,
   "1005011739716615": 9.0,
-  "1005006572184946": 7.0
+  "1005006572184946": 7.0,
+  "1005012445324391": 4.0,
+  "1005012070796729": 7.0,
+  "1005010297769415": 7.0
  },
  "digest_day": "2026-11-14"
 }
