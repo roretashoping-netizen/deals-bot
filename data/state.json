@@ -210,14 +210,20 @@
   "1005012317967469": "2026-11-14",
   "1005012317021725": "2026-11-14",
   "1005010538784460": "2026-11-14",
-  "1005008097835517": "2026-11-14"
+  "1005008097835517": "2026-11-14",
+  "1005013158296131": "2026-11-14",
+  "1005012155668663": "2026-11-14",
+  "1005012321666785": "2026-11-14",
+  "1005006865644993": "2026-11-14",
+  "1005012984813337": "2026-11-14",
+  "1005007805560746": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
   "2026-11-13": 9,
-  "2026-11-14": 6
+  "2026-11-14": 7
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -420,7 +426,13 @@
   "فستان زفاف عاجي اللون على الطراز",
   "فستان سهرة طويل الأكمام بتصميم كورسيه",
   "ياردات قماش دانتيل أبيض فاتح مزين",
-  "الفاخرة مصمم المتشرد حقيبة كتف مقبض"
+  "الفاخرة مصمم المتشرد حقيبة كتف مقبض",
+  "فستان سهرة رسمي طويل بياقة عالية",
+  "فساتين سهرة من الشيفون بدون أكمام",
+  "فساتين سهرة من الشيفون اللامع بتصميم",
+  "فساتين سهرة رسمية مخصصة باللون الوردي",
+  "فستان بيلا طويل الأكمام مزين بالترتر",
+  "حقيقي الصف جلد المرأة ركاب حمل"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -623,7 +635,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S948629290cb247319dad87893cee0392q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S68cc826ad0564d4f9c437fbf8521a8e9C.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S456365ad518c4d73a73c1bb97a8faecfS.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sbb40a0dd4c9b44bc87370df67c8db7c0o.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbb40a0dd4c9b44bc87370df67c8db7c0o.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9b69c36220554e3f8316ee744b22cf4a0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7e91900c1e5c48c58b1c3b3e240bb325l.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf93da1a1b38e4b94b1bfd9911325f004g.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se9bfb2f4f99b4a34b33ddfc6fee71373B.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6b8e49d0a82f4bb2a1a16bb6b1263e08Z.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scb60754669e4420fb6119950557fea0dG.jpg"
  ],
  "last_cat": "المرأة حقائب",
  "amazon_daily": {},
@@ -631,25 +649,26 @@
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
+  "evening-bags",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses",
-  "evening-bags"
+  "bags"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 22,
-   "evening-bags": 5
+   "evening-dresses": 27,
+   "evening-bags": 5,
+   "bags": 1
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 22,
+   "evening-dresses": 27,
    "evening-bags": 5
   }
  },
@@ -827,7 +846,19 @@
   "1005013338339958": 4.0,
   "1005012317967469": 7.0,
   "1005012317021725": 9.0,
-  "1005008097835517": 9.0
+  "1005008097835517": 9.0,
+  "1005013158296131": 9.0,
+  "1005012155668663": 7.0,
+  "1005012321666785": 7.0,
+  "1005006865644993": 7.0,
+  "1005012984813337": 9.0,
+  "1005004682636288": 5.0,
+  "1005007476528912": 4.0,
+  "1005007345587180": 4.0,
+  "1005008406449092": 4.0,
+  "1005012011239031": 4.0,
+  "1005008077486634": 4.0,
+  "1005007805560746": 7.0
  },
- "digest_day": "2026-11-13"
+ "digest_day": "2026-11-14"
 }
