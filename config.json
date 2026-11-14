@@ -303,8 +303,8 @@
     "jewelry"
   ],
   "evening_open_rules": {
-    "min_rating_percent": 97,
-    "min_orders": 40,
+    "min_rating_percent": 98,
+    "min_orders": 20,
     "min_images": 5,
     "exclude_shop_words": [
       "kid",
