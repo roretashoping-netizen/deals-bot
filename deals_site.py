@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "25"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "26"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -378,6 +378,8 @@ h2{font-family:"Amiri",serif;color:var(--gold2);font-size:27px;line-height:1.4;m
 .meta li{padding:7px 0;border-bottom:1px solid rgba(201,163,92,.1)}
 .buy{display:block;text-align:center;margin:16px 0 10px;background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#140f08;font-weight:700;font-size:17px;padding:14px;border-radius:14px;box-shadow:0 10px 30px rgba(201,163,92,.22);transition:filter .2s}
 .buy:hover{filter:brightness(1.08)}
+.buy{display:flex;align-items:center;justify-content:center;gap:10px}
+.blogo{height:24px;width:auto;border-radius:6px;background:#fff;padding:2px 6px}
 .share{display:flex;gap:10px;flex-wrap:wrap}
 .share a{flex:1;text-align:center;padding:10px;border-radius:12px;border:1px solid var(--line);font-size:14px;transition:border-color .2s}
 .share a:hover,.join:hover{border-color:var(--gold)}
@@ -462,6 +464,24 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 </div></footer></body></html>"""
 
 
+# مصدر كل منتج (المنصة اللي ينشرى منها): الاسم وشعارها في زر الشراء
+SOURCES = {
+    "aliexpress": {"name": "علي إكسبريس", "logo": "aliexpress.png"},
+    "shein": {"name": "شي إن", "logo": "shein.png"},
+}
+BRANDS_DIR = BASE_DIR / "data" / "brands"  # شعارات المنصات الرسمية (من مواد برنامج الأفلييت)
+
+
+def buy_button(cfg, x):
+    """زر «اشتري الفستان من ...» بحسب مصدر المنتج، ومعه شعار المنصة لو موجود."""
+    site = cfg["site_url"].rstrip("/")
+    src = SOURCES.get(x.get("source") or "aliexpress", SOURCES["aliexpress"])
+    logo = (f'<img class="blogo" src="{site}/brands/{src["logo"]}" alt="{esc(src["name"])}">'
+            if (BRANDS_DIR / src["logo"]).exists() else "")
+    return (f'<a class="buy" href="{esc(x["link"])}" target="_blank" rel="nofollow sponsored noopener">'
+            f'{logo}<span>اشتري الفستان من {esc(src["name"])}</span></a>')
+
+
 def card(cfg, x):
     site = cfg["site_url"].rstrip("/")
     old = f"<s>{money(x['old'])}</s>" if x["old"] > x["price"] > 0 else ""
@@ -530,7 +550,7 @@ def product_page(cfg, x, related):
    {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
    <a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>
    <ul class="meta">{meta}</ul>
-   <a class="buy" href="{esc(x['link'])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a>
+   {buy_button(cfg, x)}
    {share_html(f"{site}/p/{x['id']}.html", f"{name} بـ {money(x['price'])} ريال من علي إكسبريس")}
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>
    <p class="note">الأسعار قابلة للتغيير من مصدرها، والسعر المعروض هو لحظة النشر.</p>
@@ -632,7 +652,7 @@ def best_page(cfg, c, lst):
                  f'<p>{about}</p>'
                  f'<p class="bm">⭐ {x["rating"]} من 5 · 🛒 أكثر من {x["orders"]:,} طلب</p>'
                  f'<p class="bp">{money(x["price"])} ريال{old}{disc}</p>'
-                 f'<a class="buy" href="{esc(x["link"])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a></div></div>')
+                 f'{buy_button(cfg, x)}</div></div>')
     body = (f'<div class="crumbs"><a href="{site}/">الرئيسية</a> › <a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a></div>'
             f"<h1>{esc(h1)}</h1><p class='intro'>{esc(intro)}</p>{rows}"
             f'<p><a class="join" href="{site}/c/{c["slug"]}.html">شوفي كل عروض {esc(c["name"])} ←</a></p>')
@@ -676,6 +696,10 @@ def build(cfg, only_ids=None):
     (OUT / "c").mkdir(parents=True, exist_ok=True)
     (OUT / "style.css").write_text(CSS, encoding="utf-8")
     make_logo()
+    if BRANDS_DIR.exists():  # شعارات المنصات لزر الشراء
+        (OUT / "brands").mkdir(exist_ok=True)
+        for f in BRANDS_DIR.glob("*.png"):
+            shutil.copyfile(f, OUT / "brands" / f.name)
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     newest = list(reversed(items))
     by_cat = {}
