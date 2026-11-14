@@ -308,6 +308,9 @@ def open_evening_ok(cfg, p):
     r = cfg.get("evening_open_rules")
     if not r or no_brand(p.get("shop_name")):
         return False
+    shop = norm_shop(p.get("shop_name"))
+    if any(w in shop for w in r.get("exclude_shop_words", [])):
+        return False  # متاجر أطفال أو غير لائقة
     return (num(p.get("evaluate_rate")) >= r.get("min_rating_percent", 101)
             and num(p.get("lastest_volume")) >= r.get("min_orders", 10 ** 9)
             and len(gallery(p)) >= r.get("min_images", 0))
@@ -406,7 +409,9 @@ def pick(cfg, state, products, n):
         trusted = trusted_shop(cfg, p)
         if site_cat(p) == "evening-dresses" and not is_evening(p):
             skip("مو فستان مناسبات"); continue  # قسم فساتين السهرة: الرسمي للمناسبات بس
-        if is_evening(p) and not trusted and not open_evening_ok(cfg, p):
+        if is_evening(p) and not trusted and open_evening_ok(cfg, p):
+            trusted = True  # متجر غير مختار بس جودته عالية جدًا: يعامل معاملة المتاجر المختارة
+        if is_evening(p) and not trusted:
             skip("سهرة من متجر ثاني")
             st = why.setdefault("_shops", {}).setdefault(str(p.get("shop_name")), [0, 0, 0])
             st[0] += 1
