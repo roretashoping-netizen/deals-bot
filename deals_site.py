@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "21"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "22"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -714,16 +714,14 @@ def build(cfg, only_ids=None):
 
     for c in site_cats(cfg):
         lst = by_cat.get(c["slug"], [])[:60]
-        intro = (f"أفضل عروض {c['name']} من علي إكسبريس بأسعار مخفضة، مختارة بتقييم عالي وآلاف الطلبات، "
-                 f"مع توصيل للسعودية والإمارات والكويت وقطر والبحرين وعمان. نحدّثها يوميًا.")
+        intro = "تشكيلة من أرقى فساتين السهرة والمناسبات، مختارة بعناية وتتجدد يوميًا."
         (OUT / "c" / f"{c['slug']}.html").write_text(
             list_page(cfg, f"{c['name']} | {cfg['site_name']}", f"{c['name']}",
                       intro, f"c/{c['slug']}.html", lst,
                       f"<div class='bests'><a href='{site}/best/{c['slug']}.html'>🏆 أفضل {len(best_items(lst))} منتجات في {esc(c['name'])}</a></div>"
                       if c in bests else ""), encoding="utf-8")
 
-    intro = ("فساتين سهرة ومناسبات مختارة بعناية: أعراس وخطوبة وحفلات وتخرج، بتصاميم فخمة وألوان راقية. "
-             "كل فستان مختار بذوق وتقييم عالي، والسعر بالريال مع الخصم، وتوصيل للسعودية والخليج.")
+    intro = "تشكيلة مختارة من أرقى فساتين السهرة والمناسبات، بتصاميم فخمة وألوان راقية تليق بإطلالتك."
     hero = ("<section class='hero'><div class='eyebrow'>سهرة · أعراس · خطوبة · تخرج</div>"
             "<h1>فساتين المناسبات</h1><div class='orn'>✦</div>"
             f"<p>{esc(intro)}</p>"
