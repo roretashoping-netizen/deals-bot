@@ -1,5 +1,5 @@
 {
-  "posts_per_day": 12,
+  "posts_per_day": 0,
   "post_hours": [
     9,
     25
@@ -13,21 +13,6 @@
   "max_price": "",
   "keywords_per_run": 5,
   "keywords": [
-    "genuine leather handbag women",
-    "women leather shoulder bag",
-    "women leather crossbody bag",
-    "women leather tote bag",
-    "luxury leather handbag women",
-    "cowhide leather bag women",
-    "women leather top handle bag",
-    "women leather wallet",
-    "FOXER genuine leather bag women",
-    "ZOOLER genuine leather handbag",
-    "BOSTANTEN leather handbag women",
-    "Cnoles genuine leather bag women",
-    "LAORENTOU cow leather bag women",
-    "women earrings",
-    "women necklace",
     "luxury evening dress women",
     "arabic evening dress",
     "dubai evening gown",
@@ -38,18 +23,6 @@
     "beaded evening dress",
     "mermaid evening dress",
     "prom dress long elegant",
-    "luxury evening clutch bag women",
-    "rhinestone evening clutch",
-    "pearl evening bag women",
-    "crystal clutch bag wedding",
-    "satin evening clutch",
-    "luxury party handbag women",
-    "diamond evening bag",
-    "beaded evening clutch",
-    "pearl earrings women",
-    "women gold plated necklace",
-    "women elegant earrings",
-    "women bracelet gold",
     "formal evening gown long",
     "wedding guest dress formal",
     "engagement party dress luxury",
@@ -200,9 +173,7 @@
     "min_images": 4
   },
   "category_weights": {
-    "evening-dresses": 3,
-    "bags": 3,
-    "jewelry": 1.5
+    "evening-dresses": 3
   },
   "store_ids": {
     "2855054": "SERENE HILL Boutique Store",
@@ -267,8 +238,7 @@
     "bags"
   ],
   "extra_daily": {
-    "evening-dresses": 45,
-    "evening-bags": 6
+    "evening-dresses": 50
   },
   "extra_hours": [
     9,
@@ -283,18 +253,12 @@
     "min_images": 4
   },
   "taste_cats": [
-    "evening-dresses",
-    "evening-bags",
-    "bags",
-    "jewelry"
+    "evening-dresses"
   ],
   "taste_min": 7,
   "taste_checks_per_run": 8,
   "site_cats": [
-    "evening-dresses",
-    "evening-bags",
-    "bags",
-    "jewelry"
+    "evening-dresses"
   ],
   "evening_open_rules": {
     "min_rating_percent": 98,
