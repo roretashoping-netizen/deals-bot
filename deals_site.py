@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "13"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "14"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -22,7 +22,14 @@ CATEGORIES = [
      "keywords": ["Sharon Said Boutique evening dress", "Sharon Said evening dress", "Sharon Said dress",
                   "Serene Hill evening dress", "Serene Hill dress", "Serene Hill Boutique",
                   "arabic evening dress", "dubai evening gown", "muslim evening dress long sleeve",
-                  "luxury evening dress women", "Sharon Said Couture evening dress", "Johara Al Sharq gown"]},
+                  "luxury evening dress women", "Sharon Said Couture evening dress", "Johara Al Sharq gown",
+                  "formal evening gown long", "wedding guest dress formal", "engagement party dress luxury",
+                  "lace evening gown long", "chiffon evening dress long sleeve", "off shoulder evening gown",
+                  "velvet evening dress long", "embroidered evening gown", "crystal evening gown luxury",
+                  "plus size evening gown", "graduation party gown long", "elegant ball gown women",
+                  "caftan evening gown luxury", "pleated satin evening dress", "dubai evening gown",
+                  "elegant evening gown long", "sequin evening dress", "satin evening gown", "beaded evening dress",
+                  "mermaid evening dress", "prom dress long elegant"]},
     {"slug": "evening-bags", "name": "حقائب سهرة ومناسبات", "tag": "حقائب_سهرة",
      "keywords": ["luxury evening clutch bag women", "rhinestone evening clutch", "pearl evening bag women",
                   "crystal clutch bag wedding", "satin evening clutch", "luxury party handbag women",
