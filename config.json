@@ -85,7 +85,13 @@
     "garbage",
     "trash",
     "replacement",
-    "spare part"
+    "spare part",
+    "kids",
+    "children",
+    "toddler",
+    "baby",
+    "flower girl",
+    "girls dress"
   ],
   "countries": [
     {
@@ -275,7 +281,7 @@
   "extra_per_run": 5,
   "evening_bag_rules": {
     "min_rating_percent": 96,
-    "min_orders": 150,
+    "min_orders": 50,
     "min_discount_percent": 0,
     "min_price": 40,
     "min_images": 4
@@ -297,8 +303,17 @@
     "jewelry"
   ],
   "evening_open_rules": {
-    "min_rating_percent": 96,
-    "min_orders": 150,
-    "min_images": 5
+    "min_rating_percent": 97,
+    "min_orders": 40,
+    "min_images": 5,
+    "exclude_shop_words": [
+      "kid",
+      "baby",
+      "child",
+      "girl",
+      "sexy",
+      "lingerie",
+      "toddler"
+    ]
   }
 }
