@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "19"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "20"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -450,7 +450,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 <footer><div class="wrap">
 <div class="flogo">{esc(cfg['site_name'])}</div>
 <p>فساتين سهرة ومناسبات مختارة بعناية، بتقييم عالي وتوصيل للسعودية والخليج.</p>
-<p>ℹ️ بعض الروابط في هذا الموقع روابط تسويق بالعمولة من برنامج علي إكسبريس، وما تزيد السعر عليك. الأسعار تتغير باستمرار، والسعر النهائي هو الموجود في صفحة علي إكسبريس.</p>
+<p>الروابط في هذا الموقع روابط تسويقية.</p>
 <p><a href="{tg}">تليجرام</a> · <a href="{site}/sitemap.xml">خريطة الموقع</a></p>
 </div></footer></body></html>"""
 
