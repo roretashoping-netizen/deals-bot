@@ -241,7 +241,8 @@
   "1005010657345434": "2026-11-14",
   "1005012240239167": "2026-11-14",
   "1005006734063687": "2026-11-14",
-  "1005011748202714": "2026-11-14"
+  "1005011748202714": "2026-11-14",
+  "1005012838534236": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -482,7 +483,8 @@
   "بيلا مخصصة الشوكولاته البني واحد الكتف",
   "فساتين سهرة أنيقة باللون الأخضر الفاتح",
   "فستان boeing أحمر على شكل حرف",
-  "فستان سهرة حورية البحر بتصميم قلب"
+  "فستان سهرة حورية البحر بتصميم قلب",
+  "فستان سهرة إمبراطوري بدون حمالات وبدون"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -716,7 +718,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sdf690b1a0efd401f978c82797b730e06t.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S816dabb6d5cb43ba9f44f1ecad338e7ei.jpeg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S9047a8877b224a5bb36a9bc2d21d7bb9d.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa42bd30d2bc04f4998aa3484de79d55eg.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa42bd30d2bc04f4998aa3484de79d55eg.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S585ea83eb88148dc8aaa9b47b33ab8c3U.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -736,14 +739,14 @@
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 49,
+   "evening-dresses": 50,
    "evening-bags": 6,
    "bags": 3
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 49,
+   "evening-dresses": 50,
    "evening-bags": 6
   }
  },
@@ -968,7 +971,8 @@
   "1005011680094993": 7.0,
   "1005010657345434": 7.0,
   "1005012240239167": 9.0,
-  "1005006734063687": 7.0
+  "1005006734063687": 7.0,
+  "1005012838534236": 7.0
  },
  "digest_day": "2026-11-14"
 }
