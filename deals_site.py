@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "15"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "16"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -398,12 +398,12 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 <link rel="stylesheet" href="{site}/style.css">
 {ld}
 </head><body>
-<header><div class="wrap"><a class="logo" href="{site}/">🔥 {esc(cfg['site_name'])}</a>
+<header><div class="wrap"><a class="logo" href="{site}/">👗 {esc(cfg['site_name'])}</a>
 <a class="tg" href="{tg}" target="_blank" rel="noopener">انضمي لقروب العروض على تليجرام</a></div></header>
 <nav class="cats">{cats}</nav>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">
-<p>{esc(cfg['site_name'])}: عروض وتخفيضات علي إكسبريس يوميًا، مختارة بتقييم عالي وتوصيل للسعودية والخليج.</p>
+<p>{esc(cfg['site_name'])}: فساتين سهرة ومناسبات مختارة بتقييم عالي، وتوصيل للسعودية والخليج.</p>
 <p>ℹ️ بعض الروابط في هذا الموقع روابط تسويق بالعمولة من برنامج علي إكسبريس، وما تزيد السعر عليك. الأسعار تتغير باستمرار، والسعر النهائي هو الموجود في صفحة علي إكسبريس.</p>
 <p><a href="{tg}">تليجرام</a> · <a href="{site}/sitemap.xml">خريطة الموقع</a></p>
 </div></footer></body></html>"""
@@ -437,7 +437,7 @@ def product_page(cfg, x, related):
     short = name if len(name) <= 60 else clean_title(name, 60)
     disc_txt = f" بخصم {x['disc']}%" if x["disc"] else ""
     seo_t = x.get("seo_title") or short
-    title = f"{seo_t}{disc_txt} | علي اكسبريس" if len(seo_t) <= 50 else f"{seo_t} | علي اكسبريس"
+    title = f"{seo_t}{disc_txt} | {cfg['site_name']}" if len(seo_t) <= 50 else f"{seo_t} | {cfg['site_name']}"
     desc = ((x["about"].split(".")[0] + ". ") if x.get("about") else "") + (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
             + (f" بدل {money(x['old'])} ريال" if x["old"] > x["price"] > 0 else "")
             + (f"، تقييم {x['rating']} من 5" if x["rating"] else "")
@@ -643,17 +643,16 @@ def build(cfg, only_ids=None):
         intro = (f"أفضل عروض {c['name']} من علي إكسبريس بأسعار مخفضة، مختارة بتقييم عالي وآلاف الطلبات، "
                  f"مع توصيل للسعودية والإمارات والكويت وقطر والبحرين وعمان. نحدّثها يوميًا.")
         (OUT / "c" / f"{c['slug']}.html").write_text(
-            list_page(cfg, f"{c['name']} علي اكسبريس | عروض وتخفيضات اليوم", f"{c['name']} من علي إكسبريس",
+            list_page(cfg, f"{c['name']} | {cfg['site_name']}", f"{c['name']}",
                       intro, f"c/{c['slug']}.html", lst,
                       f"<div class='bests'><a href='{site}/best/{c['slug']}.html'>🏆 أفضل {len(best_items(lst))} منتجات في {esc(c['name'])}</a></div>"
                       if c in bests else ""), encoding="utf-8")
 
-    intro = ("فساتين وإطلالات علي إكسبريس للبنات: فساتين سهرة فخمة، فساتين يومية وعبايات، "
-             "حقائب سهرة وشنط جلد، وإكسسوارات تكمّل إطلالتك. كل قطعة مختارة بذوق وتقييم عالي، "
-             "والسعر بالريال مع الخصم، وتوصيل للسعودية والخليج.")
+    intro = ("فساتين سهرة ومناسبات مختارة بعناية: أعراس وخطوبة وحفلات وتخرج، بتصاميم فخمة وألوان راقية. "
+             "كل فستان مختار بذوق وتقييم عالي، والسعر بالريال مع الخصم، وتوصيل للسعودية والخليج.")
     (OUT / "index.html").write_text(
-        list_page(cfg, f"{cfg['site_name']} | فساتين سهرة وعبايات وحقائب بأسعار مخفضة",
-                  "فساتين وإطلالات علي إكسبريس", intro, "", newest[:60], best_links), encoding="utf-8")
+        list_page(cfg, f"{cfg['site_name']} | سهرة ومناسبات",
+                  "فساتين سهرة ومناسبات", intro, "", newest[:60], best_links), encoding="utf-8")
 
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
 
