@@ -199,7 +199,12 @@
   "1005004278940840": "2026-11-14",
   "1005011719211318": "2026-11-14",
   "1005011931416862": "2026-11-14",
-  "1005007635821074": "2026-11-14"
+  "1005007635821074": "2026-11-14",
+  "1005013054547008": "2026-11-14",
+  "1005012652516020": "2026-11-14",
+  "1005012876098094": "2026-11-14",
+  "1005012967433462": "2026-11-14",
+  "1005010128220887": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -398,7 +403,12 @@
   "فساتين lautaro spring طويلة فاخرة أنيقة",
   "فستان ضيافة زفاف مخصص من قطعتين",
   "فستان سهرة فاخر باللون الوردي للنساء",
-  "حقيبة عشاء للسيدات بكتف واحد، حقيبة"
+  "حقيبة عشاء للسيدات بكتف واحد، حقيبة",
+  "فستان سهرة فاخر محتشم برقبة عالية",
+  "فستان سهرة من التول باللون الوردي",
+  "فستان سهرة ليلي جولد بتصميم حورية",
+  "فساتين سهرة رسمية أنيقة بمقاسات كبيرة",
+  "فستان سهرة أنيق باللون الأخضر الزيتوني"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -590,33 +600,38 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb9e0702842e54bcb81d0f543b16d763fX.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf2a99c285cc146449b37956153e6ffaaY.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S76f98c3b91db4296acfdcb710bb97396a.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S3af3d57e5f884abd8585e769f9991598s.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3af3d57e5f884abd8585e769f9991598s.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sce41e37d59174edd88990775ceb9e80e0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc727c752c8e647209487f9e269e25305O.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd94241d855524ed6b496c2e8607577c3o.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3ba6b8a4412844da92782ee0c04c944bx.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S02d492b0513f4ed6b37cc5b0730b2e57c.png"
  ],
- "last_cat": "المرأة حقائب",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
   "evening-bags",
-  "evening-bags",
-  "evening-bags",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses",
-  "evening-bags"
+  "evening-dresses"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 12,
+   "evening-dresses": 17,
    "evening-bags": 4
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 12,
+   "evening-dresses": 17,
    "evening-bags": 4
   }
  },
@@ -781,7 +796,12 @@
   "1005004278940840": 9.0,
   "1005011719211318": 9.0,
   "1005011931416862": 7.0,
-  "1005007635821074": 7.0
+  "1005007635821074": 7.0,
+  "1005013054547008": 9.0,
+  "1005012652516020": 9.0,
+  "1005012876098094": 9.0,
+  "1005012967433462": 7.0,
+  "1005010128220887": 9.0
  },
  "digest_day": "2026-11-13"
 }
