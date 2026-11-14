@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "17"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "18"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -387,6 +387,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
     return f"""<!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="mitgo-verification" content="7e6f81ec-a72a-4ce8-bcae-142767788f14" />
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
