@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "20"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "21"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -398,6 +398,12 @@ table.codes td b{color:var(--gold2);letter-spacing:1px}
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;padding:34px 0 44px}
 .flogo{font-family:"Amiri",serif;font-size:26px;color:var(--gold2)}
 footer a{color:var(--gold2)}
+.partners{margin-top:22px;padding-top:18px;border-top:1px solid rgba(201,163,92,.12)}
+.ptitle{font-family:"Amiri",serif;color:var(--gold);font-size:19px;margin-bottom:12px}
+.plist{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.pt{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:140px;min-height:56px;padding:10px 20px;border:1px solid var(--line);border-radius:14px;color:var(--ink);font-size:16px;font-weight:500;background:var(--card)}
+.pt small{color:var(--gold);font-size:12px;line-height:1.4}
+.pt.soon{color:var(--muted)}
 ::selection{background:var(--gold);color:#140f08}
 @media(max-width:820px){.prod{grid-template-columns:1fr;gap:20px}}
 @media(max-width:640px){header .wrap{padding:8px 12px}.logo{font-size:23px}.logo img{width:38px;height:38px}.tg{padding:6px 12px;font-size:12px}
@@ -452,6 +458,7 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 <p>فساتين سهرة ومناسبات مختارة بعناية، بتقييم عالي وتوصيل للسعودية والخليج.</p>
 <p>الروابط في هذا الموقع روابط تسويقية.</p>
 <p><a href="{tg}">تليجرام</a> · <a href="{site}/sitemap.xml">خريطة الموقع</a></p>
+<div class="partners"><div class="ptitle">شركاؤنا</div><div class="plist"><span class="pt">علي إكسبريس</span><span class="pt soon">شي إن<small>قريبًا</small></span></div></div>
 </div></footer></body></html>"""
 
 
