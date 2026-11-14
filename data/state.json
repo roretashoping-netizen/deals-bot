@@ -179,14 +179,15 @@
   "1005006995365069": "2026-11-13",
   "1005007010286105": "2026-11-13",
   "1005012655566616": "2026-11-14",
-  "1005013563130189": "2026-11-14"
+  "1005013563130189": "2026-11-14",
+  "1005012434347253": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
   "2026-11-13": 9,
-  "2026-11-14": 2
+  "2026-11-14": 3
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -358,7 +359,8 @@
   "مشبك كفة أذن لؤلؤية على شكل",
   "وهمية ثقب الأذن مزدوجة دائرة الأذن",
   "قلادة نسائية من الفولاذ المقاوم للصدأ",
-  "علبة ساعات سوداء بـ فتحة، مصنوعة"
+  "علبة ساعات سوداء بـ فتحة، مصنوعة",
+  "قطعة واحدة من وشاح الشيفون الأبيض"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -530,17 +532,18 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfcff0443861844bb983859ed62fdc9daA.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7aea3adcab9841f1922393de6749ce17k.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3cebe584cb434453967b37eb982a9f226.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa1528424d4a14842abea061440cd03a6I.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa1528424d4a14842abea061440cd03a6I.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0503f82c46bf4f1baf15c807c1907196K.jpg"
  ],
- "last_cat": "الساعات الملحقات",
+ "last_cat": "new Scarf &Wrap",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
   "jewelry",
   "evening-dresses",
   "evening-dresses",
   "jewelry",
   "evening-dresses",
+  "jewelry",
   "jewelry",
   "jewelry",
   "jewelry",
@@ -548,7 +551,7 @@
  ],
  "cat_day": {
   "2026-11-14": {
-   "jewelry": 2
+   "jewelry": 3
   }
  },
  "extra_day": {
@@ -688,7 +691,8 @@
   "1005012655566616": 7.0,
   "1005008660154837": 4.0,
   "1005007921301747": 2.0,
-  "1005013563130189": 7.0
+  "1005013563130189": 7.0,
+  "1005012434347253": 8.0
  },
  "digest_day": "2026-11-13"
 }
