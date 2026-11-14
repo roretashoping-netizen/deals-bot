@@ -193,7 +193,13 @@
   "1005012238433600": "2026-11-14",
   "1005007531483332": "2026-11-14",
   "1005006258528287": "2026-11-14",
-  "1005009659123055": "2026-11-14"
+  "1005009659123055": "2026-11-14",
+  "1005004765842853": "2026-11-14",
+  "1005012729519435": "2026-11-14",
+  "1005004278940840": "2026-11-14",
+  "1005011719211318": "2026-11-14",
+  "1005011931416862": "2026-11-14",
+  "1005007635821074": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -386,7 +392,13 @@
   "فستان سهرة رسمي أسود وأبيض بتصميم",
   "حقائب سهرة رائعة بتصميم ماسي ،",
   "زهرة الراين مساء حقائب معدنية حفلة",
-  "الرجعية مطرز الترتر نصف القمر مساء"
+  "الرجعية مطرز الترتر نصف القمر مساء",
+  "فستان سهرة أزرق داكن ، فستان",
+  "فستان أماندا مخصص ذو رقبة عالية",
+  "فساتين lautaro spring طويلة فاخرة أنيقة",
+  "فستان ضيافة زفاف مخصص من قطعتين",
+  "فستان سهرة فاخر باللون الوردي للنساء",
+  "حقيبة عشاء للسيدات بكتف واحد، حقيبة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -572,34 +584,40 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf935ab6975c14c7b9ece7a94917c86aen.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0e33d0c83a1a4864a866fbb45cf7b97eh.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0ab87b11e3274634886d531715bfb3d7U.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sff26ba4245dd426f99252bf656e159dam.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sff26ba4245dd426f99252bf656e159dam.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4924853682374568a4948fb815232586Z.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa2a41124930345fcadd440a8def724bbM.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb9e0702842e54bcb81d0f543b16d763fX.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf2a99c285cc146449b37956153e6ffaaY.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S76f98c3b91db4296acfdcb710bb97396a.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3af3d57e5f884abd8585e769f9991598s.jpg"
  ],
  "last_cat": "المرأة حقائب",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
-  "evening-dresses",
   "evening-dresses",
   "evening-bags",
   "evening-bags",
+  "evening-bags",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
   "evening-bags"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 7,
-   "evening-bags": 3
+   "evening-dresses": 12,
+   "evening-bags": 4
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 7,
-   "evening-bags": 3
+   "evening-dresses": 12,
+   "evening-bags": 4
   }
  },
  "taste": {
@@ -756,7 +774,14 @@
   "1005012976608776": 8.0,
   "1005007531483332": 7.0,
   "1005006258528287": 7.0,
-  "1005009659123055": 7.0
+  "1005009659123055": 7.0,
+  "1005004765842853": 9.0,
+  "1005012729519435": 8.0,
+  "1005010810562175": 3.0,
+  "1005004278940840": 9.0,
+  "1005011719211318": 9.0,
+  "1005011931416862": 7.0,
+  "1005007635821074": 7.0
  },
  "digest_day": "2026-11-13"
 }
