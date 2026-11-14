@@ -1,5 +1,5 @@
 {
-  "posts_per_day": 50,
+  "posts_per_day": 12,
   "post_hours": [
     9,
     25
@@ -26,12 +26,7 @@
     "BOSTANTEN leather handbag women",
     "Cnoles genuine leather bag women",
     "LAORENTOU cow leather bag women",
-    "women maxi dress",
-    "modest long dress women",
-    "women long sleeve dress",
-    "women casual dress",
     "abaya women",
-    "jewelry box organizer",
     "women earrings",
     "women necklace",
     "luxury evening dress women",
@@ -52,26 +47,34 @@
     "luxury party handbag women",
     "diamond evening bag",
     "beaded evening clutch",
-    "women elegant long dress",
-    "modest maxi dress women",
-    "women elegant midi dress",
-    "satin dress women",
-    "women long sleeve maxi dress",
-    "kaftan dress women",
     "dubai abaya women",
     "women abaya open",
     "pearl earrings women",
     "women gold plated necklace",
     "women elegant earrings",
-    "women bracelet gold"
+    "women bracelet gold",
+    "formal evening gown long",
+    "wedding guest dress formal",
+    "engagement party dress luxury",
+    "lace evening gown long",
+    "chiffon evening dress long sleeve",
+    "off shoulder evening gown",
+    "velvet evening dress long",
+    "embroidered evening gown",
+    "crystal evening gown luxury",
+    "plus size evening gown",
+    "graduation party gown long",
+    "elegant ball gown women",
+    "caftan evening gown luxury",
+    "pleated satin evening dress"
   ],
   "filters": {
     "min_rating_percent": 95,
-    "min_orders": 500,
-    "min_discount_percent": 15,
+    "min_orders": 150,
+    "min_discount_percent": 10,
     "min_price": 8
   },
-  "max_per_cat_day": 18,
+  "max_per_cat_day": 4,
   "dull_words": [
     "سلة مهملات",
     "سلة قمامة",
@@ -190,12 +193,11 @@
   "trusted_shop_filters": {
     "min_rating_percent": 95,
     "min_orders": 30,
-    "min_discount_percent": 20,
+    "min_discount_percent": 10,
     "min_images": 4
   },
   "category_weights": {
     "evening-dresses": 3,
-    "dresses": 3,
     "bags": 3,
     "abayas": 2,
     "jewelry": 1.5
@@ -204,29 +206,29 @@
     "2855054": "SERENE HILL Boutique Store",
     "5600091": "Sharon Said Boutique Store",
     "5864012": "winyi Official Store",
-    "912395642": "Lucyinlove Store",
-    "912651003": "Dream Dresses Store",
-    "1102251618": "ROSES Store",
-    "1102435827": "Lily Wedding Dress Store",
-    "1102440247": "Amanda Prom Dress Store",
-    "1103059920": "Sansa Prom Dress Store",
-    "1103573332": "Stone's Store",
-    "1103575203": "Yipeisha Wedding Dress Store",
-    "1104474047": "Contessa Dubai Evening And Wedding Dresses Store",
-    "1104488089": "Mila Evening Dress Store",
-    "1104565166": "Lumen Threads Store",
-    "1105078353": "BOYANGERMEI Store",
     "912117062": "Royalbelle Wedding Store",
-    "1104270901": "NFYN Prom Dresses Store",
     "912158336": "Welove Wedding Store",
+    "912395642": "Lucyinlove Store",
     "912462828": "Evening Prom Dresses Store",
+    "912651003": "Dream Dresses Store",
     "912718148": "Dresses Makeup Store",
     "1100047164": "Miss Wardrobe Store",
     "1102247276": "Vonluxe Dress Store",
+    "1102251618": "ROSES Store",
+    "1102435827": "Lily Wedding Dress Store",
+    "1102440247": "Amanda Prom Dress Store",
     "1102527051": "Lucyinlove Store",
+    "1103059920": "Sansa Prom Dress Store",
     "1103110069": "Aenyrst Special Occasions Dresses Store",
     "1103333034": "Lena Dress Store",
+    "1103573332": "Stone's Store",
+    "1103575203": "Yipeisha Wedding Dress Store",
+    "1104270901": "NFYN Prom Dresses Store",
+    "1104474047": "Contessa Dubai Evening And Wedding Dresses Store",
+    "1104488089": "Mila Evening Dress Store",
+    "1104565166": "Lumen Threads Store",
     "1104734301": "Lucky Dresses Store",
+    "1105078353": "BOYANGERMEI Store",
     "1105317568": "SOLIS Saudi Arabia Evening Dress Store",
     "1105321529": "VINES Evening Dress Store"
   },
@@ -254,10 +256,7 @@
       "بو الجلود",
       "جلد بو"
     ],
-    "shop_words": [
-      "official store",
-      "flagship store"
-    ],
+    "shop_words": [],
     "min_rating_percent": 95,
     "min_orders": 100
   },
@@ -266,14 +265,14 @@
     "bags"
   ],
   "extra_daily": {
-    "evening-dresses": 10,
-    "evening-bags": 10
+    "evening-dresses": 45,
+    "evening-bags": 6
   },
   "extra_hours": [
-    16,
-    24
+    9,
+    25
   ],
-  "extra_per_run": 3,
+  "extra_per_run": 5,
   "evening_bag_rules": {
     "min_rating_percent": 96,
     "min_orders": 150,
@@ -285,7 +284,6 @@
     "evening-dresses",
     "evening-bags",
     "bags",
-    "dresses",
     "abayas",
     "jewelry"
   ],
@@ -293,10 +291,14 @@
   "taste_checks_per_run": 8,
   "site_cats": [
     "evening-dresses",
-    "dresses",
     "abayas",
     "evening-bags",
     "bags",
     "jewelry"
-  ]
+  ],
+  "evening_open_rules": {
+    "min_rating_percent": 96,
+    "min_orders": 150,
+    "min_images": 5
+  }
 }
