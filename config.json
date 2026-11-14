@@ -26,7 +26,6 @@
     "BOSTANTEN leather handbag women",
     "Cnoles genuine leather bag women",
     "LAORENTOU cow leather bag women",
-    "abaya women",
     "women earrings",
     "women necklace",
     "luxury evening dress women",
@@ -47,8 +46,6 @@
     "luxury party handbag women",
     "diamond evening bag",
     "beaded evening clutch",
-    "dubai abaya women",
-    "women abaya open",
     "pearl earrings women",
     "women gold plated necklace",
     "women elegant earrings",
@@ -205,7 +202,6 @@
   "category_weights": {
     "evening-dresses": 3,
     "bags": 3,
-    "abayas": 2,
     "jewelry": 1.5
   },
   "store_ids": {
@@ -290,14 +286,12 @@
     "evening-dresses",
     "evening-bags",
     "bags",
-    "abayas",
     "jewelry"
   ],
   "taste_min": 7,
   "taste_checks_per_run": 8,
   "site_cats": [
     "evening-dresses",
-    "abayas",
     "evening-bags",
     "bags",
     "jewelry"
