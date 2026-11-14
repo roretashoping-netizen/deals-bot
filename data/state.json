@@ -182,14 +182,16 @@
   "1005013563130189": "2026-11-14",
   "1005012434347253": "2026-11-14",
   "1005010285628002": "2026-11-14",
-  "1005007306737251": "2026-11-14"
+  "1005007306737251": "2026-11-14",
+  "1005006323050588": "2026-11-14",
+  "1005006860701700": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
   "2026-11-11": 36,
   "2026-11-12": 14,
   "2026-11-13": 9,
-  "2026-11-14": 5
+  "2026-11-14": 6
  },
  "recent_keys": [
   "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
@@ -364,7 +366,9 @@
   "علبة ساعات سوداء بـ فتحة، مصنوعة",
   "قطعة واحدة من وشاح الشيفون الأبيض",
   "المرأة الساتان هوك إصبع طويل أصابع",
-  "مطلية بالذهب الفولاذ المقاوم للصدأ مزدوجة"
+  "مطلية بالذهب الفولاذ المقاوم للصدأ مزدوجة",
+  "فستان حفلة موسيقية أزرق فاتح زنبق",
+  "زوج من أقراط اللؤلؤ الفرنسية الأنيقة،"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -539,13 +543,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa1528424d4a14842abea061440cd03a6I.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0503f82c46bf4f1baf15c807c1907196K.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc6a321423c3e4a0db3f0b7ab5058cb83V.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sb23a97d715764df98408b3d356974c16p.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb23a97d715764df98408b3d356974c16p.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2e4e43bde53b494fad9ab13bc8c750abJ.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb802f2ceaa47432bb816fcc76de2df91q.jpg"
  ],
  "last_cat": "الأزياء والمجوهرات",
  "amazon_daily": {},
  "recent_cats": [
-  "evening-dresses",
-  "jewelry",
   "evening-dresses",
   "jewelry",
   "jewelry",
@@ -553,18 +557,20 @@
   "jewelry",
   "jewelry",
   "dresses",
+  "jewelry",
+  "evening-dresses",
   "jewelry"
  ],
  "cat_day": {
   "2026-11-14": {
-   "jewelry": 4,
-   "dresses": 1
+   "jewelry": 5,
+   "dresses": 1,
+   "evening-dresses": 1
   }
  },
  "extra_day": {
-  "2026-11-13": {
-   "evening-dresses": 10,
-   "evening-bags": 1
+  "2026-11-14": {
+   "evening-dresses": 1
   }
  },
  "taste": {
@@ -707,7 +713,11 @@
   "1005010228950050": 4.0,
   "1005013410887147": 6.0,
   "1005010376315865": 4.0,
-  "1005007306737251": 7.0
+  "1005007306737251": 7.0,
+  "1005006323050588": 8.0,
+  "1005006994564645": 4.0,
+  "1005006966392389": 2.0,
+  "1005006860701700": 9.0
  },
  "digest_day": "2026-11-13"
 }
