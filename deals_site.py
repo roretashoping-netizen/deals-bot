@@ -5,6 +5,7 @@
 import html
 import json
 import re
+import shutil
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -13,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "18"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "19"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -324,49 +325,86 @@ def record(cfg, p, gallery):
 
 # ---------------------------------------------------------------- القوالب
 CSS = """
-:root{--bg:#fff7f9;--card:#fff;--ink:#2b1d24;--muted:#7a6670;--brand:#e62e5c;--brand2:#ff8a3d;--ok:#1f9d55;--line:#f1dde4}
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-a{color:inherit}.wrap{max-width:1100px;margin:auto;padding:0 16px}
-header{background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;flex-wrap:wrap}
-.logo{font-weight:700;font-size:20px;text-decoration:none}
-.tg{background:#fff;color:var(--brand);padding:8px 14px;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
-nav.cats{display:flex;gap:10px;overflow-x:auto;padding:14px 16px;max-width:1100px;margin:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+:root{--bg:#0b0908;--card:#16120e;--ink:#f4ede2;--muted:#a99b87;--gold:#c9a35c;--gold2:#e9d29c;--gold3:#8a6a33;--line:rgba(201,163,92,.22)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"Tajawal",Tahoma,Arial,sans-serif;background:radial-gradient(1200px 620px at 50% -220px,#2a2016 0%,rgba(11,9,8,0) 62%),var(--bg);background-color:var(--bg);color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(11,9,8,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"Amiri",serif;font-size:28px;font-weight:700;color:var(--gold2);letter-spacing:.5px}
+.logo img{width:46px;height:46px;border-radius:50%;border:1px solid var(--gold3);object-fit:cover}
+.tg{border:1px solid var(--gold);color:var(--gold2);padding:8px 18px;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;transition:background .25s,color .25s}
+.tg:hover{background:var(--gold);color:#140f08}
+nav.cats{display:flex;justify-content:center;gap:30px;overflow-x:auto;padding:14px 16px;max-width:1180px;margin:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
 nav.cats::-webkit-scrollbar{display:none}
-nav.cats a{background:#fff;border:2px solid var(--line);padding:12px 20px;min-height:48px;display:flex;align-items:center;border-radius:999px;text-decoration:none;white-space:nowrap;font-size:16px;font-weight:700;scroll-snap-align:start;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-nav.cats a:active{background:var(--brand);color:#fff;border-color:var(--brand)}
-.codes{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}.codes td,.codes th{border:1px solid #eee;padding:8px;text-align:center}.codes th{background:#fff4d6}
-.promo{background:#fff4d6;border:1px dashed #e0a800;border-radius:10px;padding:10px;margin-top:10px;font-size:15px}
-h1{font-size:24px;margin:18px 0 6px}h2{font-size:20px;margin:24px 0 10px}
-.intro{color:var(--muted);margin:0 0 16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;display:flex;flex-direction:column}
-.card img{width:100%;aspect-ratio:1;object-fit:cover;background:#f6eef1}
-.card .t{font-size:13px;padding:8px 10px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card .p{padding:4px 10px 10px;font-weight:700;color:var(--brand)}
-.card .r{padding:0 10px 10px;font-size:12px;color:var(--muted)}
-.stats{margin:4px 0 12px;color:var(--muted);font-size:14px}
-.card .p s{color:var(--muted);font-weight:400;font-size:12px;margin-inline-start:6px}
-.badge{display:inline-block;background:var(--brand);color:#fff;border-radius:6px;padding:0 6px;font-size:12px;margin:8px 10px 0;width:max-content}
-.prod{display:grid;grid-template-columns:1fr;gap:20px;margin-top:16px}
-@media(min-width:800px){.prod{grid-template-columns:1fr 1fr}}
-.gal img{width:100%;border-radius:14px;background:#f6eef1}
-.thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:8px}.thumbs img{width:72px;height:72px;object-fit:cover;border-radius:8px}
-.box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
-.now{font-size:28px;font-weight:700;color:var(--brand)}.was{color:var(--muted)}.was s{font-size:18px}
-.save{color:var(--ok);font-weight:700}
-.meta{margin:12px 0;padding:0;list-style:none}.meta li{padding:4px 0;border-bottom:1px dashed var(--line)}
-.buy{display:block;text-align:center;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;text-decoration:none;padding:14px;border-radius:12px;font-size:18px;font-weight:700;margin-top:14px}
-.share{display:flex;gap:8px;margin-top:10px}.share a{flex:1;text-align:center;color:#fff;text-decoration:none;padding:11px 6px;border-radius:12px;font-weight:700;font-size:15px}.share .wa{background:#25d366}.share .tgs{background:#229ed9}
-.best{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:12px 0;position:relative}
-.best img{width:120px;height:120px;object-fit:cover;border-radius:10px}.best h2{font-size:17px;margin:0 0 4px}.best h2 a{text-decoration:none}.best p{margin:2px 0;font-size:14px}
-.best .bp{font-weight:700;color:var(--brand);font-size:16px}.best .bp s{color:var(--muted);font-weight:400;margin:0 6px}.best .bm{color:var(--muted)}.best .bt{flex:1;min-width:0}.best .buy{padding:9px;font-size:15px;margin-top:8px}
-.bn{position:absolute;top:-8px;right:-8px;background:var(--brand);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-.bests{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.bests a{background:#fff4d6;border:1px solid #e0a800;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;font-size:14px}
-.join{display:block;text-align:center;background:#229ed9;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
-.crumbs{font-size:13px;color:var(--muted);margin-top:12px}.crumbs a{color:var(--muted)}
-.note{font-size:13px;color:var(--muted)}
-footer{margin-top:40px;padding:24px 0;background:#2b1d24;color:#e9dfe3;font-size:13px}footer a{color:#fff}
+nav.cats a{color:var(--muted);font-size:15px;white-space:nowrap;padding-bottom:4px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+nav.cats a:hover{color:var(--gold2);border-color:var(--gold)}
+main{padding-top:26px;padding-bottom:60px}
+.hero{text-align:center;padding:46px 8px 30px}
+.eyebrow{color:var(--gold);letter-spacing:3px;font-size:14px}
+.hero h1{font-size:clamp(36px,6.5vw,62px);margin:8px 0 4px}
+.hero p{color:var(--muted);max-width:640px;margin:0 auto 24px;font-size:17px}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);font-size:14px;margin:4px 0 18px}
+.orn:before,.orn:after{content:"";height:1px;width:90px;background:linear-gradient(90deg,rgba(201,163,92,0),var(--gold))}
+.orn:after{transform:scaleX(-1)}
+.cta{display:inline-block;background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#140f08;font-weight:700;padding:13px 32px;border-radius:999px;box-shadow:0 10px 30px rgba(201,163,92,.25);transition:filter .2s}
+.cta:hover{filter:brightness(1.08)}
+h1{font-family:"Amiri",serif;color:var(--gold2);font-size:clamp(28px,4.6vw,42px);line-height:1.35;margin:8px 0 6px;font-weight:700}
+h2{font-family:"Amiri",serif;color:var(--gold2);font-size:27px;line-height:1.4;margin:36px 0 12px;font-weight:700}
+.intro{color:var(--muted);max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px;margin-top:20px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-4px);border-color:rgba(201,163,92,.6);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.card img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#1d1812;transition:transform .6s}
+.card:hover img{transform:scale(1.04)}
+.card .t{padding:14px 14px 4px;font-size:15px;line-height:1.6;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3.4em}
+.card .p{padding:0 14px;color:var(--gold2);font-weight:700;font-size:18px}
+.card .p s{color:var(--muted);font-weight:400;font-size:13px;margin-inline-start:8px}
+.card .r{padding:2px 14px 14px;color:var(--muted);font-size:13px}
+.badge{position:absolute;top:12px;inset-inline-start:12px;z-index:2;background:rgba(11,9,8,.78);border:1px solid var(--gold);color:var(--gold2);font-size:12px;padding:3px 11px;border-radius:999px}
+.crumbs{color:var(--muted);font-size:14px;margin-bottom:14px}.crumbs a:hover{color:var(--gold2)}
+.prod{display:grid;grid-template-columns:1.05fr 1fr;gap:38px;align-items:start}
+.gal>img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;border:1px solid var(--line);background:#1d1812}
+.thumbs{display:flex;gap:10px;overflow-x:auto;margin-top:12px;scrollbar-width:thin}
+.thumbs img{width:78px;height:104px;object-fit:cover;border-radius:12px;border:1px solid var(--line);flex:none}
+.stats{color:var(--muted);font-size:14px}
+.box{margin-top:16px;background:linear-gradient(180deg,#1b1611,#130f0b);border:1px solid var(--line);border-radius:20px;padding:22px}
+.now{font-size:36px;font-weight:700;color:var(--gold2);line-height:1.3}
+.was{color:var(--muted);font-size:15px}
+.save{display:inline-block;margin-top:8px;color:#140f08;background:var(--gold);padding:2px 14px;border-radius:999px;font-size:13px;font-weight:700}
+.promo{margin:12px 0;padding:10px 14px;border:1px dashed var(--gold3);border-radius:12px;color:var(--gold2);font-size:14px}
+.meta{list-style:none;padding:0;margin:14px 0;color:var(--muted);font-size:14px}
+.meta li{padding:7px 0;border-bottom:1px solid rgba(201,163,92,.1)}
+.buy{display:block;text-align:center;margin:16px 0 10px;background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#140f08;font-weight:700;font-size:17px;padding:14px;border-radius:14px;box-shadow:0 10px 30px rgba(201,163,92,.22);transition:filter .2s}
+.buy:hover{filter:brightness(1.08)}
+.share{display:flex;gap:10px;flex-wrap:wrap}
+.share a{flex:1;text-align:center;padding:10px;border-radius:12px;border:1px solid var(--line);font-size:14px;transition:border-color .2s}
+.share a:hover,.join:hover{border-color:var(--gold)}
+.join{display:block;text-align:center;margin-top:12px;color:var(--gold2);font-size:14px;padding:10px;border-radius:12px;border:1px solid var(--line);transition:border-color .2s}
+.note{color:var(--muted);font-size:13px}
+.bests{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.bests a{border:1px solid var(--gold);color:var(--gold2);padding:8px 20px;border-radius:999px;font-size:14px;transition:background .2s,color .2s}
+.bests a:hover{background:var(--gold);color:#140f08}
+.best{display:grid;grid-template-columns:52px 150px 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:16px 0}
+.best img{width:150px;aspect-ratio:3/4;object-fit:cover;border-radius:12px}
+.bn{font-family:"Amiri",serif;font-size:36px;color:var(--gold);text-align:center;line-height:1}
+.bt h2{font-size:21px;margin:0 0 6px}.bm{color:var(--muted);font-size:14px}
+.bp{color:var(--gold2);font-weight:700}.bp s{color:var(--muted);font-weight:400}
+table.codes{width:100%;border-collapse:collapse;margin:12px 0;background:var(--card);border:1px solid var(--line)}
+table.codes th,table.codes td{padding:10px 12px;border-bottom:1px solid rgba(201,163,92,.12);text-align:start;font-size:14px}
+table.codes th{color:var(--gold2);background:#1b1611;font-weight:500}
+table.codes td b{color:var(--gold2);letter-spacing:1px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;padding:34px 0 44px}
+.flogo{font-family:"Amiri",serif;font-size:26px;color:var(--gold2)}
+footer a{color:var(--gold2)}
+::selection{background:var(--gold);color:#140f08}
+@media(max-width:820px){.prod{grid-template-columns:1fr;gap:20px}}
+@media(max-width:640px){header .wrap{padding:8px 12px}.logo{font-size:23px}.logo img{width:38px;height:38px}.tg{padding:6px 12px;font-size:12px}
+nav.cats{justify-content:flex-start;gap:22px}.hero{padding:28px 4px 18px}
+.grid{grid-template-columns:repeat(2,1fr);gap:12px}.card{border-radius:14px}.card .t{font-size:13px;padding:10px 10px 2px}
+.card .p{padding:0 10px;font-size:15px}.card .r{padding:2px 10px 10px;font-size:12px}
+.best{grid-template-columns:34px 100px 1fr;gap:12px}.best img{width:100px}.bn{font-size:26px}}
 """
 
 
@@ -381,8 +419,10 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
     url = f"{site}/{path}" if path else f"{site}/"
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     verify = cfg.get("google_site_verification", "")
-    cats = f'<a href="{site}/codes.html">🎟️ أكواد الخصم</a>' + \
-        "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in site_cats(cfg))
+    cats = (f'<a href="{site}/">الرئيسية</a>'
+            + "".join(f'<a href="{site}/c/{c["slug"]}.html">{esc(c["name"])}</a>' for c in site_cats(cfg))
+            + f'<a href="{site}/best/evening-dresses.html">أفضل الفساتين</a>'
+            + f'<a href="{site}/codes.html">أكواد الخصم</a>')
     ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     return f"""<!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
@@ -396,15 +436,20 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 {f'<meta property="og:image" content="{esc(image)}">' if image else ''}
 <meta name="twitter:card" content="summary_large_image">
 {f'<meta name="google-site-verification" content="{esc(verify)}">' if verify else ''}
+<meta name="theme-color" content="#0b0908">
+<link rel="icon" href="{site}/icon.png"><link rel="apple-touch-icon" href="{site}/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="{site}/style.css">
 {ld}
 </head><body>
-<header><div class="wrap"><a class="logo" href="{site}/">👗 {esc(cfg['site_name'])}</a>
-<a class="tg" href="{tg}" target="_blank" rel="noopener">انضمي لقروب العروض على تليجرام</a></div></header>
+<header><div class="wrap"><a class="logo" href="{site}/"><img src="{site}/logo.png" alt="{esc(cfg['site_name'])}" width="46" height="46">{esc(cfg['site_name'])}</a>
+<a class="tg" href="{tg}" target="_blank" rel="noopener">انضمي لقروبنا على تليجرام</a></div></header>
 <nav class="cats">{cats}</nav>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">
-<p>{esc(cfg['site_name'])}: فساتين سهرة ومناسبات مختارة بتقييم عالي، وتوصيل للسعودية والخليج.</p>
+<div class="flogo">{esc(cfg['site_name'])}</div>
+<p>فساتين سهرة ومناسبات مختارة بعناية، بتقييم عالي وتوصيل للسعودية والخليج.</p>
 <p>ℹ️ بعض الروابط في هذا الموقع روابط تسويق بالعمولة من برنامج علي إكسبريس، وما تزيد السعر عليك. الأسعار تتغير باستمرار، والسعر النهائي هو الموجود في صفحة علي إكسبريس.</p>
 <p><a href="{tg}">تليجرام</a> · <a href="{site}/sitemap.xml">خريطة الموقع</a></p>
 </div></footer></body></html>"""
@@ -597,6 +642,22 @@ def list_page(cfg, title, h1, intro, path, items, extra=""):
     return page(cfg, title, intro[:300], path, body, image=items[0]["image"] if items else None)
 
 
+def make_logo():
+    """شعار الموقع والأيقونة من data/image.png (نصغّرها عشان الصفحات تفتح بسرعة)."""
+    src = BASE_DIR / "data" / "image.png"
+    if not src.exists():
+        return
+    try:
+        from PIL import Image
+        im = Image.open(src).convert("RGBA")
+        im.resize((256, 256), Image.LANCZOS).save(OUT / "logo.png", optimize=True)
+        im.resize((64, 64), Image.LANCZOS).save(OUT / "icon.png", optimize=True)
+    except Exception as e:
+        print(f"[warn] تصغير الشعار فشل: {e}")
+        shutil.copyfile(src, OUT / "logo.png")
+        shutil.copyfile(src, OUT / "icon.png")
+
+
 # ---------------------------------------------------------------- البناء
 def build(cfg, only_ids=None):
     """يبني الموقع. only_ids: نبني صفحات هالمنتجات بس (والرئيسية والفئات والخريطة دايمًا)."""
@@ -607,6 +668,7 @@ def build(cfg, only_ids=None):
     (OUT / "p").mkdir(parents=True, exist_ok=True)
     (OUT / "c").mkdir(parents=True, exist_ok=True)
     (OUT / "style.css").write_text(CSS, encoding="utf-8")
+    make_logo()
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
     newest = list(reversed(items))
     by_cat = {}
@@ -627,6 +689,10 @@ def build(cfg, only_ids=None):
                 (OUT / "c" / f"{c['slug']}.html").unlink(missing_ok=True)
                 (OUT / "best" / f"{c['slug']}.html").unlink(missing_ok=True)
         (OUT / "amazon.html").unlink(missing_ok=True)
+        (OUT / "stores-pick.html").unlink(missing_ok=True)
+        for f in (OUT / "p").glob("*.html"):  # صفحات منتجات قديمة انشالت من القائمة
+            if f.stem not in keep:
+                f.unlink()
     targets = items if only_ids is None else [x for x in items if x["id"] in set(only_ids)]
     for x in targets:
         related = [r for r in by_cat.get(x["cat"], []) if r["id"] != x["id"]][:8]
@@ -651,9 +717,15 @@ def build(cfg, only_ids=None):
 
     intro = ("فساتين سهرة ومناسبات مختارة بعناية: أعراس وخطوبة وحفلات وتخرج، بتصاميم فخمة وألوان راقية. "
              "كل فستان مختار بذوق وتقييم عالي، والسعر بالريال مع الخصم، وتوصيل للسعودية والخليج.")
+    hero = ("<section class='hero'><div class='eyebrow'>سهرة · أعراس · خطوبة · تخرج</div>"
+            "<h1>فساتين المناسبات</h1><div class='orn'>✦</div>"
+            f"<p>{esc(intro)}</p>"
+            f"<a class='cta' href='{site}/c/evening-dresses.html'>تسوّقي الفساتين</a></section>")
+    home_body = (hero + "<h2>وصل حديثًا</h2>" + best_links + "<div class='grid'>"
+                 + "".join(card(cfg, x) for x in newest[:60]) + "</div>")
     (OUT / "index.html").write_text(
-        list_page(cfg, f"{cfg['site_name']} | سهرة ومناسبات",
-                  "فساتين سهرة ومناسبات", intro, "", newest[:60], best_links), encoding="utf-8")
+        page(cfg, f"{cfg['site_name']} | سهرة ومناسبات", intro[:300], "", home_body,
+             image=newest[0]["image"] if newest else None), encoding="utf-8")
 
     (OUT / "codes.html").write_text(codes_page(cfg), encoding="utf-8")
 
