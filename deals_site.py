@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "22"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "23"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -725,8 +725,8 @@ def build(cfg, only_ids=None):
     hero = ("<section class='hero'><div class='eyebrow'>سهرة · أعراس · خطوبة · تخرج</div>"
             "<h1>فساتين المناسبات</h1><div class='orn'>✦</div>"
             f"<p>{esc(intro)}</p>"
-            f"<a class='cta' href='{site}/c/evening-dresses.html'>تسوّقي الفساتين</a></section>")
-    home_body = (hero + "<h2>وصل حديثًا</h2>" + best_links + "<div class='grid'>"
+            "</section>")
+    home_body = (hero + "<div class='grid'>"
                  + "".join(card(cfg, x) for x in newest[:60]) + "</div>")
     (OUT / "index.html").write_text(
         page(cfg, f"{cfg['site_name']} | سهرة ومناسبات", intro[:300], "", home_body,
