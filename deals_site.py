@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "24"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "25"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -533,7 +533,7 @@ def product_page(cfg, x, related):
    <a class="buy" href="{esc(x['link'])}" target="_blank" rel="nofollow sponsored noopener">🛍️ اطلبي من علي إكسبريس</a>
    {share_html(f"{site}/p/{x['id']}.html", f"{name} بـ {money(x['price'])} ريال من علي إكسبريس")}
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>
-   <p class="note">السعر وقت الإضافة، وقد يتغير في علي إكسبريس.</p>
+   <p class="note">الأسعار قابلة للتغيير من مصدرها، والسعر المعروض هو لحظة النشر.</p>
   </div></div>
 </div>
 {about}{rel}"""
