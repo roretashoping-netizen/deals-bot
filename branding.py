@@ -18,7 +18,8 @@ chat = os.environ["TELEGRAM_CHANNEL"]
 def call(method, **kw):
     r = requests.post(api + method, timeout=60, **kw).json()
     print(method, "OK" if r.get("ok") else f"فشل: {r.get('description')}")
-    return r.get("ok")
+    # لو القيمة نفسها ما تغيرت، نعتبرها نجاح
+    return r.get("ok") or "not modified" in str(r.get("description", ""))
 
 
 with open("data/image.png", "rb") as f:
