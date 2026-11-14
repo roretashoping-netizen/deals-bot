@@ -185,7 +185,12 @@
   "1005007306737251": "2026-11-14",
   "1005006323050588": "2026-11-14",
   "1005006860701700": "2026-11-14",
-  "1005011873058653": "2026-11-14"
+  "1005011873058653": "2026-11-14",
+  "1005013048143592": "2026-11-14",
+  "1005012774264966": "2026-11-14",
+  "1005012326237253": "2026-11-14",
+  "1005012976608776": "2026-11-14",
+  "1005012238433600": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -370,7 +375,12 @@
   "مطلية بالذهب الفولاذ المقاوم للصدأ مزدوجة",
   "فستان حفلة موسيقية أزرق فاتح زنبق",
   "زوج من أقراط اللؤلؤ الفرنسية الأنيقة،",
-  "فستان سهرة رسمي أنيق باللون الأخضر"
+  "فستان سهرة رسمي أنيق باللون الأخضر",
+  "فستان سهرة رسمي من ميلا مخصص",
+  "فستان سهرة طويل من vines بلون",
+  "فستان سهرة رسمي محتشم مخصص، بياقة",
+  "فساتين سهرة رسمية فاخرة بدون أكمام",
+  "فستان سهرة رسمي أسود وأبيض بتصميم"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -548,32 +558,37 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb23a97d715764df98408b3d356974c16p.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S2e4e43bde53b494fad9ab13bc8c750abJ.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb802f2ceaa47432bb816fcc76de2df91q.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sf13851032b004ab1ba48357c4689bb6fo.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf13851032b004ab1ba48357c4689bb6fo.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9faca75cc4e14f168345b0b56f412f98x.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2555def8f8134457bd20edeffaa75d51U.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S41410688b7e0498cbd4c039566760c76C.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S46964d163fdf4947bcac702d5e6d926ao.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf935ab6975c14c7b9ece7a94917c86aen.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
-  "jewelry",
-  "jewelry",
-  "jewelry",
-  "jewelry",
-  "jewelry",
   "dresses",
   "jewelry",
   "evening-dresses",
   "jewelry",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
+  "evening-dresses",
   "evening-dresses"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 2
+   "evening-dresses": 7
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 2
+   "evening-dresses": 7
   }
  },
  "taste": {
@@ -722,7 +737,12 @@
   "1005006966392389": 2.0,
   "1005006860701700": 9.0,
   "1005012681501442": 4.0,
-  "1005011873058653": 7.0
+  "1005011873058653": 7.0,
+  "1005012238433600": 7.0,
+  "1005013048143592": 7.0,
+  "1005012774264966": 7.0,
+  "1005012326237253": 9.0,
+  "1005012976608776": 8.0
  },
  "digest_day": "2026-11-13"
 }
