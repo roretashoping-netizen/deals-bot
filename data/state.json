@@ -204,7 +204,13 @@
   "1005012652516020": "2026-11-14",
   "1005012876098094": "2026-11-14",
   "1005012967433462": "2026-11-14",
-  "1005010128220887": "2026-11-14"
+  "1005010128220887": "2026-11-14",
+  "1005009589856324": "2026-11-14",
+  "1005008543136092": "2026-11-14",
+  "1005012317967469": "2026-11-14",
+  "1005012317021725": "2026-11-14",
+  "1005010538784460": "2026-11-14",
+  "1005008097835517": "2026-11-14"
  },
  "daily": {
   "2026-11-10": 58,
@@ -408,7 +414,13 @@
   "فستان سهرة من التول باللون الوردي",
   "فستان سهرة ليلي جولد بتصميم حورية",
   "فساتين سهرة رسمية أنيقة بمقاسات كبيرة",
-  "فستان سهرة أنيق باللون الأخضر الزيتوني"
+  "فستان سهرة أنيق باللون الأخضر الزيتوني",
+  "تخصيص جودة عالية كلاسيكي جيرسي الديكور",
+  "فستان سهرة رائع بياقة مربعة مطرز",
+  "فستان زفاف عاجي اللون على الطراز",
+  "فستان سهرة طويل الأكمام بتصميم كورسيه",
+  "ياردات قماش دانتيل أبيض فاتح مزين",
+  "الفاخرة مصمم المتشرد حقيبة كتف مقبض"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -605,34 +617,40 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc727c752c8e647209487f9e269e25305O.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd94241d855524ed6b496c2e8607577c3o.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3ba6b8a4412844da92782ee0c04c944bx.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S02d492b0513f4ed6b37cc5b0730b2e57c.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S02d492b0513f4ed6b37cc5b0730b2e57c.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa6f4eca3fd764412b7ba734b3342fe813.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf8341d73b67b4806bba40293ccc592c8p.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S948629290cb247319dad87893cee0392q.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S68cc826ad0564d4f9c437fbf8521a8e9C.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S456365ad518c4d73a73c1bb97a8faecfS.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbb40a0dd4c9b44bc87370df67c8db7c0o.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "المرأة حقائب",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-bags",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
   "evening-dresses",
-  "evening-dresses"
+  "evening-dresses",
+  "evening-bags"
  ],
  "cat_day": {
   "2026-11-14": {
    "jewelry": 5,
    "dresses": 1,
-   "evening-dresses": 17,
-   "evening-bags": 4
+   "evening-dresses": 22,
+   "evening-bags": 5
   }
  },
  "extra_day": {
   "2026-11-14": {
-   "evening-dresses": 17,
-   "evening-bags": 4
+   "evening-dresses": 22,
+   "evening-bags": 5
   }
  },
  "taste": {
@@ -801,7 +819,15 @@
   "1005012652516020": 9.0,
   "1005012876098094": 9.0,
   "1005012967433462": 7.0,
-  "1005010128220887": 9.0
+  "1005010128220887": 9.0,
+  "1005010538784460": 9.0,
+  "1005009310807368": 4.0,
+  "1005009589856324": 8.0,
+  "1005008543136092": 9.0,
+  "1005013338339958": 4.0,
+  "1005012317967469": 7.0,
+  "1005012317021725": 9.0,
+  "1005008097835517": 9.0
  },
  "digest_day": "2026-11-13"
 }
