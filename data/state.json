@@ -252,7 +252,9 @@
   "1005009436059680": "2026-11-15",
   "1005013153485941": "2026-11-15",
   "1005011785115950": "2026-11-15",
-  "1005006366193799": "2026-11-15"
+  "1005006366193799": "2026-11-15",
+  "1005012575692881": "2026-11-15",
+  "1005008157833834": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -504,7 +506,9 @@
   "فساتين مينا المخصصة بأكمام قصيرة مزينة",
   "فساتين سهرة مخصصة من سانسا بلون",
   "فساتين سهرة ميلا بورجوندي بدون أكتاف",
-  "فستان سهرة عربي إسلامي فاخر مزين"
+  "فستان سهرة عربي إسلامي فاخر مزين",
+  "فستان سهرة رسمي مخصص من ميلا،",
+  "فستان مخصص بطول الأرض، زخرفة أكريليك"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -749,7 +753,9 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Se4380256ef074639b422f333ab07bcf4W.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S480730314a0e4d058584eccd7f5d916eZ.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfaf4c2e1ea13473c849db8e5b94f9c81F.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0af19fc60d154b1d8163f04d280f34cbE.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0af19fc60d154b1d8163f04d280f34cbE.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/A0b7a9eeca75943b18bf7f9abe00e85c4y.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd4488b0fbd5c46c5b227ac6147c6438c8.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -767,12 +773,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 10
+   "evening-dresses": 12
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 10
+   "evening-dresses": 12
   }
  },
  "taste": {
@@ -1010,7 +1016,9 @@
   "1005011930773936": 9.0,
   "1005006366193799": 7.0,
   "1005013153485941": 7.0,
-  "1005011785115950": 9.0
+  "1005011785115950": 9.0,
+  "1005008157833834": 7.0,
+  "1005012575692881": 7.0
  },
  "digest_day": "2026-11-14"
 }
