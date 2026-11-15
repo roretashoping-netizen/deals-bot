@@ -285,7 +285,9 @@
   "1005012631748723": "2026-11-15",
   "1005012312868267": "2026-11-15",
   "1005012275825521": "2026-11-15",
-  "1005012302255553": "2026-11-15"
+  "1005012302255553": "2026-11-15",
+  "1005008390878607": "2026-11-15",
+  "1005012514848832": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -570,7 +572,9 @@
   "فستان سهرة أبيض من التافتا بتصميم",
   "فستان سهرة ذهبي من nfyn برقبة",
   "فساتين سهرة نسائية مخصصة من heyday",
-  "فساتين زفاف ديانرو بتصميم عتيق من"
+  "فساتين زفاف ديانرو بتصميم عتيق من",
+  "فساتين hetiso طويلة لفتاة الزهور من",
+  "فستان سهرة طويل بتصميم حورية البحر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -848,9 +852,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S3cd85b578c824345889231c6c9c6cf83w.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfc9be07f77594a869dcbc3e0a3609290p.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S55ef1234c26f414191576d0e3354b393w.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S380c4b0816984d71976d052ef2894c9er.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S380c4b0816984d71976d052ef2894c9er.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7288c322218b49568660b6e2213b1ae6x.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S66cd0092f8d840a0846b1084e72295feG.jpg"
  ],
- "last_cat": "فساتين الزفاف",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -866,12 +872,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 43
+   "evening-dresses": 45
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 43
+   "evening-dresses": 45
   }
  },
  "taste": {
@@ -1147,7 +1153,9 @@
   "1005012312868267": 9.0,
   "1005012631748723": 9.0,
   "1005012302255553": 9.0,
-  "1005012275825521": 9.0
+  "1005012275825521": 9.0,
+  "1005012514848832": 7.0,
+  "1005008390878607": 7.0
  },
  "digest_day": "2026-11-15"
 }
