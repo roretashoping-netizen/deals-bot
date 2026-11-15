@@ -274,7 +274,10 @@
   "1005009473271637": "2026-11-15",
   "1005008059448704": "2026-11-15",
   "1005012350647219": "2026-11-15",
-  "1005012968181313": "2026-11-15"
+  "1005012968181313": "2026-11-15",
+  "1005012614923220": "2026-11-15",
+  "1005012282259884": "2026-11-15",
+  "1005011952399567": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -548,7 +551,10 @@
   "فستان ماكسي أنيق مكشكش غريب للنساء",
   "فساتين أم العروس أنيقة مخصصة باللون",
   "فستان سهرة نسائي جديد من sessrymnir",
-  "فساتين سهرة رسمية فاخرة باللون الأحمر"
+  "فساتين سهرة رسمية فاخرة باللون الأحمر",
+  "فستان ساتان أنيق بحمالات كتف مزينة",
+  "فستان حورية البحر للنساء برقبة مستديرة",
+  "فستان طويل أنيق بدون حمالات مع"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -815,9 +821,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S0d89b02490c746b58ea833d45aff11390.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5e51ee8a4e7c4e9b9a1151af3d21b6c2N.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3b89e0854dca4382939aa5d33bc3b34el.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S157a208224994b4fae3ded76bb4f052cJ.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S157a208224994b4fae3ded76bb4f052cJ.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Seeb9a55957c14c5f8d858a523a774eefX.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa62f8f5ee98745f4a68ca1baca964b01U.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb3267a319bf0457788963fcb67fc07a9G.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -833,12 +842,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 32
+   "evening-dresses": 35
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 32
+   "evening-dresses": 35
   }
  },
  "taste": {
@@ -1101,7 +1110,10 @@
   "1005009473271637": 7.0,
   "1005012968181313": 8.0,
   "1005012350647219": 9.0,
-  "1005013271671899": 4.0
+  "1005013271671899": 4.0,
+  "1005011952399567": 7.0,
+  "1005012614923220": 7.0,
+  "1005012282259884": 7.0
  },
  "digest_day": "2026-11-14"
 }
