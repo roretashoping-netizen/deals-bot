@@ -267,7 +267,10 @@
   "1005008062666147": "2026-11-15",
   "1005012231115565": "2026-11-15",
   "1005009299348816": "2026-11-15",
-  "1005013192147548": "2026-11-15"
+  "1005013192147548": "2026-11-15",
+  "1005012039310883": "2026-11-15",
+  "1005004798357487": "2026-11-15",
+  "1005012724417993": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -534,7 +537,10 @@
   "فستان سهرة أنيق مخصص برقبة عالية",
   "فستان سهرة فاخر من سمايليفن باللون",
   "فستان سهرة من rfyr a line",
-  "فستان سهرة طويل فاخر من الشيفون"
+  "فستان سهرة طويل فاخر من الشيفون",
+  "فساتين سهرة رسمية للنساء مزينة بالخرز",
+  "بوصة فستان الزفاف سستة استبدال قابل",
+  "فساتين سهرة خضراء من الساتان من"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -794,9 +800,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S4b6325858b0b453987fe9b6842d2ded3E.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0df017e77a9f4194a453baf51ccb497bG.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd9562b13c49d4280b2d25b16679873b0b.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa37155028c134bd3b61371c642472178z.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa37155028c134bd3b61371c642472178z.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2b687d1693e94b60b0f8e749f278f524w.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1cbd1d7826a84922b030aec97ef76fdeR.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd4d33f164e964eddaa11eaf4eaeb402bR.jpg"
  ],
- "last_cat": "فساتين",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -812,12 +821,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 25
+   "evening-dresses": 28
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 25
+   "evening-dresses": 28
   }
  },
  "taste": {
@@ -1072,7 +1081,10 @@
   "1005010422478536": 7.0,
   "1005008062666147": 7.0,
   "1005012231115565": 7.0,
-  "1005009299348816": 7.0
+  "1005009299348816": 7.0,
+  "1005012724417993": 9.0,
+  "1005012039310883": 7.0,
+  "1005004798357487": 7.0
  },
  "digest_day": "2026-11-14"
 }
