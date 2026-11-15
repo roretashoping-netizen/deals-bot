@@ -256,7 +256,9 @@
   "1005012575692881": "2026-11-15",
   "1005008157833834": "2026-11-15",
   "1005012649641501": "2026-11-15",
-  "1005007272391378": "2026-11-15"
+  "1005007272391378": "2026-11-15",
+  "1005012987663853": "2026-11-15",
+  "1005011548578455": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -512,7 +514,9 @@
   "فستان سهرة رسمي مخصص من ميلا،",
   "فستان مخصص بطول الأرض، زخرفة أكريليك",
   "فستان سهرة بيلا مخصص بتصميم هالتر",
-  "تخصيص رائعة معقدة جوهرة ألف خط"
+  "تخصيص رائعة معقدة جوهرة ألف خط",
+  "فستان سهرة ماكسي بكتف واحد مقاس",
+  "فساتين سهرة رسمية أنيقة بأكمام قصيرة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -761,7 +765,9 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/A0b7a9eeca75943b18bf7f9abe00e85c4y.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd4488b0fbd5c46c5b227ac6147c6438c8.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc5a925c7652b4aa496d11058b2251bf2p.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S1a3a6d5a908b47cc9236e68d2a070c86n.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1a3a6d5a908b47cc9236e68d2a070c86n.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4b183d5bf2604f9c8b1ad850adb298e9i.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S24205eae4da34367894cd6af042599acp.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -779,12 +785,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 14
+   "evening-dresses": 16
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 14
+   "evening-dresses": 16
   }
  },
  "taste": {
@@ -1026,7 +1032,9 @@
   "1005008157833834": 7.0,
   "1005012575692881": 7.0,
   "1005007272391378": 9.0,
-  "1005012649641501": 9.0
+  "1005012649641501": 9.0,
+  "1005011548578455": 7.0,
+  "1005012987663853": 7.0
  },
  "digest_day": "2026-11-14"
 }
