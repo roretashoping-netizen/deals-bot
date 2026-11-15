@@ -272,7 +272,9 @@
   "1005004798357487": "2026-11-15",
   "1005012724417993": "2026-11-15",
   "1005009473271637": "2026-11-15",
-  "1005008059448704": "2026-11-15"
+  "1005008059448704": "2026-11-15",
+  "1005012350647219": "2026-11-15",
+  "1005012968181313": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -544,7 +546,9 @@
   "بوصة فستان الزفاف سستة استبدال قابل",
   "فساتين سهرة خضراء من الساتان من",
   "فستان ماكسي أنيق مكشكش غريب للنساء",
-  "فساتين أم العروس أنيقة مخصصة باللون"
+  "فساتين أم العروس أنيقة مخصصة باللون",
+  "فستان سهرة نسائي جديد من sessrymnir",
+  "فساتين سهرة رسمية فاخرة باللون الأحمر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -809,9 +813,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S1cbd1d7826a84922b030aec97ef76fdeR.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd4d33f164e964eddaa11eaf4eaeb402bR.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0d89b02490c746b58ea833d45aff11390.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S5e51ee8a4e7c4e9b9a1151af3d21b6c2N.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S5e51ee8a4e7c4e9b9a1151af3d21b6c2N.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3b89e0854dca4382939aa5d33bc3b34el.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S157a208224994b4fae3ded76bb4f052cJ.jpg"
  ],
- "last_cat": "فستان حفل الزفاف",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -827,12 +833,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 30
+   "evening-dresses": 32
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 30
+   "evening-dresses": 32
   }
  },
  "taste": {
@@ -1092,7 +1098,10 @@
   "1005012039310883": 7.0,
   "1005004798357487": 7.0,
   "1005008059448704": 8.0,
-  "1005009473271637": 7.0
+  "1005009473271637": 7.0,
+  "1005012968181313": 8.0,
+  "1005012350647219": 9.0,
+  "1005013271671899": 4.0
  },
  "digest_day": "2026-11-14"
 }
