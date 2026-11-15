@@ -260,7 +260,9 @@
   "1005012987663853": "2026-11-15",
   "1005011548578455": "2026-11-15",
   "1005011888402387": "2026-11-15",
-  "1005013337949801": "2026-11-15"
+  "1005013337949801": "2026-11-15",
+  "1005012290532993": "2026-11-15",
+  "1005011928969691": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -520,7 +522,9 @@
   "فستان سهرة ماكسي بكتف واحد مقاس",
   "فساتين سهرة رسمية أنيقة بأكمام قصيرة",
   "فستان سهرة عصري مخصص من التول",
-  "فساتين سهرة ذهبية مزينة بالترتر من"
+  "فساتين سهرة ذهبية مزينة بالترتر من",
+  "فساتين سهرة فاخرة مخصصة من roseinthebox",
+  "فستان سهرة فاخر مخصص باللون الأخضر"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -773,7 +777,9 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S4b183d5bf2604f9c8b1ad850adb298e9i.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S24205eae4da34367894cd6af042599acp.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S55cd7c92cc7248fbbf09f6eb3dbe935ft.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S2a42b95fa55e43ceb7c7df382a547f68c.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2a42b95fa55e43ceb7c7df382a547f68c.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1667a8a249db4e38bff78152c8aa2396M.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa3fef58f324848cbaf5bc355faeca291z.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -791,12 +797,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 18
+   "evening-dresses": 20
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 18
+   "evening-dresses": 20
   }
  },
  "taste": {
@@ -1043,7 +1049,9 @@
   "1005012987663853": 7.0,
   "1005010259215691": 3.0,
   "1005013337949801": 7.0,
-  "1005011888402387": 8.0
+  "1005011888402387": 8.0,
+  "1005011928969691": 7.0,
+  "1005012290532993": 9.0
  },
  "digest_day": "2026-11-14"
 }
