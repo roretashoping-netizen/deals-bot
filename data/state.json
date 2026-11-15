@@ -254,7 +254,9 @@
   "1005011785115950": "2026-11-15",
   "1005006366193799": "2026-11-15",
   "1005012575692881": "2026-11-15",
-  "1005008157833834": "2026-11-15"
+  "1005008157833834": "2026-11-15",
+  "1005012649641501": "2026-11-15",
+  "1005007272391378": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -508,7 +510,9 @@
   "فساتين سهرة ميلا بورجوندي بدون أكتاف",
   "فستان سهرة عربي إسلامي فاخر مزين",
   "فستان سهرة رسمي مخصص من ميلا،",
-  "فستان مخصص بطول الأرض، زخرفة أكريليك"
+  "فستان مخصص بطول الأرض، زخرفة أكريليك",
+  "فستان سهرة بيلا مخصص بتصميم هالتر",
+  "تخصيص رائعة معقدة جوهرة ألف خط"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -755,7 +759,9 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfaf4c2e1ea13473c849db8e5b94f9c81F.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0af19fc60d154b1d8163f04d280f34cbE.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/A0b7a9eeca75943b18bf7f9abe00e85c4y.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sd4488b0fbd5c46c5b227ac6147c6438c8.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd4488b0fbd5c46c5b227ac6147c6438c8.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc5a925c7652b4aa496d11058b2251bf2p.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1a3a6d5a908b47cc9236e68d2a070c86n.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -773,12 +779,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 12
+   "evening-dresses": 14
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 12
+   "evening-dresses": 14
   }
  },
  "taste": {
@@ -1018,7 +1024,9 @@
   "1005013153485941": 7.0,
   "1005011785115950": 9.0,
   "1005008157833834": 7.0,
-  "1005012575692881": 7.0
+  "1005012575692881": 7.0,
+  "1005007272391378": 9.0,
+  "1005012649641501": 9.0
  },
  "digest_day": "2026-11-14"
 }
