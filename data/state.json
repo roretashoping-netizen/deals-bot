@@ -277,7 +277,9 @@
   "1005012968181313": "2026-11-15",
   "1005012614923220": "2026-11-15",
   "1005012282259884": "2026-11-15",
-  "1005011952399567": "2026-11-15"
+  "1005011952399567": "2026-11-15",
+  "1005008504153667": "2026-11-15",
+  "1005012373835725": "2026-11-15"
  },
  "daily": {
   "2026-11-10": 58,
@@ -554,7 +556,9 @@
   "فساتين سهرة رسمية فاخرة باللون الأحمر",
   "فستان ساتان أنيق بحمالات كتف مزينة",
   "فستان حورية البحر للنساء برقبة مستديرة",
-  "فستان طويل أنيق بدون حمالات مع"
+  "فستان طويل أنيق بدون حمالات مع",
+  "فستان سهرة من rfyr فستان حفلة",
+  "فساتين حفلات مخصصة من أونبر، فساتين"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -824,9 +828,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S157a208224994b4fae3ded76bb4f052cJ.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Seeb9a55957c14c5f8d858a523a774eefX.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa62f8f5ee98745f4a68ca1baca964b01U.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sb3267a319bf0457788963fcb67fc07a9G.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sb3267a319bf0457788963fcb67fc07a9G.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa967bae3577c47caab14198525634132U.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbe5e194ccc884c3396c97e7eea66fc01i.jpg"
  ],
- "last_cat": "فساتين",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -842,12 +848,12 @@
  ],
  "cat_day": {
   "2026-11-15": {
-   "evening-dresses": 35
+   "evening-dresses": 37
   }
  },
  "extra_day": {
   "2026-11-15": {
-   "evening-dresses": 35
+   "evening-dresses": 37
   }
  },
  "taste": {
@@ -1113,7 +1119,9 @@
   "1005013271671899": 4.0,
   "1005011952399567": 7.0,
   "1005012614923220": 7.0,
-  "1005012282259884": 7.0
+  "1005012282259884": 7.0,
+  "1005012373835725": 8.0,
+  "1005008504153667": 7.0
  },
  "digest_day": "2026-11-14"
 }
