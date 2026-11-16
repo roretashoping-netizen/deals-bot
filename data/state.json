@@ -311,7 +311,8 @@
   "1005011843283079": "2026-11-16",
   "1005012431793031": "2026-11-16",
   "1005008403966971": "2026-11-16",
-  "1005008039543426": "2026-11-16"
+  "1005008039543426": "2026-11-16",
+  "1005008620884205": "2026-11-16"
  },
  "daily": {
   "2026-11-10": 58,
@@ -622,7 +623,8 @@
   "فساتين سهرة أنيقة بياقة على شكل",
   "فستان أنيق فاخر مطرز بالدانتيل مع",
   "تخصيص الرعوية عالية الجودة جيرسي اليدوية",
-  "فساتين سهرة من الساتان مخصصة فساتين"
+  "فساتين سهرة من الساتان مخصصة فساتين",
+  "أنيقة المرأة الفرنسية السباغيتي حزام جديد"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -926,9 +928,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S66bcbe6c345a455fa7dcf04555293f89o.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5aa052ecaf4343a68307cc644a7fcff3L.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7804957d658a4396a6034681b5a0fd66K.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S8f72a37b43074751be4438afc7f4aeb28.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8f72a37b43074751be4438afc7f4aeb28.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S69e7782017bb4282bed451ff9f7756f2h.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -944,12 +947,12 @@
  ],
  "cat_day": {
   "2026-11-16": {
-   "evening-dresses": 19
+   "evening-dresses": 20
   }
  },
  "extra_day": {
   "2026-11-16": {
-   "evening-dresses": 19
+   "evening-dresses": 20
   }
  },
  "taste": {
@@ -1258,7 +1261,8 @@
   "1005008527908947": 3.0,
   "1005011843283079": 8.0,
   "1005012431793031": 9.0,
-  "1005008403966971": 7.0
+  "1005008403966971": 7.0,
+  "1005008620884205": 7.0
  },
  "digest_day": "2026-11-15"
 }
