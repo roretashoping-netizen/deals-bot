@@ -302,7 +302,11 @@
   "1005008495790686": "2026-11-16",
   "1005011898788024": "2026-11-16",
   "1005005136967050": "2026-11-16",
-  "1005010597396866": "2026-11-16"
+  "1005010597396866": "2026-11-16",
+  "1005008969340179": "2026-11-16",
+  "1005012559229007": "2026-11-16",
+  "1005012205046885": "2026-11-16",
+  "1005012601008094": "2026-11-16"
  },
  "daily": {
   "2026-11-10": 58,
@@ -604,7 +608,11 @@
   "nfyn فساتين لحضور الحفلات الموسيقية الوردية",
   "فساتين سهرة وردية فاتحة بدون أكتاف",
   "فستان سهرة أنيق بخط ، رقبة",
-  "فستان ماكسي أنيق للحفلات المسائية للنساء"
+  "فستان ماكسي أنيق للحفلات المسائية للنساء",
+  "ثلاثية الأبعاد الزهور مطرز أقمشة الدانتيل",
+  "فستان سهرة فاخر من ليلي مزين",
+  "فستان سهرة فاخر بتصميم حورية البحر",
+  "فستان سهرة رسمي مخصص من ميلا"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -899,9 +907,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf70ef4dd267f47a3a0d783f8706a8ada3.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7e3352cddb9b43d5a58b69628fd83c51n.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sb933e06ec37448b081b8532860c3e336I.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa9d5b1fb0c374728a8a62f8c74b82097t.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa9d5b1fb0c374728a8a62f8c74b82097t.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se7d8abb25ae34e0da4625885fa6a80e07.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S235443f1f72e44d6ab79b4e7fef6c134y.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se28ca36d58094e67856340deaf1b1cech.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S721fdded920e4625a6fad42a05a69bfco.jpg"
  ],
- "last_cat": "فساتين",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -917,12 +929,12 @@
  ],
  "cat_day": {
   "2026-11-16": {
-   "evening-dresses": 10
+   "evening-dresses": 14
   }
  },
  "extra_day": {
   "2026-11-16": {
-   "evening-dresses": 10
+   "evening-dresses": 14
   }
  },
  "taste": {
@@ -1220,7 +1232,12 @@
   "1005011972795683": 9.0,
   "1005008495790686": 7.0,
   "1005011898788024": 8.0,
-  "1005005136967050": 8.0
+  "1005005136967050": 8.0,
+  "1005012601008094": 8.0,
+  "1005008969340179": 7.0,
+  "1005012559229007": 7.0,
+  "1005004803273366": 3.0,
+  "1005012205046885": 9.0
  },
  "digest_day": "2026-11-15"
 }
