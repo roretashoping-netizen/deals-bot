@@ -330,7 +330,8 @@
   "1005012668514020": "2026-11-16",
   "1005012467418923": "2026-11-16",
   "1005012236318698": "2026-11-16",
-  "1005007498428134": "2026-11-16"
+  "1005007498428134": "2026-11-16",
+  "1005008238748150": "2026-11-16"
  },
  "daily": {
   "2026-11-10": 58,
@@ -660,7 +661,8 @@
   "فساتين سهرة فضية من vines بدون",
   "فستان سهرة مخصص بتصميم كلاسيكي بكتف",
   "فستان سهرة وردي فاتح من ليلي",
-  "أقمشة الدانتيل الشبكي لعام مع الترتر"
+  "أقمشة الدانتيل الشبكي لعام مع الترتر",
+  "فستان حفلة موسيقية رائع من لؤلؤ"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -983,9 +985,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S44d75140a1814b0e8a47c26daef26025m.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Se9248773bc2b451488852b3638db3e53y.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7e7091cfc8e4413688b07c0b8ec3d721C.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sc4d7e157831141eaa9cf6ce330acc9f5Z.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc4d7e157831141eaa9cf6ce330acc9f5Z.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbb66c2d296b649bb8b9cc0d0672d258ch.png"
  ],
- "last_cat": "Apparel Fabrics & Textiles",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1001,12 +1004,12 @@
  ],
  "cat_day": {
   "2026-11-16": {
-   "evening-dresses": 38
+   "evening-dresses": 39
   }
  },
  "extra_day": {
   "2026-11-16": {
-   "evening-dresses": 38
+   "evening-dresses": 39
   }
  },
  "taste": {
@@ -1336,7 +1339,11 @@
   "1005010033025622": 4.0,
   "1005012668514020": 7.0,
   "1005012467418923": 7.0,
-  "1005012236318698": 7.0
+  "1005012236318698": 7.0,
+  "1005013173105185": 4.0,
+  "1005008238748150": 9.0,
+  "1005013262694675": 4.0,
+  "1005007003254339": 3.0
  },
  "digest_day": "2026-11-16"
 }
