@@ -662,16 +662,12 @@ def as_album(cfg, p):
 
 
 def post_buttons(cfg, p):
-    """زر الطلب، وتحته أكواد الخصم ومشاركة العرض (المشاركة تجيب أعضاء وزوار جدد)."""
+    """زر الطلب، وتحته زر أكواد الخصم."""
     rows = [[{"text": cfg.get("button_text", "🛍️ اطلب الحين"), "url": p["promotion_link"]}]]
     site = cfg.get("site_url", "").rstrip("/")
     if site:
-        from urllib.parse import quote
-        page = f"{site}/p/{p['product_id']}.html"
-        text = f"{p.get('_title') or 'عرض من علي إكسبريس'} 🔥"
         rows.append([
             {"text": "🎟️ أكواد الخصم", "url": f"{site}/codes.html"},
-            {"text": "📤 شاركي العرض", "url": f"https://t.me/share/url?url={quote(page)}&text={quote(text)}"},
         ])
     return rows
 
@@ -1479,6 +1475,24 @@ def cmd_run(cfg):
             time.sleep(300)
 
 
+def cmd_strip_share(cfg):
+    """يشيل زر «شاركي العرض» من منشورات قديمة. data/strip_share.json = {"رقم_الرسالة": [[["نص الزر", "الرابط"], ...], ...]}"""
+    f = deals_site.BASE_DIR / "data" / "strip_share.json"
+    jobs = json.loads(f.read_text(encoding="utf-8"))
+    ok = 0
+    for msg, rows in jobs.items():
+        kb = [[{"text": t, "url": u} for t, u in row] for row in rows if row]
+        try:
+            tg(cfg, "editMessageReplyMarkup", chat_id=cfg["channel"], message_id=int(msg),
+               reply_markup={"inline_keyboard": kb})
+            ok += 1
+        except Exception as e:
+            print(f"✗ {msg}: {e}")
+        time.sleep(3.5)
+    print(f"تم تعديل {ok} من {len(jobs)} منشور")
+    return 0
+
+
 def cmd_recaption(cfg, pairs):
     """يعيد كتابة نص منشورات قديمة (تعديل بنفس مكانها) بالقواعد الحالية. pairs = "رقم_المنتج:رقم_الرسالة,..." """
     jobs = [x.split(":") for x in pairs.split(",") if ":" in x]
@@ -1582,7 +1596,7 @@ def cmd_scout(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption", "stripshare"])
     ap.add_argument("--count", type=int, default=1)
     ap.add_argument("--ids", default="", help="للتعديل: رقم_المنتج:رقم_الرسالة,...")
     ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
@@ -1598,6 +1612,8 @@ def main():
         return cmd_check(cfg)
     if a.command == "fields":
         return cmd_fields(cfg)
+    if a.command == "stripshare":
+        return cmd_strip_share(cfg)
     if a.command == "recaption":
         return cmd_recaption(cfg, a.ids)
     if a.command == "scout":
