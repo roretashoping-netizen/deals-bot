@@ -344,7 +344,8 @@
   "1005009947877147": "2026-11-17",
   "1005012871133372": "2026-11-17",
   "1005006682030751": "2026-11-17",
-  "1005008321510269": "2026-11-17"
+  "1005008321510269": "2026-11-17",
+  "1005012467962124": "2026-11-17"
  },
  "daily": {
   "2026-11-10": 58,
@@ -688,7 +689,8 @@
   "فساتين سهرة أنيقة حورية البحر قبالة",
   "فستان سهرة من الشيفون بدون أكتاف",
   "فساتين حفلة موسيقية مخصصة رائعة غمد",
-  "فستان سهرة إسلامي بأكمام طويلة من"
+  "فستان سهرة إسلامي بأكمام طويلة من",
+  "فساتين سهرة من الشيفون باللون الأزرق"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1025,7 +1027,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S332634b9bdc348719ef6d093b45538f4H.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7a7020b6663e42bf95840f3a1339b00dY.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Se4a8b0de3df542bba18eec10703bf84ag.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S4ac7c2d677624d7c97c9470b429e6facs.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4ac7c2d677624d7c97c9470b429e6facs.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se4402bf3c4914a9f8f03af185704356c6.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1043,12 +1046,12 @@
  ],
  "cat_day": {
   "2026-11-17": {
-   "evening-dresses": 10
+   "evening-dresses": 11
   }
  },
  "extra_day": {
   "2026-11-17": {
-   "evening-dresses": 10
+   "evening-dresses": 11
   }
  },
  "taste": {
@@ -1396,7 +1399,8 @@
   "1005007117369402": 7.0,
   "1005006682030751": 9.0,
   "1005012871133372": 7.0,
-  "1005008321510269": 9.0
+  "1005008321510269": 9.0,
+  "1005012467962124": 7.0
  },
  "digest_day": "2026-11-16"
 }
