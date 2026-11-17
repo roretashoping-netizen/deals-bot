@@ -334,7 +334,11 @@
   "1005008238748150": "2026-11-16",
   "1005012298400507": "2026-11-16",
   "1005012774776598": "2026-11-16",
-  "1005008513803835": "2026-11-16"
+  "1005008513803835": "2026-11-16",
+  "1005009129591651": "2026-11-17",
+  "1005004358888667": "2026-11-17",
+  "1005012602760233": "2026-11-17",
+  "1005013061495125": "2026-11-17"
  },
  "daily": {
   "2026-11-10": 58,
@@ -668,7 +672,11 @@
   "فستان حفلة موسيقية رائع من لؤلؤ",
   "فستان سهرة فاخر من الجيرسيه الكريستالي",
   "فساتين سهرة كونتيزا مخصصة بيضاء لامعة",
-  "فساتين سهرة فاخرة مطرزة بحورية البحر"
+  "فساتين سهرة فاخرة مطرزة بحورية البحر",
+  "تخصيص جودة عالية طول الأرض بلا",
+  "فساتين زفاف فرنسية فاخرة بيضاء من",
+  "فستان سهرة رسمي أسود طويل بتصميم",
+  "فساتين طويلة أنيقة من الساتان بتصميم"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -995,9 +1003,13 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sbb66c2d296b649bb8b9cc0d0672d258ch.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S8d54e5f3bbfa4c6789267c7b3d79f106W.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sce45da3c4ea245fc8308eb3846698724M.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Scac0b94edabb44e28ea2067b85faa415h.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Scac0b94edabb44e28ea2067b85faa415h.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se65322bb3b384688bd3da066023b1ff5v.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sba88e246ab7a4ddca8f20eb46581ed4b9.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S5dfbdf18a24d4bdd89274bb841302b2dM.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8bb479942a284688a65acf5f4740d6b7f.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1012,13 +1024,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-16": {
-   "evening-dresses": 42
+  "2026-11-17": {
+   "evening-dresses": 4
   }
  },
  "extra_day": {
-  "2026-11-16": {
-   "evening-dresses": 42
+  "2026-11-17": {
+   "evening-dresses": 4
   }
  },
  "taste": {
@@ -1355,7 +1367,12 @@
   "1005007003254339": 3.0,
   "1005008513803835": 7.0,
   "1005012298400507": 9.0,
-  "1005012774776598": 7.0
+  "1005012774776598": 7.0,
+  "1005013061495125": 7.0,
+  "1005009129591651": 9.0,
+  "1005008515799319": 2.0,
+  "1005004358888667": 9.0,
+  "1005012602760233": 7.0
  },
  "digest_day": "2026-11-16"
 }
