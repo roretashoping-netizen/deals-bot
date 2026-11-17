@@ -350,7 +350,8 @@
   "1005009285735898": "2026-11-17",
   "1005012525153263": "2026-11-17",
   "1005010643247464": "2026-11-17",
-  "1005009511871862": "2026-11-17"
+  "1005009511871862": "2026-11-17",
+  "1005006408133270": "2026-11-17"
  },
  "daily": {
   "2026-11-10": 58,
@@ -700,7 +701,8 @@
   "فستان سهرة لامع ذهبي مخصص لعام",
   "فستان تيولاروز الأنيق المطبوع بالساتان للنساء،",
   "فساتين سهرة رائعة مخصصة على شكل",
-  "فساتين سهرة dianruo باللون الأصفر الشاحب"
+  "فساتين سهرة dianruo باللون الأصفر الشاحب",
+  "فساتين لحضور الحفلات الموسيقية من الأورجانزا"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1043,7 +1045,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S9ab4b76a76bd41cca5144e7765c1abf6Z.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S8ee7b92d113940969084d3d059ccf92cE.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa2009dbab4b6438f93914e64a1cd809cI.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0e0e53751a6a41e697894bd0b6fc2630L.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0e0e53751a6a41e697894bd0b6fc2630L.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S56bc70032fe647c58efc2de8c50d48ce3.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1061,12 +1064,12 @@
  ],
  "cat_day": {
   "2026-11-17": {
-   "evening-dresses": 16
+   "evening-dresses": 17
   }
  },
  "extra_day": {
   "2026-11-17": {
-   "evening-dresses": 16
+   "evening-dresses": 17
   }
  },
  "taste": {
@@ -1420,7 +1423,8 @@
   "1005009795538191": 8.0,
   "1005009285735898": 7.0,
   "1005012525153263": 8.0,
-  "1005010643247464": 7.0
+  "1005010643247464": 7.0,
+  "1005006408133270": 7.0
  },
  "digest_day": "2026-11-16"
 }
