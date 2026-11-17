@@ -356,7 +356,8 @@
   "1005011874564106": "2026-11-17",
   "1005011702812834": "2026-11-17",
   "1005012398152618": "2026-11-17",
-  "1005008196730301": "2026-11-17"
+  "1005008196730301": "2026-11-17",
+  "1005006358682478": "2026-11-17"
  },
  "daily": {
   "2026-11-10": 58,
@@ -712,7 +713,8 @@
   "فستان سهرة رسمي أبيض مخصص من",
   "فساتين سهرة نسائية أنيقة من الساتان",
   "فستان سهرة رسمي طويل من ميلا",
-  "تخصيص الوردي واحد الكتف مطرزة مستقيم"
+  "تخصيص الوردي واحد الكتف مطرزة مستقيم",
+  "فساتين لحضور الحفلات الموسيقية الرومانسية المخصصة"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1061,7 +1063,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Ac6de6a243971455b8b13776cb73b93ad9.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S9218cdfac65b4b1395fd184a1e2ecdfcu.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/A57bcb38808504e1dbb8c2007119be5e4f.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S5cb7d265db5945d4bd8adf975bde0364E.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S5cb7d265db5945d4bd8adf975bde0364E.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sea23c64c864e47f8900f1b151d75c87dt.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1079,12 +1082,12 @@
  ],
  "cat_day": {
   "2026-11-17": {
-   "evening-dresses": 22
+   "evening-dresses": 23
   }
  },
  "extra_day": {
   "2026-11-17": {
-   "evening-dresses": 22
+   "evening-dresses": 23
   }
  },
  "taste": {
@@ -1444,7 +1447,8 @@
   "1005012189709327": 9.0,
   "1005008196730301": 8.0,
   "1005011702812834": 7.0,
-  "1005012398152618": 7.0
+  "1005012398152618": 7.0,
+  "1005006358682478": 8.0
  },
  "digest_day": "2026-11-17"
 }
