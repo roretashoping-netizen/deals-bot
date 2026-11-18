@@ -362,7 +362,9 @@
   "1005010362317806": "2026-11-18",
   "1005006300420789": "2026-11-18",
   "1005011839944835": "2026-11-18",
-  "1005005848395587": "2026-11-18"
+  "1005005848395587": "2026-11-18",
+  "1005010249346622": "2026-11-18",
+  "1005012670978589": "2026-11-18"
  },
  "daily": {
   "2026-11-10": 58,
@@ -724,7 +726,9 @@
   "تخصيص الطراز الحديث مطابقة charmeuse ruched",
   "فساتين سهرة أنيقة بمقاسات كبيرة من",
   "فساتين حفلات التخرج من الشيفون الأبيض",
-  "فساتين سهرة أنيقة وجذابة للنساء، فستان"
+  "فساتين سهرة أنيقة وجذابة للنساء، فستان",
+  "فستان حفلات من roses باللون الأزرق",
+  "فساتين سهرة من roseinthebox مصنوعة من"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1079,9 +1083,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S13481948f59c483dacfee40f353e6a81N.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd2d231cf764e45daac677da1254f94ae0.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa0851c88fc71413d9a1839d6c9da4be6z.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sadd4829f27be4c799394a60f93a3d48et.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sadd4829f27be4c799394a60f93a3d48et.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S501bf45481734946866632028514677ao.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S520f703bacda49dba83a2a4d73c1416fn.jpg"
  ],
- "last_cat": "فساتين",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1097,12 +1103,12 @@
  ],
  "cat_day": {
   "2026-11-18": {
-   "evening-dresses": 5
+   "evening-dresses": 7
   }
  },
  "extra_day": {
   "2026-11-18": {
-   "evening-dresses": 5
+   "evening-dresses": 7
   }
  },
  "taste": {
@@ -1470,7 +1476,9 @@
   "1005006300420789": 7.0,
   "1005011839944835": 7.0,
   "1005005848395587": 7.0,
-  "1005011560084963": 1.0
+  "1005011560084963": 1.0,
+  "1005012670978589": 8.0,
+  "1005010249346622": 7.0
  },
  "digest_day": "2026-11-17"
 }
