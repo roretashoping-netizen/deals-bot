@@ -360,7 +360,8 @@
   "1005006358682478": "2026-11-17",
   "1005011740335316": "2026-11-18",
   "1005010362317806": "2026-11-18",
-  "1005006300420789": "2026-11-18"
+  "1005006300420789": "2026-11-18",
+  "1005011839944835": "2026-11-18"
  },
  "daily": {
   "2026-11-10": 58,
@@ -720,7 +721,8 @@
   "فساتين لحضور الحفلات الموسيقية الرومانسية المخصصة",
   "فساتين سهرة وردية من solis بدون",
   "تخصيص الطراز الحديث مطابقة charmeuse ruched",
-  "فساتين سهرة أنيقة بمقاسات كبيرة من"
+  "فساتين سهرة أنيقة بمقاسات كبيرة من",
+  "فساتين حفلات التخرج من الشيفون الأبيض"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1073,7 +1075,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sea23c64c864e47f8900f1b151d75c87dt.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3fdefd20980c41f99910abf9a5c2a334G.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S13481948f59c483dacfee40f353e6a81N.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sd2d231cf764e45daac677da1254f94ae0.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd2d231cf764e45daac677da1254f94ae0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sa0851c88fc71413d9a1839d6c9da4be6z.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1091,12 +1094,12 @@
  ],
  "cat_day": {
   "2026-11-18": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "extra_day": {
   "2026-11-18": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "taste": {
@@ -1461,7 +1464,8 @@
   "1005013473038595": 4.0,
   "1005010362317806": 9.0,
   "1005011740335316": 7.0,
-  "1005006300420789": 7.0
+  "1005006300420789": 7.0,
+  "1005011839944835": 7.0
  },
  "digest_day": "2026-11-17"
 }
