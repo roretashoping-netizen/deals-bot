@@ -357,7 +357,9 @@
   "1005011702812834": "2026-11-17",
   "1005012398152618": "2026-11-17",
   "1005008196730301": "2026-11-17",
-  "1005006358682478": "2026-11-17"
+  "1005006358682478": "2026-11-17",
+  "1005011740335316": "2026-11-18",
+  "1005010362317806": "2026-11-18"
  },
  "daily": {
   "2026-11-10": 58,
@@ -714,7 +716,9 @@
   "فساتين سهرة نسائية أنيقة من الساتان",
   "فستان سهرة رسمي طويل من ميلا",
   "تخصيص الوردي واحد الكتف مطرزة مستقيم",
-  "فساتين لحضور الحفلات الموسيقية الرومانسية المخصصة"
+  "فساتين لحضور الحفلات الموسيقية الرومانسية المخصصة",
+  "فساتين سهرة وردية من solis بدون",
+  "تخصيص الطراز الحديث مطابقة charmeuse ruched"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1064,9 +1068,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S9218cdfac65b4b1395fd184a1e2ecdfcu.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/A57bcb38808504e1dbb8c2007119be5e4f.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5cb7d265db5945d4bd8adf975bde0364E.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sea23c64c864e47f8900f1b151d75c87dt.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sea23c64c864e47f8900f1b151d75c87dt.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3fdefd20980c41f99910abf9a5c2a334G.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S13481948f59c483dacfee40f353e6a81N.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين الأزياء الراقية",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1081,13 +1087,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-17": {
-   "evening-dresses": 23
+  "2026-11-18": {
+   "evening-dresses": 2
   }
  },
  "extra_day": {
-  "2026-11-17": {
-   "evening-dresses": 23
+  "2026-11-18": {
+   "evening-dresses": 2
   }
  },
  "taste": {
@@ -1448,7 +1454,10 @@
   "1005008196730301": 8.0,
   "1005011702812834": 7.0,
   "1005012398152618": 7.0,
-  "1005006358682478": 8.0
+  "1005006358682478": 8.0,
+  "1005013473038595": 4.0,
+  "1005010362317806": 9.0,
+  "1005011740335316": 7.0
  },
  "digest_day": "2026-11-17"
 }
