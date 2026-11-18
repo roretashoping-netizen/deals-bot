@@ -364,7 +364,8 @@
   "1005011839944835": "2026-11-18",
   "1005005848395587": "2026-11-18",
   "1005010249346622": "2026-11-18",
-  "1005012670978589": "2026-11-18"
+  "1005012670978589": "2026-11-18",
+  "1005010569861826": "2026-11-18"
  },
  "daily": {
   "2026-11-10": 58,
@@ -728,7 +729,8 @@
   "فساتين حفلات التخرج من الشيفون الأبيض",
   "فساتين سهرة أنيقة وجذابة للنساء، فستان",
   "فستان حفلات من roses باللون الأزرق",
-  "فساتين سهرة من roseinthebox مصنوعة من"
+  "فساتين سهرة من roseinthebox مصنوعة من",
+  "فساتين حفلات أنيقة مخصصة من lena"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1085,7 +1087,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa0851c88fc71413d9a1839d6c9da4be6z.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sadd4829f27be4c799394a60f93a3d48et.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S501bf45481734946866632028514677ao.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S520f703bacda49dba83a2a4d73c1416fn.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S520f703bacda49dba83a2a4d73c1416fn.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S33e8ef459bfb4a989a5bc206d2eebfcbl.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1103,12 +1106,12 @@
  ],
  "cat_day": {
   "2026-11-18": {
-   "evening-dresses": 7
+   "evening-dresses": 8
   }
  },
  "extra_day": {
   "2026-11-18": {
-   "evening-dresses": 7
+   "evening-dresses": 8
   }
  },
  "taste": {
@@ -1478,7 +1481,8 @@
   "1005005848395587": 7.0,
   "1005011560084963": 1.0,
   "1005012670978589": 8.0,
-  "1005010249346622": 7.0
+  "1005010249346622": 7.0,
+  "1005010569861826": 9.0
  },
  "digest_day": "2026-11-17"
 }
