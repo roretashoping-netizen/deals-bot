@@ -366,7 +366,10 @@
   "1005010249346622": "2026-11-18",
   "1005012670978589": "2026-11-18",
   "1005010569861826": "2026-11-18",
-  "1005012307004187": "2026-11-18"
+  "1005012307004187": "2026-11-18",
+  "1005008486311312": "2026-11-21",
+  "1005011969700598": "2026-11-21",
+  "1005012823319476": "2026-11-21"
  },
  "daily": {
   "2026-11-10": 58,
@@ -732,7 +735,10 @@
   "فستان حفلات من roses باللون الأزرق",
   "فساتين سهرة من roseinthebox مصنوعة من",
   "فساتين حفلات أنيقة مخصصة من lena",
-  "فستان سهرة فاخر مخصص من سانسا"
+  "فستان سهرة فاخر مخصص من سانسا",
+  "فساتين سهرة زرقاء فاخرة مقاس كبير",
+  "فستان سهرة ليلي داستي روز بتصميم",
+  "فستان سهرة طويل وردي بدون حمالات"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1091,7 +1097,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S501bf45481734946866632028514677ao.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S520f703bacda49dba83a2a4d73c1416fn.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S33e8ef459bfb4a989a5bc206d2eebfcbl.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S3bf23fbd74aa41baae6ff5b54f60683cc.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3bf23fbd74aa41baae6ff5b54f60683cc.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf66b5208b736486290273992241cc805F.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4ff0a8522cc947d29ada746e54d0f4d7H.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd1aa002ff8d34dd1a918cbbb294daa19F.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1108,13 +1117,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-18": {
-   "evening-dresses": 9
+  "2026-11-21": {
+   "evening-dresses": 3
   }
  },
  "extra_day": {
-  "2026-11-18": {
-   "evening-dresses": 9
+  "2026-11-21": {
+   "evening-dresses": 3
   }
  },
  "taste": {
@@ -1487,7 +1496,11 @@
   "1005010249346622": 7.0,
   "1005010569861826": 9.0,
   "1005010658973130": 4.0,
-  "1005012307004187": 7.0
+  "1005012307004187": 7.0,
+  "1005009833096426": 6.0,
+  "1005012823319476": 7.0,
+  "1005008486311312": 7.0,
+  "1005011969700598": 7.0
  },
  "digest_day": "2026-11-17"
 }
