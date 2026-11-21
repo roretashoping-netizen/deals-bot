@@ -159,50 +159,50 @@
   "telegram_public": "productaliexpress2027",
   "google_site_verification": "",
   "promos": {
-    "codes_until": "2026-11-18",
+    "codes_until": "2026-12-03",
     "codes": [
       {
-        "code": "GCC01",
-        "off": 23,
-        "min": 150
+        "code": "GCCSF05",
+        "off": 19,
+        "min": 132
       },
       {
-        "code": "GCC02",
-        "off": 58,
-        "min": 345
+        "code": "GCCSF15",
+        "off": 57,
+        "min": 342
       },
       {
-        "code": "GCC03",
-        "off": 105,
-        "min": 615
+        "code": "GCCSF24",
+        "off": 92,
+        "min": 516
       },
       {
-        "code": "GCC04",
-        "off": 125,
-        "min": 725
+        "code": "GCCSF31",
+        "off": 118,
+        "min": 745
       },
       {
-        "code": "GCC05",
-        "off": 175,
-        "min": 980
+        "code": "GCCSF40",
+        "off": 152,
+        "min": 1007
       },
       {
-        "code": "GCC06",
-        "off": 210,
+        "code": "GCCSF55",
+        "off": 209,
         "min": 1300
       },
       {
-        "code": "GCC08",
-        "off": 385,
-        "min": 2200
+        "code": "GCCSF80",
+        "off": 301,
+        "min": 1898
+      },
+      {
+        "code": "GCCSF100",
+        "off": 380,
+        "min": 2318
       }
     ],
-    "notes": [
-      {
-        "text": "💳 للسعودية فقط: بطاقات فيزا STC Bank خصم 60 ريال فوق 300 ريال، ويوصل لـ 260 ريال فوق 1300 ريال · حتى 12 نوفمبر",
-        "until": "2026-11-12"
-      }
-    ]
+    "notes": []
   },
   "evening_dress_shops": [
     "Sharon Said Boutique Store",
