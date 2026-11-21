@@ -143,7 +143,7 @@ def fetch_candidates(cfg):
     premium = [k for k in keywords if deals_site.category_for(k)["slug"] in deep]
     general = [k for k in keywords if deals_site.category_for(k)["slug"] not in deep]
     jobs = [(kw, pg) for kw in premium[: cfg.get("premium_keywords_per_run", 1)] for pg in (1, 2)]
-    jobs += [(kw, random.randint(1, 3)) for kw in general[: cfg.get("keywords_per_run", 4)]]
+    jobs += [(kw, random.randint(1, cfg.get("max_page", 3))) for kw in general[: cfg.get("keywords_per_run", 4)]]
     for kw, page_no in jobs:
         biz = {
             "keywords": kw,
@@ -151,7 +151,7 @@ def fetch_candidates(cfg):
             "target_currency": cfg["currency"],
             "target_language": cfg["language"],
             "ship_to_country": cfg["ship_to"],
-            "sort": "LAST_VOLUME_DESC",
+            "sort": random.choice(cfg.get("sorts") or ["LAST_VOLUME_DESC"]),
             "page_size": 50,
             "page_no": page_no,
             "min_sale_price": cfg.get("min_price", ""),
@@ -1372,7 +1372,7 @@ def maybe_extras(cfg, state, new_ids):
         n = min(-(-int(quota * share * 100) // 100) - done, cfg.get("extra_per_run", 3), quota - done)
         if n <= 0:
             continue
-        ccfg = {**cfg, "_focus": True, "deep_search_cats": [], "keywords_per_run": 4,
+        ccfg = {**cfg, "_focus": True, "deep_search_cats": [], "keywords_per_run": cfg.get("extra_keywords_per_run", 4),
                 "keywords": [k for k in cfg["keywords"] if deals_site.category_for(k)["slug"] == cat]}
         if not ccfg["keywords"]:
             continue
