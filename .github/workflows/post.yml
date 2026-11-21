@@ -37,7 +37,7 @@ jobs:
           ALI_TRACKING_ID: ${{ secrets.ALI_TRACKING_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          TELEGRAM_CHANNEL: "@fsateeeen"
         run: python bot.py post --count "${{ inputs.count || 8 }}" --focus "${{ inputs.focus }}"
       - name: Save state
         run: |
