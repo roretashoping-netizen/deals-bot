@@ -380,7 +380,9 @@
   "1005011815020391": "2026-11-21",
   "1005011590772017": "2026-11-21",
   "1005011929135894": "2026-11-21",
-  "1005009358540007": "2026-11-21"
+  "1005009358540007": "2026-11-21",
+  "1005013061006667": "2026-11-21",
+  "1005013199681736": "2026-11-21"
  },
  "daily": {
   "2026-11-10": 58,
@@ -760,7 +762,9 @@
   "فستان سهرة أماندا مخصص باللون البني",
   "فساتين سهرة فاخرة بياقة مربعة مزينة",
   "فساتين سهرة مخصصة مزينة بالخرز، فستان",
-  "سانسا مخصص الأخضر بريق قبالة الكتف"
+  "سانسا مخصص الأخضر بريق قبالة الكتف",
+  "فساتين ماكسي أنيقة للنساء من bkld",
+  "فستان طويل فاخر بدون حمالات من"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1133,9 +1137,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S654ac4f9375440b68de3a3f132323e71S.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Se5b60a38b55d43f290919b023bfea677p.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/Se9826db8b497439ca3f06253f355701ah.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sf511ba604dca4bea8662b81834262d5bG.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf511ba604dca4bea8662b81834262d5bG.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1d6ddcead1a049bfb906df2085c390d1y.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc285420a81fc466ead7873bae6e37b6dj.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1151,12 +1157,12 @@
  ],
  "cat_day": {
   "2026-11-21": {
-   "evening-dresses": 14
+   "evening-dresses": 16
   }
  },
  "extra_day": {
   "2026-11-21": {
-   "evening-dresses": 14
+   "evening-dresses": 16
   }
  },
  "taste": {
@@ -1547,7 +1553,10 @@
   "1005013313599638": 7.0,
   "1005011815020391": 7.0,
   "1005011590772017": 9.0,
-  "1005011929135894": 7.0
+  "1005011929135894": 7.0,
+  "1005013199681736": 7.0,
+  "1005013061006667": 9.0,
+  "1005013502506262": 4.0
  },
  "digest_day": "2026-11-21"
 }
