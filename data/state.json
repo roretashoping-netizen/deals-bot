@@ -382,7 +382,10 @@
   "1005011929135894": "2026-11-21",
   "1005009358540007": "2026-11-21",
   "1005013061006667": "2026-11-21",
-  "1005013199681736": "2026-11-21"
+  "1005013199681736": "2026-11-21",
+  "1005012897502316": "2026-11-22",
+  "1005012692481294": "2026-11-22",
+  "1005011980829858": "2026-11-22"
  },
  "daily": {
   "2026-11-10": 58,
@@ -764,7 +767,10 @@
   "فساتين سهرة مخصصة مزينة بالخرز، فستان",
   "سانسا مخصص الأخضر بريق قبالة الكتف",
   "فساتين ماكسي أنيقة للنساء من bkld",
-  "فستان طويل فاخر بدون حمالات من"
+  "فستان طويل فاخر بدون حمالات من",
+  "فستان سهرة أسود وأرجواني من solis",
+  "فستان سهرة فاخر من nfyn باللون",
+  "فستان سهرة أخضر مخصص من بيلا،"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1139,9 +1145,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Se9826db8b497439ca3f06253f355701ah.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf511ba604dca4bea8662b81834262d5bG.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S1d6ddcead1a049bfb906df2085c390d1y.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sc285420a81fc466ead7873bae6e37b6dj.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc285420a81fc466ead7873bae6e37b6dj.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf7e7ce1bb63a4ae6840138d144ce4506I.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S9371d020b531452a942cdf7447765f36X.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2963d93dcbef4555b11053114f0a2d9fw.jpg"
  ],
- "last_cat": "فساتين",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1156,13 +1165,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-21": {
-   "evening-dresses": 16
+  "2026-11-22": {
+   "evening-dresses": 3
   }
  },
  "extra_day": {
-  "2026-11-21": {
-   "evening-dresses": 16
+  "2026-11-22": {
+   "evening-dresses": 3
   }
  },
  "taste": {
@@ -1556,7 +1565,10 @@
   "1005011929135894": 7.0,
   "1005013199681736": 7.0,
   "1005013061006667": 9.0,
-  "1005013502506262": 4.0
+  "1005013502506262": 4.0,
+  "1005011980829858": 9.0,
+  "1005012897502316": 9.0,
+  "1005012692481294": 8.0
  },
  "digest_day": "2026-11-21"
 }
