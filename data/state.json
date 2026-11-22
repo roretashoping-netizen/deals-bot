@@ -389,7 +389,12 @@
   "1005012756400752": "2026-11-22",
   "1005009947093641": "2026-11-22",
   "1005013319900358": "2026-11-22",
-  "1005012332645504": "2026-11-22"
+  "1005012332645504": "2026-11-22",
+  "1005010017435446": "2026-11-22",
+  "1005012426542426": "2026-11-22",
+  "1005008523318161": "2026-11-22",
+  "1005012149381655": "2026-11-22",
+  "1005012424119799": "2026-11-22"
  },
  "daily": {
   "2026-11-10": 58,
@@ -778,7 +783,12 @@
   "فستان سهرة فاخر مخصص من lumigown",
   "فساتين طويلة مخصصة أنيقة رسمية من",
   "فستان سهرة أنيق من nfyn بياقة",
-  "فستان سهرة رسمي مخصص من egs"
+  "فستان سهرة رسمي مخصص من egs",
+  "فساتين سهرة فاخرة من roseinthebox بدون",
+  "فساتين سهرة أنيقة من أونبر بتصميم",
+  "فستان حفلات غير متماثل من rfyr",
+  "فستان سهرة كونتيزا مخصص من الشيفون",
+  "فساتين سهرة مخصصة من بيلا بتصميم"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1160,7 +1170,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S93e9142eb40b48d39408665926015939j.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd4f40e6f23f24e7dbb6a7706c3a0319e4.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S91f2826f445d42d1a63c06a06c96db4bz.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sd0a181ae61b94b71a184a7d7e1993151B.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd0a181ae61b94b71a184a7d7e1993151B.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbdea22b034c14c54972ecb907f1bacece.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sac18046b13f54e45a28228c4ad204c2cj.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1a7fa78f46af4d6a9a72dfce045c2799f.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6f473d1be8794d99ac1fe6c13dba5208J.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7841b8f24da44812af749f13b22cfc17o.png"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1178,12 +1193,12 @@
  ],
  "cat_day": {
   "2026-11-22": {
-   "evening-dresses": 7
+   "evening-dresses": 12
   }
  },
  "extra_day": {
   "2026-11-22": {
-   "evening-dresses": 7
+   "evening-dresses": 12
   }
  },
  "taste": {
@@ -1585,7 +1600,12 @@
   "1005013319900358": 9.0,
   "1005011681181141": 5.0,
   "1005009947093641": 7.0,
-  "1005012332645504": 9.0
+  "1005012332645504": 9.0,
+  "1005012424119799": 7.0,
+  "1005010017435446": 7.0,
+  "1005012426542426": 8.0,
+  "1005008523318161": 7.0,
+  "1005012149381655": 7.0
  },
  "digest_day": "2026-11-21"
 }
