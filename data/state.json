@@ -395,7 +395,8 @@
   "1005008523318161": "2026-11-22",
   "1005012149381655": "2026-11-22",
   "1005012424119799": "2026-11-22",
-  "1005012670045214": "2026-11-22"
+  "1005012670045214": "2026-11-22",
+  "1005012686282758": "2026-11-22"
  },
  "daily": {
   "2026-11-10": 58,
@@ -790,7 +791,8 @@
   "فستان حفلات غير متماثل من rfyr",
   "فستان سهرة كونتيزا مخصص من الشيفون",
   "فساتين سهرة مخصصة من بيلا بتصميم",
-  "ملابس نسائية فستان سهرة إسلامي طويل"
+  "ملابس نسائية فستان سهرة إسلامي طويل",
+  "فستان سهرة ذهبي شامبانيا بقصة حورية"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1178,7 +1180,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S1a7fa78f46af4d6a9a72dfce045c2799f.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6f473d1be8794d99ac1fe6c13dba5208J.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7841b8f24da44812af749f13b22cfc17o.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0b71978b7b454fd79dd36e1daf0ce8eb0.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0b71978b7b454fd79dd36e1daf0ce8eb0.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S24b330a4209241b482f9f419b9f85730x.png"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1196,12 +1199,12 @@
  ],
  "cat_day": {
   "2026-11-22": {
-   "evening-dresses": 13
+   "evening-dresses": 14
   }
  },
  "extra_day": {
   "2026-11-22": {
-   "evening-dresses": 13
+   "evening-dresses": 14
   }
  },
  "taste": {
@@ -1609,7 +1612,8 @@
   "1005012426542426": 8.0,
   "1005008523318161": 7.0,
   "1005012149381655": 7.0,
-  "1005012670045214": 9.0
+  "1005012670045214": 9.0,
+  "1005012686282758": 9.0
  },
  "digest_day": "2026-11-22"
 }
