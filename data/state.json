@@ -385,7 +385,8 @@
   "1005013199681736": "2026-11-21",
   "1005012897502316": "2026-11-22",
   "1005012692481294": "2026-11-22",
-  "1005011980829858": "2026-11-22"
+  "1005011980829858": "2026-11-22",
+  "1005012756400752": "2026-11-22"
  },
  "daily": {
   "2026-11-10": 58,
@@ -770,7 +771,8 @@
   "فستان طويل فاخر بدون حمالات من",
   "فستان سهرة أسود وأرجواني من solis",
   "فستان سهرة فاخر من nfyn باللون",
-  "فستان سهرة أخضر مخصص من بيلا،"
+  "فستان سهرة أخضر مخصص من بيلا،",
+  "فستان سهرة فاخر مخصص من lumigown"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1148,7 +1150,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc285420a81fc466ead7873bae6e37b6dj.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf7e7ce1bb63a4ae6840138d144ce4506I.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S9371d020b531452a942cdf7447765f36X.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S2963d93dcbef4555b11053114f0a2d9fw.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2963d93dcbef4555b11053114f0a2d9fw.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S93e9142eb40b48d39408665926015939j.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1166,12 +1169,12 @@
  ],
  "cat_day": {
   "2026-11-22": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "extra_day": {
   "2026-11-22": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "taste": {
@@ -1568,7 +1571,8 @@
   "1005013502506262": 4.0,
   "1005011980829858": 9.0,
   "1005012897502316": 9.0,
-  "1005012692481294": 8.0
+  "1005012692481294": 8.0,
+  "1005012756400752": 9.0
  },
  "digest_day": "2026-11-21"
 }
