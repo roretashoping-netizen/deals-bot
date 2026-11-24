@@ -1567,12 +1567,14 @@ def video_page(cfg, items, title, slug):
     tgl = f"https://t.me/{cfg.get('telegram_public', '').lstrip('@')}"
     cards = []
     for n, p, link, price in items:
+        src = deals_site.source_of(p.get("_source"))
+        logo = f'<img class="sl" src="{_h.escape(deals_site.source_logo(cfg, src))}" alt="" referrerpolicy="no-referrer">'
         img = p.get("product_main_image_url", "")
         pr = f'<div class="pr">{money(num(price))} ريال</div>' if price else ""
         cards.append(
             f'<a class="c" href="{_h.escape(link)}" target="_blank" rel="nofollow sponsored noopener">'
             f'<span class="n">{num_ar(n)}</span><img src="{_h.escape(img)}" alt="فستان رقم {num_ar(n)}" loading="lazy">'
-            f'<div class="b"><div class="t">فستان رقم {num_ar(n)}</div>{pr}<div class="go">اطلبيه الحين ←</div></div></a>')
+            f'<div class="b"><div class="t">فستان رقم {num_ar(n)}</div>{pr}<div class="go">{logo}<span>اطلبي من {_h.escape(src["name"])}</span></div></div></a>')
     page = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{_h.escape(title)}</title>
 <meta name="robots" content="noindex">
@@ -1588,7 +1590,8 @@ header{{text-align:center;padding:22px 16px 6px}}h1{{margin:0;font-size:24px;col
 .c img{{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#222}}
 .n{{position:absolute;top:8px;right:8px;width:40px;height:40px;border-radius:50%;background:var(--gold2);color:#1a140c;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.4)}}
 .b{{padding:8px 10px 10px;text-align:center}}.t{{font-weight:700}}.pr{{color:var(--gold2);font-size:14px}}
-.go{{margin-top:6px;background:var(--gold);color:#1a140c;border-radius:9px;padding:6px 0;font-weight:800;font-size:14px}}
+.go{{margin-top:6px;background:var(--gold);color:#1a140c;border-radius:9px;padding:6px 4px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:6px}}
+.sl{{width:20px;height:20px;border-radius:5px;background:#fff;padding:2px;object-fit:contain}}
 .tg{{display:block;max-width:420px;margin:6px auto 0;text-align:center;color:var(--gold2);padding:10px;border:1px solid rgba(201,163,92,.35);border-radius:12px;text-decoration:none}}
 footer{{text-align:center;color:var(--muted);font-size:12px;padding:18px 16px 28px}}
 </style></head><body>
