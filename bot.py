@@ -661,6 +661,8 @@ def as_album(cfg, p):
     """الملابس تنزل ألبوم صور (لو فيه صور إضافية)."""
     if one_message(cfg, p):
         return False
+    if cfg.get("post_style") == "photo" and not p.get("_source") and not p.get("_album"):
+        return False  # رسالة وحدة: صورة الفستان مع زر الطلب، بدون ألبوم
     if p.get("_album"):
         return True
     return not p.get("_single") and is_clothing(cfg, p) and bool(gallery(p))
@@ -1343,6 +1345,10 @@ def publish(cfg, state, p, d, count_daily=True):
     p["_pitch"] = ai_pitch(cfg, p)
     if (p["_pitch"] or {}).get("name"):
         p["_title"] = p["_pitch"]["name"]  # اسم مطابق للصورة
+    if not re.search(r"[\u0600-\u06ff]", str(p.get("_title") or "")):
+        # الذكاء الاصطناعي ما اشتغل والاسم طلع إنجليزي: ما ننشره الحين ويرجع بتشغيل ثاني
+        print(f"- تخطيت {p.get('product_id')}: ما طلع له اسم عربي")
+        return False
     print(f"منتج {p.get('product_id')} ({site_cat(p)}): يوصل لـ {','.join(p['_ships'])}")
     try:
         send_product(cfg, p)
