@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PRODUCTS_FILE = BASE_DIR / "data" / "products.json"
 HOME_LINK_FILE = BASE_DIR / "data" / "home_link.txt"
 OUT = BASE_DIR / "docs"
-SITE_VERSION = "27"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
+SITE_VERSION = "28"  # لما يتغير شكل الصفحات نرفع الرقم، فينبني الموقع كامل مرة وحدة
 RIYADH = timezone(timedelta(hours=3))
 
 # الفئات: كل كلمة بحث تنتمي لفئة لها صفحة وهاشتاق
@@ -380,7 +380,7 @@ h2{font-family:"Amiri",serif;color:var(--gold2);font-size:27px;line-height:1.4;m
 .buy{display:block;text-align:center;margin:16px 0 10px;background:linear-gradient(135deg,var(--gold2),var(--gold) 55%,var(--gold3));color:#140f08;font-weight:700;font-size:17px;padding:14px;border-radius:14px;box-shadow:0 10px 30px rgba(201,163,92,.22);transition:filter .2s}
 .buy:hover{filter:brightness(1.08)}
 .buy{display:flex;align-items:center;justify-content:center;gap:10px}
-.blogo{height:24px;width:auto;border-radius:6px;background:#fff;padding:2px 6px}
+.blogo{height:30px;width:30px;object-fit:contain;border-radius:8px;background:#fff;padding:3px}
 .share{display:flex;gap:10px;flex-wrap:wrap}
 .share a{flex:1;text-align:center;padding:10px;border-radius:12px;border:1px solid var(--line);font-size:14px;transition:border-color .2s}
 .share a:hover,.join:hover{border-color:var(--gold)}
@@ -467,11 +467,12 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 
 # مصدر كل منتج (المنصة اللي ينشرى منها): الاسم وشعارها في زر الشراء
 SOURCES = {
-    "aliexpress": {"name": "علي إكسبريس", "logo": "aliexpress.png"},
-    "shein": {"name": "شي إن", "logo": "shein.png"},
-    "stylewe": {"name": "Stylewe", "logo": "stylewe.png"},
-    "noracora": {"name": "Noracora", "logo": "noracora.png"},
-    "justfashionnow": {"name": "Justfashionnow", "logo": "justfashionnow.png"},
+    "aliexpress": {"name": "علي إكسبريس", "logo": "aliexpress.png", "domain": "aliexpress.com"},
+    "shein": {"name": "شي إن", "logo": "shein.png", "domain": "shein.com"},
+    "stylewe": {"name": "Stylewe", "logo": "stylewe.png", "domain": "stylewe.com"},
+    "noracora": {"name": "Noracora", "logo": "noracora.png", "domain": "noracora.com"},
+    "justfashionnow": {"name": "Justfashionnow", "logo": "justfashionnow.png", "domain": "justfashionnow.com"},
+    "dhgate": {"name": "DHgate", "logo": "dhgate.png", "domain": "dhgate.com"},
 }
 BRANDS_DIR = BASE_DIR / "data" / "brands"  # شعارات المنصات الرسمية (من مواد برنامج الأفلييت)
 
@@ -480,10 +481,20 @@ def buy_button(cfg, x):
     """زر «اشتري الفستان من ...» بحسب مصدر المنتج، ومعه شعار المنصة لو موجود."""
     site = cfg["site_url"].rstrip("/")
     src = SOURCES.get(x.get("source") or "aliexpress", SOURCES["aliexpress"])
-    logo = (f'<img class="blogo" src="{site}/brands/{src["logo"]}" alt="{esc(src["name"])}">'
-            if (BRANDS_DIR / src["logo"]).exists() else "")
+    logo = f'<img class="blogo" src="{esc(source_logo(cfg, src))}" alt="{esc(src["name"])}" referrerpolicy="no-referrer">'
     return (f'<a class="buy" href="{esc(x["link"])}" target="_blank" rel="nofollow sponsored noopener">'
-            f'{logo}<span>اشتري الفستان من {esc(src["name"])}</span></a>')
+            f'{logo}<span>اطلبي الفستان من {esc(src["name"])}</span></a>')
+
+
+def source_logo(cfg, src):
+    """شعار المتجر: الملف الرسمي لو موجود، وإلا أيقونة الموقع الرسمية من خدمة قوقل."""
+    if (BRANDS_DIR / src["logo"]).exists():
+        return f'{cfg["site_url"].rstrip("/")}/brands/{src["logo"]}'
+    return f'https://www.google.com/s2/favicons?domain={src.get("domain", "aliexpress.com")}&sz=64'
+
+
+def source_of(key):
+    return SOURCES.get(key or "aliexpress", SOURCES["aliexpress"])
 
 
 def card(cfg, x):
