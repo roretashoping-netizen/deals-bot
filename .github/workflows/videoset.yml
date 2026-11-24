@@ -1,0 +1,35 @@
+name: Video set (numbered post)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "أرقام المنتجات بنفس ترتيب الفيديو، مفصولة بفواصل"
+        required: true
+      title:
+        description: "عنوان المنشور"
+        required: false
+        default: "فساتين فيديو تيك توك 👗"
+
+concurrency:
+  group: post-bot
+  cancel-in-progress: false
+
+jobs:
+  videoset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Post numbered set
+        env:
+          ALI_APP_KEY: ${{ secrets.ALI_APP_KEY }}
+          ALI_APP_SECRET: ${{ secrets.ALI_APP_SECRET }}
+          ALI_TRACKING_ID: ${{ secrets.ALI_TRACKING_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL: "@fsateeeen"
+        run: python bot.py videoset --ids "${{ github.event.inputs.ids }}" --title "${{ github.event.inputs.title }}"
