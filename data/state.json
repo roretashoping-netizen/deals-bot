@@ -418,7 +418,9 @@
   "1005012077010100": "2026-11-24",
   "1005012805294731": "2026-11-24",
   "stylewe-289772059": "2026-11-24",
-  "noracora-285551547": "2026-11-24"
+  "noracora-285551547": "2026-11-24",
+  "1005008040097244": "2026-11-24",
+  "1005012635804397": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -428,8 +430,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "قطعة ستوكات الوجه الملابس قابلة لإعادة",
-  "مبرد قدم زجاجي نانو عالي الكثافة",
   "مقص أظافر محمول من الفولاذ المقاوم",
   "صندوق أعواد قطنية دائرية مع غطاء",
   "قطعة حقيبة مستحضرات تجميل صغيرة شفافة",
@@ -827,11 +827,11 @@
   "فساتين سهرة نسائية مستقيمة بطول الكاحل",
   "فستان نسائي طويل ماكسي بتصميم حورية",
   "elegant color block button detail turtleneck",
-  "women plain spring fall split joint"
+  "women plain spring fall split joint",
+  "تخصيص الكاحل طول غمد مساء رداء",
+  "فستان زفاف بأكمام طويلة مكشوف الأكتاف،"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sef54bfada4664ef4befa9c6ac150c81bP.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sfa41f5d9d60e4c818afd578bf622787au.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7e104c504b8a47379c121d69105436eaG.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S06b92d5210684277a4a3129d652504b8p.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S894d748ebd0e48849847ce3167d345f2m.jpg",
@@ -1229,9 +1229,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S16cd8c78ca6e42d4bca716d3288893ced.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S96471934290f49dfb903bab0c581be11N.jpg",
   "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-08/26/dbc13e0420f92dbfda3f0dd9a2c63fcb.jpg",
-  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/20/35a20bff9328cc79417d0b2189aa65cf.jpg"
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/20/35a20bff9328cc79417d0b2189aa65cf.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sc5d431df6dba49bbb612c78cc0a1c9f0j.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd438bbff6b804f8699f3cb61e57411dfu.jpg"
  ],
- "last_cat": "",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1247,12 +1249,12 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 19
+   "evening-dresses": 21
   }
  },
  "extra_day": {
   "2026-11-24": {
-   "evening-dresses": 10
+   "evening-dresses": 12
   }
  },
  "taste": {
@@ -1690,9 +1692,12 @@
   "1005013193945161": 7.0,
   "1005012077010100": 7.0,
   "stylewe-289772059": 9.0,
-  "noracora-285551547": 7.0
+  "noracora-285551547": 7.0,
+  "1005012635804397": 9.0,
+  "1005012272918927": 3.0,
+  "1005008040097244": 9.0
  },
- "digest_day": "2026-11-22",
+ "digest_day": "2026-11-24",
  "feed_day": {
   "2026-11-24": 5
  },
