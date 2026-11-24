@@ -400,7 +400,8 @@
   "1005008492905878": "2026-11-22",
   "1005012531416614": "2026-11-23",
   "1005012820405982": "2026-11-23",
-  "1005012097336542": "2026-11-24"
+  "1005012097336542": "2026-11-24",
+  "4000619435011": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -800,7 +801,8 @@
   "فستان سهرة مخصص من لوسي شارون",
   "فساتين سهرة بنية فاخرة بتصميم خيالي،",
   "فستان سهرة رسمي نسائي بتصميم عربي،",
-  "فساتين ساتان متوسطة الطول مكشكشة للنساء،"
+  "فساتين ساتان متوسطة الطول مكشكشة للنساء،",
+  "فساتين حفلات بالترتر للنساء بموجات missord"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1193,7 +1195,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S28740c2cb4604d9eb8a9875faa8a971bA.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S947b767c4e4e4d6a937e6729f6739e23s.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf46e4ebc4e0348c6bc9e31c078594f35m.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Secb8e9daf38a4fa1b576e34527e5b19c7.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Secb8e9daf38a4fa1b576e34527e5b19c7.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S3c95f89992bf455f87337b1987a8e265R.jpg"
  ],
  "last_cat": "فساتين",
  "amazon_daily": {},
@@ -1211,12 +1214,12 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 1
+   "evening-dresses": 2
   }
  },
  "extra_day": {
   "2026-11-24": {
-   "evening-dresses": 1
+   "evening-dresses": 2
   }
  },
  "taste": {
@@ -1631,7 +1634,8 @@
   "1005008728715597": 4.0,
   "1005012820405982": 9.0,
   "1005012531416614": 9.0,
-  "1005012097336542": 9.0
+  "1005012097336542": 9.0,
+  "4000619435011": 7.0
  },
  "digest_day": "2026-11-22"
 }
