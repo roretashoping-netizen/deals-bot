@@ -1661,13 +1661,15 @@ FEED_STORES = {
     "stylewe": {"name": "Stylewe", "env": "ADMITAD_FEED_STYLEWE"},
     "noracora": {"name": "Noracora", "env": "ADMITAD_FEED_NORACORA"},
 }
-FEED_YES = ["evening", "prom ", "prom dress", "formal", "gown", "ball dress", "party dress", "maxi dress",
-            "wedding guest", "banquet", "cocktail", "mermaid", "sequin", "satin dress", "chiffon dress"]
-FEED_NO = ["mini", "short dress", "shorts", "men's", "mens ", " men ", "boy", "kid", "girl's", "lingerie",
-           "sexy", "bodycon", "swim", "bikini", "jumpsuit", "romper", "pants", "trousers", "top ", "tops",
+FEED_YES = ["evening", "prom", "formal", "gown", "ball dress", "banquet", "cocktail", "wedding guest",
+            "mother of the bride", "bridesmaid", "party dress", "occasion"]
+FEED_NO = ["mini", "short dress", "shorts", "men's", "mens", "men", "boy", "kid", "kids", "girl's", "lingerie",
+           "sexy", "bodycon", "swim", "bikini", "jumpsuit", "romper", "pants", "trousers", "top", "tops",
            "blouse", "t-shirt", "shirt", "skirt", "set", "two-piece", "two piece", "coat", "jacket", "cardigan",
            "sweater", "hoodie", "abaya", "kaftan", "pajama", "sleepwear", "nightgown", "robe", "shoes", "bag",
-           "necklace", "earring", "casual", "beach", "see-through", "sheer", "backless", "slit"]
+           "necklace", "earring", "casual", "beach", "see-through", "sheer", "backless", "slit", "comfy",
+           "vintage", "hippie", "ethnic", "boho", "loose", "summer", "holiday", "vacation", "printing", "print",
+           "printed", "striped", "plaid", "3d", "denim", "knit", "cotton", "linen", "shirt dress", "tank"]
 
 
 def _col(row, *names):
