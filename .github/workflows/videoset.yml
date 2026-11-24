@@ -10,6 +10,17 @@ on:
         description: "عنوان المنشور"
         required: false
         default: "فساتين فيديو تيك توك 👗"
+      slug:
+        description: "اسم الصفحة (اتركه فاضي = تاريخ اليوم)"
+        required: false
+        default: ""
+      telegram:
+        description: "ينشر ويثبّت بالقروب؟ (yes/no)"
+        required: false
+        default: "no"
+
+permissions:
+  contents: write
 
 concurrency:
   group: post-bot
@@ -32,4 +43,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: "@fsateeeen"
-        run: python bot.py videoset --ids "${{ github.event.inputs.ids }}" --title "${{ github.event.inputs.title }}"
+        run: python bot.py videoset --ids "${{ github.event.inputs.ids }}" --title "${{ github.event.inputs.title }}" --slug "${{ github.event.inputs.slug }}" --telegram "${{ github.event.inputs.telegram }}"
+      - name: Save
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add docs || true
+          git diff --cached --quiet || (git commit -m "video page" && git pull --rebase && git push)
