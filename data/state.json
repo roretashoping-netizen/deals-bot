@@ -404,7 +404,12 @@
   "4000619435011": "2026-11-24",
   "stylewe-289035527": "2026-11-24",
   "1005008686261445": "2026-11-24",
-  "noracora-272578486": "2026-11-24"
+  "noracora-272578486": "2026-11-24",
+  "1005008081759870": "2026-11-24",
+  "1005012848131920": "2026-11-24",
+  "1005011550713761": "2026-11-24",
+  "1005010526594435": "2026-11-24",
+  "stylewe-285442283": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -808,7 +813,12 @@
   "فساتين حفلات بالترتر للنساء بموجات missord",
   "elegant plain v neck maxi party",
   "فستان سهرة كونتيسا دبي بتصميم حورية",
-  "women s elegant mother of the"
+  "women s elegant mother of the",
+  "فستان سهرة من loretta luxurious line",
+  "فستان سهرة فاخر مخصص على الطراز",
+  "فساتين سهرة فاخرة سوداء مخملية ذات",
+  "فساتين سهرة حورية البحر سوداء طويلة",
+  "women elegant high waist x line"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1205,7 +1215,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S3c95f89992bf455f87337b1987a8e265R.jpg",
   "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-07/20/8cdb4153815987b80b62e8ebca70feac.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7ede0b2cbb454215a8cffef448c41ab7d.jpg",
-  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2023-02/02/df39e8a7030287abf07d0d0d8549693b.jpg"
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2023-02/02/df39e8a7030287abf07d0d0d8549693b.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S46266c1873744c078ee1f635f4bdbaddy.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S107c9274bf364433a2ff4f8f1842c7d10.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0aef33918d184d88b4257bac59b0a20eH.jpeg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S6f2e794589b04ac79b0f07b04257d21f2.jpg",
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/29/19cf25159df61df9ecf0103a5b29df66.jpg"
  ],
  "last_cat": "",
  "amazon_daily": {},
@@ -1223,12 +1238,12 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 5
+   "evening-dresses": 10
   }
  },
  "extra_day": {
   "2026-11-24": {
-   "evening-dresses": 3
+   "evening-dresses": 7
   }
  },
  "taste": {
@@ -1649,14 +1664,22 @@
   "stylewe-289035527": 7.0,
   "1005008686261445": 7.0,
   "1005013193512246": 4.0,
-  "noracora-272578486": 7.0
+  "noracora-272578486": 7.0,
+  "1005010526594435": 9.0,
+  "1005008081759870": 9.0,
+  "1005012848131920": 7.0,
+  "1005011550713761": 7.0,
+  "justfashionnow-253706591": 5.0,
+  "noracora-282304732": 4.0,
+  "stylewe-285442283": 7.0
  },
  "digest_day": "2026-11-22",
  "feed_day": {
-  "2026-11-24": 2
+  "2026-11-24": 3
  },
  "feed_recent_shops": [
   "Stylewe",
-  "Noracora"
+  "Noracora",
+  "Stylewe"
  ]
 }
