@@ -417,7 +417,8 @@
   "1005013193945161": "2026-11-24",
   "1005012077010100": "2026-11-24",
   "1005012805294731": "2026-11-24",
-  "stylewe-289772059": "2026-11-24"
+  "stylewe-289772059": "2026-11-24",
+  "noracora-285551547": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -427,7 +428,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "مجموعة من قطع فرشاة سيليكون بيضاء",
   "قطعة ستوكات الوجه الملابس قابلة لإعادة",
   "مبرد قدم زجاجي نانو عالي الكثافة",
   "مقص أظافر محمول من الفولاذ المقاوم",
@@ -826,10 +826,10 @@
   "فستان طويل أنيق من الساتان بتصميم",
   "فساتين سهرة نسائية مستقيمة بطول الكاحل",
   "فستان نسائي طويل ماكسي بتصميم حورية",
-  "elegant color block button detail turtleneck"
+  "elegant color block button detail turtleneck",
+  "women plain spring fall split joint"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S514d2094c7204c4db72eda82d3ec8ab4P.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sef54bfada4664ef4befa9c6ac150c81bP.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfa41f5d9d60e4c818afd578bf622787au.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S7e104c504b8a47379c121d69105436eaG.jpg",
@@ -1228,7 +1228,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S1efcc0a60fa94117b9c00795e019546ez.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S16cd8c78ca6e42d4bca716d3288893ced.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S96471934290f49dfb903bab0c581be11N.jpg",
-  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-08/26/dbc13e0420f92dbfda3f0dd9a2c63fcb.jpg"
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-08/26/dbc13e0420f92dbfda3f0dd9a2c63fcb.jpg",
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/20/35a20bff9328cc79417d0b2189aa65cf.jpg"
  ],
  "last_cat": "",
  "amazon_daily": {},
@@ -1246,7 +1247,7 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 18
+   "evening-dresses": 19
   }
  },
  "extra_day": {
@@ -1688,15 +1689,16 @@
   "1005012805294731": 7.0,
   "1005013193945161": 7.0,
   "1005012077010100": 7.0,
-  "stylewe-289772059": 9.0
+  "stylewe-289772059": 9.0,
+  "noracora-285551547": 7.0
  },
  "digest_day": "2026-11-22",
  "feed_day": {
-  "2026-11-24": 4
+  "2026-11-24": 5
  },
  "feed_recent_shops": [
-  "Noracora",
   "Stylewe",
-  "Stylewe"
+  "Stylewe",
+  "Noracora"
  ]
 }
