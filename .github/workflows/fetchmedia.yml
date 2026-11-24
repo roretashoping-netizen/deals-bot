@@ -1,0 +1,34 @@
+name: Fetch media
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "روابط الصور مفصولة بفاصلة (بالترتيب)"
+        required: true
+      dir:
+        description: "اسم المجلد داخل media"
+        required: true
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download images
+        env:
+          URLS: ${{ inputs.urls }}
+          DIR: ${{ inputs.dir }}
+        run: |
+          mkdir -p "media/$DIR"
+          i=0
+          IFS=',' read -ra U <<< "$URLS"
+          for u in "${U[@]}"; do
+            i=$((i+1)); n=$(printf "%02d" $i)
+            curl -sSL --fail -A "Mozilla/5.0" -o "media/$DIR/$n.jpg" "$u" || echo "fail $n $u"
+          done
+          ls -la "media/$DIR"
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "media: ${{ inputs.dir }}"
+          file_pattern: "media/*"
