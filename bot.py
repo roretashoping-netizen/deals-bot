@@ -634,8 +634,6 @@ def caption(cfg, p):
         lines += [sep, "", f'👈 <a href="{link}"><b>اضغط هنا للطلب</b></a>']
     if is_clothing(cfg, p):
         lines += [sep, "📏 <b>تأكدي من مقاسك وفق الجدول الخاص بالبائع</b>"]
-    if not as_album(cfg, p):
-        lines += ["", "👇 <b>اطلبيه من الزر تحت قبل ينتهي الخصم</b>"]
     text = "\n".join(lines)
     code = "" if p.get("_source") else deals_site.code_line(cfg, price)
     if len(text) > 1020 and code:
