@@ -38,6 +38,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: "@fsateeeen"
+          ADMITAD_FEED_JFN: ${{ secrets.ADMITAD_FEED_JFN }}
+          ADMITAD_FEED_STYLEWE: ${{ secrets.ADMITAD_FEED_STYLEWE }}
+          ADMITAD_FEED_NORACORA: ${{ secrets.ADMITAD_FEED_NORACORA }}
         run: python bot.py post --count "${{ inputs.count || 8 }}" --focus "${{ inputs.focus }}"
       - name: Save state
         run: |
