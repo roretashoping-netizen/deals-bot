@@ -402,7 +402,9 @@
   "1005012820405982": "2026-11-23",
   "1005012097336542": "2026-11-24",
   "4000619435011": "2026-11-24",
-  "stylewe-289035527": "2026-11-24"
+  "stylewe-289035527": "2026-11-24",
+  "1005008686261445": "2026-11-24",
+  "noracora-272578486": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -804,7 +806,9 @@
   "فستان سهرة رسمي نسائي بتصميم عربي،",
   "فساتين ساتان متوسطة الطول مكشكشة للنساء،",
   "فساتين حفلات بالترتر للنساء بموجات missord",
-  "elegant plain v neck maxi party"
+  "elegant plain v neck maxi party",
+  "فستان سهرة كونتيسا دبي بتصميم حورية",
+  "women s elegant mother of the"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1199,7 +1203,9 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf46e4ebc4e0348c6bc9e31c078594f35m.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Secb8e9daf38a4fa1b576e34527e5b19c7.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S3c95f89992bf455f87337b1987a8e265R.jpg",
-  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-07/20/8cdb4153815987b80b62e8ebca70feac.jpg"
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2026-07/20/8cdb4153815987b80b62e8ebca70feac.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S7ede0b2cbb454215a8cffef448c41ab7d.jpg",
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2023-02/02/df39e8a7030287abf07d0d0d8549693b.jpg"
  ],
  "last_cat": "",
  "amazon_daily": {},
@@ -1217,12 +1223,12 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 3
+   "evening-dresses": 5
   }
  },
  "extra_day": {
   "2026-11-24": {
-   "evening-dresses": 2
+   "evening-dresses": 3
   }
  },
  "taste": {
@@ -1640,13 +1646,17 @@
   "1005012097336542": 9.0,
   "4000619435011": 7.0,
   "noracora-284263081": 4.0,
-  "stylewe-289035527": 7.0
+  "stylewe-289035527": 7.0,
+  "1005008686261445": 7.0,
+  "1005013193512246": 4.0,
+  "noracora-272578486": 7.0
  },
  "digest_day": "2026-11-22",
  "feed_day": {
-  "2026-11-24": 1
+  "2026-11-24": 2
  },
  "feed_recent_shops": [
-  "Stylewe"
+  "Stylewe",
+  "Noracora"
  ]
 }
