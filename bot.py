@@ -652,8 +652,15 @@ def tg(cfg, method, **payload):
     return data["result"]
 
 
+def one_message(cfg, p):
+    """منشور علي إكسبريس برسالة وحدة: بطاقة الرابط (اسم علي إكسبريس وشعاره وصورة المنتج) فوق النص، وزر الطلب تحته."""
+    return cfg.get("post_style") == "preview" and not p.get("_source") and not p.get("_album")
+
+
 def as_album(cfg, p):
     """الملابس تنزل ألبوم صور (لو فيه صور إضافية)."""
+    if one_message(cfg, p):
+        return False
     if p.get("_album"):
         return True
     return not p.get("_single") and is_clothing(cfg, p) and bool(gallery(p))
@@ -673,6 +680,17 @@ def post_buttons(cfg, p):
 
 
 def send_product(cfg, p):
+    if one_message(cfg, p):
+        tg(
+            cfg,
+            "sendMessage",
+            chat_id=cfg["channel"],
+            text=caption(cfg, p),
+            parse_mode="HTML",
+            link_preview_options={"url": p["promotion_link"], "prefer_large_media": True, "show_above_text": True},
+            reply_markup={"inline_keyboard": post_buttons(cfg, p)},
+        )
+        return
     imgs = gallery(p)
     if as_album(cfg, p):
         # الملابس: ألبوم صور (جدول المقاسات غالبًا يكون من آخر صور البائع)
