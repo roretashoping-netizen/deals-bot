@@ -623,7 +623,7 @@ def caption(cfg, p):
         lines += [sep, "🚚 الشحن متوفر لـ:"]
         lines += ["   ".join(items[i:i + 3]) for i in range(0, len(items), 3)]
     promo = deals_site.promo_text(p.get("promo_code_info"))
-    codes = [x for x in [promo, deals_site.code_line(cfg, price)] if x]
+    codes = [] if p.get("_source") else [x for x in [promo, deals_site.code_line(cfg, price)] if x]
     if codes:
         lines += [sep] + codes
     for note in deals_site.active_notes(cfg):  # أي إضافة تحت الأكواد تنفصل بخط
@@ -637,7 +637,7 @@ def caption(cfg, p):
     if not as_album(cfg, p):
         lines += ["", "👇 <b>اطلبيه من الزر تحت قبل ينتهي الخصم</b>"]
     text = "\n".join(lines)
-    code = deals_site.code_line(cfg, price)
+    code = "" if p.get("_source") else deals_site.code_line(cfg, price)
     if len(text) > 1020 and code:
         # الكابشن طويل: نخلي سطر الكود بدون تفاصيل الدول عشان ما ينقص الرابط
         text = text.replace(code, code.split("\n")[0])
@@ -663,6 +663,8 @@ def as_album(cfg, p):
 
 def post_buttons(cfg, p):
     """زر الطلب، وتحته زر أكواد الخصم."""
+    if p.get("_source"):
+        return [[{"text": f"🛍️ اشتري الفستان من {p.get('shop_name')}", "url": p["promotion_link"]}]]
     rows = [[{"text": cfg.get("button_text", "🛍️ اطلب الحين"), "url": p["promotion_link"]}]]
     site = cfg.get("site_url", "").rstrip("/")
     if site:
@@ -1313,8 +1315,9 @@ def finish_site(cfg, new_ids):
 
 def publish(cfg, state, p, d, count_daily=True):
     """ينشر منتج واحد في القروب ويسجّله. يرجع True لو انتشر."""
-    p["promotion_link"] = short_link(cfg, p)
-    p["_ships"] = ships_to(cfg, p)
+    if not p.get("_source"):  # منتجات Admitad رابطها جاهز بعمولتنا، والشحن ما نفحصه من علي إكسبريس
+        p["promotion_link"] = short_link(cfg, p)
+        p["_ships"] = ships_to(cfg, p)
     p["_title"] = product_name(cfg, p)
     if has_any(str(p.get("_title") or ""), MEN_AR):
         # الذكاء الاصطناعي عرف من الصورة/العنوان إنه رجالي: ما ننشره ونعلّمه عشان ما يرجع
@@ -1405,6 +1408,10 @@ def cmd_post(cfg, state, count, paced=True):
             maybe_extras(cfg, state, new_ids)
         except Exception as e:
             print(f"[warn] الحصة الإضافية فشلت: {e}", file=sys.stderr)
+        try:
+            maybe_feeds(cfg, state, new_ids)
+        except Exception as e:
+            print(f"[warn] متاجر Admitad فشلت: {e}", file=sys.stderr)
         # الأقسام الإضافية لها حصتها الخاصة، فما ندوّر عليها بالنشر العادي
         cfg = {**cfg, "keywords": [k for k in cfg["keywords"]
                                    if deals_site.category_for(k)["slug"] not in extra_cats(cfg)]}
@@ -1647,6 +1654,161 @@ def cmd_videoset(cfg, ids, title, slug="", to_telegram=False):
         print(f"[warn] التثبيت فشل: {e}", file=sys.stderr)
     return 0
 
+# ---------------------------------------------------------------- متاجر Admitad (ملفات المنتجات)
+# كل متجر رابط ملف منتجاته سري (فيه مفتاح الحساب)، فيجي من GitHub Secrets مو من الكود
+FEED_STORES = {
+    "justfashionnow": {"name": "Justfashionnow", "env": "ADMITAD_FEED_JFN"},
+    "stylewe": {"name": "Stylewe", "env": "ADMITAD_FEED_STYLEWE"},
+    "noracora": {"name": "Noracora", "env": "ADMITAD_FEED_NORACORA"},
+}
+FEED_YES = ["evening", "prom ", "prom dress", "formal", "gown", "ball dress", "party dress", "maxi dress",
+            "wedding guest", "banquet", "cocktail", "mermaid", "sequin", "satin dress", "chiffon dress"]
+FEED_NO = ["mini", "short dress", "shorts", "men's", "mens ", " men ", "boy", "kid", "girl's", "lingerie",
+           "sexy", "bodycon", "swim", "bikini", "jumpsuit", "romper", "pants", "trousers", "top ", "tops",
+           "blouse", "t-shirt", "shirt", "skirt", "set", "two-piece", "two piece", "coat", "jacket", "cardigan",
+           "sweater", "hoodie", "abaya", "kaftan", "pajama", "sleepwear", "nightgown", "robe", "shoes", "bag",
+           "necklace", "earring", "casual", "beach", "see-through", "sheer", "backless", "slit"]
+
+
+def _col(row, *names):
+    low = {str(k).strip().lower(): v for k, v in row.items() if k is not None}
+    for n in names:
+        v = low.get(n)
+        if v not in (None, ""):
+            return str(v).strip()
+    return ""
+
+
+def load_feed(url):
+    """ينزّل ملف منتجات CSV من Admitad ويرجع الصفوف."""
+    import csv, gzip, io, zipfile
+    r = requests.get(url, timeout=180)
+    r.raise_for_status()
+    data = r.content
+    if data[:2] == b"\x1f\x8b":
+        data = gzip.decompress(data)
+    elif data[:2] == b"PK":
+        z = zipfile.ZipFile(io.BytesIO(data)); data = z.read(z.namelist()[0])
+    text = data.decode("utf-8-sig", errors="replace")
+    head = text[:5000]
+    delim = max([";", ",", "\t", "|"], key=lambda d: head.split("\n", 1)[0].count(d))
+    csv.field_size_limit(10_000_000)
+    return list(csv.DictReader(io.StringIO(text), delimiter=delim))
+
+
+def feed_product(key, row):
+    """يحوّل صف من ملف المنتجات لنفس شكل منتج علي إكسبريس اللي يفهمه البوت والموقع."""
+    title = _col(row, "name", "title", "model")
+    url = _col(row, "url", "link", "deeplink")
+    img = _col(row, "picture", "image", "image_link", "picture_url")
+    pics = [u for u in re.split(r"[,;| ]+", img) if u.startswith("http")]
+    price = num(_col(row, "price", "sale_price"))
+    old = num(_col(row, "oldprice", "old_price", "price_old"))
+    avail = _col(row, "available", "availability").lower()
+    if not (title and url and pics and price > 0) or avail in ("false", "0", "no", "out of stock"):
+        return None
+    disc = int(round((old - price) / old * 100)) if old > price > 0 else 0
+    pid = f"{key}-{_col(row, 'id', 'offer_id', 'product_id') or abs(hash(url))}"
+    return {"product_id": pid, "product_title": title, "product_main_image_url": pics[0],
+            "product_small_image_urls": pics[1:6], "target_sale_price": price,
+            "target_original_price": old if old > price else 0, "discount": disc,
+            "promotion_link": url, "shop_name": FEED_STORES[key]["name"], "_source": key,
+            "_kw": "evening dress", "_cat": "evening-dresses", "_single": True, "_ships": [],
+            "_desc": _col(row, "description")[:400]}
+
+
+FEED_NO_RX = re.compile(r"\b(" + "|".join(re.escape(w.strip()) for w in FEED_NO) + r")\b")
+
+
+def feed_is_evening(p):
+    t = " " + str(p.get("product_title", "")).lower() + " "
+    return (any(w in t for w in FEED_YES) and ("dress" in t or "gown" in t)
+            and not FEED_NO_RX.search(t))
+
+
+def feed_candidates(cfg, state):
+    out = []
+    posted = set(state.get("posted", {}))
+    fmin, fmax = cfg.get("feed_min_price", 120), cfg.get("feed_max_price", 1500)
+    for key, st in FEED_STORES.items():
+        url = os.environ.get(st["env"], "").strip()
+        if not url:
+            continue
+        try:
+            rows = load_feed(url)
+        except Exception as e:
+            print(f"[warn] ملف منتجات {st['name']}: {e}", file=sys.stderr)
+            continue
+        n = 0
+        for row in rows:
+            p = feed_product(key, row)
+            if not p or p["product_id"] in posted or not feed_is_evening(p):
+                continue
+            if not (fmin <= p["target_sale_price"] <= fmax):
+                continue
+            out.append(p); n += 1
+        print(f"{st['name']}: {len(rows)} منتج بالملف، منها {n} فستان سهرة مناسب")
+    return out
+
+
+def maybe_feeds(cfg, state, new_ids):
+    """حصة يومية من فساتين متاجر Admitad (Stylewe وغيرها)، موزعة على اليوم."""
+    quota = cfg.get("feed_daily", 0)
+    if not quota or not any(os.environ.get(s["env"]) for s in FEED_STORES.values()):
+        return
+    d = post_day()
+    fd = state.setdefault("feed_day", {})
+    for k in [k for k in fd if k != d]:
+        del fd[k]
+    done = fd.get(d, 0)
+    start, end = cfg["post_hours"]
+    now = datetime.now(RIYADH)
+    h = now.hour + now.minute / 60
+    if h < start and end > 24:
+        h += 24
+    should = -(-int(quota * day_share(cfg, h + cfg.get("run_every_minutes", 30) / 60) * 100) // 100)
+    if min(should, quota) - done <= 0:
+        return
+    cands = feed_candidates(cfg, state)
+    random.shuffle(cands)
+    recent = state.get("recent_cats", [])
+    budget = [cfg.get("feed_taste_checks", 6)]
+    recent_shops = state.get("feed_recent_shops", [])[-2:]
+    cands.sort(key=lambda p: (p["shop_name"] in recent_shops, -p["discount"]))
+    for p in cands[:40]:
+        if not taste_ok(cfg, state, p, budget):
+            continue
+        if publish(cfg, state, p, d, count_daily=False):
+            fd[d] = done + 1
+            state["feed_recent_shops"] = (recent_shops + [p["shop_name"]])[-4:]
+            save_state(state)
+            if cfg.get("site_url"):
+                deals_site.record(cfg, p, gallery(p))
+                new_ids.append(str(p["product_id"]))
+            print(f"انتشر فستان من {p['shop_name']}: {p['product_id']}")
+            return
+        if budget[0] <= 0:
+            break
+
+
+def cmd_feedcheck(cfg):
+    """فحص: يطبع أعمدة ملفات المنتجات وعدد فساتين السهرة اللي تنطبق عليها الشروط (بدون نشر)."""
+    for key, st in FEED_STORES.items():
+        url = os.environ.get(st["env"], "").strip()
+        if not url:
+            print(f"{st['name']}: ما فيه رابط ({st['env']})"); continue
+        try:
+            rows = load_feed(url)
+        except Exception as e:
+            print(f"{st['name']}: فشل التحميل {e}"); continue
+        print(f"\n== {st['name']}: {len(rows)} صف. الأعمدة: {list(rows[0].keys()) if rows else []}")
+        good = [p for p in (feed_product(key, r) for r in rows) if p and feed_is_evening(p)]
+        print(f"فساتين سهرة مناسبة: {len(good)}")
+        for p in good[:8]:
+            print(f"  {p['target_sale_price']} SAR (خصم {p['discount']}%) | {p['product_title'][:90]} | {p['promotion_link'][:45]}")
+    return 0
+
+
 def cmd_scout(cfg):
     """يدوّر فساتين سهرة من متاجر مشتركة بالعمولة، ويرتّب المتاجر حسب الجودة (للاختيار اليدوي)."""
     fields = ("product_id,product_title,target_sale_price,discount,evaluate_rate,lastest_volume,"
@@ -1693,7 +1855,7 @@ def cmd_scout(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption", "stripshare", "videoset"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption", "stripshare", "videoset", "feedcheck"])
     ap.add_argument("--count", type=int, default=1)
     ap.add_argument("--ids", default="", help="للتعديل: رقم_المنتج:رقم_الرسالة,...")
     ap.add_argument("--title", default="فساتين فيديو تيك توك 👗")
@@ -1714,6 +1876,8 @@ def main():
         return cmd_fields(cfg)
     if a.command == "stripshare":
         return cmd_strip_share(cfg)
+    if a.command == "feedcheck":
+        return cmd_feedcheck(cfg)
     if a.command == "videoset":
         return cmd_videoset(cfg, a.ids, a.title, a.slug, a.telegram.strip().lower() in ("yes", "true", "1", "نعم"))
     if a.command == "recaption":
