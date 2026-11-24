@@ -399,7 +399,8 @@
   "1005012686282758": "2026-11-22",
   "1005008492905878": "2026-11-22",
   "1005012531416614": "2026-11-23",
-  "1005012820405982": "2026-11-23"
+  "1005012820405982": "2026-11-23",
+  "1005012097336542": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -798,7 +799,8 @@
   "فستان سهرة ذهبي شامبانيا بقصة حورية",
   "فستان سهرة مخصص من لوسي شارون",
   "فساتين سهرة بنية فاخرة بتصميم خيالي،",
-  "فستان سهرة رسمي نسائي بتصميم عربي،"
+  "فستان سهرة رسمي نسائي بتصميم عربي،",
+  "فساتين ساتان متوسطة الطول مكشكشة للنساء،"
  ],
  "recent_imgs": [
   "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
@@ -1190,9 +1192,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S24b330a4209241b482f9f419b9f85730x.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/S28740c2cb4604d9eb8a9875faa8a971bA.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S947b767c4e4e4d6a937e6729f6739e23s.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sf46e4ebc4e0348c6bc9e31c078594f35m.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sf46e4ebc4e0348c6bc9e31c078594f35m.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Secb8e9daf38a4fa1b576e34527e5b19c7.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1207,13 +1210,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-23": {
-   "evening-dresses": 2
+  "2026-11-24": {
+   "evening-dresses": 1
   }
  },
  "extra_day": {
-  "2026-11-23": {
-   "evening-dresses": 2
+  "2026-11-24": {
+   "evening-dresses": 1
   }
  },
  "taste": {
@@ -1627,7 +1630,8 @@
   "1005010449949600": 4.0,
   "1005008728715597": 4.0,
   "1005012820405982": 9.0,
-  "1005012531416614": 9.0
+  "1005012531416614": 9.0,
+  "1005012097336542": 9.0
  },
  "digest_day": "2026-11-22"
 }
