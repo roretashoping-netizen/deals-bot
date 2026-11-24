@@ -314,6 +314,7 @@ def record(cfg, p, gallery):
         "shop": str(p.get("shop_name", "") or ""),
         "cat": cat["slug"],
         "promo": promo_text(p.get("promo_code_info")),
+        "source": p.get("_source", "aliexpress"),
         "name": p.get("_title") or "",
         **{k: v for k, v in (p.get("_seo") or {}).items() if k in ("seo_title", "about")},
         "date": datetime.now(RIYADH).strftime("%Y-%m-%d"),
@@ -468,6 +469,9 @@ def page(cfg, title, desc, path, body, jsonld=None, image=None):
 SOURCES = {
     "aliexpress": {"name": "علي إكسبريس", "logo": "aliexpress.png"},
     "shein": {"name": "شي إن", "logo": "shein.png"},
+    "stylewe": {"name": "Stylewe", "logo": "stylewe.png"},
+    "noracora": {"name": "Noracora", "logo": "noracora.png"},
+    "justfashionnow": {"name": "Justfashionnow", "logo": "justfashionnow.png"},
 }
 BRANDS_DIR = BASE_DIR / "data" / "brands"  # شعارات المنصات الرسمية (من مواد برنامج الأفلييت)
 
@@ -505,13 +509,15 @@ def stats_line(x, short=False, cls="stats"):
 
 def product_page(cfg, x, related):
     site = cfg["site_url"].rstrip("/")
+    ali = (x.get("source") or "aliexpress") == "aliexpress"
+    plat = SOURCES.get(x.get("source") or "aliexpress", SOURCES["aliexpress"])["name"]
     cat = cat_by_slug(x["cat"])
     name = display_name(x)
     short = name if len(name) <= 60 else clean_title(name, 60)
     disc_txt = f" بخصم {x['disc']}%" if x["disc"] else ""
     seo_t = x.get("seo_title") or short
     title = f"{seo_t}{disc_txt} | {cfg['site_name']}" if len(seo_t) <= 50 else f"{seo_t} | {cfg['site_name']}"
-    desc = ((x["about"].split(".")[0] + ". ") if x.get("about") else "") + (f"{name} من علي إكسبريس بسعر {money(x['price'])} ريال"
+    desc = ((x["about"].split(".")[0] + ". ") if x.get("about") else "") + (f"{name} من {plat} بسعر {money(x['price'])} ريال"
             + (f" بدل {money(x['old'])} ريال" if x["old"] > x["price"] > 0 else "")
             + (f"، تقييم {x['rating']} من 5" if x["rating"] else "")
             + (f" وأكثر من {x['orders']:,} طلب" if x["orders"] else "")
@@ -534,11 +540,11 @@ def product_page(cfg, x, related):
         meta += f"<li>🚚 الشحن متوفر لـ: {ships}</li>"
     meta += f"<li>📅 أضيف للعروض: {x['date']}</li>"
     intro = esc(x["about"]) if x.get("about") else esc(x["title"]) + "."
-    about = (f"<h2>عن المنتج</h2><p>{intro} هذا المنتج من فئة {esc(cat['name'])} في علي إكسبريس، "
+    about = (f"<h2>عن المنتج</h2><p>{intro} هذا المنتج من فئة {esc(cat['name'])} في {esc(plat)}، "
              f"اخترناه لأن تقييمه عالي" + (f" وعليه أكثر من {x['orders']:,} طلب" if x["orders"] else "")
              + f"، ومتوفر بسعر {money(x['price'])} ريال"
              + (f" بعد خصم {x['disc']}%" if x["disc"] else "") + ". "
-             "تأكدي من الخيارات والمقاسات والسعر النهائي في صفحة المنتج على علي إكسبريس قبل الطلب.</p>")
+             f"تأكدي من الخيارات والمقاسات والسعر النهائي في صفحة المنتج على {esc(plat)} قبل الطلب.</p>")
     rel = ("<h2>منتجات مشابهة</h2><div class='grid'>" + "".join(card(cfg, r) for r in related) + "</div>") if related else ""
     tg = f"https://t.me/{cfg['telegram_public'].lstrip('@')}"
     body = f"""
@@ -548,10 +554,10 @@ def product_page(cfg, x, related):
  <div><h1>{esc(name)}</h1><div>{stats_line(x)}</div>
   <div class="box"><div>السعر الحين:</div><div class="now">{money(x['price'])} ريال</div>{old_html}
    {f'<div class="promo">{x["promo"]}</div>' if x.get("promo") else ''}
-   <a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>
+   {f'<a class="promo" style="display:block" href="{site}/codes.html">🎟️ أكواد خصم علي إكسبريس وعروض البنوك الحين ←</a>' if ali else ''}
    <ul class="meta">{meta}</ul>
    {buy_button(cfg, x)}
-   {share_html(f"{site}/p/{x['id']}.html", f"{name} بـ {money(x['price'])} ريال من علي إكسبريس")}
+   {share_html(f"{site}/p/{x['id']}.html", f"{name} بـ {money(x['price'])} ريال من {plat}")}
    <a class="join" href="{tg}" target="_blank" rel="noopener">📢 عروض يومية مثل هذا؟ انضمي لقروب التليجرام</a>
    <p class="note">الأسعار قابلة للتغيير من مصدرها، والسعر المعروض هو لحظة النشر.</p>
   </div></div>
