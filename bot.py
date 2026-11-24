@@ -1550,6 +1550,56 @@ SCOUT_KEYWORDS = [
 ]
 
 
+AR_DIGITS = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
+
+
+def cmd_videoset(cfg, ids, title):
+    """منشور مرقّم لفيديو تيك توك: صور الفساتين بأرقامها، ثم رسالة فيها زر لكل رقم، وتتثبّت بالقروب.
+    ids = أرقام المنتجات بنفس ترتيب الفيديو، مفصولة بفواصل."""
+    order = [x.strip() for x in ids.split(",") if x.strip()]
+    prods = {}
+    for p in extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
+            "product_ids": ",".join(order[:20]), "target_currency": cfg["currency"],
+            "target_language": cfg["language"], "ship_to_country": cfg["ship_to"],
+            "tracking_id": cfg["tracking_id"], "fields": DETAIL_FIELDS})):
+        prods[str(p["product_id"])] = p
+    items = []
+    for n, pid in enumerate(order, 1):
+        p = prods.get(pid)
+        if not p:
+            p = {"product_id": pid, "product_detail_url": f"https://www.aliexpress.com/item/{pid}.html",
+                 "promotion_link": f"https://www.aliexpress.com/item/{pid}.html"}
+            print(f"[warn] {pid}: ما رجع من علي إكسبريس، بنستخدم رابط المنتج", file=sys.stderr)
+        else:
+            p["product_detail_url"] = f"https://www.aliexpress.com/item/{pid}.html"
+        link = short_link(cfg, p)
+        price = p.get("target_sale_price") or p.get("sale_price")
+        items.append((n, p, link, price))
+        print(f"{n}: {pid} -> {link}")
+    num_ar = lambda n: str(n).translate(AR_DIGITS)
+    media = []
+    for n, p, link, price in items:
+        if p.get("product_main_image_url") and len(media) < 10:
+            media.append({"type": "photo", "media": p["product_main_image_url"], "caption": f"فستان رقم {num_ar(n)}"})
+    if len(media) >= 2:
+        tg(cfg, "sendMediaGroup", chat_id=cfg["channel"], media=media)
+    lines = [f"<b>{title}</b>", "", "اختاري رقم فستانك من الفيديو واضغطي عليه 👇"]
+    rows = []
+    for n, p, link, price in items:
+        label = f"فستان رقم {num_ar(n)}"
+        if price:
+            label += f" · {money(num(price))} ريال"
+        rows.append([{"text": label, "url": link}])
+    msg = tg(cfg, "sendMessage", chat_id=cfg["channel"], text="\n".join(lines), parse_mode="HTML",
+             reply_markup={"inline_keyboard": rows}, disable_web_page_preview=True)
+    try:
+        tg(cfg, "pinChatMessage", chat_id=cfg["channel"], message_id=msg["message_id"], disable_notification=True)
+        print(f"تثبّتت الرسالة {msg['message_id']}")
+    except Exception as e:
+        print(f"[warn] التثبيت فشل: {e}", file=sys.stderr)
+    return 0
+
+
 def cmd_scout(cfg):
     """يدوّر فساتين سهرة من متاجر مشتركة بالعمولة، ويرتّب المتاجر حسب الجودة (للاختيار اليدوي)."""
     fields = ("product_id,product_title,target_sale_price,discount,evaluate_rate,lastest_volume,"
@@ -1596,9 +1646,10 @@ def cmd_scout(cfg):
 def main():
     load_env()
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption", "stripshare"])
+    ap.add_argument("command", choices=["check", "preview", "post", "run", "fields", "linktest", "site", "backfill", "prune", "retitle", "scout", "recaption", "stripshare", "videoset"])
     ap.add_argument("--count", type=int, default=1)
     ap.add_argument("--ids", default="", help="للتعديل: رقم_المنتج:رقم_الرسالة,...")
+    ap.add_argument("--title", default="فساتين فيديو تيك توك 👗")
     ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
     a = ap.parse_args()
     cfg = load_config()
@@ -1614,6 +1665,8 @@ def main():
         return cmd_fields(cfg)
     if a.command == "stripshare":
         return cmd_strip_share(cfg)
+    if a.command == "videoset":
+        return cmd_videoset(cfg, a.ids, a.title)
     if a.command == "recaption":
         return cmd_recaption(cfg, a.ids)
     if a.command == "scout":
