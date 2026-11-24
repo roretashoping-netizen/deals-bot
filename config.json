@@ -287,6 +287,9 @@
   "extra_daily": {
     "evening-dresses": 50
   },
+  "feed_daily": 8,
+  "feed_min_price": 120,
+  "feed_max_price": 1500,
   "extra_hours": [
     9,
     25
