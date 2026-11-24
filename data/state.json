@@ -412,7 +412,8 @@
   "stylewe-285442283": "2026-11-24",
   "1005007347972697": "2026-11-24",
   "1005008710904400": "2026-11-24",
-  "1005010368945794": "2026-11-24"
+  "1005010368945794": "2026-11-24",
+  "1005012392080926": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -422,7 +423,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "قطعة النساء الفتيات u على شكل",
   "مجموعة بودرة حواجب مكونة من ألوان",
   "شباشب نسائية جديدة بتصميم عصري ولون",
   "قطع من فرش المكياج الذهبية الشمبانيا",
@@ -821,10 +821,10 @@
   "women elegant high waist x line",
   "تخصيص البريق رائعة عالية الجودة جيرسي",
   "فساتين سهرة من الساتان للحفلات الراقصة",
-  "فساتين طويلة مخصصة عالية الجودة أنيقة"
+  "فساتين طويلة مخصصة عالية الجودة أنيقة",
+  "فستان حفلات على شكل حورية البحر"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sfa3e73598c01428995fd1cab548d519c7.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0ea6a0baabaa453a89822ca37ef1b0b11.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0cf75beb7f8f4d69947dac31a53cd007T.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S4d795b2ec65346e7b6406653534d5e91A.jpg",
@@ -1223,9 +1223,10 @@
   "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/29/19cf25159df61df9ecf0103a5b29df66.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S8a4c949b4ecf485c9eab66770935eee0A.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S171954e73bdb45888a298a0854f17cabT.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S64b0810420234ed1a4452536acaebdc9g.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S64b0810420234ed1a4452536acaebdc9g.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sd31cbc24139342d1a0d0cf34054eb27cZ.jpg"
  ],
- "last_cat": "فساتين الأزياء الراقية",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1241,7 +1242,7 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 13
+   "evening-dresses": 14
   }
  },
  "extra_day": {
@@ -1677,7 +1678,9 @@
   "stylewe-285442283": 7.0,
   "1005010368945794": 9.0,
   "1005007347972697": 8.0,
-  "1005008710904400": 9.0
+  "1005008710904400": 9.0,
+  "1005009611633663": 5.0,
+  "1005012392080926": 9.0
  },
  "digest_day": "2026-11-22",
  "feed_day": {
