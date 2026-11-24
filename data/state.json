@@ -409,7 +409,10 @@
   "1005012848131920": "2026-11-24",
   "1005011550713761": "2026-11-24",
   "1005010526594435": "2026-11-24",
-  "stylewe-285442283": "2026-11-24"
+  "stylewe-285442283": "2026-11-24",
+  "1005007347972697": "2026-11-24",
+  "1005008710904400": "2026-11-24",
+  "1005010368945794": "2026-11-24"
  },
  "daily": {
   "2026-11-10": 58,
@@ -419,9 +422,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "قطاعة خضروات متعددة الوظائف، مبشرة يدوية",
-  "مشبك شعر مزين بشريط من الحرير،",
-  "مشبك شعر احترافي على شكل فراشة،",
   "قطعة النساء الفتيات u على شكل",
   "مجموعة بودرة حواجب مكونة من ألوان",
   "شباشب نسائية جديدة بتصميم عصري ولون",
@@ -818,12 +818,12 @@
   "فستان سهرة فاخر مخصص على الطراز",
   "فساتين سهرة فاخرة سوداء مخملية ذات",
   "فساتين سهرة حورية البحر سوداء طويلة",
-  "women elegant high waist x line"
+  "women elegant high waist x line",
+  "تخصيص البريق رائعة عالية الجودة جيرسي",
+  "فساتين سهرة من الساتان للحفلات الراقصة",
+  "فساتين طويلة مخصصة عالية الجودة أنيقة"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S9404ce03104a4034b475924734898a4dB.jpeg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sd19450b81d814fde98daee53aee830b6U.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sbab7f444789442fdb61bae0c072d5351j.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sfa3e73598c01428995fd1cab548d519c7.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0ea6a0baabaa453a89822ca37ef1b0b11.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0cf75beb7f8f4d69947dac31a53cd007T.jpg",
@@ -1220,9 +1220,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S107c9274bf364433a2ff4f8f1842c7d10.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0aef33918d184d88b4257bac59b0a20eH.jpeg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S6f2e794589b04ac79b0f07b04257d21f2.jpg",
-  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/29/19cf25159df61df9ecf0103a5b29df66.jpg"
+  "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/29/19cf25159df61df9ecf0103a5b29df66.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8a4c949b4ecf485c9eab66770935eee0A.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S171954e73bdb45888a298a0854f17cabT.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S64b0810420234ed1a4452536acaebdc9g.jpg"
  ],
- "last_cat": "",
+ "last_cat": "فساتين الأزياء الراقية",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1238,7 +1241,7 @@
  ],
  "cat_day": {
   "2026-11-24": {
-   "evening-dresses": 10
+   "evening-dresses": 13
   }
  },
  "extra_day": {
@@ -1671,7 +1674,10 @@
   "1005011550713761": 7.0,
   "justfashionnow-253706591": 5.0,
   "noracora-282304732": 4.0,
-  "stylewe-285442283": 7.0
+  "stylewe-285442283": 7.0,
+  "1005010368945794": 9.0,
+  "1005007347972697": 8.0,
+  "1005008710904400": 9.0
  },
  "digest_day": "2026-11-22",
  "feed_day": {
