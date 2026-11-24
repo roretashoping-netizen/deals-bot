@@ -1553,9 +1553,54 @@ SCOUT_KEYWORDS = [
 AR_DIGITS = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
 
 
-def cmd_videoset(cfg, ids, title):
-    """منشور مرقّم لفيديو تيك توك: صور الفساتين بأرقامها، ثم رسالة فيها زر لكل رقم، وتتثبّت بالقروب.
-    ids = أرقام المنتجات بنفس ترتيب الفيديو، مفصولة بفواصل."""
+def video_page(cfg, items, title, slug):
+    """صفحة بسيطة للفيديو: صور الفساتين بأرقامها، والضغط على الصورة يودّي للمنتج في علي إكسبريس."""
+    import html as _h
+    num_ar = lambda n: str(n).translate(AR_DIGITS)
+    tgl = f"https://t.me/{cfg.get('telegram_public', '').lstrip('@')}"
+    cards = []
+    for n, p, link, price in items:
+        img = p.get("product_main_image_url", "")
+        pr = f'<div class="pr">{money(num(price))} ريال</div>' if price else ""
+        cards.append(
+            f'<a class="c" href="{_h.escape(link)}" target="_blank" rel="nofollow sponsored noopener">'
+            f'<span class="n">{num_ar(n)}</span><img src="{_h.escape(img)}" alt="فستان رقم {num_ar(n)}" loading="lazy">'
+            f'<div class="b"><div class="t">فستان رقم {num_ar(n)}</div>{pr}<div class="go">اطلبيه الحين ←</div></div></a>')
+    page = f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>{_h.escape(title)}</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{{--bg:#0b0908;--card:#16120e;--ink:#f4ede2;--muted:#a99b87;--gold:#c9a35c;--gold2:#e9d29c}}
+*{{box-sizing:border-box}}body{{margin:0;font-family:"Tajawal",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}}
+header{{text-align:center;padding:22px 16px 6px}}h1{{margin:0;font-size:24px;color:var(--gold2);font-weight:800}}
+.sub{{color:var(--muted);font-size:15px;margin-top:6px}}
+.g{{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px;max-width:720px;margin:0 auto}}
+@media(min-width:700px){{.g{{grid-template-columns:repeat(4,1fr)}}}}
+.c{{position:relative;display:block;background:var(--card);border:1px solid rgba(201,163,92,.25);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit}}
+.c img{{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#222}}
+.n{{position:absolute;top:8px;right:8px;width:40px;height:40px;border-radius:50%;background:var(--gold2);color:#1a140c;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.4)}}
+.b{{padding:8px 10px 10px;text-align:center}}.t{{font-weight:700}}.pr{{color:var(--gold2);font-size:14px}}
+.go{{margin-top:6px;background:var(--gold);color:#1a140c;border-radius:9px;padding:6px 0;font-weight:800;font-size:14px}}
+.tg{{display:block;max-width:420px;margin:6px auto 0;text-align:center;color:var(--gold2);padding:10px;border:1px solid rgba(201,163,92,.35);border-radius:12px;text-decoration:none}}
+footer{{text-align:center;color:var(--muted);font-size:12px;padding:18px 16px 28px}}
+</style></head><body>
+<header><h1>{_h.escape(title)}</h1><div class="sub">اضغطي على الفستان اللي عجبك ويوديك له مباشرة 👇</div></header>
+<main class="g">{''.join(cards)}</main>
+<a class="tg" href="{tgl}" target="_blank" rel="noopener">فساتين جديدة كل يوم في قروب التيليجرام 👗</a>
+<footer>الروابط في هذه الصفحة روابط تسويق بالعمولة.</footer>
+</body></html>"""
+    out = deals_site.OUT / "v"
+    out.mkdir(parents=True, exist_ok=True)
+    (out / f"{slug}.html").write_text(page, encoding="utf-8")
+    (out / "index.html").write_text(page, encoding="utf-8")  # /v/ يعرض دايم آخر فيديو
+    site = cfg.get("site_url", "").rstrip("/")
+    print(f"الصفحة: {site}/v/{slug}.html  ·  آخر فيديو دايم: {site}/v/")
+
+
+def cmd_videoset(cfg, ids, title, slug="", to_telegram=False):
+    """فيديو تيك توك: صفحة فيها صور الفساتين بأرقامها وكل صورة توديك للمنتج،
+    واختياري منشور مرقّم بالقروب يتثبّت. ids = أرقام المنتجات بنفس ترتيب الفيديو."""
     order = [x.strip() for x in ids.split(",") if x.strip()]
     prods = {}
     for p in extract_products(ali_call(cfg, "aliexpress.affiliate.productdetail.get", {
@@ -1576,6 +1621,9 @@ def cmd_videoset(cfg, ids, title):
         price = p.get("target_sale_price") or p.get("sale_price")
         items.append((n, p, link, price))
         print(f"{n}: {pid} -> {link}")
+    video_page(cfg, items, title, slug or today())
+    if not to_telegram:
+        return 0
     num_ar = lambda n: str(n).translate(AR_DIGITS)
     media = []
     for n, p, link, price in items:
@@ -1598,7 +1646,6 @@ def cmd_videoset(cfg, ids, title):
     except Exception as e:
         print(f"[warn] التثبيت فشل: {e}", file=sys.stderr)
     return 0
-
 
 def cmd_scout(cfg):
     """يدوّر فساتين سهرة من متاجر مشتركة بالعمولة، ويرتّب المتاجر حسب الجودة (للاختيار اليدوي)."""
@@ -1650,6 +1697,8 @@ def main():
     ap.add_argument("--count", type=int, default=1)
     ap.add_argument("--ids", default="", help="للتعديل: رقم_المنتج:رقم_الرسالة,...")
     ap.add_argument("--title", default="فساتين فيديو تيك توك 👗")
+    ap.add_argument("--slug", default="")
+    ap.add_argument("--telegram", default="no")
     ap.add_argument("--focus", default="", help="أقسام بس، مثل: dresses,evening-dresses,bags")
     a = ap.parse_args()
     cfg = load_config()
@@ -1666,7 +1715,7 @@ def main():
     if a.command == "stripshare":
         return cmd_strip_share(cfg)
     if a.command == "videoset":
-        return cmd_videoset(cfg, a.ids, a.title)
+        return cmd_videoset(cfg, a.ids, a.title, a.slug, a.telegram.strip().lower() in ("yes", "true", "1", "نعم"))
     if a.command == "recaption":
         return cmd_recaption(cfg, a.ids)
     if a.command == "scout":
