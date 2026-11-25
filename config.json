@@ -173,19 +173,14 @@
         "min": 342
       },
       {
-        "code": "GCCSF24",
-        "off": 92,
-        "min": 516
+        "code": "GCC24",
+        "off": 94,
+        "min": 539
       },
       {
-        "code": "GCCSF31",
-        "off": 118,
-        "min": 745
-      },
-      {
-        "code": "GCCSF40",
-        "off": 152,
-        "min": 1007
+        "code": "GCC35",
+        "off": 135,
+        "min": 850
       },
       {
         "code": "GCCSF55",
@@ -193,14 +188,19 @@
         "min": 1300
       },
       {
-        "code": "GCCSF80",
-        "off": 301,
-        "min": 1898
+        "code": "GCC70",
+        "off": 270,
+        "min": 1770
       },
       {
         "code": "GCCSF100",
         "off": 380,
         "min": 2318
+      },
+      {
+        "code": "GCC140",
+        "off": 540,
+        "min": 3388
       }
     ],
     "notes": []
