@@ -421,7 +421,9 @@
   "noracora-285551547": "2026-11-24",
   "1005008040097244": "2026-11-24",
   "1005012635804397": "2026-11-24",
-  "1005011931001378": "2026-11-24"
+  "1005011931001378": "2026-11-24",
+  "1005012144924799": "2026-11-25",
+  "1005013209201278": "2026-11-25"
  },
  "daily": {
   "2026-11-10": 58,
@@ -431,8 +433,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "صندوق أعواد قطنية دائرية مع غطاء",
-  "قطعة حقيبة مستحضرات تجميل صغيرة شفافة",
   "منظم صندوق تخزين جديد ذو سعة",
   "حقيبة مكياج شفافة على شكل قلب",
   "مجموعات مجوهرات من الفضة الإسترليني عيار",
@@ -830,11 +830,11 @@
   "women plain spring fall split joint",
   "تخصيص الكاحل طول غمد مساء رداء",
   "فستان زفاف بأكمام طويلة مكشوف الأكتاف،",
-  "فساتين سهرة مخصصة من بيلا، فستان"
+  "فساتين سهرة مخصصة من بيلا، فستان",
+  "فستان سهرة فاخر مزين بالزهور والشمبانيا",
+  "فستان سهرة بيلّا مخصص بتصميم ياقة"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S06b92d5210684277a4a3129d652504b8p.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S894d748ebd0e48849847ce3167d345f2m.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S65a747dd58b64ecdbc8e8a987d09dbd0T.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sa1ed3b928b9049959629c27f8a332523z.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sce7fa6edae3c4dd4974e254e9eb7d3abf.jpg",
@@ -1232,7 +1232,9 @@
   "https://img.chicv.com/image_cache/resize/450x600/image/catalog/product/2025-11/20/35a20bff9328cc79417d0b2189aa65cf.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sc5d431df6dba49bbb612c78cc0a1c9f0j.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd438bbff6b804f8699f3cb61e57411dfu.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S8120ecf30ba94abf862bba9967936a9ai.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S8120ecf30ba94abf862bba9967936a9ai.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2e12a2e10431438e88ce126647fe20f07.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S680e97704b164657b2716afb41863605Y.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1249,13 +1251,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-24": {
-   "evening-dresses": 22
+  "2026-11-25": {
+   "evening-dresses": 2
   }
  },
  "extra_day": {
-  "2026-11-24": {
-   "evening-dresses": 13
+  "2026-11-25": {
+   "evening-dresses": 2
   }
  },
  "taste": {
@@ -1697,7 +1699,9 @@
   "1005012635804397": 9.0,
   "1005012272918927": 3.0,
   "1005008040097244": 9.0,
-  "1005011931001378": 8.0
+  "1005011931001378": 8.0,
+  "1005013209201278": 9.0,
+  "1005012144924799": 9.0
  },
  "digest_day": "2026-11-24",
  "feed_day": {
