@@ -423,7 +423,10 @@
   "1005012635804397": "2026-11-24",
   "1005011931001378": "2026-11-24",
   "1005012144924799": "2026-11-25",
-  "1005013209201278": "2026-11-25"
+  "1005013209201278": "2026-11-25",
+  "1005009785392931": "2026-11-25",
+  "1005009945751516": "2026-11-25",
+  "1005012021891908": "2026-11-25"
  },
  "daily": {
   "2026-11-10": 58,
@@ -433,9 +436,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "منظم صندوق تخزين جديد ذو سعة",
-  "حقيبة مكياج شفافة على شكل قلب",
-  "مجموعات مجوهرات من الفضة الإسترليني عيار",
   "قلادات وأقراط نسائية عتيقة الطراز بتصميم",
   "orsa جواهر a مكعب زركونيا وأقراط",
   "juya قطعة الوحدة لتقوم بها بنفسك",
@@ -832,12 +832,12 @@
   "فستان زفاف بأكمام طويلة مكشوف الأكتاف،",
   "فساتين سهرة مخصصة من بيلا، فستان",
   "فستان سهرة فاخر مزين بالزهور والشمبانيا",
-  "فستان سهرة بيلّا مخصص بتصميم ياقة"
+  "فستان سهرة بيلّا مخصص بتصميم ياقة",
+  "سعر أمتار سم زخرفة دانتيل غير",
+  "فساتين سهرة مخصصة على شكل حرف",
+  "فستان أبيض أنيق بتصميم عتيق برقبة"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S65a747dd58b64ecdbc8e8a987d09dbd0T.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa1ed3b928b9049959629c27f8a332523z.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sce7fa6edae3c4dd4974e254e9eb7d3abf.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S487805d5221e4b01aec4e643ef77910f7.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sbca1d89bb95b4913a41cec530c943b674.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S68a5731c6f344d0fb94644ed8029d8edY.jpg",
@@ -1234,9 +1234,12 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd438bbff6b804f8699f3cb61e57411dfu.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S8120ecf30ba94abf862bba9967936a9ai.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S2e12a2e10431438e88ce126647fe20f07.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S680e97704b164657b2716afb41863605Y.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S680e97704b164657b2716afb41863605Y.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S2b27c7052a344ee59bfefa0c5dcb6201r.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S494ce08345224932840b46e874721984v.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S054ce9eb7b464760b39458e31d4b1607E.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1252,12 +1255,12 @@
  ],
  "cat_day": {
   "2026-11-25": {
-   "evening-dresses": 2
+   "evening-dresses": 5
   }
  },
  "extra_day": {
   "2026-11-25": {
-   "evening-dresses": 2
+   "evening-dresses": 5
   }
  },
  "taste": {
@@ -1701,7 +1704,10 @@
   "1005008040097244": 9.0,
   "1005011931001378": 8.0,
   "1005013209201278": 9.0,
-  "1005012144924799": 9.0
+  "1005012144924799": 9.0,
+  "1005012021891908": 7.0,
+  "1005009785392931": 7.0,
+  "1005009945751516": 9.0
  },
  "digest_day": "2026-11-24",
  "feed_day": {
