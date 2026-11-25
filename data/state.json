@@ -427,7 +427,8 @@
   "1005009785392931": "2026-11-25",
   "1005009945751516": "2026-11-25",
   "1005012021891908": "2026-11-25",
-  "1005010485149947": "2026-11-25"
+  "1005010485149947": "2026-11-25",
+  "1005010129341873": "2026-11-25"
  },
  "daily": {
   "2026-11-10": 58,
@@ -437,7 +438,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "orsa جواهر a مكعب زركونيا وأقراط",
   "juya قطعة الوحدة لتقوم بها بنفسك",
   "حزمة من منظمات الأدراج القابلة للتعديل،",
   "سلة مهملات موفرة للمساحة بإغلاق هادئ",
@@ -836,10 +836,10 @@
   "سعر أمتار سم زخرفة دانتيل غير",
   "فساتين سهرة مخصصة على شكل حرف",
   "فستان أبيض أنيق بتصميم عتيق برقبة",
-  "فساتين سهرة حورية البحر مخصصة بطول"
+  "فساتين سهرة حورية البحر مخصصة بطول",
+  "فستان ماكسي أنيق وطويل للنساء، بياقة"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sbca1d89bb95b4913a41cec530c943b674.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S68a5731c6f344d0fb94644ed8029d8edY.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S8a83d141df1f4625b17e7270000c6738e.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf5009ea6dd884bf29780b9896d19b7deZ.jpg",
@@ -1238,9 +1238,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S2b27c7052a344ee59bfefa0c5dcb6201r.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S494ce08345224932840b46e874721984v.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S054ce9eb7b464760b39458e31d4b1607E.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sbedf2f8c741b41429a1ad3571132a859x.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbedf2f8c741b41429a1ad3571132a859x.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/Sbbb25b8ef1224f62bc7f0f87c3159b85g.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "فساتين",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1256,12 +1257,12 @@
  ],
  "cat_day": {
   "2026-11-25": {
-   "evening-dresses": 6
+   "evening-dresses": 7
   }
  },
  "extra_day": {
   "2026-11-25": {
-   "evening-dresses": 6
+   "evening-dresses": 7
   }
  },
  "taste": {
@@ -1709,7 +1710,8 @@
   "1005012021891908": 7.0,
   "1005009785392931": 7.0,
   "1005009945751516": 9.0,
-  "1005010485149947": 8.0
+  "1005010485149947": 8.0,
+  "1005010129341873": 7.0
  },
  "digest_day": "2026-11-25",
  "feed_day": {
