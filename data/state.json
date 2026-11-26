@@ -432,7 +432,8 @@
   "1005006640665582": "2026-11-26",
   "1005012930905013": "2026-11-26",
   "1005011795131635": "2026-11-26",
-  "1005012871959127": "2026-11-26"
+  "1005012871959127": "2026-11-26",
+  "1005010128242584": "2026-11-26"
  },
  "daily": {
   "2026-11-10": 58,
@@ -442,7 +443,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "وعاء تخزين حبوب القهوة، وعاء محكم",
   "مشابك شعر ملونة على شكل نجمة",
   "قطعتان مجموعة مشبك شعر كبير الحجم",
   "مشبك شعر أنيق من الأسيتات متوسط",
@@ -841,10 +841,10 @@
   "فستان أميرة أنيق جديد للفتيات مطرز",
   "فساتين سهرة مخصصة من سانسا بألوان",
   "فستان نسائي جديد لصيف ، فستان",
-  "فستان سهرة طويل أنيق من gibsie"
+  "فستان سهرة طويل أنيق من gibsie",
+  "فستان فتاة الزهور من الساتان الجميل"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sa667a4c78a654079ad69bb6daf1febc0K.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S04ab6278fd534d678f627aef4b83ff1cl.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S657d6de905794a56904227faf56ac1ff1.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S17746f57677640238246abde812d6b53C.jpg",
@@ -1243,9 +1243,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S5f10872ae4354d0ba40ef1d8f82e3259X.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf5c73c7bb53a4944891c986c2f3ce3c5q.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S54fe69eeecae47928cd3840c0e1d6651d.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/Se22d2a5aa351432a9ef44282185902735.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/Se22d2a5aa351432a9ef44282185902735.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S826e847f14a84ab18d7c19edc50ef3e4b.jpg"
  ],
- "last_cat": "Plus Size Clothes",
+ "last_cat": "فستان حفل الزفاف",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1261,12 +1262,12 @@
  ],
  "cat_day": {
   "2026-11-26": {
-   "evening-dresses": 4
+   "evening-dresses": 5
   }
  },
  "extra_day": {
   "2026-11-26": {
-   "evening-dresses": 4
+   "evening-dresses": 5
   }
  },
  "taste": {
@@ -1719,7 +1720,10 @@
   "1005011795131635": 9.0,
   "1005006640665582": 7.0,
   "1005012930905013": 7.0,
-  "1005012871959127": 7.0
+  "1005012871959127": 7.0,
+  "1005012006009806": 3.0,
+  "1005010128242584": 7.0,
+  "1005013556467343": 4.0
  },
  "digest_day": "2026-11-25",
  "feed_day": {
