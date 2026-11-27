@@ -434,7 +434,9 @@
   "1005011795131635": "2026-11-26",
   "1005012871959127": "2026-11-26",
   "1005010128242584": "2026-11-26",
-  "1005012250632797": "2026-11-26"
+  "1005012250632797": "2026-11-26",
+  "1005006078270234": "2026-11-27",
+  "1005012759694057": "2026-11-27"
  },
  "daily": {
   "2026-11-10": 58,
@@ -444,8 +446,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "قطعتان مجموعة مشبك شعر كبير الحجم",
-  "مشبك شعر أنيق من الأسيتات متوسط",
   "مشبك شعر على شكل فيونكة من",
   "خفاقة بيض يدوية من الستانلس ستيل،",
   "خلاط بيض نصف أوتوماتيكي يدوي دوار،",
@@ -843,11 +843,11 @@
   "فستان نسائي جديد لصيف ، فستان",
   "فستان سهرة طويل أنيق من gibsie",
   "فستان فتاة الزهور من الساتان الجميل",
-  "فستان سهرة أوفهروون باللون البورغندي الوردي"
+  "فستان سهرة أوفهروون باللون البورغندي الوردي",
+  "فستان رسمي أفريقي أنيق للحفلات الراقصة",
+  "قطعة واحدة مجموعة من شرائط الدانتيل"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S657d6de905794a56904227faf56ac1ff1.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S17746f57677640238246abde812d6b53C.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S0d2def9642fb4903823cb11fd5ae2374H.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S24804b3ec24f42998ab93b9da55eef31x.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd452dcf0906843769663211750202c42Z.jpg",
@@ -1245,9 +1245,11 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S54fe69eeecae47928cd3840c0e1d6651d.png",
   "https://ae-pic-a1.aliexpress-media.com/kf/Se22d2a5aa351432a9ef44282185902735.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S826e847f14a84ab18d7c19edc50ef3e4b.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S4fea9a33ad894bd49461421a1ee1fa083.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S4fea9a33ad894bd49461421a1ee1fa083.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S21d72b724a0a4b49ad33ac2aba4190bed.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S317666e3d39948a7b577f338c0e6a68fz.jpg"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "الفنون ، الحرف وخياطة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1262,13 +1264,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-26": {
-   "evening-dresses": 6
+  "2026-11-27": {
+   "evening-dresses": 2
   }
  },
  "extra_day": {
-  "2026-11-26": {
-   "evening-dresses": 6
+  "2026-11-27": {
+   "evening-dresses": 2
   }
  },
  "taste": {
@@ -1725,7 +1727,11 @@
   "1005012006009806": 3.0,
   "1005010128242584": 7.0,
   "1005013556467343": 4.0,
-  "1005012250632797": 7.0
+  "1005012250632797": 7.0,
+  "1005007905377370": 3.0,
+  "1005012759694057": 7.0,
+  "1005009220831979": 4.0,
+  "1005006078270234": 7.0
  },
  "digest_day": "2026-11-26",
  "feed_day": {
