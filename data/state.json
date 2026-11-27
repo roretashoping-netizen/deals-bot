@@ -436,7 +436,8 @@
   "1005010128242584": "2026-11-26",
   "1005012250632797": "2026-11-26",
   "1005006078270234": "2026-11-27",
-  "1005012759694057": "2026-11-27"
+  "1005012759694057": "2026-11-27",
+  "1005012147825037": "2026-11-27"
  },
  "daily": {
   "2026-11-10": 58,
@@ -446,7 +447,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "مشبك شعر على شكل فيونكة من",
   "خفاقة بيض يدوية من الستانلس ستيل،",
   "خلاط بيض نصف أوتوماتيكي يدوي دوار،",
   "كيس بطاطس الميكروويف قابل لإعادة الاستخدام",
@@ -845,10 +845,10 @@
   "فستان فتاة الزهور من الساتان الجميل",
   "فستان سهرة أوفهروون باللون البورغندي الوردي",
   "فستان رسمي أفريقي أنيق للحفلات الراقصة",
-  "قطعة واحدة مجموعة من شرائط الدانتيل"
+  "قطعة واحدة مجموعة من شرائط الدانتيل",
+  "فستان سهرة أنيق مخصص من الشيفون"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0d2def9642fb4903823cb11fd5ae2374H.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S24804b3ec24f42998ab93b9da55eef31x.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd452dcf0906843769663211750202c42Z.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd089e10c214643ad8775fa54a7d2ea70A.jpg",
@@ -1247,9 +1247,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S826e847f14a84ab18d7c19edc50ef3e4b.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S4fea9a33ad894bd49461421a1ee1fa083.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S21d72b724a0a4b49ad33ac2aba4190bed.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S317666e3d39948a7b577f338c0e6a68fz.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S317666e3d39948a7b577f338c0e6a68fz.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S1c9a3627db114625a64e4ab73fe883df8.png"
  ],
- "last_cat": "الفنون ، الحرف وخياطة",
+ "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1265,12 +1266,12 @@
  ],
  "cat_day": {
   "2026-11-27": {
-   "evening-dresses": 2
+   "evening-dresses": 3
   }
  },
  "extra_day": {
   "2026-11-27": {
-   "evening-dresses": 2
+   "evening-dresses": 3
   }
  },
  "taste": {
@@ -1731,7 +1732,8 @@
   "1005007905377370": 3.0,
   "1005012759694057": 7.0,
   "1005009220831979": 4.0,
-  "1005006078270234": 7.0
+  "1005006078270234": 7.0,
+  "1005012147825037": 9.0
  },
  "digest_day": "2026-11-26",
  "feed_day": {
