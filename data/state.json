@@ -438,7 +438,8 @@
   "1005006078270234": "2026-11-27",
   "1005012759694057": "2026-11-27",
   "1005012147825037": "2026-11-27",
-  "1005008586095243": "2026-11-27"
+  "1005008586095243": "2026-11-27",
+  "1005012132231380": "2026-11-28"
  },
  "daily": {
   "2026-11-10": 58,
@@ -448,7 +449,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "خلاط بيض نصف أوتوماتيكي يدوي دوار،",
   "كيس بطاطس الميكروويف قابل لإعادة الاستخدام",
   "الطبخ ورقة الهواء المقلاة ورق للاستعمال",
   "مسمار شكل نصائح جل الأشعة فوق",
@@ -847,10 +847,10 @@
   "فستان رسمي أفريقي أنيق للحفلات الراقصة",
   "قطعة واحدة مجموعة من شرائط الدانتيل",
   "فستان سهرة أنيق مخصص من الشيفون",
-  "أماندا مخصصة بيضاء كتف واحد كم"
+  "أماندا مخصصة بيضاء كتف واحد كم",
+  "فستان سهرة فاخر من rfyr مع"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/Sd452dcf0906843769663211750202c42Z.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sd089e10c214643ad8775fa54a7d2ea70A.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S5825126ceed14768b757e9089033bce4I.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S95714f78b7a0496cbeafc1969d887a083.jpg",
@@ -1249,7 +1249,8 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S21d72b724a0a4b49ad33ac2aba4190bed.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S317666e3d39948a7b577f338c0e6a68fz.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S1c9a3627db114625a64e4ab73fe883df8.png",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S48f5a2a7969743f2b3b11be0448b699f4.jpg"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S48f5a2a7969743f2b3b11be0448b699f4.jpg",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S33a9b07ac5044c8f885d2eaa5459dcebO.jpg"
  ],
  "last_cat": "فساتين مناسبة خاصة",
  "amazon_daily": {},
@@ -1266,13 +1267,13 @@
   "evening-dresses"
  ],
  "cat_day": {
-  "2026-11-27": {
-   "evening-dresses": 4
+  "2026-11-28": {
+   "evening-dresses": 1
   }
  },
  "extra_day": {
-  "2026-11-27": {
-   "evening-dresses": 4
+  "2026-11-28": {
+   "evening-dresses": 1
   }
  },
  "taste": {
@@ -1735,7 +1736,8 @@
   "1005009220831979": 4.0,
   "1005006078270234": 7.0,
   "1005012147825037": 9.0,
-  "1005008586095243": 7.0
+  "1005008586095243": 7.0,
+  "1005012132231380": 8.0
  },
  "digest_day": "2026-11-26",
  "feed_day": {
