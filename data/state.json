@@ -441,7 +441,8 @@
   "1005008586095243": "2026-11-27",
   "1005012132231380": "2026-11-28",
   "1005012722983421": "2026-11-28",
-  "1005009578522075": "2026-11-28"
+  "1005009578522075": "2026-11-28",
+  "1005013221259475": "2026-11-28"
  },
  "daily": {
   "2026-11-10": 58,
@@ -451,7 +452,6 @@
   "2026-11-14": 9
  },
  "recent_keys": [
-  "مسمار شكل نصائح جل الأشعة فوق",
   "أداة إزالة الجلد الممتازة مكشطة مانيكير",
   "مسمار فرشاة فنية نظافة حامل بلاستيك",
   "tp قطعة طاولة عرض طلاء الأظافر",
@@ -850,10 +850,10 @@
   "أماندا مخصصة بيضاء كتف واحد كم",
   "فستان سهرة فاخر من rfyr مع",
   "فساتين سهرة من الكريب المرن باللون",
-  "فساتين حفلات من lorie مصنوعة من"
+  "فساتين حفلات من lorie مصنوعة من",
+  "فستان هالوين جديد رائج للفتيات مزين"
  ],
  "recent_imgs": [
-  "https://ae-pic-a1.aliexpress-media.com/kf/S95714f78b7a0496cbeafc1969d887a083.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sf2113c54a6f54596b4bca12e3764a915W.jpeg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S15ee3d1db46d4334805c9e378280dd96R.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S85356125c6614552a2232e88859db555G.jpg",
@@ -1252,9 +1252,10 @@
   "https://ae-pic-a1.aliexpress-media.com/kf/S48f5a2a7969743f2b3b11be0448b699f4.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/S33a9b07ac5044c8f885d2eaa5459dcebO.jpg",
   "https://ae-pic-a1.aliexpress-media.com/kf/Sca25ffe9e93b48bea7b62f15fbf8c1bbE.jpg",
-  "https://ae-pic-a1.aliexpress-media.com/kf/S0b5813811e064beabcff5cc4c8041829h.png"
+  "https://ae-pic-a1.aliexpress-media.com/kf/S0b5813811e064beabcff5cc4c8041829h.png",
+  "https://ae-pic-a1.aliexpress-media.com/kf/S351e3be6bbac4fe3a8e3b2d93b7b3b77l.png"
  ],
- "last_cat": "فساتين مناسبة خاصة",
+ "last_cat": "أزياء تنكرية",
  "amazon_daily": {},
  "recent_cats": [
   "evening-dresses",
@@ -1270,12 +1271,12 @@
  ],
  "cat_day": {
   "2026-11-28": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "extra_day": {
   "2026-11-28": {
-   "evening-dresses": 3
+   "evening-dresses": 4
   }
  },
  "taste": {
@@ -1742,7 +1743,9 @@
   "1005012132231380": 8.0,
   "1005012722983421": 9.0,
   "1005001970333531": 2.0,
-  "1005009578522075": 7.0
+  "1005009578522075": 7.0,
+  "1005013221259475": 7.0,
+  "1005003761353347": 2.0
  },
  "digest_day": "2026-11-26",
  "feed_day": {
